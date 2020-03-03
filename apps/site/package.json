@@ -80,7 +80,6 @@
     "xtend": "^4.0.2"
   },
   "peerDependencies": {
-    "cypress": "^4.0.1",
-    "svelte": "^3.19.1"
+    "cypress": "^4.0.1"
   }
 }
