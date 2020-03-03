@@ -29,7 +29,6 @@
     "@storybook/addons": "^6.0.0-alpha.14",
     "@storybook/core": "^6.0.0-alpha.14",
     "@storybook/svelte": "^6.0.0-alpha.14",
-    "@studiobear/svelte-system-ui": "^0.0.1",
     "@testing-library/jest-dom": "^5.1.1",
     "@testing-library/svelte": "^1.11.0",
     "babel-jest": "^25.1.0",
@@ -51,6 +50,7 @@
     "regenerator-runtime": "^0.13.3",
     "rollup": "^1.21.4",
     "rollup-plugin-svelte": "^5.1.0",
+    "svelte": "^3.19.1",
     "svelte-jester": "^1.0.3",
     "svelte-loader": "^2.13.6",
     "typography-theme-st-annes": "^0.16.19",
@@ -70,6 +70,6 @@
     "dist"
   ],
   "dependencies": {
-    "svelte": "^3.19.1"
+    "@studiobear/svelte-system-ui": "^0.0.1"
   }
 }
