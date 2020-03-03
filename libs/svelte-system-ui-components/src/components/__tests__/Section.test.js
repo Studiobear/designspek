@@ -1,5 +1,5 @@
 import { render, fireEvent } from '@testing-library/svelte'
-import SectionView from '../stories/views/SectionView.svelte'
+import SectionView from '../stories/views/sectionView.svelte'
 
 describe('Section', () => {
   test('should render component correctly ', () => {
