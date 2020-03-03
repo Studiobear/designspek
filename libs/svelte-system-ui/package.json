@@ -1,5 +1,5 @@
 {
-  "name": "svelte-system-ui",
+  "name": "@studiobear/svelte-system-ui",
   "version": "0.0.1",
   "description": "Svelte System UI",
   "source": "src/index.js",
@@ -19,7 +19,7 @@
     "bundlesize": "bundlesize",
     "lint": "prettier --check 'src/**/*.{html,js,svelte}'",
     "lint:fix": "prettier --write 'src/**/*.{html,js,svelte}'",
-    "build": "yarn test && yarn clean && yarn microbundle&& yarn bundlesize",
+    "build": "yarn test && yarn clean && yarn microbundle && yarn bundlesize",
     "watch": "yarn microbundle watch",
     "test": "ava tests/test.js",
     "test:watch": "yarn test --watch"
