@@ -1,0 +1,119 @@
+root {
+  font-family: 'Source Sans Pro', sans-serif;
+  line-height: 1.5625rem;
+  font-weight: 400;
+  font-size: 16rem;
+}
+h1 {
+  font-family: 'Source Serif Pro', sans-serif;
+  line-height: 1.1rem;
+  font-weight: 600;
+  font-size: 32rem;
+  color: #07c;
+}
+h2 {
+  font-family: 'Source Serif Pro', sans-serif;
+  line-height: 1.1rem;
+  font-weight: 600;
+  font-size: 24.251465064166368rem;
+  color: #30c;
+}
+h3 {
+  font-family: 'Source Serif Pro', sans-serif;
+  line-height: 1.1rem;
+  font-weight: 600;
+  font-size: 21.112126572366307rem;
+  color: #666;
+}
+h4 {
+  font-family: 'Source Serif Pro', sans-serif;
+  line-height: 1.1rem;
+  font-weight: 600;
+  font-size: 16rem;
+  color: #ddd;
+}
+h5 {
+  font-family: 'Source Serif Pro', sans-serif;
+  line-height: 1.1rem;
+  font-weight: 600;
+  font-size: 13.928809012737986rem;
+  color: #666;
+}
+h6 {
+  font-family: 'Source Serif Pro', sans-serif;
+  line-height: 1.1rem;
+  font-weight: 600;
+  font-size: 12.99603834169977rem;
+}
+p {
+  color: #666;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 400;
+  line-height: 1.5625rem;
+  font-size: 12.99603834169977rem;
+}
+a {
+  color: #07c;
+}
+pre {
+  font-family: monospace;
+  overflow-x: auto;
+  font-size: 85%;
+  padding: 16px;
+}
+code {
+  font-family: monospace;
+  font-size: 85%;
+}
+table {
+  width: 100%;
+}
+th {
+  text-align: left;
+  border-bottom-style: solid;
+  border-bottom: 1px solid;
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+td {
+  text-align: left;
+  border-bottom-style: solid;
+  border-bottom: 1px solid;
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  margin-top: -1px;
+}
+img {
+  max-width: 100%;
+}
+ul {
+  margin-left: 16px;
+}
+ol {
+  margin-left: 16px;
+}
+li {
+  margin-bottom: 8px;
+  padding: 8px;
+  padding-left: 0px;
+}
+blockquote {
+  margin-left: 16px;
+  margin-right: 16px;
+}
+hr {
+  border: 0;
+  border-bottom: 1px solid;
+  margin-top: -1px;
+  margin-bottom: 16px;
+}
+b {
+  font-weight: 700;
+}
+strong {
+  font-weight: 700;
+}
