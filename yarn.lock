@@ -16141,6 +16141,14 @@ typography-breakpoint-constants@^0.16.19:
   resolved "https://registry.yarnpkg.com/typography-breakpoint-constants/-/typography-breakpoint-constants-0.16.19.tgz#e0e89147749562cbb46ce76c47ff0f73372765e7"
   integrity sha512-vXjfV9hwAXIOf5+U5GN137ahBkK+sj1TJu/5ksmP+8XB/D80lmGb/m0nKviWaQ3t7HLrK848VGrFS+6E2vcmVg==
 
+typography-theme-kirkham@^0.16.19:
+  version "0.16.19"
+  resolved "https://registry.yarnpkg.com/typography-theme-kirkham/-/typography-theme-kirkham-0.16.19.tgz#17c83ac32a24696b62546d760fd67540ad8ce582"
+  integrity sha512-l/8J7RES+aYqeq1C0iQGw9jfNQAEEu6j9lS5jhyrgH09hR1CQ5RDIEqvbcaXvIADuwgvkL8zXAJlh1ydj3TALA==
+  dependencies:
+    gray-percentage "^2.0.0"
+    typography-breakpoint-constants "^0.16.19"
+
 typography-theme-st-annes@^0.16.19:
   version "0.16.19"
   resolved "https://registry.yarnpkg.com/typography-theme-st-annes/-/typography-theme-st-annes-0.16.19.tgz#e5ac2ad7916f07bdadb3662c806f5bd537fc31e8"

@@ -1,36 +1,41 @@
 <script>
-  import { styled } from 'svelte-styled-system'
-  import { theme } from '../theme'
+  import { addGlobal, styled } from '@studiobear/svelte-system-ui'
+  import { googleFonts, theme } from '../theme'
 
-  import { Nav, Button, Box } from '../components'
+  import { Section, Button, Box } from '@studiobear/svelte-system-ui-components'
+  import { Nav } from '../components'
 
+  // $: background = $theme.colors.background || '#fff'
   export let segment
-  export let mode = 'basic'
+  $: bodyStyle = {
+    backgroundColor: $theme.colors.background,
+  }
+  $: mainStyle = {
+    position: 'relative',
+    maxWidth: '56em',
+    backgroundColor: $theme.colors.background,
+    p: 3,
+    m: '0 auto',
+    boxSizing: 'border-box',
+  }
+  $: console.log('_layout: ', $theme, theme)
+
+  if (process.browser) {
+    addGlobal($theme)
+  }
 </script>
 
-<style>
-  main {
-    position: relative;
-    max-width: 56em;
-    background-color: white;
-    padding: 2em;
-    margin: 0 auto;
-    box-sizing: border-box;
-  }
-</style>
+<svelte:head>
+  <link href={googleFonts} rel="stylesheet" type="text/css" />
+</svelte:head>
+<Box theme={$theme} style={bodyStyle}>
+  <Nav {segment} />
 
-<Nav {segment} />
-
-<main use:styled={[$$props, $theme]}>
-  <Button
-    bg={'colors.primary'}
-    p="space.xs"
-    color={'colors.secondary'}
-    on:click={() => {
-      mode === 'basic' ? theme.dark() : theme.reset()
-      return (mode = mode === 'basic' ? 'dark' : 'basic')
-    }}>
-    click to invert me!
-  </Button>
-  <slot />
-</main>
+  <Section as="main" style={mainStyle}>
+    <button
+      on:click={() => ($theme.mode === 'light' ? theme.dark() : theme.light())}>
+      {$theme.mode === 'light' ? 'to dark mode' : 'to light mode'}
+    </button>
+    <slot />
+  </Section>
+</Box>
