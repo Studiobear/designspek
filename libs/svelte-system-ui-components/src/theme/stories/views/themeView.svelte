@@ -1,6 +1,6 @@
 <script>
   import { onMount } from 'svelte'
-  import { addGlobal } from 'svelte-system-ui'
+  import { addGlobal } from '@studiobear/svelte-system-ui'
   import { theme } from '../../index'
   import { Box, Heading, Text } from '../../../components'
 

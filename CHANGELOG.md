@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 0.1.1 (2020-03-03)
+
+
+### Features
+
+* initial refactor from Studiobear core ([1444b70](https://github.com/Studiobear/svelte-system-ui/commit/1444b70def7f0d9a5505baa17322e60e866d0328))
+
 ## [0.3.0](https://github.com/Studiobear/svelte-monorepo-starter/compare/v0.2.1...v0.3.0) (2020-02-16)
 
 ### [0.2.1](https://github.com/Studiobear/svelte-monorepo-starter/compare/v0.2.0...v0.2.1) (2020-02-16)

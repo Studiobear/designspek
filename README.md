@@ -21,6 +21,10 @@ The motivation of this library is to bring the culture developing the standard o
 - **[Typography.js](http://kyleamathews.github.io/typography.js/)**: Typography is difficult and the nuances of applying good typography exasperate the already-brittle system of themes and CSS. TypographyJS works as a seperate themeing layer that can be integrated with Styled System to apply such typographic nuances to the greater theme.
 - **SvDX _(coming soon)_**: Svelte-flavored MDX. MDX? MDX allows writing JSX (known for its use in React, but is a general syntax extension to JS) in Markdown documents. Long story short, as Markdown is [easy](https://www.markdownguide.org/getting-started/#why-use-markdown), it can be made even more powerful by allowing Svelte-components to be as easily embedded as JSX.
 
+### Current State
+
+This library is naively constructed as scrutiny and comprehension of the critical elements of css-in-js theming is underway.
+
 # Using Svelte System UI
 
 ## Getting started
@@ -64,7 +68,7 @@ Use `styled` from `svelte-system-ui` in a [svelte action](https://svelte.dev/doc
 ```jsx
 // Box.svelte
 <script>
-  import { styled } from 'svelte-styled-system';
+  import { styled } from '@studiobear/svelte-system-ui';
   import { theme } from './theme.js';
 </script>
 
