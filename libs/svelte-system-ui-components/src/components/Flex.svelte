@@ -1,5 +1,5 @@
 <script>
-  import { styled } from 'svelte-system-ui'
+  import { styled } from '@studiobear/svelte-system-ui'
   import theme from '../theme'
   import Box from './Box.svelte'
 
@@ -8,7 +8,7 @@
     d: 'flex',
     ...style,
   }
-  console.log('Flex', compStyles, $$props)
+  // console.log('Flex', compStyles, $$props)
 </script>
 
 <Box style={compStyles}>

@@ -1,7 +1,7 @@
 {
   "name": "svelte-system-ui",
-  "version": "0.1.0",
-  "description": "For building consistent, interoperable design systems with Svelte",
+  "version": "0.1.1",
+  "description": "FFor using consistent, interoperable design systems with Svelte",
   "author": "Barry Low <barry@studiobear.co>",
   "license": "MIT",
   "private": true,
@@ -12,7 +12,8 @@
     ],
     "nohoist": [
       "**/rollup-plugin-svelte",
-      "**/rollup-plugin-svelte/**"
+      "**/rollup-plugin-svelte/**",
+      "**/svelte-system-ui/**"
     ]
   },
   "scripts": {
@@ -26,8 +27,8 @@
     "test": "lerna run test",
     "monocheck": "manypkg check",
     "monofix": "manypkg fix",
-    "check-packages": "yarn clean && yarn monocheck && yarn lint && yarn eslint",
-    "fix-packages": "yarn clean && yarn monofix && yarn lint:fix && yarn eslint:fix",
+    "check-packages": "yarn monocheck && yarn lint && yarn eslint",
+    "fix-packages": "yarn monofix && yarn lint:fix && yarn eslint:fix",
     "commit": "git add . && git cz",
     "release": "standard-version"
   },

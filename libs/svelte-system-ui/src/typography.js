@@ -295,7 +295,7 @@ export const typography = (theme = {}, _opts = {}) => {
 }
 
 export const fontLink = typography => {
-  console.log('fontLink: ', typography)
+  // console.log('fontLink: ', typography)
   let fontsStr = ''
   if (typography.googleFonts) {
     const fonts = typography.googleFonts.map(font => {
@@ -310,7 +310,7 @@ export const fontLink = typography => {
     fontsStr = fonts.join('|')
 
     if (fontsStr) {
-      console.log('fontLink2: ', fontsStr)
+      // console.log('fontLink2: ', fontsStr)
       return `//fonts.googleapis.com/css?family=${fontsStr}`
     }
     return null

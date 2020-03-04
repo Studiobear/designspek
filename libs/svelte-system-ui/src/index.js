@@ -111,7 +111,7 @@ export const processCss = (attributes, theme, pseudoElementSelector) => {
 
   for (let [name, value] of Object.entries(attributes)) {
     name = shortHandAttributes.get(name) || [name]
-    console.log('processCss 1', name, value)
+    // console.log('processCss 1', name, value)
     for (let cssProp of name) {
       let cssPropValue
       if (cssProp.startsWith('_')) {
@@ -127,7 +127,7 @@ export const processCss = (attributes, theme, pseudoElementSelector) => {
   cssText.theme = theme
 
   let newCss = system(cssText)
-  console.log('newCss', newCss, cssMisc)
+  // console.log('newCss', newCss, cssMisc)
 
   return addUnits(Object.assign(newCss, cssMisc))
 }

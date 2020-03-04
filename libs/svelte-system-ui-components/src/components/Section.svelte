@@ -1,5 +1,5 @@
 <script>
-  import { styled } from 'svelte-system-ui'
+  import { styled } from '@studiobear/svelte-system-ui'
   import theme from '../theme'
   export let style = {}
   let role = $$props.role || null
@@ -30,7 +30,7 @@
       }
     }
   }
-  console.log('Section', role, setRole, as, $$props)
+  // console.log('Section', role, setRole, as, $$props)
 </script>
 
 {#if !as || as === 'header'}
