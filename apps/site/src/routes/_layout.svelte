@@ -18,7 +18,7 @@
     m: '0 auto',
     boxSizing: 'border-box',
   }
-  $: console.log('_layout: ', $theme, theme)
+  // $: console.log('_layout: ', $theme, theme)
 
   if (process.browser) {
     addGlobal($theme)

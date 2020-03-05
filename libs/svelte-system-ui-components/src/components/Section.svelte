@@ -53,4 +53,12 @@
   <footer {...setRole} use:styled={[style, $theme]}>
     <slot />
   </footer>
+{:else if as === 'section'}
+  <section use:styled={[style, $theme]}>
+    <slot />
+  </section>
+{:else if as === 'article'}
+  <article use:styled={[style, $theme]}>
+    <slot />
+  </article>
 {/if}

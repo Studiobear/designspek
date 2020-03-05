@@ -46,7 +46,7 @@ export const main = {
       fontFamily: 'body',
       lineHeight: 'body',
       fontWeight: 'body',
-      webkitFontSmoothing: 'antialiased',
+      boxSizing: 'border-box',
     },
     h1: {
       ...heading,
@@ -80,6 +80,9 @@ export const main = {
     },
     a: {
       color: 'primary',
+      fontFamily: 'body',
+      fontWeight: 'body',
+      lineHeight: 'body',
     },
     pre: {
       fontFamily: 'monospace',
@@ -96,14 +99,17 @@ export const main = {
       width: '100%',
       borderCollapse: 'separate',
       borderSpacing: 0,
+      fontFamily: 'body',
     },
     th: {
       textAlign: 'left',
       borderBottomStyle: 'solid',
+      fontFamily: 'body',
     },
     td: {
       textAlign: 'left',
       borderBottomStyle: 'solid',
+      fontFamily: 'body',
     },
     img: {
       maxWidth: '100%',

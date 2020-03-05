@@ -15,16 +15,8 @@ function createTheme() {
 
   return {
     subscribe,
-    dark: () =>
-      update(t => {
-        console.log('themeDark:', dark)
-        return dark
-      }),
-    light: () =>
-      update(t => {
-        console.log('themeLight:', basic)
-        return basic
-      }),
+    dark: () => update(t => dark),
+    light: () => update(t => basic),
     reset: set(basic),
   }
 }
