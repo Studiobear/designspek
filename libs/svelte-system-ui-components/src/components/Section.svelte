@@ -1,7 +1,8 @@
 <script>
   import { styled } from '@studiobear/svelte-system-ui'
-  import theme from '../theme'
+
   export let style = {}
+  export let theme = $$props.theme || {}
   let role = $$props.role || null
   let as = $$props.as || null
   let setRole = ''
@@ -30,35 +31,37 @@
       }
     }
   }
+  $: maybeTheme =
+    theme.subscribe && typeof theme.subscribe === 'function' ? theme : null
   // console.log('Section', role, setRole, as, $$props)
 </script>
 
 {#if !as || as === 'header'}
-  <header {...setRole} use:styled={[style, $theme]}>
+  <header {...setRole} use:styled={[style, $maybeTheme]}>
     <slot />
   </header>
 {:else if as === 'nav'}
-  <nav {...setRole} use:styled={[style, $theme]}>
+  <nav {...setRole} use:styled={[style, $maybeTheme]}>
     <slot />
   </nav>
 {:else if as === 'main'}
-  <main {...setRole} use:styled={[style, $theme]}>
+  <main {...setRole} use:styled={[style, $maybeTheme]}>
     <slot />
   </main>
 {:else if as === 'aside'}
-  <aside {...setRole} use:styled={[style, $theme]}>
+  <aside {...setRole} use:styled={[style, $maybeTheme]}>
     <slot />
   </aside>
 {:else if as === 'footer'}
-  <footer {...setRole} use:styled={[style, $theme]}>
+  <footer {...setRole} use:styled={[style, $maybeTheme]}>
     <slot />
   </footer>
 {:else if as === 'section'}
-  <section use:styled={[style, $theme]}>
+  <section use:styled={[style, $maybeTheme]}>
     <slot />
   </section>
 {:else if as === 'article'}
-  <article use:styled={[style, $theme]}>
+  <article use:styled={[style, $maybeTheme]}>
     <slot />
   </article>
 {/if}

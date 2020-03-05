@@ -9,7 +9,13 @@
   export let style
   $$props.theme = theme
   $: bodyStyle = {
-    backgroundColor: $theme.colors.background,
+    backgroundColor: $theme.colors.secondary,
+  }
+  $: hoverStyle = {
+    color: 'text',
+    _hover: {
+      color: 'primary',
+    },
   }
 
   addGlobal($theme)
@@ -39,15 +45,17 @@
     on:click={() => ($theme.mode === 'light' ? theme.dark() : theme.light())}>
     {$theme.mode === 'light' ? 'to dark mode' : 'to light mode'}
   </button>
-  <Box {...$$props} style={bodyStyle}>
+  <Box style={bodyStyle}>
     <Section as="header">
-      <Heading as="h1" style={{ color: 'primary' }}>HTML5 Test Page</Heading>
-      <Text>
+      <Heading as="h1" style={{ color: $theme.colors.primary }}>
+        HTML5 Test Page
+      </Heading>
+      <Text style={hoverStyle}>
         This is a test page filled with common HTML elements to be used to
         provide visual feedback whilst building CSS systems and frameworks.
       </Text>
     </Section>
-    <Section as="nav" style={{ p: 4, bg: 'background' }} theme={$theme}>
+    <Section as="nav" style={{ p: 4, bg: $theme.colors.background }}>
       <ul>
         <li>
           <a href="#text">Text</a>

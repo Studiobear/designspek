@@ -2,6 +2,7 @@
   import Box from './Box.svelte'
 
   export let style
+  export let theme = $$props.theme || {}
   export let colgap = ''
   export let rowgap = ''
   export let gridgap = '5px 10px'
@@ -23,6 +24,6 @@
   // console.log('Grid', d, compStyles, $$props)
 </script>
 
-<Box style={compStyles}>
+<Box style={compStyles} theme={$theme}>
   <slot />
 </Box>
