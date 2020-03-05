@@ -14,7 +14,7 @@
   let role
   $: maybeTheme =
     theme.subscribe && typeof theme.subscribe === 'function' ? theme : null
-  $: console.log('Box', theme, style, compStyles, $$props, $maybeTheme)
+  // $: console.log('Box', theme, style, compStyles, $$props, $maybeTheme)
 </script>
 
 <div bind:this={div} on:click use:styled={[compStyles, $maybeTheme]}>
