@@ -169,7 +169,7 @@ blockElements.forEach(tag => {
   })
 })
 
-const defaults = {
+export const defaults = {
   baseFontSize: 16,
   baseLineHeight: 1.45,
   headerLineHeight: 1.1,
@@ -264,7 +264,8 @@ export const typography = (theme = {}, _opts = {}) => {
   const opts = { ...defaults, ..._opts }
   // enforce unitless values
   opts.baseFontSize = toUnitless(opts.baseFontSize)
-  opts.rhythmUnit = 'px'
+  opts.rhythmUnit = 'rem'
+  opts.roundToNearestHalfLine = true
 
   const typo = verticalRhythm(opts)
   typo.options = opts
