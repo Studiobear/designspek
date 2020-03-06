@@ -1,19 +1,28 @@
 <script>
-  import { styled } from 'svelte-styled-system'
+  import { styled } from '@studiobear/svelte-system-ui'
   import { theme } from '../theme'
-  import { Counter } from 'my-svelte-component-library'
 
-  import { Box, Heading } from '../components'
+  import {
+    Box,
+    Heading,
+    Counter,
+  } from '@studiobear/svelte-system-ui-components'
+
+  $: primary = $theme.colors ? $theme.colors.primary : '#333'
+
+  $: hStyle = {
+    color: primary,
+    lineHeight: '2em',
+  }
 </script>
 
 <svelte:head>
   <title>Sapper project template</title>
 </svelte:head>
 
-<Heading as="h1">Great success!</Heading>
+<Heading as="h1" style={hStyle}>Great success!</Heading>
 
 <figure>
-  <img alt="Borat" src="great-success.png" />
   <figcaption>HIGH FIVE!</figcaption>
 </figure>
 
@@ -32,6 +41,4 @@
   </strong>
 </p>
 
-<Box bg={'colors.primary'} color={'colors.secondary'}>
-  {$theme.colors.primary}
-</Box>
+<Box bg={'primary'} color={'secondary'}>{primary}</Box>

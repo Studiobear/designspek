@@ -4,7 +4,7 @@ import Box from '../Box.svelte'
 import BoxView from './views/boxView.svelte'
 import BoxViewChildren from './views/boxViewChildren.svelte'
 
-import { basic } from '../../theme'
+import { theme, basic } from '../../theme'
 
 export default {
   title: 'Box',
@@ -19,6 +19,7 @@ export const withText = () => ({
   Component: BoxView,
   props: {
     boxText: 'Hi!!!',
+    theme: theme,
   },
 })
 
@@ -28,6 +29,7 @@ export const withBackground = () => ({
     style: {
       bg: 'primary',
     },
+    theme: theme,
     boxText: 'Box with theme primary color background',
   },
 })
@@ -38,6 +40,7 @@ export const withColorPrimary = () => ({
     style: {
       color: 'primary',
     },
+    theme: theme,
     boxText: 'Box with theme primary color text',
   },
 })
@@ -48,6 +51,7 @@ export const withColorSecondary = () => ({
     style: {
       color: 'secondary',
     },
+    theme: theme,
     boxText: 'Box with theme secondary color text',
   },
 })
@@ -60,6 +64,7 @@ export const withPaddingLarge = () => ({
       bg: 'primary',
       color: 'background',
     },
+    theme: theme,
     boxText: 'Box with large padding',
   },
 })
@@ -72,6 +77,7 @@ export const withBorder = () => ({
       brd: `1px solid`,
       brdCol: 'primary',
     },
+    theme: theme,
     boxText: 'Box with border',
   },
 })
@@ -79,6 +85,7 @@ export const withBorder = () => ({
 export const withDisplayBlock = () => ({
   Component: BoxViewChildren,
   props: {
+    theme: theme,
     style: { p: 4, brd: '1px solid', brdCol: 'primary' },
     style1: { p: 4, brd: '1px solid', brdCol: 'primary' },
     style2: { p: 4, brd: '1px solid', brdCol: 'primary' },
@@ -92,6 +99,7 @@ export const withDisplayBlock = () => ({
 export const withDisplayInline = () => ({
   Component: BoxViewChildren,
   props: {
+    theme: theme,
     style: {
       p: 4,
       brd: '1px solid',

@@ -11,7 +11,7 @@
 </script>
 
 <Box {style} {...$$props}>
-  <Box style={style1}>{boxText1}</Box>
-  <Box style={style2}>{boxText2}</Box>
-  <Box style={style3}>{boxText3}</Box>
+  <Box {...$$props} style={style1}>{boxText1}</Box>
+  <Box {...$$props} style={style2}>{boxText2}</Box>
+  <Box {...$$props} style={style3}>{boxText3}</Box>
 </Box>
