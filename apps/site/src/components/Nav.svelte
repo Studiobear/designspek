@@ -1,15 +1,15 @@
 <script>
-  import Box from './Box.svelte'
+  import { Section } from '@studiobear/svelte-system-ui-components'
   export let segment
+
+  $: navStyle = {
+    borderBottom: '1px solid rgba(255, 62, 0, 0.1)',
+    fontWeight: 300,
+    p: '0 1em',
+  }
 </script>
 
 <style>
-  nav {
-    border-bottom: 1px solid rgba(255, 62, 0, 0.1);
-    font-weight: 300;
-    padding: 0 1em;
-  }
-
   ul {
     margin: 0;
     padding: 0;
@@ -49,7 +49,7 @@
   }
 </style>
 
-<Box as="nav">
+<Section as="nav" style={navStyle}>
   <ul>
     <li>
       <a class:selected={segment === undefined} href=".">home</a>
@@ -64,4 +64,4 @@
       <a class:selected={segment === 'blog'} href="blog">blog</a>
     </li>
   </ul>
-</Box>
+</Section>
