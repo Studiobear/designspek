@@ -1,12 +1,13 @@
 {
   "name": "@studiobear/designspek",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "description": "A Reactive Design System: Svelte meets System UI",
   "source": "src/index.js",
   "main": "dist/index.js",
   "module": "dist/index.modern.js",
   "umd:main": "dist/index.umd.js",
   "files": [
+    "docs/assets/ds-horiz-fat.svg",
     "dist",
     "README.md"
   ],

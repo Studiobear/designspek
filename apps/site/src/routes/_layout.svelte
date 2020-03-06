@@ -1,9 +1,12 @@
 <script>
+  import { onMount } from 'svelte'
   import { addGlobal, styled } from '@studiobear/designspek'
   import { googleFonts, theme } from '../theme'
 
-  import { Section, Button, Box } from '@studiobear/designspek-components'
+  // import { Section, Button, Box } from '@studiobear/designspek-components'
   import { Nav } from '../components'
+
+  let Section, Button, Box
 
   // $: background = $theme.colors.background || '#fff'
   export let segment
@@ -23,19 +26,26 @@
   if (process.browser) {
     addGlobal($theme)
   }
+
+  onMount(async () => {
+    const module = await import('@studiobear/designspek-components')
+    Box = module.Box
+    Section = module.Section
+    Button = module.Button
+  })
 </script>
 
 <svelte:head>
   <link href={googleFonts} rel="stylesheet" type="text/css" />
 </svelte:head>
-<Box theme={$theme} style={bodyStyle}>
+<svelte:component this={Box} theme={$theme} style={bodyStyle}>
   <Nav {segment} />
 
-  <Section as="main" style={mainStyle}>
-    <button
-      on:click={() => ($theme.mode === 'light' ? theme.dark() : theme.light())}>
-      {$theme.mode === 'light' ? 'to dark mode' : 'to light mode'}
-    </button>
+  <svelte:component this={Section} as="main" style={mainStyle}>
+    <svelte:component
+      this={Button}
+      on:click={() => ($theme.mode === 'light' ? theme.dark() : theme.light())}
+      text={$theme.mode === 'light' ? 'to dark mode' : 'to light mode'} />
     <slot />
-  </Section>
-</Box>
+  </svelte:component>
+</svelte:component>
