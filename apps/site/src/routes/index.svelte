@@ -1,12 +1,8 @@
 <script>
-  import { styled } from '@studiobear/svelte-system-ui'
+  import { styled } from '@studiobear/designspek'
   import { theme } from '../theme'
 
-  import {
-    Box,
-    Heading,
-    Counter,
-  } from '@studiobear/svelte-system-ui-components'
+  import { Box, Heading, Counter } from '@studiobear/designspek-components'
 
   $: primary = $theme.colors ? $theme.colors.primary : '#333'
 

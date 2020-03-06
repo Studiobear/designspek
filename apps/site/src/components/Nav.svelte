@@ -1,5 +1,5 @@
 <script>
-  import { Section } from '@studiobear/svelte-system-ui-components'
+  import { Section } from '@studiobear/designspek-components'
   export let segment
 
   $: navStyle = {

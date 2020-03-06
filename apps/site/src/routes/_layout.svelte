@@ -1,8 +1,8 @@
 <script>
-  import { addGlobal, styled } from '@studiobear/svelte-system-ui'
+  import { addGlobal, styled } from '@studiobear/designspek'
   import { googleFonts, theme } from '../theme'
 
-  import { Section, Button, Box } from '@studiobear/svelte-system-ui-components'
+  import { Section, Button, Box } from '@studiobear/designspek-components'
   import { Nav } from '../components'
 
   // $: background = $theme.colors.background || '#fff'
