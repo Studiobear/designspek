@@ -172,7 +172,7 @@ blockElements.forEach(tag => {
 export const defaults = {
   baseFontSize: 16,
   baseLineHeight: 1.45,
-  headerLineHeight: 1.1,
+  headerLineHeight: 1.8,
   scaleRatio: 2,
   googleFonts: [],
   headerFontFamily: [

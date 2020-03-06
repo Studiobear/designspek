@@ -45,17 +45,12 @@ test('getSpace: returns space scale array', t => {
 
 test('getFontSizes: returns font size object', t => {
   let opts = defaults
-  // opts.baseFontSize = toUnitless(opts.baseFontSize)
-  opts.rhythmUnit = 'rem'
-  opts.roundToNearestHalfLine = true
 
-  // const typo = verticalRhythm(opts)
-  // console.log(typo)
-  var rhythm = verticalRhythm(defaults).rhythm
-  var lines = verticalRhythm(defaults).linesForFontSize
+  //var rhythm = verticalRhythm(defaults).rhythm
+  //var lines = verticalRhythm(defaults).linesForFontSize
   t.true(typeof getFontSizes(1, opts) === 'object')
-  t.is(rhythm(1), '1.45rem')
-  t.is(lines(30), 1.5)
+  //t.is(rhythm(1), '1.45rem')
+  //t.is(lines(30), 1.5)
   t.deepEqual(getFontSizes(1, opts), [
     12.99603834169977,
     13.928809012737986,
@@ -66,6 +61,45 @@ test('getFontSizes: returns font size object', t => {
   ])
 })
 
+test('getFontWeights: returns font weights object', t => {
+  let opts = defaults
+
+  t.true(typeof getFontWeights(1, opts) === 'object')
+  t.deepEqual(getFontWeights(1, opts), {
+    body: 'normal',
+    bold: 'bold',
+    heading: 'bold',
+  })
+})
+
+test('getLineWeights: returns lineheights object', t => {
+  let opts = defaults
+
+  t.true(typeof getLineHeights(1.5, opts) === 'object')
+  t.deepEqual(getLineHeights(1.5, opts), {
+    body: 1.45,
+    heading: 1.8,
+  })
+})
+
+test('getFonts: returns fonts object', t => {
+  let opts = defaults
+
+  t.true(typeof getFonts(basic, opts) === 'object')
+  t.deepEqual(getFonts(basic, opts), {
+    body: "'georgia', serif",
+    heading:
+      "-apple-system, 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",
+  })
+})
+
 test('typography: should correctly calculate and merge typography into theme', t => {
   t.snapshot(typography(basic, stAnnesTheme), { id: 'typographySnapshot' })
+})
+
+test('fontLink: should create googleFonts URL', async t => {
+  t.deepEqual(
+    await fontLink(stAnnesTheme),
+    '//fonts.googleapis.com/css?family=Source+Serif+Pro:600|Source+Sans+Pro:400,400i,700',
+  )
 })
