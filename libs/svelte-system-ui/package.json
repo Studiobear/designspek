@@ -21,7 +21,7 @@
     "lint:fix": "prettier --write 'src/**/*.{html,js,svelte}'",
     "build": "yarn test && yarn clean && yarn microbundle && yarn bundlesize",
     "watch": "yarn microbundle watch",
-    "test": "ava tests/test.js",
+    "test": "ava tests/*.test.js",
     "test:watch": "yarn test --watch"
   },
   "bundlesize": [
