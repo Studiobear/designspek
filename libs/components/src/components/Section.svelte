@@ -1,5 +1,5 @@
 <script>
-  import { styled } from '@studiobear/svelte-system-ui'
+  import { styled } from '@studiobear/designspek'
 
   export let style = {}
   export let theme = $$props.theme || {}

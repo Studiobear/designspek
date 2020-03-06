@@ -1,5 +1,5 @@
 <script>
-  import { styled } from '@studiobear/svelte-system-ui'
+  import { styled } from '@studiobear/designspek'
   // import theme from '../theme'
 
   let div

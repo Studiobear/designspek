@@ -1,5 +1,5 @@
 <script>
-  import { styled } from '@studiobear/svelte-system-ui'
+  import { styled } from '@studiobear/designspek'
   import Box from './Box.svelte'
 
   export let style

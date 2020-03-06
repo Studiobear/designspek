@@ -1,5 +1,5 @@
 import { writable } from 'svelte/store'
-import { typography, fontLink } from '@studiobear/svelte-system-ui'
+import { typography, fontLink } from '@studiobear/designspek'
 import stAnnesTheme from 'typography-theme-st-annes'
 
 import basicTheme from './basic'

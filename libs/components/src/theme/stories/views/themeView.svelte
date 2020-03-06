@@ -1,6 +1,6 @@
 <script>
   import { onMount } from 'svelte'
-  import { addGlobal } from '@studiobear/svelte-system-ui'
+  import { addGlobal } from '@studiobear/designspek'
   import { theme, googleFonts } from '../../index'
   import { Section, Box, Heading, Text } from '../../../components'
 
