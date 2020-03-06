@@ -12,6 +12,7 @@ export const themeTest = () => ({
   props: {
     style: {
       fontFamily: 'body',
+      bg: 'background',
     },
   },
 })

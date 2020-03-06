@@ -1,6 +1,7 @@
 import { render, fireEvent } from '@testing-library/svelte'
 import Box from '../Box.svelte'
 import BoxView from '../stories/views/boxView.svelte'
+import { theme } from '../../theme'
 import { axe, toHaveNoViolations } from 'jest-axe'
 
 expect.extend(toHaveNoViolations)
@@ -22,6 +23,7 @@ describe('Box', () => {
   test('to change background color from primary to secondary on hover', async () => {
     const { getByText } = render(BoxView, {
       style: { bg: 'primary', _hover: { bg: 'secondary' } },
+      theme,
     })
     const box = getByText('I am a box!')
     expect(box).toHaveStyle('background-color: rgb(0, 119, 204)')
@@ -42,7 +44,7 @@ describe('Box', () => {
     const { getByText } = render(BoxView, {
       style: { bg: 'primary', _hover: { bg: 'secondary' } },
     })
-    const box = getByText('I am a box!')
-    expect(box).toHaveStyle('background-color: rgb(0, 119, 204)')
+    const box = await axe(getByText('I am a box!'))
+    expect(box).toHaveNoViolations()
   })
 })
