@@ -1,33 +1,36 @@
-<p align="left"><img src="./static/ssui-horiz-fat.svg" width="480" height="160" /></p>
+<p align="left"><img src="./static/ds-horiz-fat.svg" width="480" height="160" /></p>
 
-# Svelte + System UI
-
-#### Built with Svelte + Styled System + Goober + TypographyJS + SvDX(Svelte-flavored MDX — coming soon!)
+#### A Reactive Design System: Svelte meets System UI
 
 ---
 
-**_Notice: Unstable API and under heavy development_**
+> **_Notice: Unstable API and under heavy development_**
+
+**Underlying Elements**
 
 [Svelte](https://svelte.dev/) is a UI development framework for creating boilerplate-free components that compile down to fast, virtual-DOM-free vanilla JS that is truly reactive.
 
-[System UI](https://system-ui.com/) is an evolving standard for creating consistent, interoperable UIs. It is the underlying foundation to many UI-themeing libraries such as Styled System, Rebass, ThemeUI, and more. The main implementation of System UI is through [Styled System](https://styled-system.com/).
+[System UI](https://system-ui.com/) is an evolving standard for creating consistent, interoperable UIs. It is the underlying foundation to many UI-themeing libraries such as Styled System, Rebass, ThemeUI, and more.
 
-The motivation of this library is to bring the culture developing the standard of consistent, interoperable UIs — a.k.a. themeing — to Svelte. Svelte is still a young framework with many standards for managing complexity yet to be defined. However, there is no reason that Svelte cannot become a contributing member to this conversation.
-
-**Elements**
-
-- **[Styled System](https://styled-system.com/)**: Styled System is a collection of utility functions for forming style props based on a global theme object defining typographic and layout properties. An evolved alternative being explored is [xstyled](https://xstyled.dev/). While these libraries were built with React in mind, they are really CSS utilies that require binding to components via CSS-in-JS solutions. Bringing us to...
+- **[Styled System](https://styled-system.com/)**: Styled System is a collection of utility functions for forming style props based on a global theme object defining typographic and layout properties.
 - **[Goober](https://github.com/cristianbote/goober)**: a less than 1kb CSS-in-JS implementation (toting in comparison ~16/11kb respectively of [styled-components](https://github.com/styled-components/styled-components)/[emotion](https://github.com/emotion-js/emotion). In this library, Goober's `css` function is used to parse and apply the style props formed by Styled System.
 - **[Typography.js](http://kyleamathews.github.io/typography.js/)**: Typography is difficult and the nuances of applying good typography exasperate the already-brittle system of themes and CSS. TypographyJS works as a seperate themeing layer that can be integrated with Styled System to apply such typographic nuances to the greater theme.
-- **SvDX _(coming soon)_**: Svelte-flavored MDX. MDX? MDX allows writing JSX (known for its use in React, but is a general syntax extension to JS) in Markdown documents. Long story short, as Markdown is [easy](https://www.markdownguide.org/getting-started/#why-use-markdown), it can be made even more powerful by allowing Svelte-components to be as easily embedded as JSX.
+- **SvDX _(coming soon)_**: Svelte-flavored MDX. MDX? MDX allows writing JSX (known for its use in React, but is a general syntax extension to JS) in Markdown documents. Long story short, as Markdown is [easy](https://www.markdownguide.org/getting-started/#why-use-markdown), it can be made even useful and interactive by enabling the embedding of Svelte-components.
 
-### Current State
-
-This library is naively constructed as scrutiny and comprehension of the critical elements of css-in-js theming is underway.
-
-# Using Svelte System UI
+# Using Designspek
 
 ## Getting started
+
+### Install
+
+```bash
+yarn add @studiobear/designspek
+
+// or
+
+npm i @studiobear/designspek
+
+```
 
 ### The Theme
 
@@ -68,12 +71,12 @@ Use `styled` from `svelte-system-ui` in a [svelte action](https://svelte.dev/doc
 ```jsx
 // Box.svelte
 <script>
-  import { styled } from '@studiobear/svelte-system-ui';
+  import { styled } from '@studiobear/designspek';
   import { theme } from './theme.js';
 </script>
 
 <div use:styled={[$$props, $theme]}>
-  <slot></slot>
+  <slot />
 </div>
 ```
 
@@ -100,7 +103,7 @@ That's all! Your are ready to use all css property names + [shorthand](#currentl
 1. The attribute name will get mapped to the css property name. You can specify it either in camelCase `(textAlign)` or kebab-case `(text-align)`.
    So, if you know css by heart, you already know 99% of your component's props.
 
-2. if the value is a string, `svelte-styled-system` first assumes it might be a keypath to your theme object. It uses [(dlv)](https://github.com/developit/dlv) under the hood. If the path can not be resolved, the the resolution will fallback to the input value. (input: `textAlign="center"` => center can not be found in the theme so the output is just `text-align: center;`)
+2. if the value is a string, `designspek` first assumes it might be a keypath to your theme object. It uses [(dlv)](https://github.com/developit/dlv) under the hood. If the path can not be resolved, the the resolution will fallback to the input value. (input: `textAlign="center"` => center can not be found in the theme so the output is just `text-align: center;`)
 
 ```jsx
 {
@@ -114,7 +117,7 @@ That's all! Your are ready to use all css property names + [shorthand](#currentl
 }
 ```
 
-3. if the value is an array then `svelte-styled-system` will create a media query for each breakpoint and will resolve the separate values just as described before.
+3. if the value is an array then `designspek` will create a media query for each breakpoint and will resolve the separate values just as described before.
    `padding: [0, "space.m", "space.l"]`:
 
 - will create `padding: 0;` (raw value) for `theme.breakpoints[0]`
@@ -126,19 +129,12 @@ That's all! Your are ready to use all css property names + [shorthand](#currentl
 For commonly used css properties there are shortcuts to make your code _even less_ verbose.
 
 **Example:**
-`my="space.m"` => `margin-top: 1rem; margin-bottom: 1rem;`
+`my={1}` => `margin-top: 1rem; margin-bottom: 1rem;`
 
 As with all other properties you can use the responsive Array notation as well!
-A complete list of shorthand props is available in the (chakra-ui docs)[https://chakra-ui.com/style-props] or at (src/constants.js)[src/constants.js]
-
-**Note**: Shorthand path resolutions ("theme keys") are not supported yet. So you always have to specify the full object path:
 
 ```jsx
-// react styled-system:
-<MyComponent bg="primary" />
-
-// svelte-styled-system:
-<MyComponent bg="color.primary" />
+<MyComponent bg="primary" m={[1, 2, 3]} />
 ```
 
 # Acknowledgements

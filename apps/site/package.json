@@ -1,7 +1,7 @@
 {
   "name": "site",
   "description": "Svelte System UI website",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "main": "index.js",
   "author": "Barry Low <barry@studiobear.co>",
   "license": "MIT",

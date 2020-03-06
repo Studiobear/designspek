@@ -1,7 +1,7 @@
 {
-  "name": "@studiobear/svelte-system-ui",
-  "version": "0.0.1",
-  "description": "Svelte System UI",
+  "name": "@studiobear/designspek",
+  "version": "0.1.0",
+  "description": "A Reactive Design System: Svelte meets System UI",
   "source": "src/index.js",
   "main": "dist/index.js",
   "module": "dist/index.modern.js",
