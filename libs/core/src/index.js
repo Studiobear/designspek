@@ -72,7 +72,6 @@ const addUnits = (styles, units = defaultUnits) => {
 
 const createCssMisc = (attributes, theme, pseudoElementSelector) => {
   let cssMisc = {}
-
   for (let [name, value] of Object.entries(attributes)) {
     name = shortHandAttributes.get(name) || [name]
     for (let cssProp of name) {
@@ -83,21 +82,18 @@ const createCssMisc = (attributes, theme, pseudoElementSelector) => {
         cssProp = cssProp.replace('_', '&:')
         cssPropValue = createCssMisc(value, theme, cssProp)
         cssMisc = Object.assign(cssMisc, { [cssProp]: cssPropValue })
-        return cssMisc
       }
       if (cssProp.endsWith('olor')) {
         cssPropTmp = { [cssProp]: value }
         cssPropTmp.theme = theme
         cssPropValue = color(cssPropTmp)
         cssMisc = Object.assign(cssMisc, cssPropValue)
-        return cssMisc
       }
       if (cssProp.startsWith('margin') || cssProp.startsWith('padding')) {
         cssPropTmp = { [cssProp]: value }
         cssPropValue = space(cssPropTmp)
         cssPropTmp.theme = theme
         cssMisc = Object.assign(cssMisc, { [cssProp]: cssPropValue })
-        return cssMisc
       }
       cssMisc = Object.assign(cssMisc, { [cssProp]: value })
     }
@@ -108,11 +104,10 @@ const createCssMisc = (attributes, theme, pseudoElementSelector) => {
 export const processCss = (attributes, theme, pseudoElementSelector) => {
   let cssText = {}
   let cssMisc = {}
-  console.log('styled.update: ', attributes, theme, pseudoElementSelector)
+  // console.log('styled.update: ', attributes, theme, pseudoElementSelector)
   const forwarding = theme.forwardStyle
   for (let [name, value] of Object.entries(attributes)) {
     name = shortHandAttributes.get(name) || [name]
-    // console.log('processCss 1', name, value)
     for (let cssProp of name) {
       let cssPropValue
 
@@ -145,7 +140,7 @@ const styled = (node, props) => {
   let prevClassName
 
   const update = ([attributes, theme]) => {
-    console.log('styled.update: ', attributes, theme)
+    // console.log('styled.update: ', attributes, theme)
     if (theme) {
       if (theme.forwardStyle === undefined)
         theme.forwardStyle = forwardStyleDefault
