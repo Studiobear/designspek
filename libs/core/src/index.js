@@ -108,18 +108,24 @@ const createCssMisc = (attributes, theme, pseudoElementSelector) => {
 export const processCss = (attributes, theme, pseudoElementSelector) => {
   let cssText = {}
   let cssMisc = {}
-
+  console.log('styled.update: ', attributes, theme, pseudoElementSelector)
+  const forwarding = theme.forwardStyle
   for (let [name, value] of Object.entries(attributes)) {
     name = shortHandAttributes.get(name) || [name]
     // console.log('processCss 1', name, value)
     for (let cssProp of name) {
       let cssPropValue
+
       if (cssProp.startsWith('_')) {
         cssProp = cssProp.replace('_', '&:')
         // console.log('processCss 2', cssProp, value)
         cssPropValue = createCssMisc(value, theme, cssProp)
         cssMisc = Object.assign(cssMisc, { [cssProp]: cssPropValue })
         continue
+      }
+      if (forwarding.includes(cssProp)) {
+        // console.log('process forwarding', cssProp, value)
+        cssMisc = Object.assign(cssMisc, { [cssProp]: value })
       }
       cssText = Object.assign(cssText, { [cssProp]: value })
     }
@@ -132,21 +138,28 @@ export const processCss = (attributes, theme, pseudoElementSelector) => {
   return addUnits(Object.assign(newCss, cssMisc))
 }
 
+const forwardStyleDefault = ['txtdeco', 'textDecoration']
+
 const styled = (node, props) => {
   let previousCssText = ''
   let prevClassName
 
   const update = ([attributes, theme]) => {
-    const cssText = processCss(attributes, theme)
-    // console.log('styled.update: ', cssText, theme)
-    if (cssText === previousCssText) return
-    previousCssText = cssText
+    console.log('styled.update: ', attributes, theme)
+    if (theme) {
+      if (theme.forwardStyle === undefined)
+        theme.forwardStyle = forwardStyleDefault
+      const cssText = processCss(attributes, theme)
+      // console.log('styled.update: ', cssText, theme)
+      if (cssText === previousCssText) return
+      previousCssText = cssText
 
-    const cn = css(cssText)
-    node.classList.add(cn)
+      const cn = css(cssText)
+      node.classList.add(cn)
 
-    if (prevClassName) node.classList.remove(prevClassName)
-    prevClassName = cn
+      if (prevClassName) node.classList.remove(prevClassName)
+      prevClassName = cn
+    }
   }
 
   update(props)

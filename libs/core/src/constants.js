@@ -61,6 +61,8 @@ const shr = 'Shrink'
 const grow = 'Grow'
 const dir = 'dir'
 const Dir = 'Direction'
+const deco = 'deco'
+const Deco = 'Decoration'
 const direction = `${dir}ection`
 const ord = 'order'
 const temp = 'temp'
@@ -187,4 +189,5 @@ export const shortHandAttributes = new Map([
   [`${temp}${col}s`, [`${grid}${Temp}${Col}s`]],
   [`${grid}${area}s`, [`${grid}${Temp}${Area}s`]],
   [`txt${align}`, [`${txt}${A}${lign}`]],
+  [`txt${deco}`, [`${txt}${Deco}`]],
 ])

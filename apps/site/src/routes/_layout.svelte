@@ -39,7 +39,7 @@
   <link href={googleFonts} rel="stylesheet" type="text/css" />
 </svelte:head>
 <svelte:component this={Box} theme={$theme} style={bodyStyle}>
-  <Nav {segment} />
+  <Nav {segment} {theme} />
 
   <svelte:component this={Section} as="main" style={mainStyle}>
     <svelte:component

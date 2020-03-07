@@ -1,11 +1,20 @@
 <script>
-  import { Section } from '@studiobear/designspek-components'
+  import { Section, Flex, Box } from '@studiobear/designspek-components'
   export let segment
+  export let theme = $$props.theme || {}
+  let src = 'ds-horiz.svg'
+
+  $: maybeTheme =
+    theme.subscribe && typeof theme.subscribe === 'function' ? theme : null
 
   $: navStyle = {
-    borderBottom: '1px solid rgba(255, 62, 0, 0.1)',
+    borderBottom: '1px solid',
+    borderColor: $theme.colors.primary,
     fontWeight: 300,
     p: '0 1em',
+  }
+  $: flexStyle = {
+    justc: 'space-between',
   }
 </script>
 
@@ -50,18 +59,23 @@
 </style>
 
 <Section as="nav" style={navStyle}>
-  <ul>
-    <li>
-      <a class:selected={segment === undefined} href=".">home</a>
-    </li>
-    <li>
-      <a class:selected={segment === 'about'} href="about">about</a>
-    </li>
+  <Flex dir="row" style={flexStyle}>
+    <Box>
+      <img {src} alt="logo" />
+    </Box>
+    <ul>
+      <li>
+        <a class:selected={segment === undefined} href=".">home</a>
+      </li>
+      <li>
+        <a class:selected={segment === 'about'} href="about">about</a>
+      </li>
 
-    <!-- for the blog link, we're using rel=prefetch so that Sapper prefetches
+      <!-- for the blog link, we're using rel=prefetch so that Sapper prefetches
 		     the blog data when we hover over the link or tap it on a touchscreen -->
-    <li>
-      <a class:selected={segment === 'blog'} href="blog">blog</a>
-    </li>
-  </ul>
+      <li>
+        <a class:selected={segment === 'blog'} href="blog">blog</a>
+      </li>
+    </ul>
+  </Flex>
 </Section>

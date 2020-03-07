@@ -11,6 +11,6 @@
   // console.log('Flex', compStyles, $$props)
 </script>
 
-<Box style={compStyles} theme={$theme}>
+<Box style={compStyles} {theme}>
   <slot />
 </Box>
