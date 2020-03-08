@@ -22,4 +22,7 @@
   }
 </style>
 
-<button class="button" on:click={onClick}>{text}</button>
+<button class="button" on:click={onClick}>
+  <slot />
+  {text}
+</button>

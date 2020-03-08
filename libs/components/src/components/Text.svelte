@@ -9,7 +9,7 @@
 </script>
 
 {#if !as || as === 'p'}
-  <p use:styled={[style, $maybeTheme]}>
+  <p use:styled={[style, maybeTheme]}>
     <slot />
   </p>
 {/if}

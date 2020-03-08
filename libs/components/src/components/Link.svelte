@@ -5,7 +5,7 @@
   export let style = {}
   export let as = 'a'
   export let href = ''
-  export let target = ''
+  export let target = undefined
   /*
   const dispatch = createEventDispatcher()
 
@@ -19,7 +19,7 @@
 </script>
 
 {#if !as || as === 'a'}
-  <a {href} {target} use:styled={[style, $maybeTheme]}>
+  <a {href} {target} use:styled={[style, maybeTheme]}>
     <slot />
   </a>
 {/if}

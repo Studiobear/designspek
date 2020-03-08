@@ -51,6 +51,7 @@ export const main = {
     h1: {
       ...heading,
       fontSize: 5,
+      py: '0.5rem',
     },
     h2: {
       ...heading,

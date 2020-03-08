@@ -108,6 +108,7 @@ export const processCss = (attributes, theme, pseudoElementSelector) => {
   const forwarding = theme.forwardStyle
   for (let [name, value] of Object.entries(attributes)) {
     name = shortHandAttributes.get(name) || [name]
+    // console.log('styled.update.processCss: ', name, value)
     for (let cssProp of name) {
       let cssPropValue
 
@@ -164,19 +165,23 @@ const styled = (node, props) => {
 
 const parseGlobal = globStyles => {
   let globCss = ''
+  let theme = globStyles
+  theme.forwardStyle = forwardStyleDefault
   let parseTheme = globStyles.styles
 
   for (let [name, value] of Object.entries(parseTheme)) {
-    if (name !== 'p') {
+    if (name !== 'p' && name !== 'a' && name !== 'b') {
       name = shortHandAttributes.get(name) || name
     }
 
     globCss += `${name}{`
 
+    let block = {}
     let parsedV = value
-    parsedV.theme = globStyles
-
+    parsedV = processCss(value, theme)
+    parsedV.theme = theme
     parsedV = system(parsedV)
+    console.log('parseGlobal.processCss: ', parsedV)
     for (let [nameV, valueV] of Object.entries(parsedV)) {
       nameV = nameV.replace(/[A-Z]/g, match => `-${match.toLowerCase()}`)
       valueV = valueV === 'text' ? '"text"' : valueV
@@ -187,7 +192,8 @@ const parseGlobal = globStyles => {
       valueV =
         (nameV.startsWith('margin') &&
           !(typeof valueV === 'string' && valueV.endsWith('px'))) ||
-        nameV.startsWith('padding')
+        (nameV.startsWith('padding') &&
+          !(typeof valueV === 'string' || valueV.endsWith('px')))
           ? `${valueV}px`
           : valueV
       globCss += ` ${nameV}: ${valueV}; `

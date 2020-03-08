@@ -37,31 +37,31 @@
 </script>
 
 {#if !as || as === 'header'}
-  <header {...setRole} use:styled={[style, $maybeTheme]}>
+  <header {...setRole} use:styled={[style, maybeTheme]}>
     <slot />
   </header>
 {:else if as === 'nav'}
-  <nav {...setRole} use:styled={[style, $maybeTheme]}>
+  <nav {...setRole} use:styled={[style, maybeTheme]}>
     <slot />
   </nav>
 {:else if as === 'main'}
-  <main {...setRole} use:styled={[style, $maybeTheme]}>
+  <main {...setRole} use:styled={[style, maybeTheme]}>
     <slot />
   </main>
 {:else if as === 'aside'}
-  <aside {...setRole} use:styled={[style, $maybeTheme]}>
+  <aside {...setRole} use:styled={[style, maybeTheme]}>
     <slot />
   </aside>
 {:else if as === 'footer'}
-  <footer {...setRole} use:styled={[style, $maybeTheme]}>
+  <footer {...setRole} use:styled={[style, maybeTheme]}>
     <slot />
   </footer>
 {:else if as === 'section'}
-  <section use:styled={[style, $maybeTheme]}>
+  <section use:styled={[style, maybeTheme]}>
     <slot />
   </section>
 {:else if as === 'article'}
-  <article use:styled={[style, $maybeTheme]}>
+  <article use:styled={[style, maybeTheme]}>
     <slot />
   </article>
 {/if}

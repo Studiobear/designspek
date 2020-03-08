@@ -9,15 +9,15 @@
 </script>
 
 {#if !as || as === 'h1'}
-  <h1 use:styled={[style, $maybeTheme]}>
+  <h1 use:styled={[style, maybeTheme]}>
     <slot />
   </h1>
 {:else if as === 'h2'}
-  <h2 use:styled={[$$props, $maybeTheme]}>
+  <h2 use:styled={[$$props, maybeTheme]}>
     <slot />
   </h2>
 {:else if as === 'h3'}
-  <h3 use:styled={[$$props, $maybeTheme]}>
+  <h3 use:styled={[$$props, maybeTheme]}>
     <slot />
   </h3>
 {:else if as === 'h4'}
@@ -25,11 +25,11 @@
     <slot />
   </h4>
 {:else if as === 'h5'}
-  <h5 use:styled={[$$props, $maybeTheme]}>
+  <h5 use:styled={[$$props, maybeTheme]}>
     <slot />
   </h5>
 {:else if as === 'h6'}
-  <h6 use:styled={[$$props, $maybeTheme]}>
+  <h6 use:styled={[$$props, maybeTheme]}>
     <slot />
   </h6>
 {/if}

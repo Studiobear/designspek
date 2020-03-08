@@ -289,9 +289,9 @@ export const typography = (theme = {}, _opts = {}) => {
   const newStyles = styles({ body, heading, fontSizes: theme.fontSizes })
   // console.log('toTheme: ', styles, typo, opts)
   return {
-    ...theme,
     styles: newStyles,
     typography: typo,
+    ...theme,
   }
 }
 
