@@ -1,28 +1,34 @@
 <script>
-  import { styled } from '@studiobear/designspek'
   import { theme } from '../theme'
 
   import { Box, Heading, Counter } from '@studiobear/designspek-components'
-
-  let primary = $theme.colors ? $theme.colors.primary : '#333'
-
-  $: hStyle = {
-    color: primary,
+  // let primary = $$props.theme.colors ? $$props.theme.colors.primary : '#333'
+  $: h1 = {
+    color: $theme.colors.primary,
     lineHeight: '2em',
+    theme: $theme,
   }
+  $: h3Style = {
+    color: $theme.colors.secondary,
+    lineHeight: '2em',
+    theme: $theme,
+  }
+
+  // console.log('index: ', $$props, theme, $theme)
 </script>
 
+<svelte:options immutable={true} />
 <svelte:head>
   <title>Design</title>
 </svelte:head>
 
-<Heading as="h1" style={hStyle}>Great success!</Heading>
+<Heading as="h1" style={h1}>Great success!</Heading>
 
 <figure>
   <figcaption>HIGH FIVE!</figcaption>
 </figure>
 
-<Heading as="h3">Local library component demo</Heading>
+<Heading as="h3" style={h3Style}>Local library component demo</Heading>
 <p>
   Our counter component from sample Svelte component Library from root dir:
   `/libs/my-svelte-component-library`
@@ -37,4 +43,4 @@
   </strong>
 </p>
 
-<Box bg={'primary'} color={'secondary'}>{$theme.colors.primary}</Box>
+<Box>{$theme.colors.primary}</Box>

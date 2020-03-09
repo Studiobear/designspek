@@ -6,10 +6,12 @@
   import { Nav } from '../components'
 
   // $: background = $theme.colors.background || '#fff'
-  // export const segment
+  export let segment
 
   $: bodyStyle = {
     backgroundColor: $theme.colors.background,
+    h: '100vh',
+    theme: $theme,
   }
 
   $: mainStyle = {
@@ -19,6 +21,7 @@
     p: 3,
     m: '0 auto',
     boxSizing: 'border-box',
+    theme: $theme,
   }
   // $: console.log('_layout: ', $theme, theme)
 
@@ -27,11 +30,13 @@
   }
 </script>
 
+<svelte:options immutable={true} />
 <svelte:head>
   <link href={googleFonts} rel="stylesheet" type="text/css" />
 </svelte:head>
 
-<Box theme={$theme} style={bodyStyle}>
+<Box style={bodyStyle}>
+  <Nav {segment} theme={$theme} />
   <Section as="main" style={mainStyle}>
     <button
       on:click={() => ($theme.mode === 'light' ? theme.dark() : theme.light())}>
@@ -39,10 +44,4 @@
     </button>
     <slot />
   </Section>
-  <!--
-  <Nav {segment} />
-
-  
-  -->
-
 </Box>

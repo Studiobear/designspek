@@ -2,7 +2,7 @@
   import { styled } from '@studiobear/designspek'
   import Box from './Box.svelte'
 
-  export let style
+  export let style = $$props.style || {}
   export let theme = $$props.theme || {}
   let compStyles = {
     d: 'flex',

@@ -23,7 +23,7 @@
     "build": "yarn test && yarn clean && yarn microbundle && yarn bundlesize",
     "watch": "yarn microbundle watch",
     "test": "ava tests/*.test.js",
-    "test:watch": "yarn test --watch"
+    "test:watch": "yarn test --watch -u"
   },
   "bundlesize": [
     {
@@ -49,7 +49,7 @@
     ]
   },
   "devDependencies": {
-    "ava": "^3.0.0",
+    "ava": "^3.5.0",
     "bundlesize": "^0.18.0",
     "compass-vertical-rhythm": "^1.4.5",
     "cypress": "^4.0.1",

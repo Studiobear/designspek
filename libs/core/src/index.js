@@ -134,7 +134,7 @@ export const processCss = (attributes, theme, pseudoElementSelector) => {
   return addUnits(Object.assign(newCss, cssMisc))
 }
 
-const forwardStyleDefault = ['txtdeco', 'textDecoration']
+const forwardStyleDefault = ['txtdeco', 'textDecoration', 'position']
 
 const styled = (node, props) => {
   let previousCssText = ''
@@ -181,7 +181,7 @@ const parseGlobal = globStyles => {
     parsedV = processCss(value, theme)
     parsedV.theme = theme
     parsedV = system(parsedV)
-    console.log('parseGlobal.processCss: ', parsedV)
+    // console.log('parseGlobal.processCss: ', parsedV)
     for (let [nameV, valueV] of Object.entries(parsedV)) {
       nameV = nameV.replace(/[A-Z]/g, match => `-${match.toLowerCase()}`)
       valueV = valueV === 'text' ? '"text"' : valueV

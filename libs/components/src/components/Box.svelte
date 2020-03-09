@@ -3,8 +3,8 @@
   // import theme from '../theme'
 
   let div
+  export let style = $$props.style || {}
   export let theme = $$props.theme || {}
-  export let style = {}
   $: compStyles = {
     boxSizing: 'border-box',
     margin: 0,
@@ -14,7 +14,7 @@
   let role
   $: maybeTheme =
     theme.subscribe && typeof theme.subscribe === 'function' ? theme : null
-  $: console.log(
+  /* $: console.log(
     'Box',
     theme,
     style,
@@ -23,9 +23,10 @@
     maybeTheme,
     // $maybeTheme,
   )
+  */
 </script>
 
-<div bind:this={div} on:click use:styled={[compStyles, maybeTheme]}>
+<div bind:this={div} on:click use:styled={[compStyles, theme]}>
   <slot>
     <em>no content was provided</em>
   </slot>
