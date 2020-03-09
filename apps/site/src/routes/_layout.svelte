@@ -23,11 +23,9 @@
     boxSizing: 'border-box',
     theme: $theme,
   }
-  // $: console.log('_layout: ', $theme, theme)
+  $: console.log('_layout: ', $theme, theme)
 
-  if (process.browser) {
-    addGlobal($theme)
-  }
+  $: addGlobal($theme)
 </script>
 
 <svelte:options immutable={true} />

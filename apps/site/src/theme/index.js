@@ -5,11 +5,14 @@ import kirkhamTheme from 'typography-theme-kirkham'
 import mainTheme from './themeMain'
 
 const basic = typography(mainTheme, kirkhamTheme)
-let dark = Object.assign({}, basic)
+let dark = JSON.parse(JSON.stringify(basic))
 dark.colors = mainTheme.colors.modes.dark
+if (dark.colors.antialias) {
+  dark.styles.body['antialias'] = 'subpixel-antialiased'
+}
 dark.mode = 'dark'
 basic.mode = 'light'
-
+console.log('themes: ', basic.styles.body, dark.styles.body)
 function createTheme() {
   const { subscribe, set, update } = writable(basic)
 

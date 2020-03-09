@@ -5,7 +5,7 @@
   import Logo from '../../static/ds-horiz.svg'
 
   // let src = 'ds-horiz.svg'
-  console.log('Nav: ', Logo)
+  // console.log('Nav: ', Logo)
   $: navStyle = {
     borderBottom: '1px solid',
     borderColor: theme.colors.primary,

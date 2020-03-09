@@ -175,6 +175,17 @@ const parseGlobal = globStyles => {
     }
 
     globCss += `${name}{`
+    if (name === 'body' && theme.styles.body && theme.styles.body.antialias) {
+      if (
+        typeof theme.styles.body.antialias === 'boolean' &&
+        theme.styles.body.antialias
+      ) {
+        globCss += ` -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; `
+      } else {
+        globCss += ` -webkit-font-smoothing: ${theme.styles.body.antialias}; -moz-osx-font-smoothing: grayscale; `
+      }
+      console.log(globCss)
+    }
 
     let block = {}
     let parsedV = value

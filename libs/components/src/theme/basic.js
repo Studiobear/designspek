@@ -30,6 +30,9 @@ export const basic = {
       lineHeight: 'body',
       fontWeight: 'body',
     },
+    body: {
+      antialias: 'subpixel-antialiased',
+    },
     h1: {
       ...heading,
       fontSize: 5,

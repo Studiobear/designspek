@@ -22,6 +22,9 @@ export const basic = {
       lineHeight: 'body',
       fontWeight: 'body',
     },
+    body: {
+      antialias: true,
+    },
     h1: {
       ...heading,
       fontSize: 5,
