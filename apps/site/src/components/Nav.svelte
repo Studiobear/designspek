@@ -2,7 +2,7 @@
   import { Section, Flex, Box, Link } from '@studiobear/designspek-components'
   export let segment
   export let theme = $$props.theme || {}
-  import Logo from '../../static/ds-horiz.svg'
+  import Logo from './Logo.svelte'
 
   // let src = 'ds-horiz.svg'
   // console.log('Nav: ', Logo)
@@ -16,6 +16,8 @@
   $: flexStyle = {
     justc: 'space-between',
     align: 'stretch',
+    px: '1rem',
+    py: '2rem',
     theme: theme,
   }
   $: flexNavStyle = {
@@ -43,23 +45,23 @@
     bg: theme.colors.highlight,
   }
   $: logoStyle = {
-    w: '240px',
-    h: '32px',
-    color: theme.colors.secondary,
+    w: '220px',
+    h: '40px',
+    f: theme.colors.primary,
+    _hover: {
+      f: theme.colors.secondary,
+    },
     theme: theme,
   }
 </script>
 
-<svelte:options immutable={true} />
 <Section as="nav" style={navStyle}>
   <Flex dir="row" style={flexStyle}>
-    <Box style={logoStyle}>
-      {@html Logo}
-    </Box>
+    <Logo fill={theme.colors.primary} style={logoStyle} />
     <Flex dir="row" style={flexNavStyle}>
       <Link
         href="."
-        style={segment === undefined ? menuLinkSelected : menuLinkStyle}>
+        style={(menuLinkStyle, segment === undefined ? menuLinkSelected : '')}>
         home
       </Link>
       <Link

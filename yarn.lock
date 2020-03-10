@@ -14548,7 +14548,7 @@ sane@^4.0.3:
     minimist "^1.1.1"
     walker "~1.0.5"
 
-sapper@^0.27.9:
+sapper@^0.27.10:
   version "0.27.10"
   resolved "https://registry.yarnpkg.com/sapper/-/sapper-0.27.10.tgz#72a9a2a58756a6ee1834f7c9e2600b815f4cf596"
   integrity sha512-hbl+uE7RClCdVst2qyaPuKjZOQx/1iSMiiBPFHU4IiAucuAkZM7hIwTfYQXLOltuAYoFfAEQVV3L9PJ81f7Oig==

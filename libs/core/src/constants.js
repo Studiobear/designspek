@@ -88,6 +88,10 @@ const lign = 'lign'
 const olor = 'olor'
 const uto = 'uto'
 const txt = 'text'
+const f = 'fill'
+const s = 'stroke'
+const Op = 'Opacity'
+const Lc = 'Linecap'
 
 export const shortHandAttributes = new Map([
   ['m', [m]],
@@ -190,4 +194,9 @@ export const shortHandAttributes = new Map([
   [`${grid}${area}s`, [`${grid}${Temp}${Area}s`]],
   [`txt${align}`, [`${txt}${A}${lign}`]],
   [`txt${deco}`, [`${txt}${Deco}`]],
+  ['f', [f]],
+  ['s', [s]],
+  ['swidth', [`${s}${W}`]],
+  ['sOp', [`${s}${Op}`]],
+  ['sLc', [`${s}${Lc}`]],
 ])

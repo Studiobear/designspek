@@ -10,7 +10,6 @@
 
   $: bodyStyle = {
     backgroundColor: $theme.colors.background,
-    h: '100vh',
     theme: $theme,
   }
 

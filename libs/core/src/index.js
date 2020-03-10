@@ -134,7 +134,15 @@ export const processCss = (attributes, theme, pseudoElementSelector) => {
   return addUnits(Object.assign(newCss, cssMisc))
 }
 
-const forwardStyleDefault = ['txtdeco', 'textDecoration', 'position']
+const forwardStyleDefault = [
+  'txtdeco',
+  'textDecoration',
+  'position',
+  'f',
+  's',
+  'fill',
+  'stroke',
+]
 
 const styled = (node, props) => {
   let previousCssText = ''
