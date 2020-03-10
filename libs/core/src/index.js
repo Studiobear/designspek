@@ -12,6 +12,7 @@ import {
 import { shortHandAttributes } from './constants'
 import glob from './glob'
 import typography, { fontLink } from './typography'
+import memoize from 'micro-memoize'
 
 export const system = compose(
   color,
@@ -24,9 +25,9 @@ export const system = compose(
 )
 
 const defaultUnits = {
-  space: 'px',
+  space: 'rem',
   layout: '%',
-  grid: 'px',
+  grid: 'rem',
 }
 const addUnits = (styles, units = defaultUnits) => {
   // console.log('addUnits:', styles, units)
@@ -144,7 +145,7 @@ const forwardStyleDefault = [
   'stroke',
 ]
 
-const styled = (node, props) => {
+const styledMemo = (node, props) => {
   let previousCssText = ''
   let prevClassName
 
@@ -170,6 +171,8 @@ const styled = (node, props) => {
 
   return { update }
 }
+
+const styled = memoize(styledMemo, { maxSize: 10 })
 
 const parseGlobal = globStyles => {
   let globCss = ''
@@ -223,6 +226,8 @@ const parseGlobal = globStyles => {
   return globCss
 }
 
-const addGlobal = theme => glob(parseGlobal(theme))
+const parseGlobalMemo = memoize(parseGlobal, { maxSize: 2 })
+
+const addGlobal = theme => glob(parseGlobalMemo(theme))
 
 export { styled, addGlobal, typography, fontLink }

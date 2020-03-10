@@ -32,17 +32,24 @@
     position: 'relative',
     display: 'inline-block',
     px: '1rem',
-    pt: '.25rem',
+    pt: '.4rem',
+    brd: '2px solid',
+    brdCol: theme.colors.background,
     _hover: {
-      color: theme.colors.background,
-      bg: theme.colors.secondary,
+      brd: '2px solid',
+      brdCol: theme.colors.secondary,
     },
     theme: theme,
   }
 
   $: menuLinkSelected = {
     ...menuLinkStyle,
-    bg: theme.colors.highlight,
+    brd: '2px solid',
+    brdCol: theme.colors.muted,
+    _hover: {
+      brdCol: theme.colors.secondary,
+    },
+    theme: theme,
   }
   $: logoStyle = {
     w: '220px',
@@ -53,6 +60,12 @@
     },
     theme: theme,
   }
+  $: console.log(
+    'Nav: ',
+    segment === undefined ? menuLinkSelected : menuLinkStyle,
+    segment === 'about' ? menuLinkSelected : menuLinkStyle,
+    segment === 'blog' ? menuLinkSelected : menuLinkStyle,
+  )
 </script>
 
 <Section as="nav" style={navStyle}>
@@ -61,19 +74,11 @@
     <Flex dir="row" style={flexNavStyle}>
       <Link
         href="."
-        style={(menuLinkStyle, segment === undefined ? menuLinkSelected : '')}>
+        style={segment === undefined ? menuLinkSelected : menuLinkStyle}>
         home
       </Link>
-      <Link
-        href="about"
-        style={segment === 'about' ? menuLinkSelected : menuLinkStyle}>
-        about
-      </Link>
-      <Link
-        href="blog"
-        style={segment === 'blog' ? menuLinkSelected : menuLinkStyle}>
-        blog
-      </Link>
+      <Link href="about" style={menuLinkStyle}>about</Link>
+      <Link href="blog" style={menuLinkStyle}>blog</Link>
     </Flex>
   </Flex>
 </Section>
