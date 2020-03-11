@@ -37,6 +37,7 @@
     position: 'relative',
     display: 'inline-block',
     px: '1rem',
+    mx: '.25rem',
     pt: '.4rem',
     brd: '2px solid',
     brdCol: theme.colors.background,
@@ -50,12 +51,18 @@
   $: menuLinkSelected = {
     ...menuLinkStyle,
     brd: '2px solid',
-    brdCol: theme.colors.muted,
+    brdCol: theme.colors.primary,
     _hover: {
       brdCol: theme.colors.secondary,
     },
     theme: theme,
   }
+
+  $: homeLink = segment === undefined ? menuLinkSelected : menuLinkStyle
+  $: aboutLink = segment === 'about' ? menuLinkSelected : menuLinkStyle
+  $: blogLink = segment === 'blog' ? menuLinkSelected : menuLinkStyle
+
+  $: console.log('Nav Links: ', segment, homeLink, aboutLink, blogLink)
   $: logoStyle = {
     w: '220px',
     h: '40px',
@@ -71,13 +78,9 @@
   <Flex dir="row" style={flexStyle}>
     <Logo fill={theme.colors.primary} style={logoStyle} />
     <Flex dir="row" style={flexNavStyle}>
-      <Link
-        href="."
-        style={segment === undefined ? menuLinkSelected : menuLinkStyle}>
-        home
-      </Link>
-      <Link href="about" style={menuLinkStyle}>about</Link>
-      <Link href="blog" style={menuLinkStyle}>blog</Link>
+      <Link href="." style={homeLink}>home</Link>
+      <Link href="about" style={aboutLink}>about</Link>
+      <Link href="blog" style={blogLink}>blog</Link>
     </Flex>
   </Flex>
 </Section>
