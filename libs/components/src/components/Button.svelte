@@ -1,28 +1,28 @@
 <script>
+  import { styled } from '@studiobear/designspek'
   import { createEventDispatcher } from 'svelte'
 
   export let text = ''
-
+  export let style = $$props.style || {}
+  export let theme = $$props.theme || {}
   const dispatch = createEventDispatcher()
 
   function onClick(event) {
     dispatch('click', event)
   }
+  $: btnStyle = {
+    brd: '1px solid',
+    brdCol: '#ccc',
+    borderRadius: '3px',
+    bg: '#aaa',
+    px: 1,
+    py: 2,
+    m: 2,
+    ...style,
+  }
 </script>
 
-<style>
-  .button {
-    border: 1px solid #eee;
-    border-radius: 3px;
-    background-color: #ffffff;
-    cursor: pointer;
-    font-size: 15px;
-    padding: 3px 10px;
-    margin: 10px;
-  }
-</style>
-
-<button class="button" on:click={onClick}>
+<button class="button" on:click={onClick} use:styled={[btnStyle, theme]}>
   <slot />
   {text}
 </button>

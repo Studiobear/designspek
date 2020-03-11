@@ -1,4 +1,4 @@
-import { css } from 'goober'
+import { css, extractCss } from 'goober'
 import {
   compose,
   color,
@@ -25,9 +25,9 @@ export const system = compose(
 )
 
 const defaultUnits = {
-  space: 'rem',
+  space: 'px',
   layout: '%',
-  grid: 'rem',
+  grid: 'px',
 }
 const addUnits = (styles, units = defaultUnits) => {
   // console.log('addUnits:', styles, units)
@@ -172,7 +172,12 @@ const styledMemo = (node, props) => {
   return { update }
 }
 
-const styled = memoize(styledMemo, { maxSize: 10 })
+const styled = memoize(styledMemo, {
+  maxSize: 10,
+  onCacheHit(cache, options) {
+    console.log('cache was hit: ', cache)
+  },
+})
 
 const parseGlobal = globStyles => {
   let globCss = ''
@@ -226,8 +231,14 @@ const parseGlobal = globStyles => {
   return globCss
 }
 
-const parseGlobalMemo = memoize(parseGlobal, { maxSize: 2 })
+const parseGlobalMemo = memoize(parseGlobal, {
+  maxSize: 2,
+  onCacheHit(cache, options) {
+    console.log('cache was hit: ', cache)
+  },
+})
 
-const addGlobal = theme => glob(parseGlobalMemo(theme))
+const addGlobal = (theme, parse = true) =>
+  glob(parse ? parseGlobalMemo(theme) : theme)
 
-export { styled, addGlobal, typography, fontLink }
+export { styled, addGlobal, typography, fontLink, extractCss }

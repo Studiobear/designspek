@@ -105,6 +105,15 @@ export default {
       svelte({
         generate: 'ssr',
         dev,
+        hydratable: true,
+        /*
+        preprocess: {
+          style: ({ content }) => {
+            console.log('preprocess:', content)
+            return content
+          },
+        },
+        */
       }),
       resolve({
         dedupe: ['svelte'],

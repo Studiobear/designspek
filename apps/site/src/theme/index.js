@@ -12,7 +12,7 @@ if (dark.colors.antialias) {
 }
 dark.mode = 'dark'
 basic.mode = 'light'
-console.log('themes: ', basic.styles.body, dark.styles.body)
+// console.log('themes: ', basic.styles.body, dark.styles.body)
 function createTheme() {
   const { subscribe, set, update } = writable(basic)
 

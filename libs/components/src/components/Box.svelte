@@ -11,19 +11,6 @@
     minWidth: 0,
     ...style,
   }
-  let role
-  $: maybeTheme =
-    theme.subscribe && typeof theme.subscribe === 'function' ? theme : null
-  /* $: console.log(
-    'Box',
-    theme,
-    style,
-    compStyles,
-    $$props,
-    maybeTheme,
-    // $maybeTheme,
-  )
-  */
 </script>
 
 <div bind:this={div} on:click use:styled={[compStyles, theme]}>

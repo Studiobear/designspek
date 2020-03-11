@@ -51,6 +51,7 @@ export const main = {
     },
     body: {
       antialias: true,
+      m: 0,
     },
     h1: {
       ...heading,

@@ -3,7 +3,7 @@
   import { googleFonts, theme } from '../theme'
 
   import { Section, Button, Box } from '@studiobear/designspek-components'
-  import { Nav } from '../components'
+  import { Nav, SSR } from '../components'
 
   // $: background = $theme.colors.background || '#fff'
   export let segment
@@ -22,10 +22,26 @@
     boxSizing: 'border-box',
     theme: $theme,
   }
-  $: console.log('_layout: ', $theme, theme)
+  // $: console.log('_layout: ', $theme, theme)
 
   $: addGlobal($theme)
 </script>
+
+<style>
+  :global(html) {
+    line-height: 1.15;
+    -webkit-text-size-adjust: 100%;
+    box-sizing: border-box;
+  }
+  *,
+  *::before,
+  *::after {
+    box-sizing: inherit;
+  }
+  :global(body) {
+    margin: 0;
+  }
+</style>
 
 <svelte:options immutable={true} />
 <svelte:head>

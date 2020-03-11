@@ -60,12 +60,6 @@
     },
     theme: theme,
   }
-  $: console.log(
-    'Nav: ',
-    segment === undefined ? menuLinkSelected : menuLinkStyle,
-    segment === 'about' ? menuLinkSelected : menuLinkStyle,
-    segment === 'blog' ? menuLinkSelected : menuLinkStyle,
-  )
 </script>
 
 <Section as="nav" style={navStyle}>
