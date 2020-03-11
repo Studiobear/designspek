@@ -175,7 +175,7 @@ const styledMemo = (node, props) => {
 const styled = memoize(styledMemo, {
   maxSize: 10,
   onCacheHit(cache, options) {
-    console.log('cache was hit: ', cache)
+    // console.log('cache was hit: ', cache)
   },
 })
 
@@ -191,7 +191,7 @@ const parseGlobal = globStyles => {
     }
 
     globCss += `${name}{`
-    if (name === 'body' && theme.styles.body && theme.styles.body.antialias) {
+    if (name === 'body' && theme.styles.body) {
       if (
         typeof theme.styles.body.antialias === 'boolean' &&
         theme.styles.body.antialias
@@ -200,7 +200,13 @@ const parseGlobal = globStyles => {
       } else {
         globCss += ` -webkit-font-smoothing: ${theme.styles.body.antialias}; -moz-osx-font-smoothing: grayscale; `
       }
-      console.log(globCss)
+
+      if (
+        typeof theme.styles.body.reset === 'boolean' &&
+        theme.styles.body.reset
+      ) {
+        globCss += ` -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; `
+      }
     }
 
     let block = {}
@@ -234,7 +240,7 @@ const parseGlobal = globStyles => {
 const parseGlobalMemo = memoize(parseGlobal, {
   maxSize: 2,
   onCacheHit(cache, options) {
-    console.log('cache was hit: ', cache)
+    // console.log('cache was hit: ', cache)
   },
 })
 
