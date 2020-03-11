@@ -1,5 +1,10 @@
 <script>
-  import { Section, Flex, Box, Link } from '@studiobear/designspek-components'
+  import {
+    Section,
+    Flex,
+    BoxSSR,
+    Link,
+  } from '@studiobear/designspek-components'
   export let segment
   export let theme = $$props.theme || {}
   import Logo from './Logo.svelte'

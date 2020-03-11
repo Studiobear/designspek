@@ -172,7 +172,39 @@ const styledMemo = (node, props) => {
   return { update }
 }
 
+const styledMemo2 = (attributes, theme) => {
+  let previousCssText = ''
+  let prevClassName
+  let cn
+  console.log('styledMemo2', attributes, theme)
+
+  if (theme) {
+    if (theme.forwardStyle === undefined)
+      theme.forwardStyle = forwardStyleDefault
+    const cssText = processCss(attributes, theme)
+    console.log('styled2.update: ', cssText, theme)
+    if (cssText === previousCssText) return
+    previousCssText = cssText
+
+    cn = css(cssText)
+    // node.classList.add(cn)
+
+    if (prevClassName) node.classList.remove(prevClassName)
+    prevClassName = cn
+    return cn
+  }
+
+  return
+}
+
 const styled = memoize(styledMemo, {
+  maxSize: 10,
+  onCacheHit(cache, options) {
+    // console.log('cache was hit: ', cache)
+  },
+})
+
+const styled2 = memoize(styledMemo2, {
   maxSize: 10,
   onCacheHit(cache, options) {
     // console.log('cache was hit: ', cache)
@@ -247,4 +279,4 @@ const parseGlobalMemo = memoize(parseGlobal, {
 const addGlobal = (theme, parse = true) =>
   glob(parse ? parseGlobalMemo(theme) : theme)
 
-export { styled, addGlobal, typography, fontLink, extractCss }
+export { styled, styled2, addGlobal, typography, fontLink, extractCss }
