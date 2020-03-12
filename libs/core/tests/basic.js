@@ -1,62 +1,33 @@
 const heading = {
-  color: 'text',
   fontFamily: 'heading',
   lineHeight: 'heading',
   fontWeight: 'heading',
 }
-
-export const main = {
+// space: [0, 4, 8, 16, 32, 64, 128, 256, 512],
+// space: ['0', '4px', '8px', '16px', '32px', '64px', '128px', '256px', '512px'],
+export const basic = {
+  scale: [0.25, 0.5, 0.75, 1, 1.5, 2, 4, 8],
   space: [0, 4, 8, 16, 32, 64, 128, 256, 512],
-  fonts: {
-    body:
-      'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif',
-    heading: 'inherit',
-    monospace: 'Menlo, monospace',
-  },
-  fontSizes: [12, 14, 16, 20, 24, 32, 48, 64, 96],
-  fontWeights: {
-    body: 400,
-    heading: 700,
-    bold: 700,
-  },
-  lineHeights: {
-    body: 1.5,
-    heading: 2,
-  },
+  spaces: ['none', 'xxs', 'xs', 's', 'm', 'l', 'xl', 'xxl', 'xxxl'],
   colors: {
-    text: '#000',
+    text: '#666',
     background: '#fff',
     primary: '#07c',
     secondary: '#30c',
     muted: '#f6f6f6',
-    highlight: '#d2d2da',
-    modes: {
-      dark: {
-        text: '#fff',
-        background: '#060606',
-        primary: '#3cf',
-        secondary: '#e0f',
-        muted: '#191919',
-        highlight: '#29112c',
-        antialias: true,
-      },
-    },
   },
   styles: {
     root: {
       fontFamily: 'body',
       lineHeight: 'body',
       fontWeight: 'body',
-      boxSizing: 'border-box',
     },
     body: {
       antialias: true,
-      m: 0,
     },
     h1: {
       ...heading,
       fontSize: 5,
-      py: '0.5rem',
       color: 'primary',
     },
     h2: {
@@ -67,22 +38,21 @@ export const main = {
     h3: {
       ...heading,
       fontSize: 3,
-      color: 'secondary',
+      color: 'text',
     },
     h4: {
       ...heading,
       fontSize: 2,
-      color: 'text',
+      color: '#ddd',
     },
     h5: {
       ...heading,
       fontSize: 1,
-      color: 'primary',
+      color: 'text',
     },
     h6: {
       ...heading,
       fontSize: 0,
-      color: 'secondary',
     },
     p: {
       color: 'text',
@@ -92,9 +62,6 @@ export const main = {
     },
     a: {
       color: 'primary',
-      fontFamily: 'body',
-      fontWeight: 'body',
-      lineHeight: 'body',
     },
     pre: {
       fontFamily: 'monospace',
@@ -111,17 +78,14 @@ export const main = {
       width: '100%',
       borderCollapse: 'separate',
       borderSpacing: 0,
-      fontFamily: 'body',
     },
     th: {
       textAlign: 'left',
       borderBottomStyle: 'solid',
-      fontFamily: 'body',
     },
     td: {
       textAlign: 'left',
       borderBottomStyle: 'solid',
-      fontFamily: 'body',
     },
     img: {
       maxWidth: '100%',
@@ -129,4 +93,4 @@ export const main = {
   },
 }
 
-export default main
+export default basic

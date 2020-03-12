@@ -1,18 +1,15 @@
 import { writable } from 'svelte/store'
 import { typography, fontLink } from '@studiobear/designspek'
-import kirkhamTheme from 'typography-theme-kirkham'
+import stAnnesTheme from 'typography-theme-st-annes'
 
-import mainTheme from './themeMain'
+import basicTheme from './basic'
 
-const basic = typography(mainTheme, kirkhamTheme)
-let dark = JSON.parse(JSON.stringify(basic))
-dark.colors = mainTheme.colors.modes.dark
-if (dark.colors.antialias) {
-  dark.styles.body['antialias'] = 'subpixel-antialiased'
-}
+const basic = typography(basicTheme, stAnnesTheme)
+let dark = Object.assign({}, basic)
+dark.colors = basicTheme.colors.modes.dark
 dark.mode = 'dark'
 basic.mode = 'light'
-// console.log('themes: ', basic.styles.body, dark.styles.body)
+
 function createTheme() {
   const { subscribe, set, update } = writable(basic)
 
@@ -25,7 +22,7 @@ function createTheme() {
 }
 
 const theme = createTheme()
-const googleFonts = fontLink(kirkhamTheme)
+const googleFonts = fontLink(stAnnesTheme)
 
 export { theme, basic, dark, googleFonts }
 export default theme

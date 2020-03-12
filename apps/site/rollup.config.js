@@ -8,6 +8,7 @@ import { terser } from 'rollup-plugin-terser'
 import config from 'sapper/config/rollup.js'
 import remark from 'remark'
 import html from 'remark-html'
+import svg from 'rollup-plugin-svg'
 
 import pkg from './package.json'
 
@@ -41,10 +42,11 @@ export default {
         'process.browser': true,
         'process.env.NODE_ENV': JSON.stringify(mode),
       }),
+      svg(),
       svelte({
         dev,
         hydratable: true,
-        emitCss: true,
+        emitCss: false,
       }),
       resolve({
         browser: true,
@@ -99,9 +101,11 @@ export default {
             ? `'${process.env.SITE_URL}'`
             : `'${process.env.PROD_URL}'`,
       }),
+      svg(),
       svelte({
         generate: 'ssr',
         dev,
+        hydratable: true,
       }),
       resolve({
         dedupe: ['svelte'],

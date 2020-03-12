@@ -1,4 +1,4 @@
-<p align="left"><img src="./static/ds-horiz.svg" width="400" height="64" /></p>
+<p align="left"><img src="./docs/assets/ds-horiz-fat.svg" width="480" height="160" /></p>
 
 #### A Reactive Design System: Svelte meets System UI
 

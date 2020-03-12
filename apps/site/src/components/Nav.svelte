@@ -1,67 +1,81 @@
 <script>
-  import { Section } from '@studiobear/svelte-system-ui-components'
+  import { Section, Flex, Link } from '@studiobear/designspek-components'
   export let segment
+  export let theme = $$props.theme || {}
+  import Logo from './Logo.svelte'
 
+  // let src = 'ds-horiz.svg'
+  // console.log('Nav: ', Logo)
   $: navStyle = {
-    borderBottom: '1px solid rgba(255, 62, 0, 0.1)',
+    pos: 'fixed',
+    t: 0,
+    w: '100%',
+    zIndex: 100,
+    bg: theme.colors.background,
+    borderBottom: '1px solid',
+    borderColor: theme.colors.primary,
     fontWeight: 300,
     p: '0 1em',
   }
+  $: flexStyle = {
+    justc: 'space-between',
+    align: 'stretch',
+    px: '1rem',
+    py: '2rem',
+  }
+  $: flexNavStyle = {
+    justc: 'space-around',
+    align: 'stretch',
+    position: 'relative',
+  }
+  $: menuLinkStyle = {
+    color: theme.colors.primary,
+    textDecoration: 'none',
+    position: 'relative',
+    display: 'inline-block',
+    px: '1rem',
+    mx: '.25rem',
+    pt: '.5rem',
+    brd: '2px solid',
+    brdCol: theme.colors.background,
+    _hover: {
+      brd: '2px solid',
+      brdCol: theme.colors.secondary,
+    },
+  }
+
+  $: menuLinkSelected = {
+    ...menuLinkStyle,
+    brd: '2px solid',
+    brdCol: theme.colors.primary,
+    _hover: {
+      brdCol: theme.colors.secondary,
+    },
+  }
+
+  $: homeLink = segment === undefined ? menuLinkSelected : menuLinkStyle
+  $: aboutLink = segment === 'about' ? menuLinkSelected : menuLinkStyle
+  $: blogLink = segment === 'blog' ? menuLinkSelected : menuLinkStyle
+
+  $: logoStyle = {
+    w: '220px',
+    h: '40px',
+    f: theme.colors.primary,
+    _hover: {
+      f: theme.colors.secondary,
+    },
+  }
 </script>
 
-<style>
-  ul {
-    margin: 0;
-    padding: 0;
-  }
-
-  /* clearfix */
-  ul::after {
-    content: '';
-    display: block;
-    clear: both;
-  }
-
-  li {
-    display: block;
-    float: left;
-  }
-
-  .selected {
-    position: relative;
-    display: inline-block;
-  }
-
-  .selected::after {
-    position: absolute;
-    content: '';
-    width: calc(100% - 1em);
-    height: 2px;
-    background-color: rgb(255, 62, 0);
-    display: block;
-    bottom: -1px;
-  }
-
-  a {
-    text-decoration: none;
-    padding: 1em 0.5em;
-    display: block;
-  }
-</style>
-
 <Section as="nav" style={navStyle}>
-  <ul>
-    <li>
-      <a class:selected={segment === undefined} href=".">home</a>
-    </li>
-    <li>
-      <a class:selected={segment === 'about'} href="about">about</a>
-    </li>
-
-    <!-- for the blog link, we're using rel=prefetch so that Sapper prefetches
-		     the blog data when we hover over the link or tap it on a touchscreen -->
-    <li>
-      <a class:selected={segment === 'blog'} href="blog">blog</a>
-    </li>
-  </ul>
+  <Flex dir="row" style={flexStyle}>
+    <Link href=".">
+      <Logo fill={theme.colors.primary} style={logoStyle} />
+    </Link>
+    <Flex dir="row" style={flexNavStyle}>
+      <Link href="." style={homeLink}>home</Link>
+      <Link href="about" style={aboutLink}>about</Link>
+      <Link href="blog" style={blogLink}>blog</Link>
+    </Flex>
+  </Flex>
 </Section>
