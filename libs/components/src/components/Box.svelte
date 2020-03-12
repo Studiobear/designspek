@@ -5,15 +5,19 @@
   let div
   export let style = $$props.style || {}
   export let theme = $$props.theme || {}
-  $: compStyles = {
-    boxSizing: 'border-box',
-    margin: 0,
-    minWidth: 0,
-    ...style,
-  }
+  $: compStyles = styled(
+    {
+      boxSizing: 'border-box',
+      margin: 0,
+      minWidth: 0,
+      ...style,
+    },
+    theme,
+  )
+  $: console.log('BoxSSR: ', compStyles)
 </script>
 
-<div bind:this={div} on:click use:styled={[compStyles, theme]}>
+<div bind:this={div} on:click class={compStyles}>
   <slot>
     <em>no content was provided</em>
   </slot>

@@ -31,34 +31,35 @@
       }
     }
   }
+  $: compStyles = styled(style, theme)
 </script>
 
 {#if !as || as === 'header'}
-  <header {...setRole} use:styled={[style, theme]}>
+  <header {...setRole} class={compStyles}>
     <slot />
   </header>
 {:else if as === 'nav'}
-  <nav {...setRole} use:styled={[style, theme]}>
+  <nav {...setRole} class={compStyles}>
     <slot />
   </nav>
 {:else if as === 'main'}
-  <main {...setRole} use:styled={[style, theme]}>
+  <main {...setRole} class={compStyles}>
     <slot />
   </main>
 {:else if as === 'aside'}
-  <aside {...setRole} use:styled={[style, theme]}>
+  <aside {...setRole} class={compStyles}>
     <slot />
   </aside>
 {:else if as === 'footer'}
-  <footer {...setRole} use:styled={[style, theme]}>
+  <footer {...setRole} class={compStyles}>
     <slot />
   </footer>
 {:else if as === 'section'}
-  <section use:styled={[style, theme]}>
+  <section class={compStyles}>
     <slot />
   </section>
 {:else if as === 'article'}
-  <article use:styled={[style, theme]}>
+  <article class={compStyles}>
     <slot />
   </article>
 {/if}

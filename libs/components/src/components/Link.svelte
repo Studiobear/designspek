@@ -1,12 +1,12 @@
 <script>
-  import { styled2 } from '@studiobear/designspek'
+  import { styled } from '@studiobear/designspek'
 
   export let style = $$props.style || {}
   export let theme = $$props.theme || {}
   export let as = 'a'
   export let href = ''
   export let target = undefined
-  $: compStyles = styled2(
+  $: compStyles = styled(
     {
       boxSizing: 'border-box',
       margin: 0,

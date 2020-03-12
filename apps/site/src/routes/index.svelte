@@ -6,12 +6,12 @@
   $: h1 = {
     color: $theme.colors.primary,
     lineHeight: '2em',
-    theme: $theme,
+    fontSize: ['5em', '1em', '3em'],
   }
   $: h3Style = {
     color: $theme.colors.secondary,
     lineHeight: '2em',
-    theme: $theme,
+    fontSize: ['3em', '.5em', '1em'],
   }
 
   // console.log('index: ', $$props, theme, $theme)
@@ -22,11 +22,7 @@
   <title>Design</title>
 </svelte:head>
 
-<Heading as="h1" style={h1}>Great success!</Heading>
-
-<figure>
-  <figcaption>HIGH FIVE!</figcaption>
-</figure>
+<Heading as="h1" style={h1}>designspek</Heading>
 
 <Heading as="h3" style={h3Style}>Local library component demo</Heading>
 <p>

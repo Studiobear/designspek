@@ -1,6 +1,6 @@
 <script>
   import { styled } from '@studiobear/designspek'
-  import Box from './BoxSSR.svelte'
+  import Box from './Box.svelte'
 
   export let style = $$props.style || {}
   export let theme = $$props.theme || {}

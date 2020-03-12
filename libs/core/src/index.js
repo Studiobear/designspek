@@ -11,7 +11,7 @@ import {
   grid,
 } from 'styled-system'
 import { shortHandAttributes } from './constants'
-import glob, { extractCss } from './glob'
+import glob from './glob'
 import typography, { fontLink } from './typography'
 import memoize from 'micro-memoize'
 
@@ -149,36 +149,9 @@ const forwardStyleDefault = [
 
 let styleLib = {}
 
-const styledMemo = (node, props) => {
+const styledMemo = (attributes, theme) => {
   let previousCssText = ''
-  let prevClassName
-
-  const update = ([attributes, theme]) => {
-    // console.log('styled.update: ', attributes, theme)
-    if (theme) {
-      if (theme.forwardStyle === undefined)
-        theme.forwardStyle = forwardStyleDefault
-      const cssText = processCss(attributes, theme)
-      // console.log('styled.update: ', cssText, theme)
-      if (cssText === previousCssText) return
-      previousCssText = cssText
-
-      const cn = css(cssText)
-      node.classList.add(cn)
-
-      if (prevClassName) node.classList.remove(prevClassName)
-      prevClassName = cn
-    }
-  }
-
-  update(props)
-
-  return { update }
-}
-
-const styledMemo2 = (attributes, theme) => {
-  let previousCssText = ''
-  let cn
+  let cn, toLib
   // console.log('styledMemo2', attributes, theme)
 
   if (theme) {
@@ -191,8 +164,9 @@ const styledMemo2 = (attributes, theme) => {
 
     cn = css(cssText)
     if (styleLib.hasOwnProperty(cn)) return cn
-
-    styleLib = { [cn]: cssText, ...styleLib }
+    toLib = parse(cn, cssText)
+    console.log('toLib', toLib)
+    styleLib = { ...toLib, ...styleLib }
     console.log('sM2 styleLib: ', styleLib)
     return cn
   }
@@ -207,12 +181,38 @@ const styled = memoize(styledMemo, {
   },
 })
 
-const styled2 = memoize(styledMemo2, {
-  maxSize: 10,
-  onCacheHit(cache, options) {
-    // console.log('cache was hit: ', cache)
-  },
-})
+const parse = (cn, cs) => {
+  let cStr = ''
+  let mQu = {}
+  let parsed
+
+  cStr += `.${cn}{`
+  for (let [n, v] of Object.entries(cs)) {
+    n = n.replace(/[A-Z]/g, match => `-${match.toLowerCase()}`)
+    if (Object.prototype.toString.call(v) === '[object Object]') {
+      let childStr = '{'
+      for (let [nc, vc] of Object.entries(v)) {
+        childStr += `${nc}: ${vc};`
+      }
+      childStr += '}'
+
+      if (n.startsWith('@')) {
+        if (mQu.hasOwnProperty(n)) {
+          mQu[n] = { [cn]: v, ...mQu[n] }
+        } else {
+          mQu[n] = { [cn]: v }
+        }
+      } else {
+        cStr += `${n} ${childStr}`
+      }
+    } else {
+      cStr += `${n}: ${v};`
+    }
+  }
+  cStr += '}'
+  parsed = { [cn]: { value: cStr, media: mQu } }
+  return parsed
+}
 
 const parseGlobal = globStyles => {
   console.log('parseGlobal: ', globStyles)
@@ -285,11 +285,10 @@ const addGlobal = (theme, parse = true, ssr = true) => {
   if (parse) {
     globalStyle = parseGlobalMemo(theme)
     glob(globalStyle)
-    if (ssr) return extractCss(globalStyle)
   } else {
     glob(theme)
   }
 
   return globalStyle
 }
-export { styled, styled2, addGlobal, typography, fontLink, extractCss }
+export { styled, addGlobal, typography, fontLink }

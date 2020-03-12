@@ -1,5 +1,5 @@
 <script>
-  import { addGlobal, styled, extractCss } from '@studiobear/designspek'
+  import { addGlobal, styled } from '@studiobear/designspek'
   import { googleFonts, theme } from '../theme'
 
   import { Section, Button, Box } from '@studiobear/designspek-components'
@@ -10,7 +10,6 @@
 
   $: bodyStyle = {
     bg: $theme.colors.background,
-    theme: $theme,
   }
 
   $: mainStyle = {
@@ -19,8 +18,8 @@
     p: 3,
     mx: 'auto',
     mt: '6.25rem',
-    theme: $theme,
   }
+  $: addGlobal($theme)
 </script>
 
 <style>
@@ -54,5 +53,3 @@
     <slot />
   </Section>
 </Box>
-
-<SSR />

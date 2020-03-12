@@ -1,10 +1,5 @@
 <script>
-  import {
-    Section,
-    Flex,
-    BoxSSR,
-    Link,
-  } from '@studiobear/designspek-components'
+  import { Section, Flex, Link } from '@studiobear/designspek-components'
   export let segment
   export let theme = $$props.theme || {}
   import Logo from './Logo.svelte'
@@ -21,20 +16,17 @@
     borderColor: theme.colors.primary,
     fontWeight: 300,
     p: '0 1em',
-    theme: theme,
   }
   $: flexStyle = {
     justc: 'space-between',
     align: 'stretch',
     px: '1rem',
     py: '2rem',
-    theme: theme,
   }
   $: flexNavStyle = {
     justc: 'space-around',
     align: 'stretch',
     position: 'relative',
-    theme: theme,
   }
   $: menuLinkStyle = {
     color: theme.colors.primary,
@@ -43,14 +35,13 @@
     display: 'inline-block',
     px: '1rem',
     mx: '.25rem',
-    pt: '.4rem',
+    pt: '.5rem',
     brd: '2px solid',
     brdCol: theme.colors.background,
     _hover: {
       brd: '2px solid',
       brdCol: theme.colors.secondary,
     },
-    theme: theme,
   }
 
   $: menuLinkSelected = {
@@ -60,7 +51,6 @@
     _hover: {
       brdCol: theme.colors.secondary,
     },
-    theme: theme,
   }
 
   $: homeLink = segment === undefined ? menuLinkSelected : menuLinkStyle
@@ -74,13 +64,14 @@
     _hover: {
       f: theme.colors.secondary,
     },
-    theme: theme,
   }
 </script>
 
 <Section as="nav" style={navStyle}>
   <Flex dir="row" style={flexStyle}>
-    <Logo fill={theme.colors.primary} style={logoStyle} />
+    <Link href=".">
+      <Logo fill={theme.colors.primary} style={logoStyle} />
+    </Link>
     <Flex dir="row" style={flexNavStyle}>
       <Link href="." style={homeLink}>home</Link>
       <Link href="about" style={aboutLink}>about</Link>

@@ -70,7 +70,7 @@ test('processCss: should resolve shorthand to class attributes', t => {
     expectedOutput,
   )
 })
-*/
+
 
 test('styled: should create classNames and update the node with it', t => {
   const props = { color: 'color.primary' }
@@ -84,3 +84,5 @@ test('styled: should create classNames and update the node with it', t => {
   t.is(node.class.includes('go'), true)
   t.is(node.class.includes(previousClassName), false)
 })
+
+*/
