@@ -1,9 +1,9 @@
 <script>
   // import { onMount } from 'svelte'
-  import { addGlobal } from '@studiobear/designspek'
-  import { theme } from '../theme'
+  import { extractCss } from '@studiobear/designspek'
+  export let theme = $$props.theme || {}
 </script>
 
 <svelte:head>
-  {@html addGlobal($theme)}
+  {@html extractCss(theme)}
 </svelte:head>

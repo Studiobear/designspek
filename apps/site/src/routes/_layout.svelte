@@ -53,3 +53,5 @@
     <slot />
   </Section>
 </Box>
+
+<SSR theme={$theme} />

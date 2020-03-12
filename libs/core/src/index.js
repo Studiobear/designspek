@@ -181,37 +181,69 @@ const styled = memoize(styledMemo, {
   },
 })
 
-const parse = (cn, cs) => {
+const parse = (cn, cs, opts = { ssr: false }) => {
   let cStr = ''
   let mQu = {}
   let parsed
 
   cStr += `.${cn}{`
-  for (let [n, v] of Object.entries(cs)) {
-    n = n.replace(/[A-Z]/g, match => `-${match.toLowerCase()}`)
-    if (Object.prototype.toString.call(v) === '[object Object]') {
-      let childStr = '{'
-      for (let [nc, vc] of Object.entries(v)) {
-        childStr += `${nc}: ${vc};`
-      }
-      childStr += '}'
+  if (typeof cs === 'object' && Object.entries(cs).length > 0) {
+    for (let [n, v] of Object.entries(cs)) {
+      n = n.replace(/[A-Z]/g, match => `-${match.toLowerCase()}`)
+      if (Object.prototype.toString.call(v) === '[object Object]') {
+        let childStr = '{'
+        for (let [nc, vc] of Object.entries(v)) {
+          childStr += `${nc}: ${vc};`
+        }
+        childStr += '}'
 
-      if (n.startsWith('@')) {
-        if (mQu.hasOwnProperty(n)) {
-          mQu[n] = { [cn]: v, ...mQu[n] }
+        if (n.startsWith('@')) {
+          if (mQu.hasOwnProperty(n)) {
+            mQu[n] = { [cn]: v, ...mQu[n] }
+          } else {
+            mQu[n] = { [cn]: v }
+          }
         } else {
-          mQu[n] = { [cn]: v }
+          cStr += `${n} ${childStr}`
         }
       } else {
-        cStr += `${n} ${childStr}`
+        cStr += `${n}: ${v};`
       }
-    } else {
-      cStr += `${n}: ${v};`
     }
+  } else {
+    if (typeof cs === 'string') cStr += cStr
   }
   cStr += '}'
-  parsed = { [cn]: { value: cStr, media: mQu } }
+  if (opts.ssr) {
+    parsed = cStr
+  } else {
+    parsed = { [cn]: { value: cStr, media: mQu } }
+  }
+
   return parsed
+}
+
+const extractCss = (theme, opts = {}) => {
+  let compStyles = ''
+  let mediaStyles = {}
+  const global = addGlobal(theme, true, true)
+  for (let [cn, cv] of Object.entries(styleLib)) {
+    if (typeof cv.value === 'string') compStyles += cv.value
+    if (typeof cv.media === 'object' && Object.entries(cv.media).length > 0) {
+      for (let [mn, mv] of Object.entries(cv.media)) {
+        let mTmp
+        for (let [mchn, mchv] of Object.entries(mv)) {
+          mTmp = parse(mchn, mchv, { ssr: true })
+        }
+        if (!mediaStyles.hasOwnProperty(mn)) mediaStyles[mn] = ''
+        mediaStyles[mn] += mTmp
+      }
+    }
+  }
+  for (let [mSn, mSv] of Object.entries(mediaStyles)) {
+    compStyles += `${mSn} {${mSv}}`
+  }
+  return `<style id="_ds_ssr">${global} ${compStyles}</style>`
 }
 
 const parseGlobal = globStyles => {
@@ -280,15 +312,16 @@ const parseGlobalMemo = memoize(parseGlobal, {
   },
 })
 
-const addGlobal = (theme, parse = true, ssr = true) => {
+const addGlobal = (theme, parse = true, ssr = false) => {
   let globalStyle
-  if (parse) {
-    globalStyle = parseGlobalMemo(theme)
-    glob(globalStyle)
-  } else {
-    glob(theme)
+  if (theme) {
+    if (parse) {
+      globalStyle = parseGlobalMemo(theme)
+      if (!ssr) glob(globalStyle)
+    } else {
+      glob(theme)
+    }
   }
-
   return globalStyle
 }
-export { styled, addGlobal, typography, fontLink }
+export { styled, addGlobal, typography, fontLink, extractCss }
