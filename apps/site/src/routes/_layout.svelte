@@ -1,5 +1,5 @@
 <script>
-  import { addGlobal, styled } from '@studiobear/designspek'
+  import { addGlobal, styled, extractCss } from '@studiobear/designspek'
   import { googleFonts, theme } from '../theme'
 
   import { Section, Button, Box } from '@studiobear/designspek-components'
@@ -9,22 +9,18 @@
   export let segment
 
   $: bodyStyle = {
-    backgroundColor: $theme.colors.background,
+    bg: $theme.colors.background,
     theme: $theme,
   }
 
   $: mainStyle = {
-    position: 'relative',
-    maxWidth: '56em',
+    maxWidth: '56rem',
     bg: $theme.colors.background,
     p: 3,
-    m: '0 auto',
-    boxSizing: 'border-box',
+    mx: 'auto',
+    mt: '6.25rem',
     theme: $theme,
   }
-  // $: console.log('_layout: ', $theme, theme)
-
-  $: addGlobal($theme)
 </script>
 
 <style>
@@ -58,3 +54,5 @@
     <slot />
   </Section>
 </Box>
+
+<SSR />

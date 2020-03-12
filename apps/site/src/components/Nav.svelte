@@ -12,6 +12,11 @@
   // let src = 'ds-horiz.svg'
   // console.log('Nav: ', Logo)
   $: navStyle = {
+    pos: 'fixed',
+    t: 0,
+    w: '100%',
+    zIndex: 100,
+    bg: theme.colors.background,
     borderBottom: '1px solid',
     borderColor: theme.colors.primary,
     fontWeight: 300,
@@ -62,7 +67,6 @@
   $: aboutLink = segment === 'about' ? menuLinkSelected : menuLinkStyle
   $: blogLink = segment === 'blog' ? menuLinkSelected : menuLinkStyle
 
-  $: console.log('Nav Links: ', segment, homeLink, aboutLink, blogLink)
   $: logoStyle = {
     w: '220px',
     h: '40px',

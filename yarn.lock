@@ -14405,11 +14405,6 @@ rollup-plugin-postcss@^2.0.3:
     rollup-pluginutils "^2.0.1"
     style-inject "^0.3.0"
 
-rollup-plugin-svelte-ssr@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/rollup-plugin-svelte-ssr/-/rollup-plugin-svelte-ssr-1.0.0.tgz#c1592426141a1cde814e8432615eff4b4e52207b"
-  integrity sha512-vIbJZIR0A7gL3jsqjY4cFX/LLtmhudHskiGFgAmh2u6rZJ29QQcUySpToJsk05wANpBYZv/dW/BW2IrJeXI0gQ==
-
 rollup-plugin-svelte@^5.1.0:
   version "5.1.1"
   resolved "https://registry.yarnpkg.com/rollup-plugin-svelte/-/rollup-plugin-svelte-5.1.1.tgz#0094f94e7e6ff7579bcd9f7769b454751ba670e1"

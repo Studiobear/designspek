@@ -46,7 +46,7 @@ export default {
       svelte({
         dev,
         hydratable: true,
-        emitCss: true,
+        emitCss: false,
       }),
       resolve({
         browser: true,
@@ -106,14 +106,6 @@ export default {
         generate: 'ssr',
         dev,
         hydratable: true,
-        /*
-        preprocess: {
-          style: ({ content }) => {
-            console.log('preprocess:', content)
-            return content
-          },
-        },
-        */
       }),
       resolve({
         dedupe: ['svelte'],

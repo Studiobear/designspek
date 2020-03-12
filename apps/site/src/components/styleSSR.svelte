@@ -1,12 +1,9 @@
 <script>
-  import { onMount } from 'svelte'
-  import { extractCss, addGlobal } from '@studiobear/designspek'
-
-  let styleTag = extractCss()
-
-  onMount(() => {
-    styleTag = extractCss()
-    // console.log(styleTag)
-    addGlobal(styleTag, false)
-  })
+  // import { onMount } from 'svelte'
+  import { addGlobal } from '@studiobear/designspek'
+  import { theme } from '../theme'
 </script>
+
+<svelte:head>
+  {@html addGlobal($theme)}
+</svelte:head>

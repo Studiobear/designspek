@@ -1,16 +1,17 @@
-import { css, extractCss } from 'goober'
+import { css } from 'goober'
 import {
   compose,
   color,
   space,
   layout,
+  position,
   border,
   flexbox,
   typography as typographySS,
   grid,
 } from 'styled-system'
 import { shortHandAttributes } from './constants'
-import glob from './glob'
+import glob, { extractCss } from './glob'
 import typography, { fontLink } from './typography'
 import memoize from 'micro-memoize'
 
@@ -18,6 +19,7 @@ export const system = compose(
   color,
   space,
   layout,
+  position,
   border,
   flexbox,
   typographySS,
@@ -145,6 +147,8 @@ const forwardStyleDefault = [
   'stroke',
 ]
 
+let styleLib = {}
+
 const styledMemo = (node, props) => {
   let previousCssText = ''
   let prevClassName
@@ -174,23 +178,22 @@ const styledMemo = (node, props) => {
 
 const styledMemo2 = (attributes, theme) => {
   let previousCssText = ''
-  let prevClassName
   let cn
-  console.log('styledMemo2', attributes, theme)
+  // console.log('styledMemo2', attributes, theme)
 
   if (theme) {
     if (theme.forwardStyle === undefined)
       theme.forwardStyle = forwardStyleDefault
     const cssText = processCss(attributes, theme)
-    console.log('styled2.update: ', cssText, theme)
+    // console.log('styled2.update: ', cssText, theme)
     if (cssText === previousCssText) return
     previousCssText = cssText
 
     cn = css(cssText)
-    // node.classList.add(cn)
+    if (styleLib.hasOwnProperty(cn)) return cn
 
-    if (prevClassName) node.classList.remove(prevClassName)
-    prevClassName = cn
+    styleLib = { [cn]: cssText, ...styleLib }
+    console.log('sM2 styleLib: ', styleLib)
     return cn
   }
 
@@ -212,6 +215,7 @@ const styled2 = memoize(styledMemo2, {
 })
 
 const parseGlobal = globStyles => {
+  console.log('parseGlobal: ', globStyles)
   let globCss = ''
   let theme = globStyles
   theme.forwardStyle = forwardStyleDefault
@@ -276,7 +280,16 @@ const parseGlobalMemo = memoize(parseGlobal, {
   },
 })
 
-const addGlobal = (theme, parse = true) =>
-  glob(parse ? parseGlobalMemo(theme) : theme)
+const addGlobal = (theme, parse = true, ssr = true) => {
+  let globalStyle
+  if (parse) {
+    globalStyle = parseGlobalMemo(theme)
+    glob(globalStyle)
+    if (ssr) return extractCss(globalStyle)
+  } else {
+    glob(theme)
+  }
 
+  return globalStyle
+}
 export { styled, styled2, addGlobal, typography, fontLink, extractCss }
