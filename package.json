@@ -30,7 +30,8 @@
     "check-packages": "yarn monocheck && yarn lint && yarn eslint",
     "fix-packages": "yarn monofix && yarn lint:fix && yarn eslint:fix",
     "commit": "git add . && git cz",
-    "release": "standard-version"
+    "release": "standard-version",
+    "release:min": "yarn release --release-as minor"
   },
   "commitlint": {
     "extends": [

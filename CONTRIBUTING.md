@@ -7,9 +7,18 @@ These steps will guide you through contributing to this project:
 - Fork the repo
 - Clone it and install dependencies
 
-		git clone https://github.com/pyoner/svelte-typescript
-		yarn install
+```shell
+	git clone [https://github.com/Studiobear/designspek.git](https://github.com/Studiobear/designspek.git)
 
-Make and commit your changes. Make sure the commands npm run build and npm run test:prod are working.
+	yarn
+	lerna bootstrap
+	yarn check-packages
+	yarn test
+	yarn build
 
-Finally send a [GitHub Pull Request](https://github.com/pyoner/svelte-typescript/compare?expand=1) with a clear list of what you've done (read more [about pull requests](https://help.github.com/articles/about-pull-requests/)). Make sure all of your commits are atomic (one feature per commit).
+#...then develop away
+```
+
+Make and commit your changes. Make sure the commands `yarn test` and `yarn build` pass successfuly. Update or add tests accordingly.
+
+Finally send a [GitHub Pull Request](https://github.com/Studiobear/designspek/pulls), compare with `develop` branch, with a clear list of what you've done (read more [about pull requests](https://help.github.com/articles/about-pull-requests/)). Make sure all of your commits are atomic (one feat/fix/refactor per commit).

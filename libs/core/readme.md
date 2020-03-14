@@ -4,6 +4,8 @@
 
 ---
 
+![designspec brotli](https://img.badgesize.io/https://unpkg.com/@studiobear/designspek@0.1.2/dist/index.js?compression=brotli) ![GitHub package.json version](https://img.shields.io/github/package-json/v/Studiobear/designspek) ![GitHub](https://img.shields.io/github/license/Studiobear/designspek?color=blue)
+
 > **_Notice: Unstable API and under heavy development_**
 
 **Underlying Elements**
@@ -15,7 +17,6 @@
 - **[Styled System](https://styled-system.com/)**: Styled System is a collection of utility functions for forming style props based on a global theme object defining typographic and layout properties.
 - **[Goober](https://github.com/cristianbote/goober)**: a less than 1kb CSS-in-JS implementation (toting in comparison ~16/11kb respectively of [styled-components](https://github.com/styled-components/styled-components)/[emotion](https://github.com/emotion-js/emotion). In this library, Goober's `css` function is used to parse and apply the style props formed by Styled System.
 - **[Typography.js](http://kyleamathews.github.io/typography.js/)**: Typography is difficult and the nuances of applying good typography exasperate the already-brittle system of themes and CSS. TypographyJS works as a seperate themeing layer that can be integrated with Styled System to apply such typographic nuances to the greater theme.
-- **SvDX _(coming soon)_**: Svelte-flavored MDX. MDX? MDX allows writing JSX (known for its use in React, but is a general syntax extension to JS) in Markdown documents. Long story short, as Markdown is [easy](https://www.markdownguide.org/getting-started/#why-use-markdown), it can be made even useful and interactive by enabling the embedding of Svelte-components.
 
 # Using Designspek
 
@@ -34,12 +35,13 @@ npm i @studiobear/designspek
 
 ### The Theme
 
-Themes are just JS objects and ideally, if you already have an existing theme from React using Theme-UI, then you can bring over your theme as is or [get a preset](https://theme-ui.com/demo).
+Themes are implementations of a design specification in the form of a Javascript object.
 
 **Example Theme Object:**
 
 ```jsx
 export default {
+  spaces: [0, 2, 4, 8, 12, 18, 24, 32],
   colors: {
     text: '#333',
     background: '#fff',
@@ -66,21 +68,35 @@ export default {
 
 ### Using your theme
 
-Use `styled` from `svelte-system-ui` in a [svelte action](https://svelte.dev/docs#use_action) like so: `use:styled`. It expects an array in the form `[$$props, $theme]` note the `$` sign in front of your imported theme to ([automatically subscribe / unsubscribe to changes automatically!](https://svelte.dev/docs#4_Prefix_stores_with_$_to_access_their_values))
-
 ```jsx
 // Box.svelte
 <script>
   import { styled } from '@studiobear/designspek';
-  import { theme } from './theme.js';
+import { Box } from '@studiobear/designspek-components';
+
+// reactive theme store
+import { theme } from '../theme';
+
+// generate static styles. Uses shorthand 'w' for 'width'
+let staticBox = styled({
+  w: '100%'
+})
+
+// Svelete reactive declaration. When theme changes mode, 'bg' (background) will update accordingly.
+$: rxBox = styled({
+  bg: theme.colors.primary
+})
+
 </script>
 
-<div use:styled={[$$props, $theme]}>
-  <slot />
-</div>
+<Box class={staticBox}>
+  <Box class={rxBox}>
+    <slot />
+  </Box>
+</Box>
 ```
 
-That's all! Your are ready to use all css property names + [shorthand](#currently-available-shorthand-properties) props as attribute on your component! See [https://styled-system.com/api](https://styled-system.com/api) for more documentation.
+That's all! Your are ready to use all css property names + [shorthand](#currently-available-shorthand-properties) props as attribute on your component! See [https://styled-system.com/api](https://styled-system.com/api), the currently implemented API, for more documentation.
 
 ```jsx
 // App.svelte
@@ -90,7 +106,7 @@ That's all! Your are ready to use all css property names + [shorthand](#currentl
 
 <Box
   p={["space.s", "space.m", "space.l"]}
-  bg="color.primary" color="color.secondary"
+  bg="theme.color.primary" color="color.secondary"
   textAlign="center"
 >
   <h3>Using styled-system in svelte!</h3>
@@ -103,17 +119,14 @@ That's all! Your are ready to use all css property names + [shorthand](#currentl
 1. The attribute name will get mapped to the css property name. You can specify it either in camelCase `(textAlign)` or kebab-case `(text-align)`.
    So, if you know css by heart, you already know 99% of your component's props.
 
-2. if the value is a string, `designspek` first assumes it might be a keypath to your theme object. It uses [(dlv)](https://github.com/developit/dlv) under the hood. If the path can not be resolved, the the resolution will fallback to the input value. (input: `textAlign="center"` => center can not be found in the theme so the output is just `text-align: center;`)
+2. if the value is preceeded by an `_`, then
 
 ```jsx
-{
-  color: {
-    primary: "dodgerblue", // path: color.primary
+$: linkStyle = {
+  color: theme.colors.primary,
+  _hover: {
+    color: theme.colors.secondary,
   },
-  // path: scale.0 => 0
-  // path: scale.1 => 0.5rem
-  // path: scale.2 => 1rem
-  scale: ["0", "0.5rem", "1rem"]
 }
 ```
 
@@ -137,6 +150,22 @@ As with all other properties you can use the responsive Array notation as well!
 <MyComponent bg="primary" m={[1, 2, 3]} />
 ```
 
-# Acknowledgements
+---
 
-This library was initially inspired by [svelte-styled-system(@manuschillerdev)](https://github.com/manuschillerdev/svelte-styled-system). At time of discovery, svelte-styled-system was annotated as a proof-of-concept for bringing in the concepts of [styled-system](https://styled-system.com/) and doing it in as small of a package as possible. SSUI vears away from this by choosing to directly integrate with the styled-system ecosystem, at the cost of size optimization, yet increase compatibality with themes builts for mainly React-based projects.
+## Roadmap to v1
+
+- [ ] **Typescript**: At the foundational level, design specifications define and work with a multitude of types; e.g., _numbers_(`m: 0`), _strings_(`m: 'sm'`) and _arrays_(`margin: ['sm', 'none', 'lg']`). Ergo, static typings are a basic requirement for sane evolution.
+- [ ] **Optimize theme integration**: The current direction is exploratory and naively pulls together multiple libraries as a proof-of-concept. However, in doing so, styles are looped a multiple of times to:
+  - get/convert mapped custom shorthand attributes
+  - integrate theme variables via Styled-System
+  - then finally parsed into CSS with Goober.
+- [ ] **Theme Aliases**: The current mash-up breaks the built in Styled-System aliasing for things like color. Previously, `'primary'` was all that's needed, but full object path of `'theme.colors.primary'` is currently required. Aliases for spacing such as `['s','m','l']` instead of `[0,1,2]` will make it the specification implementation more idiomatic.
+- [ ] **Variants**: Currently, modes are supported that reflect contextual reactivity on a global level. Current patterns and expectations also provide atomic context on the component level.
+- [ ] **Composition**: The main style object is a plain old javascript object and therefore easily composable. Create standards for de/re-composition to manage growing complexity.
+- [ ] **Style dictionary**: Styles are stored in a plain object as a dictionary for mostly SSR use. Need to compare alternatives such as use of ES6 Maps might be more optimized or irrelevant for this use case.
+
+---
+
+## Acknowledgements
+
+This library was initially inspired by [svelte-styled-system(@manuschillerdev)](https://github.com/manuschillerdev/svelte-styled-system). At time of discovery, svelte-styled-system was annotated as a proof-of-concept for bringing in the concepts of [styled-system](https://styled-system.com/) and doing it in as small of a package as possible. _Designspek_ vears away from this by choosing to make design specificiations
