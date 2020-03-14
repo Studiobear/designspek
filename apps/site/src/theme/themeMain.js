@@ -38,6 +38,7 @@ export const main = {
         secondary: '#e0f',
         muted: '#191919',
         highlight: '#29112c',
+        antialias: true,
       },
     },
   },
@@ -48,29 +49,40 @@ export const main = {
       fontWeight: 'body',
       boxSizing: 'border-box',
     },
+    body: {
+      antialias: true,
+      m: 0,
+    },
     h1: {
       ...heading,
       fontSize: 5,
+      py: '0.5rem',
+      color: 'primary',
     },
     h2: {
       ...heading,
       fontSize: 4,
+      color: 'secondary',
     },
     h3: {
       ...heading,
       fontSize: 3,
+      color: 'secondary',
     },
     h4: {
       ...heading,
       fontSize: 2,
+      color: 'text',
     },
     h5: {
       ...heading,
       fontSize: 1,
+      color: 'primary',
     },
     h6: {
       ...heading,
       fontSize: 0,
+      color: 'secondary',
     },
     p: {
       color: 'text',

@@ -1,0 +1,71 @@
+{
+  "name": "@studiobear/designspek",
+  "version": "0.1.2",
+  "description": "A Reactive Design System: Svelte meets System UI",
+  "source": "src/index.js",
+  "main": "dist/index.js",
+  "module": "dist/index.modern.js",
+  "umd:main": "dist/index.umd.js",
+  "files": [
+    "docs/assets/ds-horiz-fat.svg",
+    "dist",
+    "README.md"
+  ],
+  "author": "Barry Low <barry@studiobear.co>",
+  "license": "MIT",
+  "sideEffects": false,
+  "scripts": {
+    "bundle": "microbundle",
+    "clean": "rm -rf dist",
+    "bundlesize": "bundlesize",
+    "lint": "prettier --check 'src/**/*.{html,js,svelte}'",
+    "lint:fix": "prettier --write 'src/**/*.{html,js,svelte}'",
+    "build": "yarn test && yarn clean && yarn microbundle && yarn bundlesize",
+    "watch": "yarn microbundle watch",
+    "test": "ava tests/*.test.js",
+    "test:watch": "yarn test --watch -u"
+  },
+  "bundlesize": [
+    {
+      "path": "./dist/index.js",
+      "maxSize": "10 Kb",
+      "compression": "brotli"
+    }
+  ],
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "**/*.{js,ts,json,md}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "ava": {
+    "require": [
+      "esm"
+    ]
+  },
+  "devDependencies": {
+    "ava": "^3.5.0",
+    "bundlesize": "^0.18.0",
+    "compass-vertical-rhythm": "^1.4.5",
+    "cypress": "^4.0.1",
+    "esm": "^3.2.25",
+    "goober": "^1.6.3",
+    "husky": "^4.2.1",
+    "lint-staged": "^9.5.0",
+    "micro-memoize": "^4.0.9",
+    "microbundle": "0.12.0-next.8",
+    "modularscale": "^2.0.1",
+    "prettier": "^1.19.1",
+    "prettier-plugin-svelte": "^0.7.0",
+    "styled-system": "^5.1.5",
+    "typography-theme-st-annes": "^0.16.19"
+  },
+  "dependencies": {
+    "svelte": "^3.19.1"
+  }
+}
