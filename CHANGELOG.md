@@ -2,6 +2,32 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.2.0](https://github.com/Studiobear/designspek/compare/v0.1.1...v0.2.0) (2020-03-14)
+
+
+### Features
+
+* **designspek:** conditional global antialiasing ([e7403b5](https://github.com/Studiobear/designspek/commit/e7403b55519c5874801764084577b1476fcd27e5))
+* **designspek:** extractCSS SSR method ([e73e258](https://github.com/Studiobear/designspek/commit/e73e2581b9daca810a7c21df2a8ca9a47ed3b450))
+* **designspek:** forward styles + conditional theme check ([14527a4](https://github.com/Studiobear/designspek/commit/14527a4721dc78d02668cf361914fc3dd5e32ed4))
+* **designspek:** memoization ([d71ef9f](https://github.com/Studiobear/designspek/commit/d71ef9f3ce68d975526bb2e82a56c89cd7f5a292))
+* **designspek:** simplified style exploration ([de8cdee](https://github.com/Studiobear/designspek/commit/de8cdee1cd553ded1503e4269ef2c8257536c9d8))
+* **designspek:** stylLib for SSR ([9d9dda9](https://github.com/Studiobear/designspek/commit/9d9dda9dcbdb77d632cf8d845ed32e559254cfa5))
+* **designspek-components:** sVG component ([2083fd5](https://github.com/Studiobear/designspek/commit/2083fd58be08474e735193c76b917bbd16e04c74))
+* **site:** load components with ssr ([be875b3](https://github.com/Studiobear/designspek/commit/be875b3e2feef574ec0f2a3711acefa85cec7a33))
+
+
+### Bug Fixes
+
+* alter libs for publishing ([d6e754c](https://github.com/Studiobear/designspek/commit/d6e754c8e01f6253feb2551a6ab8d9cf079e3d01))
+* packages + test setup ([016f09b](https://github.com/Studiobear/designspek/commit/016f09b17c30e537ee7dd0170fe42981cc5b738e))
+* **designspek:** global parsing over filters props ([4a84fd2](https://github.com/Studiobear/designspek/commit/4a84fd233f50df1d639807ab9a0a05f2ebdb1053))
+* **designspek:** silence logs ([d5f29ff](https://github.com/Studiobear/designspek/commit/d5f29ff500bbd26ae679982cada3efd8351281d9))
+* **designspek:** styled css misc loop breaks ([3592e97](https://github.com/Studiobear/designspek/commit/3592e97d836df5525cb32f720fd9d65e3538baa5))
+* **site:** dependencies ([1f9e1d0](https://github.com/Studiobear/designspek/commit/1f9e1d0bb6cbfe158b643cd520f56934bd6cabaf))
+* **svelte-system-ui-components:** conditional for theme store ([0514bd9](https://github.com/Studiobear/designspek/commit/0514bd9da1efdf0f30a4d1d3174ad72b859b50cb))
+* **svelte-system-ui-components:** test imports ([202c2bb](https://github.com/Studiobear/designspek/commit/202c2bb4567e5e2388fb1ed54e5d28d28e48f58c))
+
 ### 0.1.1 (2020-03-03)
 
 
