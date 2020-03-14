@@ -1,12 +1,12 @@
 version: v1.0
-name: Deploy Stage Svelte-System-UI
+name: Deploy Stage Designspek
 blocks:
-  - name: Deploy Svelte-System-UI Stage to Netlify
+  - name: Deploy Designspek Stage to Netlify
     task:
       secrets:
         - name: netlify-svelte-system-ui-site
       jobs:
-        - name: Deploy Svelte-System-UI Website
+        - name: Deploy Designspek Website
           commands:
             - nvm use 10
             - yarn global add netlify-cli

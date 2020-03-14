@@ -1,5 +1,5 @@
 version: v1.0
-name: Svelte-System-UI Monorepo CI
+name: Designspek Monorepo CI
 agent:
   machine:
     type: e1-standard-2
@@ -25,7 +25,7 @@ blocks:
             - yarn check-packages && yarn build && yarn test
             - cache store monorepo-ci-$SEMAPHORE_GIT_BRANCH-$(checksum package.json) .
 promotions:
-  - name: Build Svelte-System-UI Site
+  - name: Build Designspek Site
     pipeline_file: site-build.yml
     auto_promote:
       when: result = 'passed'

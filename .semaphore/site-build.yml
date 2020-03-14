@@ -1,5 +1,5 @@
 version: v1.0
-name: Build Svelte-System-UI Site
+name: Build Designspek Site
 agent:
   machine:
     type: e1-standard-2
@@ -18,11 +18,11 @@ blocks:
             - yarn workspace site export
             - cache store monorepo-site-$SEMAPHORE_GIT_BRANCH-$(checksum package.json) apps/site/__sapper__/export
 promotions:
-  - name: Deploy Svelte-System-UI Production Site
+  - name: Deploy Designspek Production Site
     pipeline_file: site-deploy-prod.yml
     auto_promote:
       when: result = 'passed' and branch = 'master'
-  - name: Deploy Svelte-System-UI Stage Site
+  - name: Deploy Designspek Stage Site
     pipeline_file: site-deploy-stage.yml
     auto_promote:
       when: result = 'passed' and branch = 'develop'
