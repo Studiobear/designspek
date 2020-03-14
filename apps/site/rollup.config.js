@@ -2,6 +2,7 @@ import resolve from '@rollup/plugin-node-resolve'
 import replace from '@rollup/plugin-replace'
 import commonjs from '@rollup/plugin-commonjs'
 import json from '@rollup/plugin-json'
+import scrub from 'rollup-plugin-scrub'
 import svelte from 'rollup-plugin-svelte'
 import babel from 'rollup-plugin-babel'
 import { terser } from 'rollup-plugin-terser'
@@ -55,6 +56,12 @@ export default {
       commonjs(),
       json({
         compact: true,
+      }),
+      scrub({
+        tags: [
+          // Remove the next line only
+          { begin: 'dev-code-only' },
+        ],
       }),
       legacy &&
         babel({
@@ -113,6 +120,12 @@ export default {
       commonjs(),
       markdown(),
       json(),
+      scrub({
+        tags: [
+          // Remove the next line only
+          { begin: 'dev-code-only' },
+        ],
+      }),
     ],
     external: Object.keys(pkg.dependencies).concat(
       require('module').builtinModules ||

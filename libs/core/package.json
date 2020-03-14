@@ -49,6 +49,7 @@
     ]
   },
   "devDependencies": {
+    "@studiobear/designspek-components": "^0.2.0",
     "ava": "^3.5.0",
     "bundlesize": "^0.18.0",
     "compass-vertical-rhythm": "^1.4.5",

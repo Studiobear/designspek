@@ -69,6 +69,7 @@
     "remark-rehype": "^5.0.0",
     "rollup": "^1.21.4",
     "rollup-plugin-babel": "^4.0.2",
+    "rollup-plugin-scrub": "^1.0.9",
     "rollup-plugin-svelte": "^5.1.0",
     "rollup-plugin-svg": "^2.0.0",
     "rollup-plugin-terser": "^5.2.0",
