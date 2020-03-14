@@ -53,6 +53,7 @@
     "bundlesize": "^0.18.0",
     "compass-vertical-rhythm": "^1.4.5",
     "cypress": "^4.0.1",
+    "debug": "^4.1.1",
     "esm": "^3.2.25",
     "goober": "^1.6.3",
     "husky": "^4.2.1",
