@@ -8,7 +8,7 @@
   "module": "dist/index.mjs",
   "main": "dist/index.js",
   "scripts": {
-    "build": "rollup -c",
+    "build": "NODE_ENV=production rollup -c",
     "prepublishOnly": "yarn build",
     "eslint": "eslint src",
     "eslint:fix": "eslint --fix src",
@@ -33,6 +33,7 @@
     "@testing-library/svelte": "^1.11.0",
     "babel-jest": "^25.1.0",
     "babel-loader": "^8.0.6",
+    "debug": "^4.1.1",
     "deepmerge": "^4.2.2",
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.10.0",
@@ -49,6 +50,7 @@
     "react-dom": "^16.12.0",
     "regenerator-runtime": "^0.13.3",
     "rollup": "^1.21.4",
+    "rollup-plugin-scrub": "^1.0.9",
     "rollup-plugin-svelte": "^5.1.0",
     "svelte": "^3.19.1",
     "svelte-jester": "^1.0.3",
@@ -70,6 +72,6 @@
     "dist"
   ],
   "dependencies": {
-    "@studiobear/designspek": "^0.1.0"
+    "@studiobear/designspek": "^0.2.0"
   }
 }

@@ -165,9 +165,8 @@ const styledMemo = (attributes, theme) => {
     cn = css(cssText)
     if (styleLib.hasOwnProperty(cn)) return cn
     toLib = parse(cn, cssText)
-    console.log('toLib', toLib)
     styleLib = { ...toLib, ...styleLib }
-    console.log('sM2 styleLib: ', styleLib)
+    // console.log('sM2 styleLib: ', styleLib)
     return cn
   }
 
@@ -247,7 +246,6 @@ const extractCss = (theme, opts = {}) => {
 }
 
 const parseGlobal = globStyles => {
-  console.log('parseGlobal: ', globStyles)
   let globCss = ''
   let theme = globStyles
   theme.forwardStyle = forwardStyleDefault

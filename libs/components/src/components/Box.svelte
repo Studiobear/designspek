@@ -1,5 +1,7 @@
 <script>
   import { styled } from '@studiobear/designspek'
+  //dev-code-only
+  import { Logger } from '../utils'
   // import theme from '../theme'
 
   let div
@@ -14,7 +16,8 @@
     },
     theme,
   )
-  $: console.log('BoxSSR: ', compStyles)
+  //dev-code-only
+  $: Logger.info('Box: ', compStyles)
 </script>
 
 <div bind:this={div} on:click class={compStyles}>
