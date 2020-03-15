@@ -1,3 +1,4 @@
 import Nav from './Nav.svelte'
+import SSR from './styleSSR.svelte'
 
-export { Nav }
+export { Nav, SSR }

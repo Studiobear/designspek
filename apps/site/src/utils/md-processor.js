@@ -36,6 +36,7 @@ export const processor = () => async filepath => {
       title: file.data.frontmatter.title || 'No title',
       slug: file.data.frontmatter.slug || '/',
       date: file.data.frontmatter.date || '',
+      published: file.data.frontmatter.published || true,
       html: file.contents,
     }))
     .catch(console.error)

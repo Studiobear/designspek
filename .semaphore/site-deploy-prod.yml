@@ -1,12 +1,12 @@
 version: v1.0
-name: Deploy Production Svelte-System-UI
+name: Deploy Production Designspek
 blocks:
-  - name: Deploy Svelte-System-UI to Netlify
+  - name: Deploy Designspek to Netlify
     task:
       secrets:
         - name: netlify-svelte-system-ui-site
       jobs:
-        - name: Deploy Svelte-System-UI Production Website
+        - name: Deploy Designspek Production Website
           commands:
             - nvm use 10
             - yarn global add netlify-cli

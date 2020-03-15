@@ -2,12 +2,14 @@ import resolve from '@rollup/plugin-node-resolve'
 import replace from '@rollup/plugin-replace'
 import commonjs from '@rollup/plugin-commonjs'
 import json from '@rollup/plugin-json'
+import scrub from 'rollup-plugin-scrub'
 import svelte from 'rollup-plugin-svelte'
 import babel from 'rollup-plugin-babel'
 import { terser } from 'rollup-plugin-terser'
 import config from 'sapper/config/rollup.js'
 import remark from 'remark'
 import html from 'remark-html'
+import svg from 'rollup-plugin-svg'
 
 import pkg from './package.json'
 
@@ -37,14 +39,21 @@ export default {
     input: config.client.input(),
     output: config.client.output(),
     plugins: [
+      scrub({
+        tags: [
+          // Remove the next line only
+          { begin: 'dev-code-only' },
+        ],
+      }),
       replace({
         'process.browser': true,
         'process.env.NODE_ENV': JSON.stringify(mode),
       }),
+      svg(),
       svelte({
         dev,
         hydratable: true,
-        emitCss: true,
+        emitCss: false,
       }),
       resolve({
         browser: true,
@@ -91,6 +100,12 @@ export default {
     input: config.server.input(),
     output: config.server.output(),
     plugins: [
+      scrub({
+        tags: [
+          // Remove the next line only
+          { begin: 'dev-code-only' },
+        ],
+      }),
       replace({
         'process.browser': false,
         'process.env.NODE_ENV': JSON.stringify(mode),
@@ -99,9 +114,11 @@ export default {
             ? `'${process.env.SITE_URL}'`
             : `'${process.env.PROD_URL}'`,
       }),
+      svg(),
       svelte({
         generate: 'ssr',
         dev,
+        hydratable: true,
       }),
       resolve({
         dedupe: ['svelte'],

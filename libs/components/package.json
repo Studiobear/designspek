@@ -1,0 +1,77 @@
+{
+  "name": "@studiobear/designspek-components",
+  "version": "0.1.0",
+  "description": "System UI components for Svelte",
+  "author": "Barry Low <barry@studiobear.co>",
+  "license": "MIT",
+  "svelte": "src/index.js",
+  "module": "dist/index.mjs",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "NODE_ENV=production rollup -c",
+    "prepublishOnly": "yarn build",
+    "eslint": "eslint src",
+    "eslint:fix": "eslint --fix src",
+    "lint": "prettier --check 'src/**/*.{html,js,svelte}'",
+    "lint:fix": "prettier --write 'src/**/*.{html,js,svelte}'",
+    "test": "jest src",
+    "test:watch": "yarn test -- --watch",
+    "storybook": "start-storybook -p 6006 -s ../../static",
+    "build-storybook": "build-storybook"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.8.4",
+    "@babel/preset-env": "^7.8.4",
+    "@rollup/plugin-commonjs": "^11.0.2",
+    "@rollup/plugin-node-resolve": "^7.0.0",
+    "@storybook/addon-actions": "^6.0.0-alpha.14",
+    "@storybook/addon-links": "^6.0.0-alpha.14",
+    "@storybook/addons": "^6.0.0-alpha.14",
+    "@storybook/core": "^6.0.0-alpha.14",
+    "@storybook/svelte": "^6.0.0-alpha.14",
+    "@testing-library/jest-dom": "^5.1.1",
+    "@testing-library/svelte": "^1.11.0",
+    "babel-jest": "^25.1.0",
+    "babel-loader": "^8.0.6",
+    "debug": "^4.1.1",
+    "deepmerge": "^4.2.2",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.10.0",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-jest-dom": "^2.0.0",
+    "eslint-plugin-prettier": "^3.1.2",
+    "eslint-plugin-svelte3": "^2.7.3",
+    "jest": "^25.1.0",
+    "jest-axe": "^3.3.0",
+    "jest-transform-svelte": "^2.1.1",
+    "prettier": "^1.19.1",
+    "prettier-plugin-svelte": "^0.7.0",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "regenerator-runtime": "^0.13.3",
+    "rollup": "^1.21.4",
+    "rollup-plugin-scrub": "^1.0.9",
+    "rollup-plugin-svelte": "^5.1.0",
+    "svelte": "^3.19.1",
+    "svelte-jester": "^1.0.3",
+    "svelte-loader": "^2.13.6",
+    "typography-theme-st-annes": "^0.16.19",
+    "webpack": "^4.41.6"
+  },
+  "peerDependencies": {
+    "svelte": "^3.19.1"
+  },
+  "keywords": [
+    "svelte",
+    "sveltejs",
+    "svelte3",
+    "svelte-components"
+  ],
+  "files": [
+    "src",
+    "dist"
+  ],
+  "dependencies": {
+    "@studiobear/designspek": "^0.1.2"
+  }
+}

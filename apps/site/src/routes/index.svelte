@@ -1,32 +1,30 @@
 <script>
-  import { styled } from '@studiobear/svelte-system-ui'
   import { theme } from '../theme'
 
-  import {
-    Box,
-    Heading,
-    Counter,
-  } from '@studiobear/svelte-system-ui-components'
-
-  $: primary = $theme.colors ? $theme.colors.primary : '#333'
-
-  $: hStyle = {
-    color: primary,
+  import { Box, Heading, Counter } from '@studiobear/designspek-components'
+  // let primary = $$props.theme.colors ? $$props.theme.colors.primary : '#333'
+  $: h1 = {
+    color: $theme.colors.primary,
     lineHeight: '2em',
+    fontSize: ['5em', '1em', '3em'],
   }
+  $: h3Style = {
+    color: $theme.colors.secondary,
+    lineHeight: '2em',
+    fontSize: ['3em', '.5em', '1em'],
+  }
+
+  // console.log('index: ', $$props, theme, $theme)
 </script>
 
+<svelte:options immutable={true} />
 <svelte:head>
-  <title>Sapper project template</title>
+  <title>Design</title>
 </svelte:head>
 
-<Heading as="h1" style={hStyle}>Great success!</Heading>
+<Heading as="h1" style={h1}>designspek</Heading>
 
-<figure>
-  <figcaption>HIGH FIVE!</figcaption>
-</figure>
-
-<Heading as="h3">Local library component demo</Heading>
+<Heading as="h3" style={h3Style}>Local library component demo</Heading>
 <p>
   Our counter component from sample Svelte component Library from root dir:
   `/libs/my-svelte-component-library`
@@ -41,4 +39,4 @@
   </strong>
 </p>
 
-<Box bg={'primary'} color={'secondary'}>{primary}</Box>
+<Box>{$theme.colors.primary}</Box>
