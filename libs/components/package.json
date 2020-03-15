@@ -72,6 +72,6 @@
     "dist"
   ],
   "dependencies": {
-    "@studiobear/designspek": "^0.1.2"
+    "@studiobear/designspek": "^0.2.0"
   }
 }
