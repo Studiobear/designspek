@@ -27,14 +27,14 @@ export default {
     },
   ],
   plugins: [
-    svelte(),
-    resolve(),
-    commonjs(),
     scrub({
       tags: [
         // Remove the next line only
         { begin: 'dev-code-only' },
       ],
     }),
+    svelte(),
+    resolve(),
+    commonjs(),
   ],
 }

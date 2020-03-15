@@ -1,5 +1,6 @@
 <script>
   import { styled } from '@studiobear/designspek'
+  //dev-code-only
   import { Logger } from '../utils'
   // import theme from '../theme'
 

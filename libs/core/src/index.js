@@ -1,8 +1,4 @@
 import { css } from 'goober'
-import { Log } from '@studiobear/designspek-components'
-
-const Debugger = Log('designspek')
-
 import {
   compose,
   color,
@@ -36,14 +32,14 @@ const defaultUnits = {
   grid: 'px',
 }
 const addUnits = (styles, units = defaultUnits) => {
-  // Debugger.info('addUnits:', styles, units)
+  // console.log('addUnits:', styles, units)
   let withUnits = {}
   for (let [name, value] of Object.entries(styles)) {
-    // Debugger.info('addUnits entries:', name, value)
+    // console.log('addUnits entries:', name, value)
     if (typeof value === 'object' && value !== null) {
       let withUnitsO = {}
       for (let [nameO, valueO] of Object.entries(value)) {
-        // Debugger.info('addUnits object:', nameO, valueO)
+        // console.log('addUnits object:', nameO, valueO)
         if (
           (nameO.startsWith('margin') || nameO.startsWith('padding')) &&
           typeof valueO === 'number'
@@ -73,7 +69,7 @@ const addUnits = (styles, units = defaultUnits) => {
     }
     Object.assign(withUnits, { [name]: value })
   }
-  // Debugger.info('addUnits return:', withUnits)
+  // console.log('addUnits return:', withUnits)
   return withUnits
 }
 
@@ -111,23 +107,23 @@ const createCssMisc = (attributes, theme, pseudoElementSelector) => {
 export const processCss = (attributes, theme, pseudoElementSelector) => {
   let cssText = {}
   let cssMisc = {}
-  // Debugger.info('styled.update: ', attributes, theme, pseudoElementSelector)
+  // console.log('styled.update: ', attributes, theme, pseudoElementSelector)
   const forwarding = theme.forwardStyle
   for (let [name, value] of Object.entries(attributes)) {
     name = shortHandAttributes.get(name) || [name]
-    // Debugger.info('styled.update.processCss: ', name, value)
+    // console.log('styled.update.processCss: ', name, value)
     for (let cssProp of name) {
       let cssPropValue
 
       if (cssProp.startsWith('_')) {
         cssProp = cssProp.replace('_', '&:')
-        // Debugger.info('processCss 2', cssProp, value)
+        // console.log('processCss 2', cssProp, value)
         cssPropValue = createCssMisc(value, theme, cssProp)
         cssMisc = Object.assign(cssMisc, { [cssProp]: cssPropValue })
         continue
       }
       if (forwarding.includes(cssProp)) {
-        // Debugger.info('process forwarding', cssProp, value)
+        // console.log('process forwarding', cssProp, value)
         cssMisc = Object.assign(cssMisc, { [cssProp]: value })
       }
       cssText = Object.assign(cssText, { [cssProp]: value })
@@ -136,7 +132,7 @@ export const processCss = (attributes, theme, pseudoElementSelector) => {
   cssText.theme = theme
 
   let newCss = system(cssText)
-  // Debugger.info('newCss', newCss, cssMisc)
+  // console.log('newCss', newCss, cssMisc)
 
   return addUnits(Object.assign(newCss, cssMisc))
 }
@@ -156,13 +152,13 @@ let styleLib = {}
 const styledMemo = (attributes, theme) => {
   let previousCssText = ''
   let cn, toLib
-  // Debugger.info('styledMemo2', attributes, theme)
+  // console.log('styledMemo2', attributes, theme)
 
   if (theme) {
     if (theme.forwardStyle === undefined)
       theme.forwardStyle = forwardStyleDefault
     const cssText = processCss(attributes, theme)
-    // Debugger.info('styled2.update: ', cssText, theme)
+    // console.log('styled2.update: ', cssText, theme)
     if (cssText === previousCssText) return
     previousCssText = cssText
 
@@ -170,7 +166,7 @@ const styledMemo = (attributes, theme) => {
     if (styleLib.hasOwnProperty(cn)) return cn
     toLib = parse(cn, cssText)
     styleLib = { ...toLib, ...styleLib }
-    Debugger.info('styleLib: ', styleLib)
+    // console.log('sM2 styleLib: ', styleLib)
     return cn
   }
 
@@ -180,7 +176,7 @@ const styledMemo = (attributes, theme) => {
 const styled = memoize(styledMemo, {
   maxSize: 10,
   onCacheHit(cache, options) {
-    // Debugger.info('cache was hit: ', cache)
+    // console.log('cache was hit: ', cache)
   },
 })
 
@@ -250,7 +246,6 @@ const extractCss = (theme, opts = {}) => {
 }
 
 const parseGlobal = globStyles => {
-  Debugger.info('parseGlobal: ', globStyles)
   let globCss = ''
   let theme = globStyles
   theme.forwardStyle = forwardStyleDefault
@@ -285,7 +280,7 @@ const parseGlobal = globStyles => {
     parsedV = processCss(value, theme)
     parsedV.theme = theme
     parsedV = system(parsedV)
-    // Debugger.info('parseGlobal.processCss: ', parsedV)
+    // console.log('parseGlobal.processCss: ', parsedV)
     for (let [nameV, valueV] of Object.entries(parsedV)) {
       nameV = nameV.replace(/[A-Z]/g, match => `-${match.toLowerCase()}`)
       valueV = valueV === 'text' ? '"text"' : valueV
@@ -311,7 +306,7 @@ const parseGlobal = globStyles => {
 const parseGlobalMemo = memoize(parseGlobal, {
   maxSize: 2,
   onCacheHit(cache, options) {
-    // Debugger.info('cache was hit: ', cache)
+    // console.log('cache was hit: ', cache)
   },
 })
 

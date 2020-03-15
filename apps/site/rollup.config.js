@@ -39,6 +39,12 @@ export default {
     input: config.client.input(),
     output: config.client.output(),
     plugins: [
+      scrub({
+        tags: [
+          // Remove the next line only
+          { begin: 'dev-code-only' },
+        ],
+      }),
       replace({
         'process.browser': true,
         'process.env.NODE_ENV': JSON.stringify(mode),
@@ -56,12 +62,6 @@ export default {
       commonjs(),
       json({
         compact: true,
-      }),
-      scrub({
-        tags: [
-          // Remove the next line only
-          { begin: 'dev-code-only' },
-        ],
       }),
       legacy &&
         babel({
@@ -100,6 +100,12 @@ export default {
     input: config.server.input(),
     output: config.server.output(),
     plugins: [
+      scrub({
+        tags: [
+          // Remove the next line only
+          { begin: 'dev-code-only' },
+        ],
+      }),
       replace({
         'process.browser': false,
         'process.env.NODE_ENV': JSON.stringify(mode),
@@ -120,12 +126,6 @@ export default {
       commonjs(),
       markdown(),
       json(),
-      scrub({
-        tags: [
-          // Remove the next line only
-          { begin: 'dev-code-only' },
-        ],
-      }),
     ],
     external: Object.keys(pkg.dependencies).concat(
       require('module').builtinModules ||

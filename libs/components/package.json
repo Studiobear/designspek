@@ -8,7 +8,7 @@
   "module": "dist/index.mjs",
   "main": "dist/index.js",
   "scripts": {
-    "build": "rollup -c",
+    "build": "NODE_ENV=production rollup -c",
     "prepublishOnly": "yarn build",
     "eslint": "eslint src",
     "eslint:fix": "eslint --fix src",
@@ -72,6 +72,6 @@
     "dist"
   ],
   "dependencies": {
-    "@studiobear/designspek": "^0.2.0"
+    "@studiobear/designspek": "^0.1.2"
   }
 }
