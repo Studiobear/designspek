@@ -1,6 +1,6 @@
 {
   "name": "@studiobear/designspek",
-  "version": "0.2.0",
+  "version": "0.2.2",
   "description": "A Reactive Design System: Svelte meets System UI",
   "source": "src/index.js",
   "main": "dist/index.js",
@@ -20,8 +20,8 @@
     "bundlesize": "bundlesize",
     "lint": "prettier --check 'src/**/*.{html,js,svelte}'",
     "lint:fix": "prettier --write 'src/**/*.{html,js,svelte}'",
-    "build": "yarn test && yarn clean && yarn microbundle && yarn bundlesize",
-    "watch": "yarn microbundle watch",
+    "build": "NODE_ENV=production yarn test && yarn clean && yarn bundle --compress && yarn bundlesize",
+    "watch": "NODE_ENV=development yarn microbundle watch",
     "test": "ava tests/*.test.js",
     "test:watch": "yarn test --watch -u"
   },
@@ -53,7 +53,6 @@
     "bundlesize": "^0.18.0",
     "compass-vertical-rhythm": "^1.4.5",
     "cypress": "^4.0.1",
-    "debug": "^4.1.1",
     "esm": "^3.2.25",
     "goober": "^1.6.3",
     "husky": "^4.2.1",
