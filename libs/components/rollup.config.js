@@ -1,7 +1,6 @@
 import svelte from 'rollup-plugin-svelte'
 import resolve from '@rollup/plugin-node-resolve'
 import commonjs from '@rollup/plugin-commonjs'
-import scrub from 'rollup-plugin-scrub'
 import pkg from './package.json'
 
 const name = pkg.name
@@ -26,15 +25,5 @@ export default {
       globals: { '@studiobear/designspek': 'svelteSystemUi' },
     },
   ],
-  plugins: [
-    scrub({
-      tags: [
-        // Remove the next line only
-        { begin: 'dev-code-only' },
-      ],
-    }),
-    svelte(),
-    resolve(),
-    commonjs(),
-  ],
+  plugins: [svelte(), resolve(), commonjs()],
 }
