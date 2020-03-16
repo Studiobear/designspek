@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.2](https://github.com/Studiobear/designspek/compare/v0.2.0...v0.2.2) (2020-03-16)
+
+
+### Features
+
+* **designspek-components:** log util ([7a59741](https://github.com/Studiobear/designspek/commit/7a597418e98b20d7d0570c58cfa3a7a621634181))
+
+
+### Bug Fixes
+
+* package deps ([42e94d5](https://github.com/Studiobear/designspek/commit/42e94d5e9e87280bb0d5ae2c52ed02915186d552))
+
 ## [0.2.0](https://github.com/Studiobear/designspek/compare/v0.1.1...v0.2.0) (2020-03-14)
 
 ### Features
