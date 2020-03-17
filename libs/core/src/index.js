@@ -11,7 +11,7 @@ import {
   grid,
 } from 'styled-system'
 import { shortHandAttributes } from './constants'
-import glob from './glob'
+import glob, { removeSSR } from './glob'
 import typography, { fontLink } from './typography'
 import memoize from 'micro-memoize'
 
@@ -196,7 +196,6 @@ const parse = (cn, cs, opts = { ssr: false }) => {
           if (n.startsWith('&')) {
             n = n.replace('&', cn)
             pStr = `${n} ${childStr}`
-            console.log('parse', pStr)
           } else {
             cStr += `${n} ${childStr}`
           }
@@ -210,7 +209,7 @@ const parse = (cn, cs, opts = { ssr: false }) => {
   }
   cStr += '}'
   cStr += pStr
-  console.log('parse2', cStr)
+
   if (opts.ssr) {
     parsed = cStr
   } else {
@@ -319,4 +318,4 @@ const addGlobal = (theme, parse = true, ssr = false) => {
   }
   return globalStyle
 }
-export { styled, addGlobal, typography, fontLink, extractCss }
+export { styled, addGlobal, typography, fontLink, extractCss, removeSSR }

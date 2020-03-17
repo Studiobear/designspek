@@ -1,5 +1,6 @@
 <script>
-  import { addGlobal, styled } from '@studiobear/designspek'
+  import { onMount } from 'svelte'
+  import { addGlobal, styled, removeSSR } from '@studiobear/designspek'
   import { googleFonts, theme } from '../theme'
 
   import { Section, Button, Box } from '@studiobear/designspek-components'
@@ -20,6 +21,10 @@
     mt: '6.25rem',
   }
   $: addGlobal($theme)
+
+  onMount(() => {
+    removeSSR()
+  })
 </script>
 
 <style>
