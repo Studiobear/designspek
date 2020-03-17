@@ -1,9 +1,12 @@
 const DSSTYLE_ID = '_dsstyle'
 const ssr = { data: '' }
 
-const getSheet = (target, DSID = DSSTYLE_ID) => {
+const getSheet = (target, DSID = DSSTYLE_ID, remove = false) => {
   try {
     let sheet = target ? target.querySelector('#' + DSID) : self[DSID]
+    if (remove) {
+      return document.getElementById(DSID).remove()
+    }
     if (!sheet) {
       sheet = (target || document.head).appendChild(
         document.createElement('style'),
@@ -33,5 +36,8 @@ function glob(val) {
 
   return update(val, getSheet(ctx.target))
 }
+
+export const removeSSR = () => getSheet(undefined, '_ds_ssr', true)
+
 export { glob }
 export default glob
