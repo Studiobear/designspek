@@ -131,6 +131,8 @@ export const processCss = (attributes, theme, pseudoElementSelector) => {
 const forwardStyleDefault = [
   'txtdeco',
   'textDecoration',
+  'txtTransform',
+  'textTransformation',
   'position',
   'f',
   's',
@@ -150,7 +152,6 @@ const styledMemo = (attributes, theme) => {
     const cssText = processCss(attributes, theme)
     if (cssText === previousCssText) return
     previousCssText = cssText
-
     cn = css(cssText)
     if (styleLib.hasOwnProperty(cn)) return cn
     toLib = parse(cn, cssText)
@@ -170,6 +171,7 @@ const styled = memoize(styledMemo, {
 
 const parse = (cn, cs, opts = { ssr: false }) => {
   let cStr = ''
+  let pStr = ''
   let mQu = {}
   let parsed
 
@@ -191,7 +193,13 @@ const parse = (cn, cs, opts = { ssr: false }) => {
             mQu[n] = { [cn]: v }
           }
         } else {
-          cStr += `${n} ${childStr}`
+          if (n.startsWith('&')) {
+            n = n.replace('&', cn)
+            pStr = `${n} ${childStr}`
+            console.log('parse', pStr)
+          } else {
+            cStr += `${n} ${childStr}`
+          }
         }
       } else {
         cStr += `${n}: ${v};`
@@ -201,6 +209,8 @@ const parse = (cn, cs, opts = { ssr: false }) => {
     if (typeof cs === 'string') cStr += cStr
   }
   cStr += '}'
+  cStr += pStr
+  console.log('parse2', cStr)
   if (opts.ssr) {
     parsed = cStr
   } else {
