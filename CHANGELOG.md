@@ -2,17 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-### [0.2.4](https://github.com/Studiobear/designspek/compare/v0.2.2...v0.2.4) (2020-03-17)
-
+## [0.2.4](https://github.com/Studiobear/designspek/compare/v0.2.2...v0.2.4) (2020-03-17)
 
 ### Features
 
-* **designspek:** add removeSSR to API ([476d4e0](https://github.com/Studiobear/designspek/commit/476d4e03c9a251f90d39e47c2cc3829ec0e537b7))
-
+- **designspek:** add `removeSSR` to API ([476d4e0](https://github.com/Studiobear/designspek/commit/476d4e03c9a251f90d39e47c2cc3829ec0e537b7))
 
 ### Bug Fixes
 
-* **designspek:** css pseudo ssr parse error ([aa952be](https://github.com/Studiobear/designspek/commit/aa952be2547cf83259ddab30086bd6f8fe2a9145))
+- **designspek:** css pseudo ssr parse error ([aa952be](https://github.com/Studiobear/designspek/commit/aa952be2547cf83259ddab30086bd6f8fe2a9145))
 
 ## [0.2.2](https://github.com/Studiobear/designspek/compare/v0.2.0...v0.2.2) (2020-03-16)
 
