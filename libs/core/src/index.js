@@ -156,7 +156,6 @@ const styledMemo = (attributes, theme, stringed = false) => {
     if (styleLib.hasOwnProperty(cn) && !stringed) return cn
 
     toLib = parse(cn, cssText, { ssr: stringed })
-    console.log('toLib', toLib)
     if (stringed) {
       return toLib
     } else {
@@ -171,11 +170,11 @@ const styledMemo = (attributes, theme, stringed = false) => {
 const styled = memoize(styledMemo, {
   maxSize: 10,
   onCacheHit(cache, options) {
-    console.log('styled cache was hit')
+    // console.log('styled cache was hit')
   },
 })
 
-const parseMemo = (cn, cs, opts = { ssr: false }) => {
+const parse = (cn, cs, opts = { ssr: false }) => {
   let cStr = ''
   let pStr = ''
   let mQu = {}
@@ -226,13 +225,6 @@ const parseMemo = (cn, cs, opts = { ssr: false }) => {
   return parsed
 }
 
-const parse = memoize(parseMemo, {
-  maxSize: 10,
-  onCacheHit(cache, options) {
-    console.log('parse cache was hit')
-  },
-})
-
 let storeSSR = ''
 let storedGlobal = false
 
@@ -265,7 +257,6 @@ const extractCss = (theme, active = false, opts = {}) => {
 
   if (active) {
     storeSSR += compStyles
-    console.log('active', storeSSR)
     return `<style id="_ds_ssr_store">${storeSSR}</style>`
   } else {
     storeSSR += compStyles
@@ -334,7 +325,7 @@ const parseGlobal = globStyles => {
 const parseGlobalMemo = memoize(parseGlobal, {
   maxSize: 2,
   onCacheHit(cache, options) {
-    console.log('global cache was hit')
+    // console.log('global cache was hit')
   },
 })
 
