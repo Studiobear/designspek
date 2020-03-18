@@ -142,7 +142,7 @@ const forwardStyleDefault = [
 
 let styleLib = {}
 
-const styledMemo = (attributes, theme) => {
+const styledMemo = (attributes, theme, stringed = false) => {
   let previousCssText = ''
   let cn, toLib
 
@@ -153,10 +153,16 @@ const styledMemo = (attributes, theme) => {
     if (cssText === previousCssText) return
     previousCssText = cssText
     cn = css(cssText)
-    if (styleLib.hasOwnProperty(cn)) return cn
-    toLib = parse(cn, cssText)
-    styleLib = { ...toLib, ...styleLib }
-    return cn
+    if (styleLib.hasOwnProperty(cn) && !stringed) return cn
+
+    toLib = parse(cn, cssText, { ssr: stringed })
+    console.log('toLib', toLib)
+    if (stringed) {
+      return toLib
+    } else {
+      styleLib = { ...toLib, ...styleLib }
+      return cn
+    }
   }
 
   return
@@ -165,17 +171,18 @@ const styledMemo = (attributes, theme) => {
 const styled = memoize(styledMemo, {
   maxSize: 10,
   onCacheHit(cache, options) {
-    // console.log('cache was hit: ', cache)
+    console.log('styled cache was hit')
   },
 })
 
-const parse = (cn, cs, opts = { ssr: false }) => {
+const parseMemo = (cn, cs, opts = { ssr: false }) => {
   let cStr = ''
   let pStr = ''
   let mQu = {}
+  let ssr = opts.ssr
   let parsed
 
-  cStr += `.${cn}{`
+  cStr += ssr ? '' : `.${cn}{`
   if (typeof cs === 'object' && Object.entries(cs).length > 0) {
     for (let [n, v] of Object.entries(cs)) {
       n = n.replace(/[A-Z]/g, match => `-${match.toLowerCase()}`)
@@ -207,10 +214,10 @@ const parse = (cn, cs, opts = { ssr: false }) => {
   } else {
     if (typeof cs === 'string') cStr += cStr
   }
-  cStr += '}'
-  cStr += pStr
+  cStr += ssr ? '' : '}'
+  cStr += ssr ? '' : pStr
 
-  if (opts.ssr) {
+  if (ssr) {
     parsed = cStr
   } else {
     parsed = { [cn]: { value: cStr, media: mQu } }
@@ -219,10 +226,26 @@ const parse = (cn, cs, opts = { ssr: false }) => {
   return parsed
 }
 
-const extractCss = (theme, opts = {}) => {
+const parse = memoize(parseMemo, {
+  maxSize: 10,
+  onCacheHit(cache, options) {
+    console.log('parse cache was hit')
+  },
+})
+
+let storeSSR = ''
+let storedGlobal = false
+
+const extractCss = (theme, active = false, opts = {}) => {
   let compStyles = ''
+  let global = ''
   let mediaStyles = {}
-  const global = addGlobal(theme, true, true)
+  if (!storedGlobal) {
+    global = addGlobal(theme, true, true)
+    storeSSR += global
+    storedGlobal = true
+  }
+
   for (let [cn, cv] of Object.entries(styleLib)) {
     if (typeof cv.value === 'string') compStyles += cv.value
     if (typeof cv.media === 'object' && Object.entries(cv.media).length > 0) {
@@ -239,7 +262,15 @@ const extractCss = (theme, opts = {}) => {
   for (let [mSn, mSv] of Object.entries(mediaStyles)) {
     compStyles += `${mSn} {${mSv}}`
   }
-  return `<style id="_ds_ssr">${global} ${compStyles}</style>`
+
+  if (active) {
+    storeSSR += compStyles
+    console.log('active', storeSSR)
+    return `<style id="_ds_ssr_store">${storeSSR}</style>`
+  } else {
+    storeSSR += compStyles
+    return ''
+  }
 }
 
 const parseGlobal = globStyles => {
@@ -303,7 +334,7 @@ const parseGlobal = globStyles => {
 const parseGlobalMemo = memoize(parseGlobal, {
   maxSize: 2,
   onCacheHit(cache, options) {
-    // console.log('cache was hit: ', cache)
+    console.log('global cache was hit')
   },
 })
 

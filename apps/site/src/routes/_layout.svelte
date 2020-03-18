@@ -20,11 +20,12 @@
     mx: 'auto',
     mt: '6.25rem',
   }
+  $: console.log('SSR string', mainStyle)
   $: addGlobal($theme)
 
   onMount(() => {
-    removeSSR()
-    activeSSR = false
+    // removeSSR()
+    // activeSSR = false
   })
 </script>
 
@@ -51,7 +52,7 @@
 
 <Box style={bodyStyle}>
   <Nav {segment} theme={$theme} />
-  <Section as="main" style={mainStyle}>
+  <Section as="main" theme={$theme} style={mainStyle} ssr>
     <button
       on:click={() => ($theme.mode === 'light' ? theme.dark() : theme.light())}>
       {$theme.mode === 'light' ? 'to dark mode' : 'to light mode'}
@@ -60,4 +61,4 @@
   </Section>
 </Box>
 
-<SSR theme={$theme} active={activeSSR} />
+<SSR theme={$theme} active />

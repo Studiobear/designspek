@@ -2,10 +2,12 @@
   import { styled } from '@studiobear/designspek'
 
   export let style = $$props.style || {}
-  export let theme = $$props.theme || {}
+  export let theme = $$props.theme || style.theme || {}
+  export let ssr = $$props.ssr || style.ssr || false
   let role = $$props.role || null
   let as = $$props.as || null
   let setRole = ''
+  let styleProps
   if (role && role !== null) {
     if (typeof role === 'string') {
       setRole = { role }
@@ -31,35 +33,36 @@
       }
     }
   }
-  $: compStyles = styled(style, theme)
+  $: compStyles = styled(style, theme, ssr)
+  $: styleProps = ssr ? { style: compStyles } : { class: compStyles }
 </script>
 
 {#if !as || as === 'header'}
-  <header {...setRole} class={compStyles}>
+  <header {...setRole} {...styleProps}>
     <slot />
   </header>
 {:else if as === 'nav'}
-  <nav {...setRole} class={compStyles}>
+  <nav {...setRole} {...styleProps}>
     <slot />
   </nav>
 {:else if as === 'main'}
-  <main {...setRole} class={compStyles}>
+  <main {...setRole} {...styleProps}>
     <slot />
   </main>
 {:else if as === 'aside'}
-  <aside {...setRole} class={compStyles}>
+  <aside {...setRole} {...styleProps}>
     <slot />
   </aside>
 {:else if as === 'footer'}
-  <footer {...setRole} class={compStyles}>
+  <footer {...setRole} {...styleProps}>
     <slot />
   </footer>
 {:else if as === 'section'}
-  <section class={compStyles}>
+  <section {...styleProps}>
     <slot />
   </section>
 {:else if as === 'article'}
-  <article class={compStyles}>
+  <article {...styleProps}>
     <slot />
   </article>
 {/if}
