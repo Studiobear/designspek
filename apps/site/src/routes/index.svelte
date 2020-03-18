@@ -7,12 +7,12 @@
   $: h1 = {
     color: $theme.colors.primary,
     lineHeight: '2rem',
-    fontSize: ['5rem', '1rem', '3rem'],
+    fontSize: '5rem',
   }
   $: h3Style = {
     color: $theme.colors.secondary,
     lineHeight: '2rem',
-    fontSize: ['3rem', '.5rem', '1rem'],
+    fontSize: '3rem',
   }
 
   $: boxStyle = {

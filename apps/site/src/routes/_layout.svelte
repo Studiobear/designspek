@@ -14,7 +14,7 @@
   }
 
   $: mainStyle = {
-    maxWidth: '56rem',
+    maxWidth: '52em',
     bg: $theme.colors.background,
     p: 3,
     mx: 'auto',
@@ -24,8 +24,8 @@
   $: addGlobal($theme)
 
   onMount(() => {
-    // removeSSR()
-    // activeSSR = false
+    removeSSR()
+    activeSSR = false
   })
 </script>
 
@@ -61,4 +61,4 @@
   </Section>
 </Box>
 
-<SSR theme={$theme} active />
+<SSR theme={$theme} active={activeSSR} />

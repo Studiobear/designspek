@@ -13,13 +13,6 @@ describe('Box', () => {
     expect(getByText('I am a box!')).toBeInTheDocument()
   })
 
-  test('to have default text', async () => {
-    const { getByText } = render(Box)
-    const box = getByText('no content was provided')
-
-    expect(box).toBeInTheDocument()
-  })
-
   test('to change background color from primary to secondary on hover', async () => {
     const { getByText } = render(BoxView, {
       style: {
