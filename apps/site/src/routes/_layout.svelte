@@ -24,8 +24,8 @@
   $: addGlobal($theme)
 
   onMount(() => {
-    removeSSR()
-    activeSSR = false
+    //removeSSR()
+    // activeSSR = false
   })
 </script>
 

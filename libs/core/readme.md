@@ -150,10 +150,184 @@ As with all other properties you can use the responsive Array notation as well!
 <MyComponent bg="primary" m={[1, 2, 3]} />
 ```
 
+## API
+
+While similar to other CSS-in-JS solutions, Designspek has been customized towards Svelte which is a compiler and does not use a virtual DOM.
+
+> API is unstable and experimental. Main detractor of stability is the course of finding an SSR best-practice for Svelte.
+
+### `styled(styles, theme?, ssr? = false )`
+
+- `@params {Object} styles`: An object of styles. Style keys are CSS in camelCase or use shorthand attributes.
+- `@params {Object optional} theme`: Theme store subscription or raw theme object. Optional if no reactive updating required.
+- `@params {Boolean optional} ssr`: Returns a raw CSS string instead of classname.
+- `@returns {string}`: Returns classname connected to style injected into header or, if ssr, returns raw CSS string.
+
+_Note: `ssr` option is an exploration into server-side rendering options with Svelte and Sapper. Since it is for applying styles inline to elements, it may break inheritance and create unexpected side effects. Best used for critical elements seen on first load. This is a backup method to using `extractCSS`._
+
+```jsx
+<script>
+  import { styled } from '@studiobear/designspek';
+  import { theme } from '../theme';
+
+// generate static styles. Uses shorthand 'w' for 'width'
+let static= styled({
+  color: '#000'
+})
+
+// Svelete reactive declaration. When theme changes mode, 'bg' (background) will update accordingly.
+$: rx = styled({
+  color: $theme.colors.primary
+}, $theme)
+
+// Svelete reactive declaration. When theme changes mode, 'bg' (background) will update accordingly.
+$: ssr = styled({
+  color: $theme.colors.primary
+}, $theme, true)
+
+</script>
+
+<h1 class={static}>Static Heading</h1>
+<h1 class={rx}>Reactive Heading</h1>
+
+// Notice, uses style tag as raw css is output
+<h1 class={ssr}>SSR Heading</h1>
+```
+
+### `addGlobal(theme)`
+
+- `@params {Object} theme`: Theme object. If contains a _styles_ property (theme.styles), parses and injects styles into header. For general global styles like styling Markdown.
+- `@returns {string}`: Returns Global Style as string
+
+```jsx
+<script>
+  import {addGlobal} from '@studiobear/designspek'; // reactive theme store
+  import {theme} from '../theme'; // theme used as Svelte auto-subscribed
+  variable addGlobal($theme) // reactive theme used for modes $:
+  addGlobal($theme)
+</script>
+```
+
+### `extractCss(theme, active? = false) _(experimental)_`
+
+- `@params {Object} theme`: Theme store subscription.
+- `@params {boolean optional} active`: Setting to true allows string of styles to be returned from Style library.
+- `@returns {''||string}`: Returns nothing. If `active = true`, returns stored component styles as pre-parsed `<style>` element.
+
+**Intention**: Each style passed through `styled()` is appended to a Style Library with their corresponding Goober classname. `extractCss` then pulls and parses those styles into a stylesheet. These styles can then be injected into the document head using `<svelte:head>`. When app initially renders, FOUC (Flash of Unstyled Content) is avoided. Also appends any global styles as well.
+
+**Challenge**: Race condition on compiling depending on how many times `styled()` is called means that not all styles are parsed before `extractCSS()` is called. `active` param is experiment for using `extractCss()` in multiple component levels to see if more styles are picked up in internal parse library or if there is any effect in parse order of components. The `ssr` option is a desperate measure to force inline styling of critical components missed by this method.
+
+```jsx
+<script>
+  import { extractCss } from '@studiobear/designspek'
+  import { theme } from '../theme';
+
+</script>
+
+<svelte:head>
+  {@html extractCss($theme, true)}
+</svelte:head>
+```
+
+Above appends to document head:
+
+```html
+<style id="_ds_ssr_store">
+  root {
+    font-family: 'Fira Sans', sans-serif;
+    line-height: 1.44rem;
+    font-weight: 400;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+
+  ... .go1276619285 {
+    margin: 0px;
+    min-width: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+  .go3766572075 {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+    background-color: #fff;
+    border-bottom: 1px solid;
+    border-color: #07c;
+    font-weight: 300;
+    padding: 0 1em;
+  }
+  .go3418959035 {
+    margin: 0px;
+    min-width: 0;
+    background-color: #fff;
+  }
+</style>
+```
+
+### `removeSSR() _(experimental)_`
+
+- `@return nothing`
+
+In attempt to mitigate style inheritance issues, when components are mounted and JS is loaded, CSS-in-JS can take over, so SSR style element is removed from head.
+
+### `typography(theme, typographyTheme)`
+
+- `@params {Object} theme`: Theme raw object.
+- `@params {Object} typographyThem`: Typography theme object.
+- `@returns {Object} newTheme`: Merged themes with typography sensitive elements included.
+
+[TypographyJS](https://kyleamathews.github.io/typography.js/) themes allow injecting fonts and pre-styled typography declartions into the design specification. Typography should be applied before extracting modes and binding to Svelte store.
+
+In main theme file:
+
+```js
+import { typography, fontLink } from '@studiobear/designspek'
+import kirkhamTheme from 'typography-theme-kirkham'
+
+import mainTheme from './theme' //Raw theme object
+
+const basic = typography(mainTheme, kirkhamTheme)
+```
+
+### `fontLink(theme)`
+
+- `@params {Object} theme`: Theme store subscription or raw object.
+- `@returns {string}`: Parsed Google font string
+
+In main theme file:
+
+```js
+import kirkhamTheme from 'typography-theme-kirkham'
+const googleFonts = fontLink(kirkhamTheme)
+```
+
+In top Svelte component:
+
+```jsx
+<script>
+ import { googleFonts } from './theme'
+</script>
+
+<svelte:head>
+  <link href={googleFonts} rel="stylesheet" type="text/css" />
+</svelte:head>
+
+```
+
 ---
 
 ## Roadmap to v1
 
+- [ ] **Stabilize SSR**: SSR works for simple sites, but depth of components and increase quantity of `styled()` calls results in race conditions and missed critical styles. Either find a way to prioritize critical style elemnts or explore alternatives such as pre-processing/pre-compiling options.
 - [ ] **Typescript**: At the foundational level, design specifications define and work with a multitude of types; e.g., _numbers_(`m: 0`), _strings_(`m: 'sm'`) and _arrays_(`margin: ['sm', 'none', 'lg']`). Ergo, static typings are a basic requirement for sane evolution.
 - [ ] **Optimize theme integration**: The current direction is exploratory and naively pulls together multiple libraries as a proof-of-concept. However, in doing so, styles are looped a multiple of times to:
   - get/convert mapped custom shorthand attributes
@@ -168,4 +342,4 @@ As with all other properties you can use the responsive Array notation as well!
 
 ## Acknowledgements
 
-This library was initially inspired by [svelte-styled-system(@manuschillerdev)](https://github.com/manuschillerdev/svelte-styled-system). At time of discovery, svelte-styled-system was annotated as a proof-of-concept for bringing in the concepts of [styled-system](https://styled-system.com/) and doing it in as small of a package as possible. _Designspek_ vears away from this by choosing to make design specificiations
+This library was initially inspired by [svelte-styled-system(@manuschillerdev)](https://github.com/manuschillerdev/svelte-styled-system). At time of discovery, svelte-styled-system was annotated as a proof-of-concept for bringing in the concepts of [styled-system](https://styled-system.com/) and doing it in as small of a package as possible. _Designspek_ vears away from this by choosing to make design specificiations first class citizens at the cost of size efficiency.

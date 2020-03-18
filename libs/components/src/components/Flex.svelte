@@ -9,11 +9,10 @@
     d: 'flex',
     ...style,
   }
-  $: compStyles = styled(style, theme, ssr)
-  $: styleProps = ssr ? { style: compStyles } : { class: compStyles }
+
   // console.log('Flex', compStyles, $$props)
 </script>
 
-<Box {theme} {...styleProps} {...$$props}>
+<Box {theme} {ssr} style={compStyles}>
   <slot />
 </Box>

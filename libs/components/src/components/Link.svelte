@@ -15,8 +15,8 @@
       ...style,
     },
     theme,
+    ssr,
   )
-  $: compStyles = styled(style, theme, ssr)
   $: styleProps = ssr ? { style: compStyles } : { class: compStyles }
   // $: console.log('Link: ', style)
 </script>

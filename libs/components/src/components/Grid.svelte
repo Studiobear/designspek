@@ -21,12 +21,12 @@
     gridgap,
     ...d,
     ...style,
+    theme,
+    ssr,
   }
-  $: compStyles = styled(style, theme, ssr)
-  $: styleProps = ssr ? { style: compStyles } : { class: compStyles }
   // console.log('Grid', d, compStyles, $$props)
 </script>
 
-<Box {...styleProps} {theme} {...$$props}>
+<Box style={compStyles} {theme}>
   <slot />
 </Box>

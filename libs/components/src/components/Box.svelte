@@ -13,9 +13,10 @@
       ...style,
     },
     theme,
+    ssr,
   )
-  $: compStyles = styled(style, theme, ssr)
   $: styleProps = ssr ? { style: compStyles } : { class: compStyles }
+  // $: console.log('Box', style, theme, compStyles, styleProps)
 </script>
 
 <div bind:this={div} on:click {...styleProps}>
