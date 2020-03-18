@@ -192,7 +192,7 @@ export const shortHandAttributes = new Map([
   [`${temp}${row}s`, [`${grid}${Temp}${Row}s`]],
   [`${temp}${col}s`, [`${grid}${Temp}${Col}s`]],
   [`${grid}${area}s`, [`${grid}${Temp}${Area}s`]],
-  [`txt${align}`, [`${txt}${A}${lign}`]],
+  [`txt${A}${lign}`, [`${txt}${A}${lign}`]],
   [`txt${deco}`, [`${txt}${Deco}`]],
   ['f', [f]],
   ['s', [s]],

@@ -252,7 +252,6 @@ const parseGlobal = globStyles => {
     if (name !== 'p' && name !== 'a' && name !== 'b') {
       name = shortHandAttributes.get(name) || name
     }
-
     globCss += `${name}{`
     if (name === 'body' && theme.styles.body) {
       if (
@@ -274,9 +273,11 @@ const parseGlobal = globStyles => {
 
     let block = {}
     let parsedV = value
-    parsedV = processCss(value, theme)
-    parsedV.theme = theme
-    parsedV = system(parsedV)
+    if (name !== 'html') {
+      parsedV = processCss(value, theme)
+      parsedV.theme = theme
+      parsedV = system(parsedV)
+    }
     for (let [nameV, valueV] of Object.entries(parsedV)) {
       nameV = nameV.replace(/[A-Z]/g, match => `-${match.toLowerCase()}`)
       valueV = valueV === 'text' ? '"text"' : valueV

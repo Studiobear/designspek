@@ -3,7 +3,7 @@
 
   let div
   export let style = $$props.style || {}
-  export let theme = $$props.theme || {}
+  export let theme = $$props.theme || style.theme || {}
   $: compStyles = styled(
     {
       boxSizing: 'border-box',

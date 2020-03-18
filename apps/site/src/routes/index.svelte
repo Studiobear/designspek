@@ -14,6 +14,11 @@
     fontSize: ['3em', '.5em', '1em'],
   }
 
+  $: boxStyle = {
+    color: 'primary',
+    theme: $theme,
+  }
+
   // console.log('index: ', $$props, theme, $theme)
 </script>
 
@@ -39,4 +44,4 @@
   </strong>
 </p>
 
-<Box>{$theme.colors.primary}</Box>
+<Box style={boxStyle}>{$theme.colors.primary}</Box>

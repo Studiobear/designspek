@@ -49,6 +49,7 @@ export const main = {
       fontWeight: 'body',
       boxSizing: 'border-box',
     },
+    html: { scrollBehavior: 'smooth' },
     body: {
       antialias: true,
       m: 0,
@@ -127,6 +128,18 @@ export const main = {
       maxWidth: '100%',
     },
   },
+  forwardStyleDefault: [
+    'txtdeco',
+    'textDecoration',
+    'txtTransform',
+    'textTransformation',
+    'position',
+    'f',
+    's',
+    'fill',
+    'stroke',
+    'scrollBehavior',
+  ],
 }
 
 export default main

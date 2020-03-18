@@ -8,7 +8,7 @@
 
   // $: background = $theme.colors.background || '#fff'
   export let segment
-
+  let activeSSR = true
   $: bodyStyle = {
     bg: $theme.colors.background,
   }
@@ -24,6 +24,7 @@
 
   onMount(() => {
     removeSSR()
+    activeSSR = false
   })
 </script>
 
@@ -59,4 +60,4 @@
   </Section>
 </Box>
 
-<SSR theme={$theme} />
+<SSR theme={$theme} active={activeSSR} />
