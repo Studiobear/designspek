@@ -3,14 +3,16 @@
   import Box from './Box.svelte'
 
   export let style = $$props.style || {}
-  export let theme = $$props.theme || {}
+  export let theme = $$props.theme || style.theme || {}
+  export let ssr = $$props.ssr || style.ssr || false
   let compStyles = {
     d: 'flex',
     ...style,
   }
+
   // console.log('Flex', compStyles, $$props)
 </script>
 
-<Box style={compStyles} {theme}>
+<Box {theme} {ssr} style={compStyles}>
   <slot />
 </Box>

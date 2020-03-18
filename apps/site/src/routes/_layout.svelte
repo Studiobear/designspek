@@ -8,22 +8,24 @@
 
   // $: background = $theme.colors.background || '#fff'
   export let segment
-
+  let activeSSR = true
   $: bodyStyle = {
     bg: $theme.colors.background,
   }
 
   $: mainStyle = {
-    maxWidth: '56rem',
+    maxWidth: '52em',
     bg: $theme.colors.background,
     p: 3,
     mx: 'auto',
     mt: '6.25rem',
   }
+  $: console.log('SSR string', mainStyle)
   $: addGlobal($theme)
 
   onMount(() => {
-    removeSSR()
+    //removeSSR()
+    // activeSSR = false
   })
 </script>
 
@@ -50,7 +52,7 @@
 
 <Box style={bodyStyle}>
   <Nav {segment} theme={$theme} />
-  <Section as="main" style={mainStyle}>
+  <Section as="main" theme={$theme} style={mainStyle} ssr>
     <button
       on:click={() => ($theme.mode === 'light' ? theme.dark() : theme.light())}>
       {$theme.mode === 'light' ? 'to dark mode' : 'to light mode'}
@@ -59,4 +61,4 @@
   </Section>
 </Box>
 
-<SSR theme={$theme} />
+<SSR theme={$theme} active={activeSSR} />

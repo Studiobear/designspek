@@ -1,17 +1,23 @@
 <script>
   import { theme } from '../theme'
+  import { SSR } from '../components'
 
   import { Box, Heading, Counter } from '@studiobear/designspek-components'
   // let primary = $$props.theme.colors ? $$props.theme.colors.primary : '#333'
   $: h1 = {
     color: $theme.colors.primary,
-    lineHeight: '2em',
-    fontSize: ['5em', '1em', '3em'],
+    lineHeight: '2rem',
+    fontSize: '5rem',
   }
   $: h3Style = {
     color: $theme.colors.secondary,
-    lineHeight: '2em',
-    fontSize: ['3em', '.5em', '1em'],
+    lineHeight: '2rem',
+    fontSize: '3rem',
+  }
+
+  $: boxStyle = {
+    color: 'primary',
+    theme: $theme,
   }
 
   // console.log('index: ', $$props, theme, $theme)
@@ -39,4 +45,6 @@
   </strong>
 </p>
 
-<Box>{$theme.colors.primary}</Box>
+<Box style={boxStyle}>{$theme.colors.primary}</Box>
+
+<SSR theme={$theme} />
