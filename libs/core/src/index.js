@@ -264,11 +264,16 @@ const extractCss = (theme, active = false, opts = {}) => {
   }
 }
 
-const parseGlobal = globStyles => {
+const defaultParseGlobalOpts = {
+  units: defaultUnits,
+}
+
+const parseGlobal = (globStyles, opts = defaultParseGlobalOpts) => {
   let globCss = ''
   let theme = globStyles
   theme.forwardStyle = forwardStyleDefault
   let parseTheme = globStyles.styles
+  let units = opts.units
 
   for (let [name, value] of Object.entries(parseTheme)) {
     if (name !== 'p' && name !== 'a' && name !== 'b') {
@@ -289,7 +294,9 @@ const parseGlobal = globStyles => {
         typeof theme.styles.body.reset === 'boolean' &&
         theme.styles.body.reset
       ) {
-        globCss += ` -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; `
+        globCss += `transform: translate3d(0,0,0);
+        -webkit-transform: translate3d(0,0,0);
+        -webkit-overflow-scrolling: touch; `
       }
     }
 
@@ -308,11 +315,9 @@ const parseGlobal = globStyles => {
       valueV = nameV === 'line-height' ? `${valueV}rem` : valueV
 
       valueV =
-        (nameV.startsWith('margin') &&
-          !(typeof valueV === 'string' && valueV.endsWith('px'))) ||
-        (nameV.startsWith('padding') &&
-          !(typeof valueV === 'string' || valueV.endsWith('px')))
-          ? `${valueV}px`
+        (nameV.startsWith('margin') && !(typeof valueV === 'string')) ||
+        (nameV.startsWith('padding') && !(typeof valueV === 'string'))
+          ? `${valueV}${units.space}`
           : valueV
       globCss += ` ${nameV}: ${valueV}; `
     }

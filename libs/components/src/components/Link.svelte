@@ -22,7 +22,7 @@
 </script>
 
 {#if !as || as === 'a'}
-  <a {href} {target} {...styleProps}>
+  <a {href} {target} on:click {...styleProps}>
     <slot />
   </a>
 {/if}

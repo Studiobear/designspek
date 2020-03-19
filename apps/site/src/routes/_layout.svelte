@@ -3,7 +3,7 @@
   import { addGlobal, styled, removeSSR } from '@studiobear/designspek'
   import { googleFonts, theme } from '../theme'
 
-  import { Section, Button, Box } from '@studiobear/designspek-components'
+  import { Section, Button, Box, Link } from '@studiobear/designspek-components'
   import { Nav, SSR } from '../components'
 
   // $: background = $theme.colors.background || '#fff'
@@ -53,10 +53,10 @@
 <Box style={bodyStyle}>
   <Nav {segment} theme={$theme} />
   <Section as="main" theme={$theme} style={mainStyle} ssr>
-    <button
+    <Link
       on:click={() => ($theme.mode === 'light' ? theme.dark() : theme.light())}>
       {$theme.mode === 'light' ? 'to dark mode' : 'to light mode'}
-    </button>
+    </Link>
     <slot />
   </Section>
 </Box>

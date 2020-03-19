@@ -133,6 +133,7 @@ export const shortHandAttributes = new Map([
   [`${max}-h`, [`${max}${H}`]],
   ['brd', [brd]],
   ['brdCol', [`${brd}${C}${olor}`]],
+  ['brdSp', [`${brd}Spacing`]],
   ['bt', [`${brd}${T}`]],
   ['br', [`${brd}${R}`]],
   ['bb', [`${brd}${B}`]],
