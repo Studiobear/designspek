@@ -27,9 +27,9 @@ export const system = compose(
 )
 
 const defaultUnits = {
-  space: 'px',
+  space: 'rem',
   layout: '%',
-  grid: 'px',
+  grid: 'rem',
 }
 const addUnits = (styles, units = defaultUnits) => {
   let withUnits = {}

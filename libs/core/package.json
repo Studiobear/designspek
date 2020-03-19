@@ -1,6 +1,6 @@
 {
   "name": "@studiobear/designspek",
-  "version": "0.2.8",
+  "version": "0.2.9",
   "description": "A Reactive Design System: Svelte meets System UI",
   "source": "src/index.js",
   "main": "dist/index.js",
