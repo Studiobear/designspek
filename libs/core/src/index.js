@@ -33,6 +33,7 @@ const defaultUnits = {
 }
 const addUnits = (styles, units = defaultUnits) => {
   let withUnits = {}
+  let mUnits = ''
   for (let [name, value] of Object.entries(styles)) {
     if (typeof value === 'object' && value !== null) {
       let withUnitsO = {}
@@ -41,7 +42,8 @@ const addUnits = (styles, units = defaultUnits) => {
           (nameO.startsWith('margin') || nameO.startsWith('padding')) &&
           typeof valueO === 'number'
         ) {
-          Object.assign(withUnitsO, { [nameO]: `${valueO}${units.space}` })
+          mUnits = value0 === 0 ? '' : units.space
+          Object.assign(withUnitsO, { [nameO]: `${valueO}${mUnits}` })
           continue
         }
         if (nameO.startsWith('grid') && typeof valueO === 'number') {
@@ -57,7 +59,8 @@ const addUnits = (styles, units = defaultUnits) => {
       (name.startsWith('margin') || name.startsWith('padding')) &&
       typeof value === 'number'
     ) {
-      Object.assign(withUnits, { [name]: `${value}${units.space}` })
+      mUnits = value === 0 ? '' : units.space
+      Object.assign(withUnits, { [name]: `${value}${mUnits}` })
       continue
     }
     if (name.startsWith('grid') && typeof value === 'number') {
@@ -131,8 +134,8 @@ export const processCss = (attributes, theme, pseudoElementSelector) => {
 const forwardStyleDefault = [
   'txtdeco',
   'textDecoration',
-  'txtTransform',
-  'textTransformation',
+  'txtTran',
+  'textTransform',
   'position',
   'f',
   's',
@@ -285,7 +288,8 @@ const parseGlobal = (globStyles, opts = defaultParseGlobalOpts) => {
         typeof theme.styles.body.antialias === 'boolean' &&
         theme.styles.body.antialias
       ) {
-        globCss += ` -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; `
+        globCss +=
+          '-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;'
       } else {
         globCss += ` -webkit-font-smoothing: ${theme.styles.body.antialias}; -moz-osx-font-smoothing: grayscale; `
       }
@@ -294,9 +298,7 @@ const parseGlobal = (globStyles, opts = defaultParseGlobalOpts) => {
         typeof theme.styles.body.reset === 'boolean' &&
         theme.styles.body.reset
       ) {
-        globCss += `transform: translate3d(0,0,0);
-        -webkit-transform: translate3d(0,0,0);
-        -webkit-overflow-scrolling: touch; `
+        globCss += 'margin: 0;'
       }
     }
 
@@ -306,6 +308,15 @@ const parseGlobal = (globStyles, opts = defaultParseGlobalOpts) => {
       parsedV = processCss(value, theme)
       parsedV.theme = theme
       parsedV = system(parsedV)
+    } else {
+      if (
+        typeof theme.styles.body.reset === 'boolean' &&
+        theme.styles.body.reset
+      ) {
+        globCss += `line-height: 1.15;
+        -webkit-text-size-adjust: 100%;
+        box-sizing: border-box;`
+      }
     }
     for (let [nameV, valueV] of Object.entries(parsedV)) {
       nameV = nameV.replace(/[A-Z]/g, match => `-${match.toLowerCase()}`)

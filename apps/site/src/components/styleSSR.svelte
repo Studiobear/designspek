@@ -1,7 +1,7 @@
 <script>
   import { extractCss } from '@studiobear/designspek'
   export let theme = $$props.theme || {}
-  export let active
+  export let active = false
 </script>
 
 <svelte:head>

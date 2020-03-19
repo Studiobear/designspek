@@ -52,6 +52,7 @@ export const main = {
     html: { scrollBehavior: 'smooth' },
     body: {
       antialias: true,
+      reset: true,
       m: 0,
     },
     h1: {

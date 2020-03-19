@@ -4,25 +4,27 @@
 
   export let text = ''
   export let style = $$props.style || {}
-  export let theme = $$props.theme || {}
+  export let theme = $$props.theme || style.theme || {}
+  export let ssr = $$props.ssr || style.ssr || false
   const dispatch = createEventDispatcher()
 
   function onClick(event) {
     dispatch('click', event)
   }
-  $: btnStyle = {
-    brd: '1px solid',
-    brdCol: '#ccc',
-    borderRadius: '3px',
-    bg: '#aaa',
-    px: 1,
-    py: 2,
-    m: 2,
-    ...style,
-  }
+  $: compStyles = styled(
+    {
+      brd: '1px solid',
+      brdCol: '#ccc',
+      borderRadius: '3px',
+      ...style,
+    },
+    theme,
+    ssr,
+  )
+  $: styleProps = ssr ? { style: compStyles } : { class: compStyles }
 </script>
 
-<button class="button" on:click={onClick} use:styled={[btnStyle, theme]}>
+<button on:click={onClick} {...styleProps}>
   <slot />
   {text}
 </button>
