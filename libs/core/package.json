@@ -1,6 +1,6 @@
 {
   "name": "@studiobear/designspek",
-  "version": "0.2.8",
+  "version": "0.3.1",
   "description": "A Reactive Design System: Svelte meets System UI",
   "source": "src/index.js",
   "main": "dist/index.js",
@@ -66,6 +66,6 @@
     "typography-theme-st-annes": "^0.16.19"
   },
   "dependencies": {
-    "svelte": "^3.19.1"
+    "svelte": "^3.20.1"
   }
 }

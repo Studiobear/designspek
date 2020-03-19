@@ -88,6 +88,7 @@ const lign = 'lign'
 const olor = 'olor'
 const uto = 'uto'
 const txt = 'text'
+const Tran = 'Transform'
 const f = 'fill'
 const s = 'stroke'
 const Op = 'Opacity'
@@ -133,6 +134,7 @@ export const shortHandAttributes = new Map([
   [`${max}-h`, [`${max}${H}`]],
   ['brd', [brd]],
   ['brdCol', [`${brd}${C}${olor}`]],
+  ['brdSp', [`${brd}Spacing`]],
   ['bt', [`${brd}${T}`]],
   ['br', [`${brd}${R}`]],
   ['bb', [`${brd}${B}`]],
@@ -194,6 +196,7 @@ export const shortHandAttributes = new Map([
   [`${grid}${area}s`, [`${grid}${Temp}${Area}s`]],
   [`txt${A}${lign}`, [`${txt}${A}${lign}`]],
   [`txt${deco}`, [`${txt}${Deco}`]],
+  [`txtTran`, [`${txt}${Tran}`]],
   ['f', [f]],
   ['s', [s]],
   ['swidth', [`${s}${W}`]],

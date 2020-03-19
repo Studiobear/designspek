@@ -3,12 +3,12 @@
   import { addGlobal, styled, removeSSR } from '@studiobear/designspek'
   import { googleFonts, theme } from '../theme'
 
-  import { Section, Button, Box } from '@studiobear/designspek-components'
+  import { Section, Button, Box, Link } from '@studiobear/designspek-components'
   import { Nav, SSR } from '../components'
 
   // $: background = $theme.colors.background || '#fff'
   export let segment
-  let activeSSR = true
+  let ssr = true
   $: bodyStyle = {
     bg: $theme.colors.background,
   }
@@ -16,16 +16,16 @@
   $: mainStyle = {
     maxWidth: '52em',
     bg: $theme.colors.background,
-    p: 3,
+    p: '4rem',
     mx: 'auto',
-    mt: '6.25rem',
+    mt: '3.25rem',
   }
-  $: console.log('SSR string', mainStyle)
+
   $: addGlobal($theme)
 
   onMount(() => {
     //removeSSR()
-    // activeSSR = false
+    ssr = false
   })
 </script>
 
@@ -52,13 +52,13 @@
 
 <Box style={bodyStyle}>
   <Nav {segment} theme={$theme} />
-  <Section as="main" theme={$theme} style={mainStyle} ssr>
-    <button
+  <Section as="main" theme={$theme} style={mainStyle} {ssr}>
+    <Link
       on:click={() => ($theme.mode === 'light' ? theme.dark() : theme.light())}>
       {$theme.mode === 'light' ? 'to dark mode' : 'to light mode'}
-    </button>
+    </Link>
     <slot />
   </Section>
 </Box>
 
-<SSR theme={$theme} active={activeSSR} />
+<SSR theme={$theme} active={ssr} />

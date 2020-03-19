@@ -27,12 +27,13 @@ export const system = compose(
 )
 
 const defaultUnits = {
-  space: 'px',
+  space: 'rem',
   layout: '%',
-  grid: 'px',
+  grid: 'rem',
 }
 const addUnits = (styles, units = defaultUnits) => {
   let withUnits = {}
+  let mUnits = ''
   for (let [name, value] of Object.entries(styles)) {
     if (typeof value === 'object' && value !== null) {
       let withUnitsO = {}
@@ -41,7 +42,8 @@ const addUnits = (styles, units = defaultUnits) => {
           (nameO.startsWith('margin') || nameO.startsWith('padding')) &&
           typeof valueO === 'number'
         ) {
-          Object.assign(withUnitsO, { [nameO]: `${valueO}${units.space}` })
+          mUnits = value0 === 0 ? '' : units.space
+          Object.assign(withUnitsO, { [nameO]: `${valueO}${mUnits}` })
           continue
         }
         if (nameO.startsWith('grid') && typeof valueO === 'number') {
@@ -57,7 +59,8 @@ const addUnits = (styles, units = defaultUnits) => {
       (name.startsWith('margin') || name.startsWith('padding')) &&
       typeof value === 'number'
     ) {
-      Object.assign(withUnits, { [name]: `${value}${units.space}` })
+      mUnits = value === 0 ? '' : units.space
+      Object.assign(withUnits, { [name]: `${value}${mUnits}` })
       continue
     }
     if (name.startsWith('grid') && typeof value === 'number') {
@@ -131,8 +134,8 @@ export const processCss = (attributes, theme, pseudoElementSelector) => {
 const forwardStyleDefault = [
   'txtdeco',
   'textDecoration',
-  'txtTransform',
-  'textTransformation',
+  'txtTran',
+  'textTransform',
   'position',
   'f',
   's',
@@ -264,11 +267,16 @@ const extractCss = (theme, active = false, opts = {}) => {
   }
 }
 
-const parseGlobal = globStyles => {
+const defaultParseGlobalOpts = {
+  units: defaultUnits,
+}
+
+const parseGlobal = (globStyles, opts = defaultParseGlobalOpts) => {
   let globCss = ''
   let theme = globStyles
   theme.forwardStyle = forwardStyleDefault
   let parseTheme = globStyles.styles
+  let units = opts.units
 
   for (let [name, value] of Object.entries(parseTheme)) {
     if (name !== 'p' && name !== 'a' && name !== 'b') {
@@ -280,7 +288,8 @@ const parseGlobal = globStyles => {
         typeof theme.styles.body.antialias === 'boolean' &&
         theme.styles.body.antialias
       ) {
-        globCss += ` -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; `
+        globCss +=
+          '-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;'
       } else {
         globCss += ` -webkit-font-smoothing: ${theme.styles.body.antialias}; -moz-osx-font-smoothing: grayscale; `
       }
@@ -289,7 +298,7 @@ const parseGlobal = globStyles => {
         typeof theme.styles.body.reset === 'boolean' &&
         theme.styles.body.reset
       ) {
-        globCss += ` -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; `
+        globCss += 'margin: 0;'
       }
     }
 
@@ -299,6 +308,15 @@ const parseGlobal = globStyles => {
       parsedV = processCss(value, theme)
       parsedV.theme = theme
       parsedV = system(parsedV)
+    } else {
+      if (
+        typeof theme.styles.body.reset === 'boolean' &&
+        theme.styles.body.reset
+      ) {
+        globCss += `line-height: 1.15;
+        -webkit-text-size-adjust: 100%;
+        box-sizing: border-box;`
+      }
     }
     for (let [nameV, valueV] of Object.entries(parsedV)) {
       nameV = nameV.replace(/[A-Z]/g, match => `-${match.toLowerCase()}`)
@@ -308,11 +326,9 @@ const parseGlobal = globStyles => {
       valueV = nameV === 'line-height' ? `${valueV}rem` : valueV
 
       valueV =
-        (nameV.startsWith('margin') &&
-          !(typeof valueV === 'string' && valueV.endsWith('px'))) ||
-        (nameV.startsWith('padding') &&
-          !(typeof valueV === 'string' || valueV.endsWith('px')))
-          ? `${valueV}px`
+        (nameV.startsWith('margin') && !(typeof valueV === 'string')) ||
+        (nameV.startsWith('padding') && !(typeof valueV === 'string'))
+          ? `${valueV}${units.space}`
           : valueV
       globCss += ` ${nameV}: ${valueV}; `
     }

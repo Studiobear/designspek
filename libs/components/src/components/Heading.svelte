@@ -7,7 +7,7 @@
   export let as = 'h1'
   $: compStyles = styled(style, theme, ssr)
   $: styleProps = ssr ? { style: compStyles } : { class: compStyles }
-  // $: console.log('Heading: ', $$props, theme)
+  // $: console.log('Heading: ', $$props, ssr)
 </script>
 
 {#if !as || as === 'h1'}
