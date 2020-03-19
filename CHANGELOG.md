@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.3.1](https://github.com/Studiobear/designspek/compare/v0.2.4...v0.3.1) (2020-03-19)
+
+
+### Features
+
+* **designspek:** new styled parameter: ssr boolean ([716cc49](https://github.com/Studiobear/designspek/commit/716cc49a1f58a1dbbea4852b456fce6f7e222b93))
+* **designspek:** render all to global for html tag ([39621de](https://github.com/Studiobear/designspek/commit/39621def72cc411195974e224a245652efb38f0e))
+* **designspek-components:** integrate designspek styled ssr paramenter ([187b94c](https://github.com/Studiobear/designspek/commit/187b94c7f7ebfc93359d275a71749f6d3453eb37))
+
+
+### Bug Fixes
+
+* **designspek:** global default values to rem not px ([812e3a3](https://github.com/Studiobear/designspek/commit/812e3a33b439387b57654de17d20e9b107060850))
+* **designspek-components:** alter prop passing to avoid conflicts ([b2f8852](https://github.com/Studiobear/designspek/commit/b2f8852e5792a8b2b7afd95edbb58d2235c9f827))
+
 ## [0.2.4](https://github.com/Studiobear/designspek/compare/v0.2.2...v0.2.4) (2020-03-17)
 
 ### Features
