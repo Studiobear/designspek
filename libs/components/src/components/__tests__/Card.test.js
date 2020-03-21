@@ -9,7 +9,7 @@ describe('Card', () => {
   test('should render component correctly ', () => {
     const { getByText } = render(CardView, {
       cardTitle: 'I am not a box',
-      cardBody: 'I swear I am a card'
+      cardBody: 'I swear I am a card',
     })
 
     expect(getByText('I am not a box')).toBeInTheDocument()

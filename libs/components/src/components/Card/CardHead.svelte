@@ -1,5 +1,5 @@
 <script>
-  import { Flex } from '@studiobear/designspek-components'
+  import Flex from '../Flex.svelte'
 
   export let style = {}
   let compStyles = {

@@ -1,5 +1,5 @@
 <script>
-  import { Box } from '@studiobear/designspek-components'
+  import Box from '../Box.svelte'
 
   export let style = $$props.style || {}
   export let theme = $$props.theme || { colors: { muted: '#C0D0D1' } }
