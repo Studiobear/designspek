@@ -1,6 +1,6 @@
 {
   "name": "designspek",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "FFor using consistent, interoperable design systems with Svelte",
   "author": "Barry Low <barry@studiobear.co>",
   "license": "MIT",
