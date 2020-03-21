@@ -1,6 +1,6 @@
 <script>
   import { onMount } from 'svelte'
-  import { styled } from '@studiobear/designspek'
+  import { styled, removeSSR } from '@studiobear/designspek'
   import { Box, Heading, Counter } from '@studiobear/designspek-components'
 
   import { theme } from '../theme'
@@ -18,6 +18,13 @@
     lineHeight: '3rem',
     fontSize: '3rem',
     txtTran: 'uppercase',
+    scrollBehavior: 'smooth',
+    borderSpacing: 0,
+    objectFit: 'auto',
+    tableLayout: 'fitted',
+    boxDecorationBreak: 'auto',
+    shapeMargin: 0,
+    theme: $theme,
   }
 
   $: h4Style = {
@@ -31,11 +38,46 @@
     color: 'primary',
     theme: $theme,
   }
+  $: console.log('index:', $theme)
+  $: table = styled(
+    {
+      borderCollapse: 'collapse',
+      tableLayout: 'fixed',
+      overflowX: 'auto',
+      w: 'fit-content',
+      maxw: '100%',
+      scrollBehavior: 'smooth',
+      borderSpacing: 0,
+      objectFit: 'auto',
+      tableLayout: 'fitted',
+      boxDecorationBreak: 'auto',
+      shapeMargin: 0,
+    },
+    $theme,
+  )
 
-  console.log('index1: ', $$props, ssr)
-  $: console.log('index2: ', $$props, ssr)
+  $: tableHeader = styled(
+    {
+      bg: $theme.colors.muted,
+    },
+    $theme,
+  )
+  $: th = styled(
+    {
+      color: $theme.colors.secondary,
+    },
+    $theme,
+  )
+
+  $: td = styled(
+    {
+      color: $theme.colors.text,
+    },
+    $theme,
+  )
+
   onMount(() => {
-    //removeSSR()
+    removeSSR()
     ssr = false
   })
 </script>
@@ -66,5 +108,33 @@
 </p>
 
 <Box style={boxStyle}>{$theme.colors.primary}</Box>
+<Box style={{ overflowX: 'scroll' }}>
+  <table class={table}>
+    <thead class={tableHeader}>
+      <tr>
+        <th class={th}>Desc1</th>
+        <th class={th}>Desc2</th>
+        <th class={th}>Desc3</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class={td}>1</td>
+        <td class={td}>2</td>
+        <td class={td}>3</td>
+      </tr>
+      <tr>
+        <td class={td}>1</td>
+        <td class={td}>2</td>
+        <td class={td}>3</td>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>2</td>
+        <td>3</td>
+      </tr>
+    </tbody>
+  </table>
+</Box>
 
 <SSR theme={$theme} />

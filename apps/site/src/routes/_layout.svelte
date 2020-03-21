@@ -1,6 +1,6 @@
 <script>
   import { onMount } from 'svelte'
-  import { addGlobal, styled, removeSSR } from '@studiobear/designspek'
+  import { addGlobal, styled } from '@studiobear/designspek'
   import { googleFonts, theme } from '../theme'
 
   import { Section, Button, Box, Link } from '@studiobear/designspek-components'

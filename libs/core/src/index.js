@@ -125,9 +125,8 @@ export const processCss = (attributes, theme, pseudoElementSelector) => {
     }
   }
   cssText.theme = theme
-
   let newCss = system(cssText)
-
+  console.log('processCss', cssMisc)
   return addUnits(Object.assign(newCss, cssMisc))
 }
 
@@ -141,6 +140,13 @@ const forwardStyleDefault = [
   's',
   'fill',
   'stroke',
+  'scrollBehavior',
+  'borderSpacing',
+  'borderCollapse',
+  'objectFit',
+  'tableLayout',
+  'boxDecorationBreak',
+    'shapeMargin',
 ]
 
 let styleLib = {}
@@ -150,8 +156,11 @@ const styledMemo = (attributes, theme, stringed = false) => {
   let cn, toLib
 
   if (theme) {
-    if (theme.forwardStyle === undefined)
+    console.log('styledMemeo1: ', theme, theme.forwardStyle)
+    if (theme.forwardStyle === undefined){
       theme.forwardStyle = forwardStyleDefault
+    }
+    console.log('styledMemeo2: ', theme.forwardStyle)
     const cssText = processCss(attributes, theme)
     if (cssText === previousCssText) return
     previousCssText = cssText
