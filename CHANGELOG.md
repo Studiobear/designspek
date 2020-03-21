@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.3.3](https://github.com/Studiobear/designspek/compare/v0.3.1...v0.3.3) (2020-03-21)
+
+
+### Features
+
+* **designspek-components:** refactor Card component from covid app ([4a63257](https://github.com/Studiobear/designspek/commit/4a632571b862131f421618a9e8dcd2db342ffb07))
+
+
+### Bug Fixes
+
+* **designspek-components:** remove circular dependencies ([a470304](https://github.com/Studiobear/designspek/commit/a470304cb4be0eefa34555811d8217d611f68041))
+
 ### [0.3.1](https://github.com/Studiobear/designspek/compare/v0.2.4...v0.3.1) (2020-03-19)
 
 ### Features
