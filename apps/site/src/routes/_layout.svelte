@@ -4,7 +4,7 @@
   import { googleFonts, theme } from '../theme'
 
   import { Section, Button, Box, Link } from '@studiobear/designspek-components'
-  import { Nav, SSR } from '../components'
+  import { Nav, SSR, Icons } from '../components'
 
   // $: background = $theme.colors.background || '#fff'
   export let segment
@@ -60,5 +60,5 @@
     <slot />
   </Section>
 </Box>
-
+<Icons />
 <SSR theme={$theme} active={ssr} />

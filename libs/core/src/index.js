@@ -1,4 +1,5 @@
 import { css } from 'goober'
+import { gParse } from './gParse'
 import {
   compose,
   color,
@@ -78,12 +79,17 @@ const createCssMisc = (attributes, theme, pseudoElementSelector) => {
     name = shortHandAttributes.get(name) || [name]
     for (let cssProp of name) {
       let cssPropValue
-      let cssPropTmp
+      let cssPropTmp 
 
       if (cssProp.startsWith('_')) {
-        cssProp = cssProp.replace('_', '&:')
-        cssPropValue = createCssMisc(value, theme, cssProp)
-        cssMisc = Object.assign(cssMisc, { [cssProp]: cssPropValue })
+        if( cssProp.startsWith('_keyframes')){
+          cssProp = cssProp.replace('_', '@')
+          cssPropValue = createCssMisc(value, theme, cssProp)
+        } else {
+          cssProp = cssProp.replace('_', '&:')
+          cssPropValue = createCssMisc(value, theme, cssProp)
+          cssMisc = Object.assign(cssMisc, { [cssProp]: cssPropValue })
+        }
       }
       if (cssProp.endsWith('olor')) {
         cssPropTmp = { [cssProp]: value }
@@ -97,6 +103,7 @@ const createCssMisc = (attributes, theme, pseudoElementSelector) => {
         cssPropTmp.theme = theme
         cssMisc = Object.assign(cssMisc, { [cssProp]: cssPropValue })
       }
+      console.log('creatCssMisc', cssProp, value)
       cssMisc = Object.assign(cssMisc, { [cssProp]: value })
     }
   }
@@ -113,9 +120,19 @@ export const processCss = (attributes, theme, pseudoElementSelector) => {
       let cssPropValue
 
       if (cssProp.startsWith('_')) {
-        cssProp = cssProp.replace('_', '&:')
-        cssPropValue = createCssMisc(value, theme, cssProp)
-        cssMisc = Object.assign(cssMisc, { [cssProp]: cssPropValue })
+        console.log('processCSS: ', name, value)
+        if( cssProp.startsWith('_keyframes')){
+          cssProp = cssProp.replace('_', '@')
+          cssProp = cssProp.replace(/([A-Z])/g, ' $1')
+          cssProp = cssProp.toLowerCase()
+          console.log('processCss@', cssProp)
+          cssPropValue = createCssMisc(value, theme, cssProp)
+          cssMisc = Object.assign(cssMisc, { [cssProp]: cssPropValue })
+        } else {
+          cssProp = cssProp.replace('_', '&:')
+          cssPropValue = createCssMisc(value, theme, cssProp)
+          cssMisc = Object.assign(cssMisc, { [cssProp]: cssPropValue })
+        }
         continue
       }
       if (forwarding.includes(cssProp)) {
@@ -146,6 +163,7 @@ const forwardStyleDefault = [
   'tableLayout',
   'boxDecorationBreak',
   'shapeMargin',
+  'animation'
 ]
 
 let styleLib = {}
@@ -162,9 +180,12 @@ const styledMemo = (attributes, theme, stringed = false) => {
     if (cssText === previousCssText) return
     previousCssText = cssText
     cn = css(cssText)
+    let cp = gParse(cssText)
+    console.log('styledMemeo: ', cssText, cn, stringed, cp)
     if (styleLib.hasOwnProperty(cn) && !stringed) return cn
 
     toLib = parse(cn, cssText, { ssr: stringed })
+    console.log('styledMem02: ', toLib)
     if (stringed) {
       return toLib
     } else {
@@ -197,16 +218,27 @@ const parse = (cn, cs, opts = { ssr: false }) => {
       if (Object.prototype.toString.call(v) === '[object Object]') {
         let childStr = '{'
         for (let [nc, vc] of Object.entries(v)) {
-          childStr += `${nc}: ${vc};`
+          if (Object.prototype.toString.call(vc) === '[object Object]') {
+            childStr += `${nc}: {`
+            for (let [ncc, vcc] of Object.entries(vc)) {
+              childStr += `${ncc}: ${vcc};`
+            }
+            childStr += `}`
+          } else {
+            childStr += `${nc}: ${vc};`
+          }
         }
         childStr += '}'
 
-        if (n.startsWith('@')) {
+        if (n.startsWith('@media')) {
           if (mQu.hasOwnProperty(n)) {
             mQu[n] = { [cn]: v, ...mQu[n] }
           } else {
             mQu[n] = { [cn]: v }
           }
+        } else if (n.startsWith('@keyframes')) {
+          console.log('parse kf: ', `${n} ${childStr}`)
+          cStr += `${n} ${childStr}`
         } else {
           if (n.startsWith('&')) {
             n = n.replace('&', cn)
