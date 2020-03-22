@@ -6,8 +6,8 @@
   export let ssr = $$props.ssr || style.ssr || false
   export let fill = '#000'
   export let viewBox = '0 0 32 32'
-  // $: console.log('SVG: ', $$props)
   $: compStyles = styled(style, theme, ssr)
+  // $: console.log('SVG: ', $$props, compStyles)
   $: styleProps = ssr ? { style: compStyles } : { class: compStyles }
 </script>
 

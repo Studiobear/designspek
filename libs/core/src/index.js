@@ -81,9 +81,14 @@ const createCssMisc = (attributes, theme, pseudoElementSelector) => {
       let cssPropTmp
 
       if (cssProp.startsWith('_')) {
-        cssProp = cssProp.replace('_', '&:')
-        cssPropValue = createCssMisc(value, theme, cssProp)
-        cssMisc = Object.assign(cssMisc, { [cssProp]: cssPropValue })
+        if (cssProp.startsWith('_keyframes')) {
+          cssProp = cssProp.replace('_', '@')
+          cssPropValue = createCssMisc(value, theme, cssProp)
+        } else {
+          cssProp = cssProp.replace('_', '&:')
+          cssPropValue = createCssMisc(value, theme, cssProp)
+          cssMisc = Object.assign(cssMisc, { [cssProp]: cssPropValue })
+        }
       }
       if (cssProp.endsWith('olor')) {
         cssPropTmp = { [cssProp]: value }
@@ -113,9 +118,17 @@ export const processCss = (attributes, theme, pseudoElementSelector) => {
       let cssPropValue
 
       if (cssProp.startsWith('_')) {
-        cssProp = cssProp.replace('_', '&:')
-        cssPropValue = createCssMisc(value, theme, cssProp)
-        cssMisc = Object.assign(cssMisc, { [cssProp]: cssPropValue })
+        if (cssProp.startsWith('_keyframes')) {
+          cssProp = cssProp.replace('_', '@')
+          cssProp = cssProp.replace(/([A-Z])/g, ' $1')
+          cssProp = cssProp.toLowerCase()
+          cssPropValue = createCssMisc(value, theme, cssProp)
+          cssMisc = Object.assign(cssMisc, { [cssProp]: cssPropValue })
+        } else {
+          cssProp = cssProp.replace('_', '&:')
+          cssPropValue = createCssMisc(value, theme, cssProp)
+          cssMisc = Object.assign(cssMisc, { [cssProp]: cssPropValue })
+        }
         continue
       }
       if (forwarding.includes(cssProp)) {
@@ -146,6 +159,7 @@ const forwardStyleDefault = [
   'tableLayout',
   'boxDecorationBreak',
   'shapeMargin',
+  'animation',
 ]
 
 let styleLib = {}
@@ -162,6 +176,7 @@ const styledMemo = (attributes, theme, stringed = false) => {
     if (cssText === previousCssText) return
     previousCssText = cssText
     cn = css(cssText)
+    // console.log('styledMemeo: ', cssText, cn, stringed)
     if (styleLib.hasOwnProperty(cn) && !stringed) return cn
 
     toLib = parse(cn, cssText, { ssr: stringed })
@@ -197,16 +212,26 @@ const parse = (cn, cs, opts = { ssr: false }) => {
       if (Object.prototype.toString.call(v) === '[object Object]') {
         let childStr = '{'
         for (let [nc, vc] of Object.entries(v)) {
-          childStr += `${nc}: ${vc};`
+          if (Object.prototype.toString.call(vc) === '[object Object]') {
+            childStr += `${nc}: {`
+            for (let [ncc, vcc] of Object.entries(vc)) {
+              childStr += `${ncc}: ${vcc};`
+            }
+            childStr += `}`
+          } else {
+            childStr += `${nc}: ${vc};`
+          }
         }
         childStr += '}'
 
-        if (n.startsWith('@')) {
+        if (n.startsWith('@media')) {
           if (mQu.hasOwnProperty(n)) {
             mQu[n] = { [cn]: v, ...mQu[n] }
           } else {
             mQu[n] = { [cn]: v }
           }
+        } else if (n.startsWith('@keyframes')) {
+          cStr += `${n} ${childStr}`
         } else {
           if (n.startsWith('&')) {
             n = n.replace('&', cn)

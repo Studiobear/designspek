@@ -4,7 +4,7 @@
   import { Box, Heading, Counter } from '@studiobear/designspek-components'
 
   import { theme } from '../theme'
-  import { SSR } from '../components'
+  import { SSR, Loading } from '../components'
 
   export let ssr = true
   // let primary = $$props.theme.colors ? $$props.theme.colors.primary : '#333'
@@ -106,6 +106,8 @@
     Try editing this file (src/routes/index.svelte) to test live reloading.
   </strong>
 </p>
+
+<Loading theme={$theme} />
 
 <Box style={boxStyle}>{$theme.colors.primary}</Box>
 <Box style={{ overflowX: 'scroll' }}>
