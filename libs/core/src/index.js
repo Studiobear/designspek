@@ -1,5 +1,4 @@
 import { css } from 'goober'
-import { gParse } from './gParse'
 import {
   compose,
   color,
@@ -79,10 +78,10 @@ const createCssMisc = (attributes, theme, pseudoElementSelector) => {
     name = shortHandAttributes.get(name) || [name]
     for (let cssProp of name) {
       let cssPropValue
-      let cssPropTmp 
+      let cssPropTmp
 
       if (cssProp.startsWith('_')) {
-        if( cssProp.startsWith('_keyframes')){
+        if (cssProp.startsWith('_keyframes')) {
           cssProp = cssProp.replace('_', '@')
           cssPropValue = createCssMisc(value, theme, cssProp)
         } else {
@@ -103,7 +102,6 @@ const createCssMisc = (attributes, theme, pseudoElementSelector) => {
         cssPropTmp.theme = theme
         cssMisc = Object.assign(cssMisc, { [cssProp]: cssPropValue })
       }
-      console.log('creatCssMisc', cssProp, value)
       cssMisc = Object.assign(cssMisc, { [cssProp]: value })
     }
   }
@@ -120,12 +118,10 @@ export const processCss = (attributes, theme, pseudoElementSelector) => {
       let cssPropValue
 
       if (cssProp.startsWith('_')) {
-        console.log('processCSS: ', name, value)
-        if( cssProp.startsWith('_keyframes')){
+        if (cssProp.startsWith('_keyframes')) {
           cssProp = cssProp.replace('_', '@')
           cssProp = cssProp.replace(/([A-Z])/g, ' $1')
           cssProp = cssProp.toLowerCase()
-          console.log('processCss@', cssProp)
           cssPropValue = createCssMisc(value, theme, cssProp)
           cssMisc = Object.assign(cssMisc, { [cssProp]: cssPropValue })
         } else {
@@ -163,7 +159,7 @@ const forwardStyleDefault = [
   'tableLayout',
   'boxDecorationBreak',
   'shapeMargin',
-  'animation'
+  'animation',
 ]
 
 let styleLib = {}
@@ -180,12 +176,10 @@ const styledMemo = (attributes, theme, stringed = false) => {
     if (cssText === previousCssText) return
     previousCssText = cssText
     cn = css(cssText)
-    let cp = gParse(cssText)
-    console.log('styledMemeo: ', cssText, cn, stringed, cp)
+    // console.log('styledMemeo: ', cssText, cn, stringed)
     if (styleLib.hasOwnProperty(cn) && !stringed) return cn
 
     toLib = parse(cn, cssText, { ssr: stringed })
-    console.log('styledMem02: ', toLib)
     if (stringed) {
       return toLib
     } else {
@@ -237,7 +231,6 @@ const parse = (cn, cs, opts = { ssr: false }) => {
             mQu[n] = { [cn]: v }
           }
         } else if (n.startsWith('@keyframes')) {
-          console.log('parse kf: ', `${n} ${childStr}`)
           cStr += `${n} ${childStr}`
         } else {
           if (n.startsWith('&')) {
