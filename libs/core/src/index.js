@@ -160,6 +160,9 @@ const forwardStyleDefault = [
   'boxDecorationBreak',
   'shapeMargin',
   'animation',
+  'cursor',
+  'whiteSpace',
+  
 ]
 
 let styleLib = {}
