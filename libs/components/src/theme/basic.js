@@ -7,6 +7,7 @@ const heading = {
 }
 
 export const basic = {
+  space: [0, 4, 8, 16, 32, 64, 128, 256, 512],
   scale: [0.25, 0.5, 0.75, 1, 1.5, 2, 4, 8],
   colors: {
     text: '#666',
@@ -114,15 +115,5 @@ basic.space = [
 ]
 */
 basic.space = [0, 4, 8, 16, 32, 64, 128, 256, 512]
-
-basic.space.none = basic.space[0]
-basic.space.xxs = basic.space[1]
-basic.space.xs = basic.space[2]
-basic.space.s = basic.space[3]
-basic.space.m = basic.space[4]
-basic.space.l = basic.space[5]
-basic.space.xl = basic.space[6]
-basic.space.xxl = basic.space[7]
-basic.space.xxl = basic.space[8]
 
 export default basic

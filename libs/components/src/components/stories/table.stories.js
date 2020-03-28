@@ -40,6 +40,6 @@ export const withStyles = () => ({
       br: '1px solid',
       brdCol: '#666',
     },
-    colEven: { bg: '#ADA'}
+    colEven: { bg: '#ADA' },
   },
 })
