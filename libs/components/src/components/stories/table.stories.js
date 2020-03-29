@@ -40,6 +40,13 @@ export const withStyles = () => ({
       br: '1px solid',
       brdCol: '#666',
     },
+    tdMultiStyle: [{
+      p: '0.5rem',
+      br: '1px solid',
+      brdCol: '#666',
+    },
+    {txtAlign: 'right'}
+  ],
     colEven: { bg: '#ADA' },
   },
 })

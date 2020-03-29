@@ -7,6 +7,7 @@
   export let theadStyle = {}
   export let thStyle = {}
   export let tdStyle = {}
+  export let tdMultiStyle = {}
   export let colEven = {}
 </script>
 
@@ -27,17 +28,17 @@
     </THead>
     <TBody>
       <TR>
-        <TD style={tdStyle}>1</TD>
+        <TD style={tdMultiStyle}>1</TD>
         <TD style={tdStyle}>2</TD>
         <TD style={tdStyle}>3</TD>
       </TR>
       <TR>
-        <TD style={tdStyle}>4</TD>
+        <TD style={tdMultiStyle}>4</TD>
         <TD style={tdStyle}>5</TD>
         <TD style={tdStyle}>6</TD>
       </TR>
       <TR>
-        <TD style={tdStyle}>7</TD>
+        <TD style={tdMultiStyle}>7</TD>
         <TD style={tdStyle}>8</TD>
         <TD style={tdStyle}>9</TD>
       </TR>
