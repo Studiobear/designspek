@@ -6,14 +6,9 @@
   export let ssr = $$props.ssr || style.ssr || false
   export let as = 'th'
 
-  $: compStyles = styled(
-    {
-      ...style,
-    },
-    theme,
-    ssr,
-  )
+  $: compStyles = styled(style, theme, ssr)
   $: styleProps = ssr ? { style: compStyles } : { class: compStyles }
+  // $: console.log('THead', style, theme, compStyles, styleProps)
 </script>
 
 {#if !as || as === 'th'}

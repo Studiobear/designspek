@@ -7,7 +7,7 @@
   export let colspan = 1
   $: compStyles = styled(style, theme, ssr)
   $: styleProps = ssr ? { style: compStyles } : { class: compStyles }
-  // $: console.log('Box', style, theme, compStyles, styleProps)
+  // $: console.log('TD', style, theme, compStyles, styleProps)
 </script>
 
 <td {colspan} {...styleProps}>

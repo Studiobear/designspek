@@ -1,6 +1,7 @@
 <script>
   import { Table, THead, TBody, TR, TD } from '../../Table'
   import Box from '../../Box.svelte'
+  import theme from '../../../theme'
 
   export let tableContainer = {}
   export let tableStyle = {}
@@ -9,6 +10,14 @@
   export let tdStyle = {}
   export let tdMultiStyle = {}
   export let colEven = {}
+  $: style1 = {
+    bg: $theme.colors.primary,
+    txtAlign: 'center',
+  }
+  $: style2 = {
+    color: $theme.colors.secondary,
+    fontWeight: 700,
+  }
 </script>
 
 <Box style={tableContainer}>
@@ -34,7 +43,7 @@
       </TR>
       <TR>
         <TD style={tdMultiStyle}>4</TD>
-        <TD style={tdStyle}>5</TD>
+        <TD style={[style1, style2]}>5</TD>
         <TD style={tdStyle}>6</TD>
       </TR>
       <TR>

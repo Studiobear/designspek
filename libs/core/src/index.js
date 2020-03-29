@@ -172,6 +172,7 @@ const styledProcess = (attributes, theme, stringed = false) => {
   let cn, toLib
 
   const cssText = processCss(attributes, theme)
+  // console.log('styledProcess cssText: ', cssText)
   if (cssText === previousCssText) return
   previousCssText = cssText
   cn = css(cssText)
@@ -196,12 +197,15 @@ const styled = (attributes, theme, stringed = false) => {
     }
 
     if (attributes.length > 0) {
+      // console.log('styled array: ', attributes, attributes.length)
       attributes.map(attrib => {
         let tmpStyle = memoStyledProcess(attrib, theme, stringed)
+        // console.log('styled tmpStyle: ', tmpStyle)
         combStyles += `${tmpStyle} `
       })
       return combStyles
     } else {
+      // console.log('styled non-array: ', attributes)
       return memoStyledProcess(attributes, theme, stringed)
     }
   }
@@ -210,9 +214,9 @@ const styled = (attributes, theme, stringed = false) => {
 }
 
 const memoStyledProcess = memoize(styledProcess, {
-  maxSize: 30,
+  maxSize: 50,
   onCacheHit(cache, options) {
-    console.log('styled cache was hit')
+    // console.log('styledProcess cache was hit')
   },
 })
 
@@ -280,7 +284,7 @@ const parse = (cn, cs, opts = { ssr: false }) => {
 const memoParse = memoize(parse, {
   maxSize: 30,
   onCacheHit(cache, options) {
-    console.log('styled cache was hit')
+    // console.log('styledParse cache was hit')
   },
 })
 

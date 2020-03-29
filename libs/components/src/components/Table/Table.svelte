@@ -6,15 +6,13 @@
   export let ssr = $$props.ssr || style.ssr || false
   export let fixed = true
 
-  $: compStyles = styled(
+  const defaultStyle = [
     {
       borderCollapse: 'collapse',
       tableLayout: fixed ? 'fixed' : 'auto',
-      ...style,
     },
-    theme,
-    ssr,
-  )
+  ]
+  $: compStyles = styled(defaultStyle.concat(style), theme, ssr)
   $: styleProps = ssr ? { style: compStyles } : { class: compStyles }
   // $: console.log('Box', style, theme, compStyles, styleProps)
 </script>
