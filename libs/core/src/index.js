@@ -160,41 +160,63 @@ const forwardStyleDefault = [
   'boxDecorationBreak',
   'shapeMargin',
   'animation',
+  'cursor',
+  'whiteSpace',
+  'verticalAlign',
 ]
 
 let styleLib = {}
 
-const styledMemo = (attributes, theme, stringed = false) => {
+const styledProcess = (attributes, theme, stringed = false) => {
   let previousCssText = ''
   let cn, toLib
 
+  const cssText = processCss(attributes, theme)
+  // console.log('styledProcess cssText: ', cssText)
+  if (cssText === previousCssText) return
+  previousCssText = cssText
+  cn = css(cssText)
+  // console.log('styledMemeo: ', cssText, cn, stringed)
+  if (styleLib.hasOwnProperty(cn) && !stringed) return cn
+
+  toLib = memoParse(cn, cssText, { ssr: stringed })
+
+  if (stringed) {
+    return toLib
+  } else {
+    styleLib = { ...toLib, ...styleLib }
+    return cn
+  }
+}
+
+const styled = (attributes, theme, stringed = false) => {
+  let combStyles = ''
   if (theme) {
     if (theme.forwardStyle === undefined) {
       theme.forwardStyle = forwardStyleDefault
     }
-    const cssText = processCss(attributes, theme)
-    if (cssText === previousCssText) return
-    previousCssText = cssText
-    cn = css(cssText)
-    // console.log('styledMemeo: ', cssText, cn, stringed)
-    if (styleLib.hasOwnProperty(cn) && !stringed) return cn
 
-    toLib = parse(cn, cssText, { ssr: stringed })
-    if (stringed) {
-      return toLib
+    if (attributes.length > 0) {
+      // console.log('styled array: ', attributes, attributes.length)
+      attributes.map(attrib => {
+        let tmpStyle = memoStyledProcess(attrib, theme, stringed)
+        // console.log('styled tmpStyle: ', tmpStyle)
+        combStyles += `${tmpStyle} `
+      })
+      return combStyles
     } else {
-      styleLib = { ...toLib, ...styleLib }
-      return cn
+      // console.log('styled non-array: ', attributes)
+      return memoStyledProcess(attributes, theme, stringed)
     }
   }
 
   return
 }
 
-const styled = memoize(styledMemo, {
-  maxSize: 10,
+const memoStyledProcess = memoize(styledProcess, {
+  maxSize: 50,
   onCacheHit(cache, options) {
-    // console.log('styled cache was hit')
+    // console.log('styledProcess cache was hit')
   },
 })
 
@@ -258,6 +280,13 @@ const parse = (cn, cs, opts = { ssr: false }) => {
 
   return parsed
 }
+
+const memoParse = memoize(parse, {
+  maxSize: 30,
+  onCacheHit(cache, options) {
+    // console.log('styledParse cache was hit')
+  },
+})
 
 let storeSSR = ''
 let storedGlobal = false

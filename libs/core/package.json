@@ -1,6 +1,6 @@
 {
   "name": "@studiobear/designspek",
-  "version": "0.3.3",
+  "version": "0.3.8",
   "description": "A Reactive Design System: Svelte meets System UI",
   "source": "src/index.js",
   "main": "dist/index.js",
@@ -17,6 +17,7 @@
   "scripts": {
     "bundle": "microbundle",
     "clean": "rm -rf dist",
+    "prepublishOnly": "yarn build",
     "bundlesize": "bundlesize",
     "lint": "prettier --check 'src/**/*.{html,js,svelte}'",
     "lint:fix": "prettier --write 'src/**/*.{html,js,svelte}'",
