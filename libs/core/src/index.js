@@ -162,7 +162,7 @@ const forwardStyleDefault = [
   'animation',
   'cursor',
   'whiteSpace',
-  'verticalAlign'
+  'verticalAlign',
 ]
 
 let styleLib = {}
