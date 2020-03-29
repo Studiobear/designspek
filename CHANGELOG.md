@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.3.8](https://github.com/Studiobear/designspek/compare/v0.3.2...v0.3.8) (2020-03-29)
+
+
+### Features
+
+* **designspek:** accept keyframes + animation ([27c84a6](https://github.com/Studiobear/designspek/commit/27c84a6656dc654ef1c9d00742432de33a62babe))
+* **designspek:** method for applying multiple styles ([2bb9589](https://github.com/Studiobear/designspek/commit/2bb95898d14eb2478bd13b98bb15d2c7eeffbb31))
+* **designspek:** styled accepts arrays ([dd4a3bb](https://github.com/Studiobear/designspek/commit/dd4a3bb50bd565568a631940b6767509e9e5d12e))
+* **designspek-components:** table Components ([bf3f0bc](https://github.com/Studiobear/designspek/commit/bf3f0bc2e7633003251ef0c76a21d90d882e436a))
+
+
+### Bug Fixes
+
+* **designspek-components:** add colspan to TD + pub 0.3.6 ([bbdc80a](https://github.com/Studiobear/designspek/commit/bbdc80a9f48464fe06bba8c4cf8bba10179a51a8))
+* **designspek-components:** fix storybook styles for Grid ([6cb9cc7](https://github.com/Studiobear/designspek/commit/6cb9cc798f8e343bed1bdfd9672c30656184cceb))
+
 ### [0.3.2](https://github.com/Studiobear/designspek/compare/v0.3.1...v0.3.2) (2020-03-21)
 
 
