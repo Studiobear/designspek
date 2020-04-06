@@ -4,47 +4,47 @@ All notable changes to this project will be documented in this file. See [standa
 
 ## [0.4.0](https://github.com/Studiobear/designspek/compare/v0.3.8...v0.4.0) (2020-04-06)
 
-
 ### Features
 
-* **designspek-components:** array handling for all components ([e79b843](https://github.com/Studiobear/designspek/commit/e79b843a9c830bcd0de9c03ad7ea3e8233c97bdf))
+- **designspek-components:**
+  - array handling for all components ([e79b843](https://github.com/Studiobear/designspek/commit/e79b843a9c830bcd0de9c03ad7ea3e8233c97bdf))
 
 ### [0.3.8](https://github.com/Studiobear/designspek/compare/v0.3.2...v0.3.8) (2020-03-29)
 
-This release introduces `styled` arrays. Previously, a style object is submitted, then a css classname (`.go12345`) or stringed inline style (`{ text-align: center; }`) is spit out. Now, multiple style objects can be submitted with an array (`styled([style1, style2], theme, false)`) and classnames for each style object (`.go12345 .go12346`) or concatenated string (`{ text-align: center; font-weight: bold; }`) are returned. 
+This release introduces `styled` arrays. Previously, a style object is submitted, then a css classname (`.go12345`) or stringed inline style (`{ text-align: center; }`) is spit out. Now, multiple style objects can be submitted with an array (`styled([style1, style2], theme, false)`) and classnames for each style object (`.go12345 .go12346`) or concatenated string (`{ text-align: center; font-weight: bold; }`) are returned.
 
-This creates a major change in mentality of how **designspek** can utilize the compiled-nature of Svelte to simplify the layer of/between CSS-in-JS and SSR whilst the usualy good stuff: more modularity opportunities, increased perfomance, and reduced boilerplate. 
+This creates a major change in mentality of how **designspek** can utilize the compiled-nature of Svelte to simplify the layer of/between CSS-in-JS and SSR whilst the usualy good stuff: more modularity opportunities, increased perfomance, and reduced boilerplate.
 
 ### Features
 
-* **designspek:**
+- **designspek:**
+
   - accept keyframes + animation ([27c84a6](https://github.com/Studiobear/designspek/commit/27c84a6656dc654ef1c9d00742432de33a62babe))
   - method for applying multiple styles ([2bb9589](https://github.com/Studiobear/designspek/commit/2bb95898d14eb2478bd13b98bb15d2c7eeffbb31))
   - styled accepts arrays ([dd4a3bb](https://github.com/Studiobear/designspek/commit/dd4a3bb50bd565568a631940b6767509e9e5d12e))
 
-* **designspek-components:**
+- **designspek-components:**
   - table Components ([bf3f0bc](https://github.com/Studiobear/designspek/commit/bf3f0bc2e7633003251ef0c76a21d90d882e436a))
-
 
 ### Bug Fixes
 
-* **designspek-components:**
+- **designspek-components:**
   - add colspan to TD + pub 0.3.6 ([bbdc80a](https://github.com/Studiobear/designspek/commit/bbdc80a9f48464fe06bba8c4cf8bba10179a51a8))
-* **designspek-components:**
+- **designspek-components:**
   - fix storybook styles for Grid ([6cb9cc7](https://github.com/Studiobear/designspek/commit/6cb9cc798f8e343bed1bdfd9672c30656184cceb))
 
 ### [0.3.2](https://github.com/Studiobear/designspek/compare/v0.3.1...v0.3.2) (2020-03-21)
 
-
 ### Features
 
 **designspek-components:**
-- refactor Card component from covid app ([4a63257](https://github.com/Studiobear/designspek/commit/4a632571b862131f421618a9e8dcd2db342ffb07))
 
+- refactor Card component from covid app ([4a63257](https://github.com/Studiobear/designspek/commit/4a632571b862131f421618a9e8dcd2db342ffb07))
 
 ### Bug Fixes
 
 **designspek-components:**
+
 - remove circular dependencies ([a470304](https://github.com/Studiobear/designspek/commit/a470304cb4be0eefa34555811d8217d611f68041))
 
 ### [0.3.1](https://github.com/Studiobear/designspek/compare/v0.2.4...v0.3.1) (2020-03-19)
