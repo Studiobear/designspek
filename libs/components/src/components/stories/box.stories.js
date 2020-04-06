@@ -27,7 +27,7 @@ export const withBackground = () => ({
   Component: BoxView,
   props: {
     style: {
-      bg: 'primary',
+      bg: basic.colors.primary,
     },
     theme: theme,
     boxText: 'Box with theme primary color background',
@@ -38,7 +38,7 @@ export const withColorPrimary = () => ({
   Component: BoxView,
   props: {
     style: {
-      color: 'primary',
+      color: basic.colors.primary,
     },
     theme: theme,
     boxText: 'Box with theme primary color text',
@@ -49,7 +49,7 @@ export const withColorSecondary = () => ({
   Component: BoxView,
   props: {
     style: {
-      color: 'secondary',
+      color: basic.colors.secondary,
     },
     theme: theme,
     boxText: 'Box with theme secondary color text',
@@ -79,6 +79,20 @@ export const withBorder = () => ({
     },
     theme: theme,
     boxText: 'Box with border',
+  },
+})
+export const withMultipleClasses = () => ({
+  Component: BoxView,
+  props: {
+    style: [
+      {
+        color: basic.colors.secondary,
+      },
+      { fontSize: '2rem' },
+    ],
+    theme: theme,
+    boxText:
+      'Box styled with two classes + default class (or rather an array of style objects]',
   },
 })
 

@@ -11,16 +11,15 @@
   function onClick(event) {
     dispatch('click', event)
   }
-  $: compStyles = styled(
+
+  const defaultStyle = [
     {
       brd: '1px solid',
       brdCol: '#ccc',
       borderRadius: '3px',
-      ...style,
     },
-    theme,
-    ssr,
-  )
+  ]
+  $: compStyles = styled(defaultStyle.concat(style), theme, ssr)
   $: styleProps = ssr ? { style: compStyles } : { class: compStyles }
 </script>
 

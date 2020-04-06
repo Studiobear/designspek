@@ -7,16 +7,15 @@
   export let as = 'a'
   export let href = ''
   export let target = undefined
-  $: compStyles = styled(
+
+  const defaultStyle = [
     {
       boxSizing: 'border-box',
       margin: 0,
       minWidth: 0,
-      ...style,
     },
-    theme,
-    ssr,
-  )
+  ]
+  $: compStyles = styled(defaultStyle.concat(style), theme, ssr)
   $: styleProps = ssr ? { style: compStyles } : { class: compStyles }
   // $: console.log('Link: ', style)
 </script>

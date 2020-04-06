@@ -13,4 +13,16 @@
   <p {...styleProps}>
     <slot />
   </p>
+{:else if as === 'span'}
+  <span {...styleProps}>
+    <slot />
+  </span>
+{:else if as === 'strong'}
+  <strong {...styleProps}>
+    <slot />
+  </strong>
+{:else if as === 'emphasis'}
+  <em {...styleProps}>
+    <slot />
+  </em>
 {/if}

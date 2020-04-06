@@ -5,10 +5,12 @@
   export let style = $$props.style || {}
   export let theme = $$props.theme || style.theme || {}
   export let ssr = $$props.ssr || style.ssr || false
-  let compStyles = {
-    d: 'flex',
-    ...style,
-  }
+  const defaultStyle = [
+    {
+      d: 'flex',
+    },
+  ]
+  $: compStyles = defaultStyle.concat(style)
 
   // console.log('Flex', compStyles, $$props)
 </script>

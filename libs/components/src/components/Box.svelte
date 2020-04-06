@@ -5,16 +5,14 @@
   export let style = $$props.style || {}
   export let theme = $$props.theme || style.theme || {}
   export let ssr = $$props.ssr || style.ssr || false
-  $: compStyles = styled(
+  const defaultStyle = [
     {
       boxSizing: 'border-box',
       margin: 0,
       minWidth: 0,
-      ...style,
     },
-    theme,
-    ssr,
-  )
+  ]
+  $: compStyles = styled(defaultStyle.concat(style), theme, ssr)
   $: styleProps = ssr ? { style: compStyles } : { class: compStyles }
   // $: console.log('Box', style, theme, compStyles, styleProps)
 </script>

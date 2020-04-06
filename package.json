@@ -5,6 +5,13 @@
   "author": "Barry Low <barry@studiobear.co>",
   "license": "MIT",
   "private": true,
+  "keywords": [
+    "svelte",
+    "designspek",
+    "css-in-js",
+    "system-ui",
+    "monorepo"
+  ],
   "workspaces": {
     "packages": [
       "libs/*",
@@ -17,6 +24,8 @@
     ]
   },
   "scripts": {
+    "components": "yarn workspace @studiobear/designspek-components",
+    "core": "yarn workspace @studiobear/designspek",
     "build": "lerna run build",
     "watch": "lerna run dev",
     "clean": "lerna run clean",

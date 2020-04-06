@@ -15,18 +15,18 @@
   if (typeof $$props.container === 'string') d = { d: $$props.container }
   if (typeof colngap === ('number' || 'string')) gridgap = ''
   if (typeof rowgap === ('number' || 'string')) gridgap = ''
-  $: compStyles = {
-    colgap,
-    rowgap,
-    gridgap,
-    ...d,
-    ...style,
-    theme,
-    ssr,
-  }
+  const defaultStyle = [
+    {
+      colgap,
+      rowgap,
+      gridgap,
+      ...d,
+    },
+  ]
+  $: compStyles = defaultStyle.concat(style)
   // console.log('Grid', d, compStyles, $$props)
 </script>
 
-<Box style={compStyles} {theme}>
+<Box style={compStyles} {theme} {ssr}>
   <slot />
 </Box>
