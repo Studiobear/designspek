@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.4.0](https://github.com/Studiobear/designspek/compare/v0.3.8...v0.4.0) (2020-04-06)
+
+
+### Features
+
+* **designspek-components:** array handling for all components ([e79b843](https://github.com/Studiobear/designspek/commit/e79b843a9c830bcd0de9c03ad7ea3e8233c97bdf))
+
 ### [0.3.8](https://github.com/Studiobear/designspek/compare/v0.3.2...v0.3.8) (2020-03-29)
 
 This release introduces `styled` arrays. Previously, a style object is submitted, then a css classname (`.go12345`) or stringed inline style (`{ text-align: center; }`) is spit out. Now, multiple style objects can be submitted with an array (`styled([style1, style2], theme, false)`) and classnames for each style object (`.go12345 .go12346`) or concatenated string (`{ text-align: center; font-weight: bold; }`) are returned. 
