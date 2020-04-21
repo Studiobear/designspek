@@ -163,6 +163,8 @@ const forwardStyleDefault = [
   'cursor',
   'whiteSpace',
   'verticalAlign',
+  'transition',
+  'transform',
 ]
 
 let styleLib = {}
