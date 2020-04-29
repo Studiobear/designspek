@@ -1,5 +1,7 @@
 <script>
   import { styled } from '@studiobear/designspek'
+  import Field from './Field.svelte'
+  import Text from '../Text.svelte'
 
   let div
   export let fields = $$props.fields || []
@@ -17,10 +19,15 @@
   $: styleProps = ssr ? { style: compStyles } : { class: compStyles }
   // $: console.log('Box', style, theme, compStyles, styleProps)
 
-  if (fields && fields.length > 0) {
-  }
+  let formFields = fields && fields.length > 0 ? fields : false
 </script>
 
 <form bind:this={div} on:click {...styleProps}>
-  <slot />
+  {#if !formFields}
+    <Text>No form fields</Text>
+  {:else}
+    {#each formFields as fieldItem, i}
+      <Field key={i} {theme} {style} {...fieldItem} />
+    {/each}
+  {/if}
 </form>

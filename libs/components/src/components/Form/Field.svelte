@@ -1,14 +1,21 @@
 <script>
   import { styled } from '@studiobear/designspek'
+  import { slugify } from '../../utils'
 
   let div
   export let name = $$props.name || ''
   export let label = $$props.label || ''
+  export let inLabel = $$props.inLabel || true
+  export let afterLabel = $$props.afterLabel || true
   export let type = $$props.type || 'text'
   export let value = $$props.value || ''
   export let placeholder = $$props.placeholder || ''
   export let validate = $$props.validate || false
-  export let inline = $$props.inline || false
+  export let disabled = $$props.disabled || false
+  export let checked = $$props.checked || false
+  export let min = $$props.min || 0
+  export let max = $$props.max || 100
+  export let step = $$props.step || 1
   export let style = $$props.style || {}
   export let theme = $$props.theme || style.theme || {}
   export let ssr = $$props.ssr || style.ssr || false
@@ -22,15 +29,44 @@
   $: compStyles = styled(defaultStyle.concat(style), theme, ssr)
   $: styleProps = ssr ? { style: compStyles } : { class: compStyles }
   // $: console.log('Box', style, theme, compStyles, styleProps)
+  const typeBool = /(radio|checkbox)/i //boolean values
+  const typeStr = /(text|password|email|url|tel|search|hidden)/i //string values
+  const typeNum = /(number|range)/i
+  const typeDate = /(date|datetime-local|month|week|)/i
+  const typeEvnt = /(submit|reset|button)/i
+  const typeFile = /(file)/i
+
+  const id = typeBool.test(type) ? `${name}-${slugify(label)}` : name
+
+  const input = `
+    <input
+      id="${id}"
+      name="${name}"
+      type="${type}"
+      placeholder="${placeholder}"
+      value="${value}"
+      ${disabled ? 'disabled' : ''}
+      ${checked ? 'checked' : ''}
+      ${typeNum.test(type) ? `min=${min}` : ''}
+      ${typeNum.test(type) ? `max=${max}` : ''}
+      ${typeNum.test(type) ? `step=${step}` : ''}
+    />
+  `
+
+  const handleChange = e => {
+    if (validate) {
+    }
+  }
 </script>
 
-<label {...styleProps}>
-  {label}
-  {#if inline}
-    <input {type} {placeholder} {name} {value} />
+<label {...styleProps} for={name}>
+  {afterLabel ? label : ''}
+  {#if inLabel}
+    {@html input}
   {/if}
+  {afterLabel ? '' : label}
 </label>
 
-{#if !inline}
-  <input {type} {placeholder} {name} {value} />
+{#if !inLabel}
+  {@html input}
 {/if}
