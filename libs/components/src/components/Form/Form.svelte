@@ -2,12 +2,13 @@
   import { styled } from '@studiobear/designspek'
   import Field from './Field.svelte'
   import Text from '../Text.svelte'
+  import { getValues } from './formUtil'
 
-  let div
   export let fields = $$props.fields || []
   export let style = $$props.style || {}
   export let theme = $$props.theme || style.theme || {}
   export let ssr = $$props.ssr || style.ssr || false
+  export let values = undefined
   const defaultStyle = [
     {
       boxSizing: 'border-box',
@@ -17,17 +18,26 @@
   ]
   $: compStyles = styled(defaultStyle.concat(style), theme, ssr)
   $: styleProps = ssr ? { style: compStyles } : { class: compStyles }
-  // $: console.log('Box', style, theme, compStyles, styleProps)
+  $: console.log('Form', values)
 
   let formFields = fields && fields.length > 0 ? fields : false
 </script>
 
-<form bind:this={div} on:click {...styleProps}>
+<form
+  {...styleProps}
+  on:update={e => {
+    console.log('Form onUpdate:', e, values)
+    values = e.detail
+    return values
+  }}
+  use:getValues={values}>
+  <slot />
   {#if !formFields}
     <Text>No form fields</Text>
   {:else}
     {#each formFields as fieldItem, i}
-      <Field key={i} {theme} {style} {...fieldItem} />
+      <Field key={i} {theme} {style} {...fieldItem} bind:values />
     {/each}
   {/if}
+
 </form>

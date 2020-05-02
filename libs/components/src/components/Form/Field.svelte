@@ -29,14 +29,16 @@
   $: compStyles = styled(defaultStyle.concat(style), theme, ssr)
   $: styleProps = ssr ? { style: compStyles } : { class: compStyles }
   // $: console.log('Box', style, theme, compStyles, styleProps)
-  const typeBool = /(radio|checkbox)/i //boolean values
-  const typeStr = /(text|password|email|url|tel|search|hidden)/i //string values
+  const typeBool = /(radio|checkbox)/i
+  const typeStr = /(text|password|email|url|tel|search|hidden)/i
   const typeNum = /(number|range)/i
   const typeDate = /(date|datetime-local|month|week|)/i
   const typeEvnt = /(submit|reset|button)/i
   const typeFile = /(file)/i
 
   const id = typeBool.test(type) ? `${name}-${slugify(label)}` : name
+  const setBoolValue = typeBool.test(type) && type === 'checkbox' ? name : label
+  const setValue = typeBool.test(type) ? setBoolValue : value
 
   const input = `
     <input
@@ -44,7 +46,8 @@
       name="${name}"
       type="${type}"
       placeholder="${placeholder}"
-      value="${value}"
+      value="${setValue}"
+      ${validate ? `validate="${validate}"` : ''}
       ${disabled ? 'disabled' : ''}
       ${checked ? 'checked' : ''}
       ${typeNum.test(type) ? `min=${min}` : ''}
@@ -52,11 +55,6 @@
       ${typeNum.test(type) ? `step=${step}` : ''}
     />
   `
-
-  const handleChange = e => {
-    if (validate) {
-    }
-  }
 </script>
 
 <label {...styleProps} for={name}>
