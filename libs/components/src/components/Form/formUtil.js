@@ -51,14 +51,14 @@ const serialize = form => {
       if (tmp.checked) {
         j = out[key]
         console.log('serialize tmp: ', tmp, tmp.checked)
-        tmpV = tmp.value === 'on' || tmp.value
+        tmpV = tmp.type === 'radio' ? tmp.value : true
 
         if (j === undefined) {
-          out[key] = j === null && j !== 0 ? [tmp] : [].concat(j, tmpV)
+          out[key] = tmpV
           console.log('serialize Bool1: ', j, tmp, key, out[key])
         } else {
-          out[key] = j === null && j !== 0 ? [tmp] : [].concat(j, tmpV)
-          console.log('serialize Bool2: ', j, tmp, key, out[key])
+          out[key] = j === null && j !== 0 ? [tmpV] : [].concat(j, tmpV)
+          console.log('serialize Bool2: ', j, tmpV, key, out[key])
         }
       }
     } else if (tmp.value || tmp.value === 0) {
@@ -66,27 +66,38 @@ const serialize = form => {
       out[key] = j === null && j !== 0 ? tmp.value : [].concat(j, tmp.value)
     }
   }
+  console.log('serialize out: ', out)
   return out
 }
 
 const deserialize = (form, vals) => {
   let i = 0
   let tmp
-
+  console.log('deserialize: ', vals)
   while ((tmp = form.elements[i++])) {
     if (!tmp.name) continue
-
-    if (tmp.type === 'checkbox') {
+    console.log('deserialize tmp: ', tmp)
+    if (tmp.type === 'radio') {
       if (!vals[tmp.name]) continue
-
       if (vals[tmp.name].includes(tmp.value)) {
         tmp.checked = true
       } else {
         tmp.checked = false
       }
-    } else {
-      tmp.value = vals[tmp.name] ? vals[tmp.name] : ''
+      break
     }
+    if (tmp.type === 'checkbox') {
+      if (!vals[tmp.name]) continue
+      console.log('deserialize cb: ', vals[tmp.name])
+
+      if (vals[tmp.name]) {
+        tmp.checked = true
+      } else {
+        tmp.checked = false
+      }
+      break
+    }
+    tmp.value = vals[tmp.name] ? vals[tmp.name] : ''
   }
 }
 
@@ -97,7 +108,7 @@ const debounce = (v, d = 200) => {
   }, d)
 }
 
-export const getValues = (el, values) => {
+export const getValues = el => {
   let updated = 0
 
   const inputs = [].slice.call(el.querySelectorAll('input'))
@@ -119,7 +130,10 @@ export const getValues = (el, values) => {
   procUpdate()
 
   return {
-    update: vals => (updated === 2 ? deserialize(el, vals) : (updated += 1)),
+    update: vals => {
+      console.log('getValues update: ', vals, updated)
+      return updated === 2 ? deserialize(el, vals) : (updated += 1)
+    },
     destroy: () => el.removeEventListener('input', procUpdate),
   }
 }

@@ -38,9 +38,9 @@ export const booleanInputs = () => ({
     fields: [
       { name: 'checkbox1', label: 'checkbox 1', type: 'checkbox' },
       { name: 'checkbox2', label: 'checkbox 2', type: 'checkbox' },
-      { name: 'radio', label: 'radio 1', type: 'radio' },
-      { name: 'radio', label: 'radio 2', type: 'radio' },
-      { name: 'radio', label: 'radio 3', type: 'radio' },
+      { name: 'radio', label: 'radio 1', value: 'radio 1', type: 'radio' },
+      { name: 'radio', label: 'radio 2', value: 'radio 2', type: 'radio' },
+      { name: 'radio', label: 'radio 3', value: 'radio 3', type: 'radio' },
     ],
   },
 })

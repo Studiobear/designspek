@@ -37,8 +37,6 @@
   const typeFile = /(file)/i
 
   const id = typeBool.test(type) ? `${name}-${slugify(label)}` : name
-  const setBoolValue = typeBool.test(type) && type === 'checkbox' ? name : label
-  const setValue = typeBool.test(type) ? setBoolValue : value
 
   const input = `
     <input
@@ -46,7 +44,7 @@
       name="${name}"
       type="${type}"
       placeholder="${placeholder}"
-      value="${setValue}"
+      value="${value}"
       ${validate ? `validate="${validate}"` : ''}
       ${disabled ? 'disabled' : ''}
       ${checked ? 'checked' : ''}

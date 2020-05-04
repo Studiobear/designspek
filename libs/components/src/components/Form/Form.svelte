@@ -8,7 +8,7 @@
   export let style = $$props.style || {}
   export let theme = $$props.theme || style.theme || {}
   export let ssr = $$props.ssr || style.ssr || false
-  export let values = undefined
+  export let values = {}
   const defaultStyle = [
     {
       boxSizing: 'border-box',
