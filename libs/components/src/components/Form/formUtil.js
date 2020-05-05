@@ -1,3 +1,7 @@
+export const isEmpty = obj => {
+  return !obj || Object.keys(obj).length === 0
+}
+
 export const selectTextOnFocus = el => {
   const handleFocus = event => {
     el && typeof el.select === 'function' && el.select()
@@ -40,12 +44,18 @@ const serialize = form => {
 
     key = tmp.name
 
-    if (tmp.type === 'select-multiple') {
-      out[key] = []
-      for (j = 0; j < tmp.options.length; j++) {
-        if (tmp.options[j].selected) {
-          out[key].push(tmp.options[j].value)
+    if (tmp.type === 'select-multiple' || key.endsWith('[]')) {
+      if (tmp.type === 'select-multiple') {
+        out[key] = []
+        for (j = 0; j < tmp.options.length; j++) {
+          if (tmp.options[j].selected) {
+            out[key].push(tmp.options[j].value)
+          }
         }
+      } else {
+        out[key] = isEmpty(out[key])
+          ? { [tmp.value]: tmp.checked }
+          : { [tmp.value]: tmp.checked, ...out[key] }
       }
     } else if (typeBool.test(tmp.type)) {
       if (tmp.checked) {
@@ -71,15 +81,22 @@ const serialize = form => {
 }
 
 const deserialize = (form, vals) => {
-  let i = 0
-  let tmp
+  let i = 0,
+    tmp,
+    key
   console.log('deserialize: ', vals)
   while ((tmp = form.elements[i++])) {
     if (!tmp.name) continue
     console.log('deserialize tmp: ', tmp)
+    key = tmp.name
+    if (key.endsWith('[]')) {
+      if (vals[key].hasOwnProperty(tmp.value))
+        tmp.checked = vals[key][tmp.value]
+      break
+    }
     if (tmp.type === 'radio') {
-      if (!vals[tmp.name]) continue
-      if (vals[tmp.name].includes(tmp.value)) {
+      if (!vals[key]) continue
+      if (vals[key].includes(tmp.value)) {
         tmp.checked = true
       } else {
         tmp.checked = false
@@ -87,17 +104,17 @@ const deserialize = (form, vals) => {
       break
     }
     if (tmp.type === 'checkbox') {
-      if (!vals[tmp.name]) continue
-      console.log('deserialize cb: ', vals[tmp.name])
+      if (!vals[key]) continue
+      console.log('deserialize cb: ', vals[key])
 
-      if (vals[tmp.name]) {
+      if (vals[key]) {
         tmp.checked = true
       } else {
         tmp.checked = false
       }
       break
     }
-    tmp.value = vals[tmp.name] ? vals[tmp.name] : ''
+    tmp.value = vals[key] ? vals[key] : ''
   }
 }
 
@@ -108,6 +125,7 @@ const debounce = (v, d = 200) => {
   }, d)
 }
 
+// Use event delegation to manage input updates
 export const getValues = el => {
   let updated = 0
 

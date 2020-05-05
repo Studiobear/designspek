@@ -8,9 +8,6 @@
   $: console.log('FormView: ', values)
 </script>
 
-<Form {fields} {style} bind:values>
-  <Text>Component in slot</Text>
-  <input type="text" name="slotInput" placeholder="slot" />
-</Form>
+<Form {fields} {style} bind:values />
 
 <pre>{JSON.stringify(values, undefined, 1)}</pre>

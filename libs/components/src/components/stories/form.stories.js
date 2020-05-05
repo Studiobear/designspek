@@ -45,6 +45,32 @@ export const booleanInputs = () => ({
   },
 })
 
+export const checkboxGroupedInputs = () => ({
+  Component: FormView,
+  props: {
+    fields: [
+      {
+        name: 'checkbox[]',
+        label: 'checkbox 1',
+        value: 'checkbox 1',
+        type: 'checkbox',
+      },
+      {
+        name: 'checkbox[]',
+        label: 'checkbox 2',
+        value: 'checkbox 2',
+        type: 'checkbox',
+      },
+      {
+        name: 'checkbox[]',
+        label: 'checkbox 3',
+        value: 'checkbox 3',
+        type: 'checkbox',
+      },
+    ],
+  },
+})
+
 export const numberInputs = () => ({
   Component: FormView,
   props: {
