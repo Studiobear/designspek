@@ -77,7 +77,7 @@ const serialize = form => {
       }
     } else if (tmp.value || tmp.value === 0) {
       j = out[key]
-      out[key] = j === null && j !== 0 ? tmp.value : [].concat(j, tmp.value)
+      out[key] = tmp.value
     }
   }
   console.log('serialize out: ', out)

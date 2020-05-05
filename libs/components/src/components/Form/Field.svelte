@@ -48,8 +48,8 @@
       ${validate ? `validate="${validate}"` : ''}
       ${disabled ? 'disabled' : ''}
       ${checked ? 'checked' : ''}
-      ${typeNum.test(type) ? `min=${min}` : ''}
-      ${typeNum.test(type) ? `max=${max}` : ''}
+      ${typeNum.test(type) || typeDate.test(type) ? `min=${min}` : ''}
+      ${typeNum.test(type) || typeDate.test(type) ? `max=${max}` : ''}
       ${typeNum.test(type) ? `step=${step}` : ''}
     />
   `

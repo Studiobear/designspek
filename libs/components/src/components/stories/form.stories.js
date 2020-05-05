@@ -96,6 +96,44 @@ export const numberInputs = () => ({
   },
 })
 
+export const dateInputs = () => ({
+  Component: FormView,
+  props: {
+    fields: [
+      {
+        name: 'date1',
+        label: 'date (no options)',
+        type: 'date',
+      },
+      {
+        name: 'date2',
+        label: 'date (min:"2020-04-01", max: "2020-04-05")',
+        type: 'date',
+        min: '2020-04-01',
+        max: '2020-04-05',
+      },
+      {
+        name: 'date3',
+        label:
+          'datetime-local (min:"2020-04-01T03:00", max: "2020-04-01T15:00")',
+        type: 'datetime-local',
+        min: '2020-04-01T03:00',
+        max: '2020-04-01T15:00',
+      },
+      {
+        name: 'date4',
+        label: 'month',
+        type: 'month',
+      },
+      {
+        name: 'date5',
+        label: 'week',
+        type: 'week',
+      },
+    ],
+  },
+})
+
 export const withPlaceholderAndDefaultValue = () => ({
   Component: FormView,
   props: {
