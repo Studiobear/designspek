@@ -58,17 +58,21 @@ const serialize = form => {
           : { [tmp.value]: tmp.checked, ...out[key] }
       }
     } else if (typeBool.test(tmp.type)) {
-      if (tmp.checked) {
-        j = out[key]
-        console.log('serialize tmp: ', tmp, tmp.checked)
-        tmpV = tmp.type === 'radio' ? tmp.value : true
+      j = out[key]
+      console.log('serialize tmp: ', tmp, tmp.checked)
+      tmpV = tmp.type === 'radio' ? tmp.value : tmp.checked
 
-        if (j === undefined) {
+      if (j === undefined) {
+        if (tmp.type === 'radio') {
+          if (tmp.checked) out[key] = tmpV
+        } else {
           out[key] = tmpV
-          console.log('serialize Bool1: ', j, tmp, key, out[key])
+        }
+      } else {
+        if (tmp.type === 'radio') {
+          if (tmp.checked) out[key] = tmpV
         } else {
           out[key] = j === null && j !== 0 ? [tmpV] : [].concat(j, tmpV)
-          console.log('serialize Bool2: ', j, tmpV, key, out[key])
         }
       }
     } else if (tmp.value || tmp.value === 0) {
