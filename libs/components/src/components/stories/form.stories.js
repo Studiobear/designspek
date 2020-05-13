@@ -209,7 +209,7 @@ export const withValidation = () => ({
   props: {
     fields: [
       { name: 'name', label: 'Name', validate: true },
-      { name: 'email', label: 'Email', validate: true },
+      { name: 'email', label: 'Email', type: 'email', validate: true },
     ],
   },
 })

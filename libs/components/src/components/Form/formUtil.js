@@ -22,6 +22,7 @@ const serialize = form => {
     key,
     tmp,
     tmpV,
+    tmpValidate,
     out = {}
 
   // Regex to determine input type
@@ -41,6 +42,7 @@ const serialize = form => {
       tmp.oninput,
       tmp.validate,
       tmp.validity,
+      tmp.validityState,
       tmp.validationMessage,
     )
     if (
@@ -88,6 +90,21 @@ const serialize = form => {
     } else if (tmp.value || tmp.value === 0) {
       j = out[key]
       out[key] = { value: tmp.value }
+    }
+    if (tmp.validate || tmp.required) {
+      let validity = {}
+      for (let key in tmp.validity) {
+        if (tmp.validity[key])
+          validity = { ...validity, [key]: tmp.validity[key] }
+      }
+
+      out[key] = {
+        ...out[key],
+        validate: {
+          validity,
+          validationMessage: tmp.validationMessage,
+        },
+      }
     }
   }
   console.log('serialize out: ', out)
