@@ -134,6 +134,20 @@ export const dateInputs = () => ({
   },
 })
 
+export const eventInputs = () => ({
+  Component: FormView,
+  props: {
+    fields: [
+      {
+        name: 'submit',
+        label: false,
+        type: 'submit',
+        value: 'submit',
+      },
+    ],
+  },
+})
+
 export const withPlaceholderAndDefaultValue = () => ({
   Component: FormView,
   props: {
@@ -194,8 +208,8 @@ export const withValidation = () => ({
   Component: FormView,
   props: {
     fields: [
-      { name: 'name', label: 'Name', validate: val => val.length > 0 },
-      { name: 'email', label: 'Email' },
+      { name: 'name', label: 'Name', validate: true },
+      { name: 'email', label: 'Email', validate: true },
     ],
   },
 })

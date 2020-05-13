@@ -33,7 +33,16 @@ const serialize = form => {
   const typeFile = /(file)/i
 
   while ((tmp = form.elements[i++])) {
-    console.log('serialize : ', tmp.name, tmp.value, tmp.onchange, tmp.oninput)
+    console.log(
+      'serialize : ',
+      tmp.name,
+      tmp.value,
+      tmp.onchange,
+      tmp.oninput,
+      tmp.validate,
+      tmp.validity,
+      tmp.validationMessage,
+    )
     if (
       !tmp.name ||
       tmp.disabled ||
@@ -46,12 +55,13 @@ const serialize = form => {
 
     if (tmp.type === 'select-multiple' || key.endsWith('[]')) {
       if (tmp.type === 'select-multiple') {
-        out[key] = []
+        tmpV = []
         for (j = 0; j < tmp.options.length; j++) {
           if (tmp.options[j].selected) {
-            out[key].push(tmp.options[j].value)
+            tmpV.push(tmp.options[j].value)
           }
         }
+        out[key] = { value: tmpV }
       } else {
         out[key] = isEmpty(out[key])
           ? { [tmp.value]: tmp.checked }
@@ -64,20 +74,20 @@ const serialize = form => {
 
       if (j === undefined) {
         if (tmp.type === 'radio') {
-          if (tmp.checked) out[key] = tmpV
+          if (tmp.checked) out[key] = { [tmpV]: true }
         } else {
-          out[key] = tmpV
+          out[key] = { value: tmpV }
         }
       } else {
         if (tmp.type === 'radio') {
-          if (tmp.checked) out[key] = tmpV
+          if (tmp.checked) out[key] = { [tmpV]: true }
         } else {
-          out[key] = j === null && j !== 0 ? [tmpV] : [].concat(j, tmpV)
+          out[key] = { value: tmpV }
         }
       }
     } else if (tmp.value || tmp.value === 0) {
       j = out[key]
-      out[key] = tmp.value
+      out[key] = { value: tmp.value }
     }
   }
   console.log('serialize out: ', out)
@@ -88,10 +98,10 @@ const deserialize = (form, vals) => {
   let i = 0,
     tmp,
     key
-  console.log('deserialize: ', vals)
+
   while ((tmp = form.elements[i++])) {
     if (!tmp.name) continue
-    console.log('deserialize tmp: ', tmp)
+    console.log('deserialize tmp: ', tmp, tmp.value)
     key = tmp.name
     if (key.endsWith('[]')) {
       if (vals[key].hasOwnProperty(tmp.value))
@@ -118,7 +128,7 @@ const deserialize = (form, vals) => {
       }
       break
     }
-    tmp.value = vals[key] ? vals[key] : ''
+    tmp.value = vals[key] && vals[key]['value'] ? vals[key]['value'] : ''
   }
 }
 
