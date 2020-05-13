@@ -138,6 +138,7 @@ export const eventInputs = () => ({
   Component: FormView,
   props: {
     fields: [
+      { name: 'email', label: 'Email', type: 'email', validate: true },
       {
         name: 'submit',
         label: false,

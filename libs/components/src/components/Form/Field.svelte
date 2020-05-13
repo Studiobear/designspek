@@ -23,7 +23,7 @@
 
   $: labelStyles = styled(labelStyle, theme)
   $: compStyles = styled(style, theme)
-  // $: console.log('Box', style, theme, compStyles, styleProps)
+  // $: console.log('Field', style, theme, compStyles, styleProps)
   const typeBool = /(radio|checkbox)/i
   const typeStr = /(text|password|email|url|tel|search|hidden)/i
   const typeNum = /(number|range)/i
@@ -36,6 +36,10 @@
   let maxValue = typeNum.test(type) || typeDate.test(type) ? `max=${max}` : ''
   let stepValue = typeNum.test(type) ? `step=${step}` : ''
   required = required || validate ? 'required' : ''
+
+  export const handle = e => {
+    console.log('submitted', e)
+  }
 </script>
 
 {#if !typeEvnt.test(type)}
@@ -67,7 +71,8 @@
     {type}
     {placeholder}
     {value}
-    {disabled} />
+    {disabled}
+    on:click|preventDefault={e => handle(e)} />
 {/if}
 
 {#if !inLabel}

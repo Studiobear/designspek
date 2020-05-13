@@ -16,7 +16,7 @@ export const selectTextOnFocus = el => {
   }
 }
 
-const serialize = form => {
+const serialize = (form, submitted = false) => {
   let i = 0,
     j,
     key,
@@ -34,24 +34,7 @@ const serialize = form => {
   const typeFile = /(file)/i
 
   while ((tmp = form.elements[i++])) {
-    console.log(
-      'serialize : ',
-      tmp.name,
-      tmp.value,
-      tmp.onchange,
-      tmp.oninput,
-      tmp.validate,
-      tmp.validity,
-      tmp.validityState,
-      tmp.validationMessage,
-    )
-    if (
-      !tmp.name ||
-      tmp.disabled ||
-      typeEvnt.test(tmp.type) ||
-      typeFile.test(tmp.type)
-    )
-      continue
+    if (!tmp.name || tmp.disabled || typeFile.test(tmp.type)) continue
 
     key = tmp.name
 
@@ -69,6 +52,8 @@ const serialize = form => {
           ? { [tmp.value]: tmp.checked }
           : { [tmp.value]: tmp.checked, ...out[key] }
       }
+    } else if (typeEvnt.test(tmp.type)) {
+      out[key] = { value: tmp.value }
     } else if (typeBool.test(tmp.type)) {
       j = out[key]
       console.log('serialize tmp: ', tmp, tmp.checked)
@@ -107,6 +92,7 @@ const serialize = form => {
       }
     }
   }
+  if (submitted) out['submitted'] = true
   console.log('serialize out: ', out)
   return out
 }
@@ -118,7 +104,6 @@ const deserialize = (form, vals) => {
 
   while ((tmp = form.elements[i++])) {
     if (!tmp.name) continue
-    console.log('deserialize tmp: ', tmp, tmp.value)
     key = tmp.name
     if (key.endsWith('[]')) {
       if (vals[key].hasOwnProperty(tmp.value))
@@ -169,18 +154,30 @@ export const getValues = el => {
   const procUpdate = () => {
     el.dispatchEvent(
       new CustomEvent('update', {
-        detail: { ...serialize(el) },
+        detail: { ...serialize(el, false) },
+      }),
+    )
+  }
+
+  const procSubmit = () => {
+    console.log('event submit', el)
+    el.dispatchEvent(
+      new CustomEvent('submit', {
+        detail: { ...serialize(el, true) },
       }),
     )
   }
 
   el.addEventListener('input', procUpdate)
+  el.addEventListener('click', procSubmit)
 
   procUpdate()
 
   return {
+    submit: vals => {
+      console.log('form submitted')
+    },
     update: vals => {
-      console.log('getValues update: ', vals, updated)
       return updated === 2 ? deserialize(el, vals) : (updated += 1)
     },
     destroy: () => el.removeEventListener('input', procUpdate),

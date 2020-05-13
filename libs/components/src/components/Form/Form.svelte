@@ -7,7 +7,7 @@
   export let fields = $$props.fields || []
   export let style = $$props.style || {}
   export let theme = $$props.theme || style.theme || {}
-  let values = {}
+  export let values = {}
   const defaultStyle = [
     {
       boxSizing: 'border-box',
@@ -16,7 +16,6 @@
     },
   ]
   $: compStyles = styled(defaultStyle.concat(style), theme, false)
-  $: console.log('Form', values)
 
   let formFields = fields && fields.length > 0 ? fields : false
 </script>
@@ -25,6 +24,11 @@
   class={compStyles}
   on:update={e => {
     console.log('Form onUpdate:', e, values)
+    values = e.detail
+    return values
+  }}
+  on:submit={e => {
+    console.log('Form submitted:', e, values)
     values = e.detail
     return values
   }}
