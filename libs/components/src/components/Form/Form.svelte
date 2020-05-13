@@ -7,8 +7,7 @@
   export let fields = $$props.fields || []
   export let style = $$props.style || {}
   export let theme = $$props.theme || style.theme || {}
-  export let ssr = $$props.ssr || style.ssr || false
-  export let values = {}
+  let values = {}
   const defaultStyle = [
     {
       boxSizing: 'border-box',
@@ -16,15 +15,14 @@
       minWidth: 0,
     },
   ]
-  $: compStyles = styled(defaultStyle.concat(style), theme, ssr)
-  $: styleProps = ssr ? { style: compStyles } : { class: compStyles }
+  $: compStyles = styled(defaultStyle.concat(style), theme, false)
   $: console.log('Form', values)
 
   let formFields = fields && fields.length > 0 ? fields : false
 </script>
 
 <form
-  {...styleProps}
+  class={compStyles}
   on:update={e => {
     console.log('Form onUpdate:', e, values)
     values = e.detail
