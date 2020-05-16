@@ -16,6 +16,13 @@ export const selectTextOnFocus = el => {
   }
 }
 
+const typeBool = /(radio|checkbox)/i
+const typeStr = /(text|password|email|url|tel|search|hidden)/i
+const typeNum = /(number|range)/i
+const typeDate = /(date|datetime-local|month|week|)/i
+const typeEvnt = /(submit|reset|button)/i
+const typeFile = /(file)/i
+
 const serialize = (form, submitted = false) => {
   let i = 0,
     j,
@@ -25,70 +32,57 @@ const serialize = (form, submitted = false) => {
     tmpValidate,
     out = {}
 
-  // Regex to determine input type
-  const typeBool = /(radio|checkbox)/i
-  // const typeStr = /(text|password|email|url|tel|search|hidden)/i
-  // const typeNum = /(number|range)/i
-  // const typeDate = /(date|datetime-local|month|week|)/i
-  const typeEvnt = /(submit|reset|button)/i
-  const typeFile = /(file)/i
+  if (!submitted) {
+    while ((tmp = form.elements[i++])) {
+      if (!tmp.name || tmp.disabled || typeFile.test(tmp.type)) continue
 
-  while ((tmp = form.elements[i++])) {
-    if (!tmp.name || tmp.disabled || typeFile.test(tmp.type)) continue
-
-    key = tmp.name
-
-    if (tmp.type === 'select-multiple' || key.endsWith('[]')) {
-      if (tmp.type === 'select-multiple') {
-        tmpV = []
-        for (j = 0; j < tmp.options.length; j++) {
-          if (tmp.options[j].selected) {
-            tmpV.push(tmp.options[j].value)
+      key = tmp.name
+      console.log('serialize: ', key, tmp.type, tmp.value, tmp.checked)
+      if (tmp.type === 'select-multiple' || key.endsWith('[]')) {
+        if (tmp.type === 'select-multiple') {
+          tmpV = []
+          for (j = 0; j < tmp.options.length; j++) {
+            if (tmp.options[j].selected) {
+              tmpV.push(tmp.options[j].value)
+            }
           }
+          out[key] = { value: tmpV }
+        } else {
+          out[key] = isEmpty(out[key])
+            ? { [tmp.value]: tmp.checked }
+            : { [tmp.value]: tmp.checked, ...out[key] }
         }
-        out[key] = { value: tmpV }
-      } else {
-        out[key] = isEmpty(out[key])
-          ? { [tmp.value]: tmp.checked }
-          : { [tmp.value]: tmp.checked, ...out[key] }
-      }
-    } else if (typeEvnt.test(tmp.type)) {
-      out[key] = { value: tmp.value }
-    } else if (typeBool.test(tmp.type)) {
-      j = out[key]
-      console.log('serialize tmp: ', tmp, tmp.checked)
-      tmpV = tmp.type === 'radio' ? tmp.value : tmp.checked
+      } else if (typeEvnt.test(tmp.type)) {
+        out[key] = { value: tmp.value }
+      } else if (typeBool.test(tmp.type)) {
+        j = out[key]
+        console.log('serialize bool: ', tmp.type, tmp.value, tmp.checked)
+        tmpV =
+          tmp.value !== undefined && tmp.value !== '' ? tmp.value : tmp.checked
 
-      if (j === undefined) {
         if (tmp.type === 'radio') {
-          if (tmp.checked) out[key] = { [tmpV]: true }
+          if (tmp.checked) out[key] = { value: tmp.value }
         } else {
           out[key] = { value: tmpV }
         }
-      } else {
-        if (tmp.type === 'radio') {
-          if (tmp.checked) out[key] = { [tmpV]: true }
-        } else {
-          out[key] = { value: tmpV }
+      } else if (tmp.value || tmp.value === 0) {
+        j = out[key]
+        out[key] = { value: tmp.value }
+      }
+      if (tmp.validate || tmp.required) {
+        let validity = {}
+        for (let key in tmp.validity) {
+          if (tmp.validity[key])
+            validity = { ...validity, [key]: tmp.validity[key] }
         }
-      }
-    } else if (tmp.value || tmp.value === 0) {
-      j = out[key]
-      out[key] = { value: tmp.value }
-    }
-    if (tmp.validate || tmp.required) {
-      let validity = {}
-      for (let key in tmp.validity) {
-        if (tmp.validity[key])
-          validity = { ...validity, [key]: tmp.validity[key] }
-      }
 
-      out[key] = {
-        ...out[key],
-        validate: {
-          validity,
-          validationMessage: tmp.validationMessage,
-        },
+        out[key] = {
+          ...out[key],
+          validate: {
+            validity,
+            validationMessage: tmp.validationMessage,
+          },
+        }
       }
     }
   }
@@ -102,6 +96,7 @@ const deserialize = (form, vals) => {
     tmp,
     key
 
+  console.log('deserialize', vals)
   while ((tmp = form.elements[i++])) {
     if (!tmp.name) continue
     key = tmp.name
@@ -110,23 +105,19 @@ const deserialize = (form, vals) => {
         tmp.checked = vals[key][tmp.value]
       break
     }
-    if (tmp.type === 'radio') {
+    if (typeBool.test(tmp.type)) {
       if (!vals[key]) continue
-      if (vals[key].includes(tmp.value)) {
-        tmp.checked = true
+      console.log('deserialize bool', key, tmp.type, vals[key], tmp.value)
+      if (tmp.type === 'radio' && vals[key].hasOwnProperty('value')) {
+        if (vals[key][value] === tmp.value) {
+          tmp.checked = true
+        } else {
+          tmp.checked = false
+        }
       } else {
-        tmp.checked = false
-      }
-      break
-    }
-    if (tmp.type === 'checkbox') {
-      if (!vals[key]) continue
-      console.log('deserialize cb: ', vals[key])
-
-      if (vals[key]) {
-        tmp.checked = true
-      } else {
-        tmp.checked = false
+        tmp.checked = vals[key].hasOwnProperty('value')
+          ? vals[key]['value']
+          : false
       }
       break
     }
@@ -151,25 +142,23 @@ export const getValues = el => {
     node.oninput = el.onchange
   })
 
-  const procUpdate = () => {
-    el.dispatchEvent(
+  const procUpdate = e => {
+    if (e && e.target && typeEvnt.test(e.target.type)) {
+      return el.dispatchEvent(
+        new CustomEvent('submit', {
+          detail: { ...serialize(el, true) },
+        }),
+      )
+    }
+    return el.dispatchEvent(
       new CustomEvent('update', {
         detail: { ...serialize(el, false) },
       }),
     )
   }
 
-  const procSubmit = () => {
-    console.log('event submit', el)
-    el.dispatchEvent(
-      new CustomEvent('submit', {
-        detail: { ...serialize(el, true) },
-      }),
-    )
-  }
-
   el.addEventListener('input', procUpdate)
-  el.addEventListener('click', procSubmit)
+  el.addEventListener('click', procUpdate)
 
   procUpdate()
 
@@ -178,8 +167,12 @@ export const getValues = el => {
       console.log('form submitted')
     },
     update: vals => {
+      console.log('getValues update: ', vals)
       return updated === 2 ? deserialize(el, vals) : (updated += 1)
     },
-    destroy: () => el.removeEventListener('input', procUpdate),
+    destroy: () => {
+      el.removeEventListener('input', procUpdate)
+      el.removeEventListener('click', procUpdate)
+    },
   }
 }

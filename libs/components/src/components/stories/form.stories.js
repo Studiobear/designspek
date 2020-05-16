@@ -158,7 +158,11 @@ export const withPlaceholderAndDefaultValue = () => ({
         label: 'Placeholder',
         placeholder: 'This is plaeholder text, type to change...',
       },
-      { name: 'ttex', label: 'Default', value: 'This is a default value' },
+      {
+        name: 'text',
+        label: 'Default',
+        defaultValue: 'This is a default value',
+      },
     ],
   },
 })

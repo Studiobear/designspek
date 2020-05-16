@@ -8,6 +8,7 @@
   export let inLabel = $$props.inLabel || true
   export let afterLabel = $$props.afterLabel || true
   export let type = $$props.type || 'text'
+  export let defaultValue = $$props.defaultValue || false
   export let value = $$props.value || ''
   export let placeholder = $$props.placeholder || undefined
   export let required = $$props.required || false
@@ -36,6 +37,7 @@
   let maxValue = typeNum.test(type) || typeDate.test(type) ? `max=${max}` : ''
   let stepValue = typeNum.test(type) ? `step=${step}` : ''
   required = required || validate ? 'required' : ''
+  value = defaultValue && value === '' ? defaultValue : value
 
   export const handle = e => {
     console.log('submitted', e)
@@ -52,6 +54,7 @@
         {name}
         {type}
         {placeholder}
+        {defaultValue}
         {value}
         {required}
         {validate}
