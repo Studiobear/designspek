@@ -165,6 +165,17 @@ const forwardStyleDefault = [
   'verticalAlign',
   'transition',
   'transform',
+  'transformStyle',
+  'transformOrigin',
+  'perspective',
+  'perspective-origin',
+  'tranf',
+  'tranfor',
+  'tranit',
+  'transt',
+  'per',
+  'peror',
+  'bck',
 ]
 
 let styleLib = {}
