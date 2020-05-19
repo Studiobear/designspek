@@ -169,7 +169,7 @@ const forwardStyleDefault = [
   'transformOrigin',
   'perspective',
   'perspective-origin',
-  'tranf',
+  'tranfrm',
   'tranfor',
   'tranit',
   'transt',

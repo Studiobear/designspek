@@ -19,7 +19,7 @@ const h = 'height'
 const W = 'Width'
 const H = 'Height'
 const d = 'display'
-const f = 'form'
+const frm = 'form'
 const it = 'ition'
 const st = 'style'
 const or = 'origin'
@@ -209,8 +209,8 @@ export const shortHandAttributes = new Map([
   ['swidth', [`${s}${W}`]],
   ['sOp', [`${s}${Op}`]],
   ['sLc', [`${s}${Lc}`]],
-  ['tranf', [`${tran}${f}`]],
-  ['tranfor', [`${tran}${f}-${or}`]],
+  ['tranfrm', [`${tran}${frm}`]],
+  ['tranfor', [`${tran}${frm}-${or}`]],
   ['tranit', [`${tran}${it}`]],
   ['transt', [`${tran}-${st}`]],
   ['per', [`${per}`]],
