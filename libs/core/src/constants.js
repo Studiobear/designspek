@@ -19,6 +19,11 @@ const h = 'height'
 const W = 'Width'
 const H = 'Height'
 const d = 'display'
+const frm = 'form'
+const it = 'ition'
+const st = 'style'
+const or = 'origin'
+const bck = 'backface-visibility'
 const min = 'min'
 const max = 'max'
 const brd = 'border'
@@ -88,7 +93,9 @@ const lign = 'lign'
 const olor = 'olor'
 const uto = 'uto'
 const txt = 'text'
+const tran = 'trans'
 const Tran = 'Transform'
+const per = 'perspective'
 const f = 'fill'
 const s = 'stroke'
 const Op = 'Opacity'
@@ -202,4 +209,11 @@ export const shortHandAttributes = new Map([
   ['swidth', [`${s}${W}`]],
   ['sOp', [`${s}${Op}`]],
   ['sLc', [`${s}${Lc}`]],
+  ['tranfrm', [`${tran}${frm}`]],
+  ['tranfor', [`${tran}${frm}-${or}`]],
+  ['tranit', [`${tran}${it}`]],
+  ['transt', [`${tran}-${st}`]],
+  ['per', [`${per}`]],
+  ['peror', [`${per}-${or}`]],
+  ['bck', [`${bck}`]],
 ])
