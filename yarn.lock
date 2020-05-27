@@ -2280,6 +2280,16 @@
   dependencies:
     "@types/node" ">= 8"
 
+"@openfonts/fira-sans_latin@^1.44.1":
+  version "1.44.1"
+  resolved "https://registry.yarnpkg.com/@openfonts/fira-sans_latin/-/fira-sans_latin-1.44.1.tgz#5a6afaf3180c63dd4c8ca8b22466d3aadfd7d620"
+  integrity sha512-280YGCfNNn0DtVTp/4QpSHkyJSE217aVBbowFvdtHixnBx+yx1jHoGHJjgMWbAstPtQP5mxObnXPt+tm+qLsNg==
+
+"@openfonts/playfair-display_latin@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@openfonts/playfair-display_latin/-/playfair-display_latin-1.0.1.tgz#733306d9c9b7277617de69774eeac883feebd57f"
+  integrity sha512-n81EncMJpaAeHEvNma9Nua5MJZQ/upI0g4rDKGyRXAncFmAIrbyGrQDL19XuLFJxxISrXhBCU/yEg5+pcwJYtQ==
+
 "@polka/url@^0.5.0":
   version "0.5.0"
   resolved "https://registry.yarnpkg.com/@polka/url/-/url-0.5.0.tgz#b21510597fd601e5d7c95008b76bf0d254ebfd31"

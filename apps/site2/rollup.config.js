@@ -5,7 +5,7 @@ import livereload from 'rollup-plugin-livereload';
 import { terser } from 'rollup-plugin-terser';
 import copy from 'rollup-plugin-copy'
 import del from 'del'
-
+import path from 'path'
 
 
 const staticDir = 'static'
@@ -35,8 +35,31 @@ function createConfig({ output, inlineDynamicImports, plugins = [] }) {
           { src: staticDir + '/**/!(__index.html)', dest: distDir },
           { src: `${staticDir}/__index.html`, dest: distDir, rename: '__app.html', transform },
         ],
-	copyOnce: true,
-	flatten: false
+	      copyOnce: true,
+	      flatten: false
+      }),
+      copy({
+        targets: [
+          {
+            src: [
+              path.resolve(
+                '../../node_modules/@openfonts/fira-sans_latin/files/**/*',
+              ),
+              path.resolve(
+                '../../node_modules/@openfonts/playfair-display_latin/files/**/*',
+              ),
+            ],
+            dest: 'static/files',
+          },
+          { src: path.resolve(
+            '../../node_modules/@openfonts/fira-sans_latin/index.css',
+          ),dest: 'static', rename: 'fira.css'},
+          { src: path.resolve(
+            '../../node_modules/@openfonts/playfair-display_latin/index.css',
+          ),dest: 'static', rename: 'playfair.css'},
+        ],
+	      copyOnce: true,
+	      flatten: true
       }),
       svelte({
         // enable run-time checks when not in production

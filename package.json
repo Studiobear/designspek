@@ -24,6 +24,8 @@
     ]
   },
   "scripts": {
+    "site": "yarn workspace site",
+    "site2": "yarn workspace site2",
     "components": "yarn workspace @studiobear/designspek-components",
     "core": "yarn workspace @studiobear/designspek",
     "build": "lerna run build",

@@ -14,10 +14,12 @@
     "routify": "routify -D"
   },
   "devDependencies": {
-    "@studiobear/designspek": "*",
-    "@studiobear/designspek-components": "*",
+    "@openfonts/fira-sans_latin": "^1.44.1",
+    "@openfonts/playfair-display_latin": "^1.0.1",
     "@rollup/plugin-commonjs": "^11.1.0",
     "@rollup/plugin-node-resolve": "^7.1.3",
+    "@studiobear/designspek": "*",
+    "@studiobear/designspek-components": "*",
     "concurrently": "^5.1.0",
     "cross-env": "^7.0.2",
     "del": "^5.1.0",
