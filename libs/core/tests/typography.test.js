@@ -2,7 +2,6 @@ const test = require('ava')
 const verticalRhythm = require('compass-vertical-rhythm')
 
 import {
-  defaults,
   toUnitless,
   getScale,
   // getSpace,
@@ -13,6 +12,33 @@ import {
   fontLink,
   typography,
 } from '../src/typography'
+
+export const defaults = {
+  baseFontSize: 16,
+  baseLineHeight: 1.45,
+  headerLineHeight: 1.8,
+  scaleRatio: 1.333,
+  googleFonts: [],
+  headerFontFamily: [
+    '-apple-system',
+    'BlinkMacSystemFont',
+    'Segoe UI',
+    'Roboto',
+    'Oxygen',
+    'Ubuntu',
+    'Cantarell',
+    'Fira Sans',
+    'Droid Sans',
+    'Helvetica Neue',
+    'sans-serif',
+  ],
+  bodyFontFamily: ['georgia', 'serif'],
+  headerWeight: 'bold',
+  bodyWeight: 'normal',
+  boldWeight: 'bold',
+  includeNormalize: true,
+  blockMarginBottom: 0,
+}
 
 import stAnnesTheme from 'typography-theme-st-annes'
 import { basic } from './basic'
@@ -31,10 +57,10 @@ test('getScale: create scale based on font size and scale ratio ', t => {
   const valueOne = [1]
   const valueThree = [3]
   t.is(scaled(valueZero), 16)
-  t.is(+scaled(valueQtr).toFixed(4), 19.0273)
-  t.is(+scaled(valueHlf).toFixed(4), 22.6274)
-  t.is(+scaled(valueOne).toFixed(4), 32)
-  t.is(+scaled(valueThree).toFixed(4), 128)
+  t.is(+scaled(valueQtr).toFixed(4), 17.192)
+  t.is(+scaled(valueHlf).toFixed(4), 18.4729)
+  t.is(+scaled(valueOne).toFixed(4), 21.328)
+  t.is(+scaled(valueThree).toFixed(4), 37.8975)
 })
 
 /*
@@ -52,12 +78,12 @@ test('getFontSizes: returns font size object', t => {
   //t.is(rhythm(1), '1.45rem')
   //t.is(lines(30), 1.5)
   t.deepEqual(getFontSizes(1, opts), [
-    12.99603834169977,
-    13.928809012737986,
+    14.678137030894668,
+    15.106155564038744,
     16,
-    21.112126572366307,
-    24.251465064166368,
-    32,
+    17.949487064253905,
+    19.0115739117464538,
+    21.328,
   ])
 })
 

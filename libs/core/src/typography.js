@@ -173,7 +173,7 @@ export const defaults = {
   baseFontSize: 16,
   baseLineHeight: 1.45,
   headerLineHeight: 1.8,
-  scaleRatio: 2,
+  scaleRatio: 1.333,
   googleFonts: [],
   headerFontFamily: [
     '-apple-system',
