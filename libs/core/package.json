@@ -2,29 +2,32 @@
   "name": "@studiobear/designspek",
   "version": "0.4.2",
   "description": "A Reactive Design System: Svelte meets System UI",
-  "source": "src/index.js",
-  "main": "dist/index.js",
-  "module": "dist/index.modern.js",
+  "source": "src/main.ts",
+  "main": "dist/main.umd.js",
+  "module": "dist/index.modern.module.js",
   "umd:main": "dist/index.umd.js",
+  "unpkg": "dist/main.umd.js",
+  "types": "dist/main.d.ts",
   "files": [
+    "dist/**.js*",
+    "dist/**/*.ts",
     "docs/assets/ds-horiz-fat.svg",
-    "dist",
     "README.md"
   ],
   "author": "Barry Low <barry@studiobear.co>",
   "license": "MIT",
   "sideEffects": false,
   "scripts": {
-    "bundle": "microbundle",
+    "build": "microbundle --define PKG_VERSION=$npm_package_version",
+    "watch": "microbundle watch --define PKG_VERSION=$npm_package_version",
+    "test": "ava tests/*.test.js",
+    "test:watch": "yarn watch & yarn test --watch -u",
     "clean": "rm -rf dist",
     "prepublishOnly": "yarn build",
     "bundlesize": "bundlesize",
-    "lint": "prettier --check 'src/**/*.{html,js,svelte}'",
-    "lint:fix": "prettier --write 'src/**/*.{html,js,svelte}'",
-    "build": "NODE_ENV=production yarn test && yarn clean && yarn bundle --compress && yarn bundlesize",
-    "watch": "NODE_ENV=development yarn microbundle watch",
-    "test": "ava tests/*.test.js",
-    "test:watch": "yarn test --watch -u"
+    "lint": "prettier --check 'src/**/*.{ts,js}' 'tests/**/*.{js}'",
+    "lint:fix": "prettier --write 'src/**/*.{ts,js}' 'tests/**/*.{js}'",
+    "release": "NODE_ENV=production yarn clean && yarn build --compress && yarn test && yarn bundlesize"
   },
   "bundlesize": [
     {
@@ -50,7 +53,7 @@
     ]
   },
   "devDependencies": {
-    "ava": "^3.5.0",
+    "ava": "^3.8.2",
     "bundlesize": "^0.18.0",
     "compass-vertical-rhythm": "^1.4.5",
     "cypress": "^4.0.1",
@@ -59,7 +62,7 @@
     "husky": "^4.2.1",
     "lint-staged": "^9.5.0",
     "micro-memoize": "^4.0.9",
-    "microbundle": "0.12.0-next.8",
+    "microbundle": "0.12.0",
     "modularscale": "^2.0.1",
     "prettier": "^1.19.1",
     "prettier-plugin-svelte": "^0.7.0",
