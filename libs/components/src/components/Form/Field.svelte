@@ -39,7 +39,7 @@
   required = required || validate ? 'required' : ''
   value = defaultValue && value === '' ? defaultValue : value
 
-  export const handle = e => {
+  export const handle = (e) => {
     console.log('submitted', e)
   }
 </script>
@@ -75,7 +75,7 @@
     {placeholder}
     {value}
     {disabled}
-    on:click|preventDefault={e => handle(e)} />
+    on:click|preventDefault={(e) => handle(e)} />
 {/if}
 
 {#if !inLabel}

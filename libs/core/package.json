@@ -26,7 +26,7 @@
     "prepublishOnly": "yarn build",
     "bundlesize": "bundlesize",
     "lint": "prettier --check 'src/**/*.{ts,js}' 'tests/**/*.{js}'",
-    "lint:fix": "prettier --write 'src/**/*.{ts,js}' 'tests/**/*.{js}'",
+    "lint:fix": "prettier --write 'src/**/*.{ts,js}' 'tests/**/*.{ts,js}'",
     "release": "NODE_ENV=production yarn clean && yarn build --compress && yarn test && yarn bundlesize"
   },
   "bundlesize": [
@@ -56,20 +56,16 @@
     "ava": "^3.8.2",
     "bundlesize": "^0.18.0",
     "compass-vertical-rhythm": "^1.4.5",
-    "cypress": "^4.0.1",
+    "cypress": "^4.11.0",
     "esm": "^3.2.25",
-    "goober": "^1.6.3",
-    "husky": "^4.2.1",
-    "lint-staged": "^9.5.0",
+    "goober": "^1.8.0",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.11",
     "micro-memoize": "^4.0.9",
     "microbundle": "0.12.0",
     "modularscale": "^2.0.1",
-    "prettier": "^1.19.1",
-    "prettier-plugin-svelte": "^0.7.0",
+    "prettier": "^2.0.5",
     "styled-system": "^5.1.5",
     "typography-theme-st-annes": "^0.16.19"
-  },
-  "dependencies": {
-    "svelte": "^3.24.0"
   }
 }

@@ -1,7 +1,7 @@
 import processPosts from './_posts.js'
 
-const getContents = postsAll =>
-  postsAll.map(post => {
+const getContents = (postsAll) =>
+  postsAll.map((post) => {
     return {
       title: post.title,
       slug: post.slug,

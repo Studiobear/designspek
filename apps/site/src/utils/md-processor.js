@@ -14,15 +14,15 @@ import path from 'path'
 
 export const removeFrontmatter = () => async (tree, file) => {
   let getFrontMatter
-  const getFM = await visit(tree, 'yaml', node => {
+  const getFM = await visit(tree, 'yaml', (node) => {
     getFrontMatter = node.data.parsedValue
     return
   })
   file.data.frontmatter = getFrontMatter
-  return filter(tree, node => node.type !== 'yaml')
+  return filter(tree, (node) => node.type !== 'yaml')
 }
 
-export const processor = () => async filepath => {
+export const processor = () => async (filepath) => {
   const postBody = await unified()
     .use(markdown)
     .use(frontmatter)
@@ -32,7 +32,7 @@ export const processor = () => async filepath => {
     .use(stringify)
     // .use(log)
     .process(toVfile.readSync(filepath, 'utf8'))
-    .then(file => ({
+    .then((file) => ({
       title: file.data.frontmatter.title || 'No title',
       slug: file.data.frontmatter.slug || '/',
       date: file.data.frontmatter.date || '',
@@ -49,7 +49,7 @@ export const processor = () => async filepath => {
     .use(stringify)
     // .use(log)
     .process(toVfile.readSync(filepath, 'utf8'))
-    .then(file => ({
+    .then((file) => ({
       excerpt: file.contents,
     }))
     .catch(console.error)

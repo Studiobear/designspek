@@ -1,9 +1,9 @@
-export const isEmpty = obj => {
+export const isEmpty = (obj) => {
   return !obj || Object.keys(obj).length === 0
 }
 
-export const selectTextOnFocus = el => {
-  const handleFocus = event => {
+export const selectTextOnFocus = (el) => {
+  const handleFocus = (event) => {
     el && typeof el.select === 'function' && el.select()
   }
 
@@ -133,16 +133,16 @@ const debounce = (v, d = 200) => {
 }
 
 // Use event delegation to manage input updates
-export const getValues = el => {
+export const getValues = (el) => {
   let updated = 0
 
   const inputs = [].slice.call(el.querySelectorAll('input'))
 
-  inputs.forEach(node => {
+  inputs.forEach((node) => {
     node.oninput = el.onchange
   })
 
-  const procUpdate = e => {
+  const procUpdate = (e) => {
     if (e && e.target && typeEvnt.test(e.target.type)) {
       return el.dispatchEvent(
         new CustomEvent('submit', {
@@ -163,10 +163,10 @@ export const getValues = el => {
   procUpdate()
 
   return {
-    submit: vals => {
+    submit: (vals) => {
       console.log('form submitted')
     },
-    update: vals => {
+    update: (vals) => {
       console.log('getValues update: ', vals)
       return updated === 2 ? deserialize(el, vals) : (updated += 1)
     },

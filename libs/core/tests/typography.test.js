@@ -43,13 +43,13 @@ export const defaults = {
 import stAnnesTheme from 'typography-theme-st-annes'
 import { basic } from './basic'
 
-test('toUnitless: should return floating point number', t => {
+test('toUnitless: should return floating point number', (t) => {
   t.true(typeof toUnitless('12') === 'number')
   t.true(toUnitless('12') === 12)
   t.true(toUnitless(12) === 12)
 })
 
-test('getScale: create scale based on font size and scale ratio ', t => {
+test('getScale: create scale based on font size and scale ratio ', (t) => {
   const scaled = getScale(defaults)
   const valueZero = [0]
   const valueQtr = [1 / 4]
@@ -69,7 +69,7 @@ test('getSpace: returns space scale array', t => {
 })
 */
 
-test('getFontSizes: returns font size object', t => {
+test('getFontSizes: returns font size object', (t) => {
   let opts = defaults
 
   //var rhythm = verticalRhythm(defaults).rhythm
@@ -87,7 +87,7 @@ test('getFontSizes: returns font size object', t => {
   ])
 })
 
-test('getFontWeights: returns font weights object', t => {
+test('getFontWeights: returns font weights object', (t) => {
   let opts = defaults
 
   t.true(typeof getFontWeights(1, opts) === 'object')
@@ -98,7 +98,7 @@ test('getFontWeights: returns font weights object', t => {
   })
 })
 
-test('getLineWeights: returns lineheights object', t => {
+test('getLineWeights: returns lineheights object', (t) => {
   let opts = defaults
 
   t.true(typeof getLineHeights(1.5, opts) === 'object')
@@ -108,7 +108,7 @@ test('getLineWeights: returns lineheights object', t => {
   })
 })
 
-test('getFonts: returns fonts object', t => {
+test('getFonts: returns fonts object', (t) => {
   let opts = defaults
 
   t.true(typeof getFonts(basic, opts) === 'object')
@@ -119,11 +119,11 @@ test('getFonts: returns fonts object', t => {
   })
 })
 
-test('typography: should correctly calculate and merge typography into theme', t => {
+test('typography: should correctly calculate and merge typography into theme', (t) => {
   t.snapshot(typography(basic, stAnnesTheme), { id: 'typographySnapshot' })
 })
 
-test('fontLink: should create googleFonts URL', async t => {
+test('fontLink: should create googleFonts URL', async (t) => {
   t.deepEqual(
     await fontLink(stAnnesTheme),
     '//fonts.googleapis.com/css?family=Source+Serif+Pro:600|Source+Sans+Pro:400,400i,700',

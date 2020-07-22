@@ -111,7 +111,7 @@ const createCssMisc = (attributes, theme, pseudoElementSelector) => {
 }
 
 export const processCss = (attributes, theme) => {
-  let cssText:any = {}
+  let cssText: any = {}
   let cssMisc = {}
   let name: string | string[]
   let value
@@ -215,7 +215,7 @@ const styled = (attributes, theme, stringed = false) => {
 
     if (attributes.length > 0) {
       // console.log('styled array: ', attributes, attributes.length)
-      attributes.map(attrib => {
+      attributes.map((attrib) => {
         let tmpStyle = memoStyledProcess(attrib, theme, stringed)
         // console.log('styled tmpStyle: ', tmpStyle)
         combStyles += `${tmpStyle} `
@@ -247,7 +247,7 @@ const parse = (cn, cs, opts = { ssr: false }) => {
   cStr += ssr ? '' : `.${cn}{`
   if (typeof cs === 'object' && Object.entries(cs).length > 0) {
     for (let [n, v] of Object.entries(cs)) {
-      n = n.replace(/[A-Z]/g, match => `-${match.toLowerCase()}`)
+      n = n.replace(/[A-Z]/g, (match) => `-${match.toLowerCase()}`)
       if (Object.prototype.toString.call(v) === '[object Object]') {
         let childStr = '{'
         for (let [nc, vc] of Object.entries(v)) {
@@ -401,7 +401,7 @@ const parseGlobal = (globStyles, opts = defaultParseGlobalOpts) => {
     let nameV: any
     let valueV: any
     for ([nameV, valueV] of Object.entries(parsedV)) {
-      nameV = nameV.replace(/[A-Z]/g, match => `-${match.toLowerCase()}`)
+      nameV = nameV.replace(/[A-Z]/g, (match) => `-${match.toLowerCase()}`)
       valueV = valueV === 'text' ? '"text"' : valueV
       valueV =
         nameV === 'font-size' && !/%/g.test(valueV) ? `${valueV}px` : valueV

@@ -13,11 +13,11 @@ const postProcessor = processor()
 
 const processPosts = () => async (allFiles = []) => {
   const posts = (await readdirP(POSTS_DIR))
-    .filter(fileName => /\.md$/.test(fileName))
-    .map(f => join(POSTS_DIR, f))
+    .filter((fileName) => /\.md$/.test(fileName))
+    .map((f) => join(POSTS_DIR, f))
 
   const getPosts = await Promise.all(
-    posts.map(async post => {
+    posts.map(async (post) => {
       const postWrap = await postProcessor(post)
       return postWrap
     }),

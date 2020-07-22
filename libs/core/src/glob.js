@@ -23,7 +23,7 @@ const getSheet = (target, DSID = DSSTYLE_ID, remove = false) => {
   return ssr
 }
 
-const getText = obj => {
+const getText = (obj) => {
   return obj.textContent ? obj.textContent : obj.innerText
 }
 

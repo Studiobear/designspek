@@ -39,7 +39,7 @@
     "monocheck": "manypkg check",
     "monofix": "manypkg fix",
     "check-packages": "yarn monocheck && yarn lint && yarn eslint",
-    "fix-packages": "yarn monofix && yarn lint:fix && yarn eslint:fix",
+    "fix-packages": "yarn monofix && yarn lint:fix",
     "commit": "git add . && git cz",
     "release": "standard-version",
     "release:min": "yarn release --release-as minor"
@@ -56,28 +56,28 @@
       "commit-msg": "commitlint -e --verbose $HUSKY_GIT_PARAMS"
     }
   },
-  "dependencies": {
-    "@commitlint/cli": "^8.3.5",
-    "@commitlint/config-conventional": "^8.3.4",
-    "@manypkg/cli": "^0.9.0",
-    "commitizen": "^4.0.3",
-    "cypress": "^4.0.1",
-    "cz-conventional-changelog": "^3.1.0",
-    "eslint": "^6.8.0",
-    "eslint-config-prettier": "^6.10.0",
-    "eslint-plugin-import": "^2.20.1",
-    "eslint-plugin-prettier": "^3.1.2",
-    "eslint-plugin-svelte3": "^2.7.3",
-    "husky": "^4.2.1",
-    "lerna": "^3.20.2",
-    "prettier": "^1.19.1",
-    "prettier-plugin-svelte": "^0.7.0",
-    "standard-version": "^8.0.1",
-    "svelte": "^3.24.0"
-  },
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
+  },
+  "dependencies": {
+    "@commitlint/cli": "^9.1.1",
+    "@commitlint/config-conventional": "^9.1.1",
+    "@manypkg/cli": "^0.14.0",
+    "commitizen": "^4.1.2",
+    "cypress": "^4.11.0",
+    "cz-conventional-changelog": "^3.2.0",
+    "eslint": "^7.5.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-svelte3": "^2.7.3",
+    "husky": "^4.2.5",
+    "lerna": "^3.22.1",
+    "prettier": "^2.0.5",
+    "prettier-plugin-svelte": "^1.1.0",
+    "standard-version": "^8.0.1",
+    "svelte": "^3.24.0"
   }
 }

@@ -11,17 +11,17 @@ class HTMLNode {
   constructor() {
     this.class = ''
     this.classList = {
-      add: cn => {
+      add: (cn) => {
         this.class += `${cn}`
       },
-      remove: cn => {
+      remove: (cn) => {
         this.class = this.class.replace(cn, '')
       },
     }
   }
 }
 
-test('processCss: should resolve pseudo selectors via _', t => {
+test('processCss: should resolve pseudo selectors via _', (t) => {
   t.deepEqual(processCss({ _hover: { color: 'red' } }, theme), {
     '&:hover': { color: 'red' },
   })
