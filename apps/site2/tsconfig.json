@@ -1,0 +1,16 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "exclude": ["node_modules", "dist", "public", "scripts", "static"],
+  "include": ["src/**/*", "src/node_modules/*"],
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "target": "es2017",
+    "resolveJsonModule": true,
+    "lib": ["esnext"],
+    "baseUrl": ".",
+    "paths": {
+      "*": ["../*"]
+    },
+    "types": ["node", "svelte"]
+  }
+}

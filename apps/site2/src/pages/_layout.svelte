@@ -1,5 +1,5 @@
 <script>
-  import { addGlobal } from '@studiobear/designspek'
+  import { addGlobal } from '../../../../libs/core/dist/main.modern.module'
   import { theme } from '../styles'
 
   $: addGlobal($theme)

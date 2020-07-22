@@ -42,7 +42,7 @@ const addUnits = (styles, units = defaultUnits) => {
           (nameO.startsWith('margin') || nameO.startsWith('padding')) &&
           typeof valueO === 'number'
         ) {
-          mUnits = value0 === 0 ? '' : units.space
+          mUnits = valueO === 0 ? '' : units.space
           Object.assign(withUnitsO, { [nameO]: `${valueO}${mUnits}` })
           continue
         }
@@ -74,7 +74,9 @@ const addUnits = (styles, units = defaultUnits) => {
 
 const createCssMisc = (attributes, theme, pseudoElementSelector) => {
   let cssMisc = {}
-  for (let [name, value] of Object.entries(attributes)) {
+  let name: string | string[]
+  let value
+  for ([name, value] of Object.entries(attributes)) {
     name = shortHandAttributes.get(name) || [name]
     for (let cssProp of name) {
       let cssPropValue
@@ -108,11 +110,13 @@ const createCssMisc = (attributes, theme, pseudoElementSelector) => {
   return cssMisc
 }
 
-export const processCss = (attributes, theme, pseudoElementSelector) => {
-  let cssText = {}
+export const processCss = (attributes, theme) => {
+  let cssText:any = {}
   let cssMisc = {}
+  let name: string | string[]
+  let value
   const forwarding = theme.forwardStyle
-  for (let [name, value] of Object.entries(attributes)) {
+  for ([name, value] of Object.entries(attributes)) {
     name = shortHandAttributes.get(name) || [name]
     for (let cssProp of name) {
       let cssPropValue
@@ -181,7 +185,7 @@ const forwardStyleDefault = [
 let styleLib = {}
 
 const styledProcess = (attributes, theme, stringed = false) => {
-  let previousCssText = ''
+  let previousCssText: any
   let cn, toLib
 
   const cssText = processCss(attributes, theme)
@@ -313,8 +317,9 @@ const extractCss = (theme, active = false, opts = {}) => {
     storeSSR += global
     storedGlobal = true
   }
-
-  for (let [cn, cv] of Object.entries(styleLib)) {
+  let cn: any
+  let cv: any
+  for ([cn, cv] of Object.entries(styleLib)) {
     if (typeof cv.value === 'string') compStyles += cv.value
     if (typeof cv.media === 'object' && Object.entries(cv.media).length > 0) {
       for (let [mn, mv] of Object.entries(cv.media)) {
@@ -350,8 +355,10 @@ const parseGlobal = (globStyles, opts = defaultParseGlobalOpts) => {
   theme.forwardStyle = forwardStyleDefault
   let parseTheme = globStyles.styles
   let units = opts.units
+  let name: string | string[]
+  let value
 
-  for (let [name, value] of Object.entries(parseTheme)) {
+  for ([name, value] of Object.entries(parseTheme)) {
     if (name !== 'p' && name !== 'a' && name !== 'b') {
       name = shortHandAttributes.get(name) || name
     }
@@ -391,7 +398,9 @@ const parseGlobal = (globStyles, opts = defaultParseGlobalOpts) => {
         box-sizing: border-box;`
       }
     }
-    for (let [nameV, valueV] of Object.entries(parsedV)) {
+    let nameV: any
+    let valueV: any
+    for ([nameV, valueV] of Object.entries(parsedV)) {
       nameV = nameV.replace(/[A-Z]/g, match => `-${match.toLowerCase()}`)
       valueV = valueV === 'text' ? '"text"' : valueV
       valueV =

@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "display": "Svelte",
+  "compilerOptions": {
+    "sourceMap": true,
+    "noImplicitAny": true,
+    "strict": true,
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "allowJs": true,
+    "noImplicitReturns": true,
+    "strictNullChecks": true
+  },
+  "include": ["apps/site2"],
+  "exclude": ["node_modules"]
+}

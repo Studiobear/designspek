@@ -51,7 +51,7 @@
     "regenerator-runtime": "^0.13.3",
     "rollup": "^2.6.1",
     "rollup-plugin-svelte": "^5.2.1",
-    "svelte": "^3.20.1",
+    "svelte": "^3.24.0",
     "svelte-jester": "^1.0.3",
     "svelte-loader": "^2.13.6",
     "typography-theme-st-annes": "^0.16.19",
