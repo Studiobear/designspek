@@ -1,0 +1,16 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "exclude": ["node_modules", "dist", "tests"],
+  "include": ["src/**/*"],
+  "compilerOptions": {
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "target": "ESNext",
+    "resolveJsonModule": true,
+    "lib": ["esnext"],
+    "baseUrl": ".",
+    "paths": {
+      "*": ["../*"]
+    }
+  }
+}
