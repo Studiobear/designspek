@@ -1,3 +1,5 @@
+import { shortHandAttr } from './shorthand'
+
 const PKG_VERSION = 'PKG_VERSION'
 export const version = PKG_VERSION
 

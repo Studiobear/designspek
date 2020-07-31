@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`shorthand attributes were not changed 1`] = `
+Map {
+  "m" => Array [
+    "margin",
+  ],
+  "mt" => Array [
+    "marginTop",
+  ],
+  "mr" => Array [
+    "marginRight",
+  ],
+  "mb" => Array [
+    "marginBottom",
+  ],
+  "ml" => Array [
+    "marginLeft",
+  ],
+  "mx" => Array [
+    "marginLeft",
+    "marginRight",
+  ],
+  "my" => Array [
+    "marginTop",
+    "marginBottom",
+  ],
+  "p" => Array [
+    "padding",
+  ],
+  "pt" => Array [
+    "paddingTop",
+  ],
+  "pr" => Array [
+    "paddingRight",
+  ],
+  "pb" => Array [
+    "paddingBottom",
+  ],
+  "pl" => Array [
+    "paddingLeft",
+  ],
+  "px" => Array [
+    "paddingLeft",
+    "paddingRight",
+  ],
+  "py" => Array [
+    "paddingTop",
+    "paddingBottom",
+  ],
+}
+`;

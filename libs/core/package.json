@@ -20,13 +20,13 @@
   "scripts": {
     "build": "microbundle --define PKG_VERSION=$npm_package_version",
     "dev": "yarn clean && microbundle watch --define PKG_VERSION=$npm_package_version",
-    "test": "yarn clean && yarn build && ava tests/*.test.js",
-    "test:watch": "yarn watch & yarn test --watch -u",
+    "test": "jest src",
+    "test:watch": "yarn test -- --watch",
     "clean": "rm -rf dist",
     "prepublishOnly": "yarn build",
     "bundlesize": "bundlesize",
-    "lint": "prettier --check 'src/**/*.{ts,js}' 'tests/**/*.{js}'",
-    "lint:fix": "prettier --write 'src/**/*.{ts,js}' 'tests/**/*.{ts,js}'",
+    "lint": "prettier --check 'src/**/*.{ts,js}'",
+    "lint:fix": "prettier --write 'src/**/*.{ts,js}'",
     "release": "NODE_ENV=production yarn clean && yarn build --compress && yarn test && yarn bundlesize"
   },
   "bundlesize": [
@@ -47,25 +47,22 @@
       "git add"
     ]
   },
-  "ava": {
-    "require": [
-      "esm"
-    ]
-  },
   "devDependencies": {
-    "ava": "^3.8.2",
+    "@types/jest": "^26.0.7",
     "bundlesize": "^0.18.0",
     "compass-vertical-rhythm": "^1.4.5",
     "cypress": "^4.11.0",
     "esm": "^3.2.25",
     "goober": "^1.8.0",
     "husky": "^4.2.5",
+    "jest": "^26.2.1",
     "lint-staged": "^10.2.11",
     "micro-memoize": "^4.0.9",
     "microbundle": "0.12.0",
     "modularscale": "^2.0.1",
     "prettier": "^2.0.5",
     "styled-system": "^5.1.5",
+    "ts-jest": "^26.1.4",
     "typography-theme-st-annes": "^0.16.19"
   }
 }
