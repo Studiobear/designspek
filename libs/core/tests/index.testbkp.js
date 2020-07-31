@@ -1,7 +1,7 @@
 const test = require('ava')
 import stAnnesTheme from 'typography-theme-st-annes'
 
-import { processCss, styled, system, typography } from '../src/index'
+import { processCss, styled, system, typography } from '../../dist/index'
 import { shortHandAttributes } from '../src/constants'
 import { basic } from './basic'
 

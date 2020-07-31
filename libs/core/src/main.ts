@@ -1,20 +1,28 @@
 const PKG_VERSION = 'PKG_VERSION'
 export const version = PKG_VERSION
 
-interface Ping {
-  pong: string
+export type StyleUnits = number | string
+
+export type Theme = {
+  space?: Space
 }
 
-export const ping = (pong): Ping => {
-  return pong
+export type Spec = {
+  space: string
 }
-
-type StyleUnits = number | string
 
 export const units = (x: StyleUnits): StyleUnits => {
   return x
 }
 
-interface Space {
+export type Space = {
   units?: StyleUnits | Function
+}
+
+export interface Styled {
+  theme: Theme
+}
+
+export const styled = <Styled>(theme): Spec => {
+  return { space: 'space' }
 }
