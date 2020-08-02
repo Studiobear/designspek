@@ -1,27 +1,26 @@
 // import { shortHandAttr } from './shorthand'
-import { Space } from './types'
+import { addSpace } from './space'
+import { Spek, Theme } from './types'
 
 const PKG_VERSION = 'PKG_VERSION'
 export const version = PKG_VERSION
 
-export type Spec = {
-  baseFontSize?: string
-  space?: Space
-}
-
-export type Theme = {
-  baseFontSize?: string
-  space?: Space
-}
-
 /**
  * Generates Designspek theme from specification
- * @param {object: Spec} - Designspek specification object
+ * @param {object: Spek} - Designspek specification object
  * @return {object: Theme} Designspek theme object
  */
 
-export const createTheme = (spec: Spec): Theme => {
-  let theme = Object.assign({})
+export const createTheme = (spec: Spek): Theme => {
+  let theme = {}
+  // add Space:
+  theme = { theme, ...addSpace(spec) }
+  // add Typography:
+
+  // add Color:
+
+  // add Elements:
+
   return theme
 }
 

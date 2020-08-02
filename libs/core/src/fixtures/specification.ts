@@ -1,19 +1,33 @@
+import { Spek } from '../types'
 const heading = {
   fontFamily: 'heading',
   lineHeight: 'heading',
   fontWeight: 'heading',
 }
 
-export const specification = {
-  baseFontSize: '16px',
+export const specification: Spek = {
   space: {
-    units: {
-      margin: 'rem',
-      padding: 'rem',
-    },
+    units: 'em',
     scale: [0, 0.125, 0.25, 0.5, 1, 1.5, 2, 4, 8],
-    values: [0, 2, 4, 8, 16, 24, 32, 64, 128],
-    aliases: ['none', 'xxs', 'xs', 's', 'm', 'l', 'xl', 'xxl', 'xxxl'],
+    // values: [0, 2, 4, 8, 16, 24, 32, 64, 128],
+    alias: ['none', 'xxs', 'xs', 's', 'm', 'l', 'xl', 'xxl', 'xxxl'],
+  },
+  typography: {
+    units: 'rem',
+    scaleRatio: 1.333,
+    baseLineHeight: 1.45,
+    headerLineHeight: 1.8,
+    fonts: [
+      {
+        family: 'Fira Sans',
+        weights: ['200', '200i', '400', '400i', '600', '600i'],
+        source: 'GOOGLE',
+      },
+    ],
+    headers: {
+      fontFamily: ['Fira Sans', 'Helvetica Neue', 'Helvetica', 'sans-serif'],
+      weight: '600',
+    },
   },
   colors: {
     text: '#666',
