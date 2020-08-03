@@ -51,6 +51,7 @@
     "@types/jest": "^26.0.7",
     "bundlesize": "^0.18.0",
     "compass-vertical-rhythm": "^1.4.5",
+    "csstype": "^3.0.2",
     "cypress": "^4.11.0",
     "esm": "^3.2.25",
     "goober": "^1.8.0",

@@ -1,22 +1,28 @@
-type TypographyHeading = {
+export type TypographyHeading = {
   fontFamily: string
   lineHeight: string
   fontWeight: string
 }
 
+type TypographyFont = {
+  family: string
+  weights: string[]
+  source: string
+}
+
+type TypographyHeader = {
+  family: string
+  weights: string[]
+  source: string
+}
+
 export type Typography = {
-  units: 'rem'
-  scaleRatio: 1.333
-  baseFontSize: '16px'
-  baseLineHeight: 1.45
-  headerLineHeight: 1.8
-  fonts: [
-    {
-      family: 'Fira Sans'
-      weights: ['200', '200i', '400', '400i', '600', '600i']
-      source: 'GOOGLE'
-    },
-  ]
+  units: string
+  scaleRatio: number
+  baseFontSize: number
+  baseLineHeight: number
+  headerLineHeight: number
+  fonts: TypographyFont[]
   headers: {
     fontFamily: ['Fira Sans', 'Helvetica Neue', 'Helvetica', 'sans-serif']
     weight: '600'

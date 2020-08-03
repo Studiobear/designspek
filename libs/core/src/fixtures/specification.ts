@@ -15,6 +15,7 @@ export const specification: Spek = {
   typography: {
     units: 'rem',
     scaleRatio: 1.333,
+    baseFontSize: 16,
     baseLineHeight: 1.45,
     headerLineHeight: 1.8,
     fonts: [

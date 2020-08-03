@@ -14,7 +14,7 @@ export const version = PKG_VERSION
 export const createTheme = (spec: Spek): Theme => {
   let theme = {}
   // add Space:
-  theme = { theme, ...addSpace(spec) }
+  theme = { ...theme, ...addSpace(spec) }
   // add Typography:
 
   // add Color:
