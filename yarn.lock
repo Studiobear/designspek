@@ -8627,6 +8627,11 @@ forwarded@~0.1.2:
   resolved "https://registry.yarnpkg.com/forwarded/-/forwarded-0.1.2.tgz#98c23dab1175657b8c0573e8ceccd91b0ff18c84"
   integrity sha1-mMI9qxF1ZXuMBXPozszZGw/xjIQ=
 
+fp-ts@^2.8.1:
+  version "2.8.1"
+  resolved "https://registry.yarnpkg.com/fp-ts/-/fp-ts-2.8.1.tgz#b1812171469a7c0fcbc0b770ac2568f8356d1993"
+  integrity sha512-HuA/6roEliHoBgEOLCKmGRcM90e2trW/ITZZ9d9P/ra7PreqQagC3Jg6OzqWkai13KUbG90b8QO9rHPBGK/ckw==
+
 fragment-cache@^0.2.1:
   version "0.2.1"
   resolved "https://registry.yarnpkg.com/fragment-cache/-/fragment-cache-0.2.1.tgz#4290fad27f13e89be7f33799c6bc5a0abfff0d19"
@@ -12463,6 +12468,11 @@ moment@2.26.0:
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.26.0.tgz#5e1f82c6bafca6e83e808b30c8705eed0dcbd39a"
   integrity sha512-oIixUO+OamkUkwjhAVE18rAMfRJNsNe/Stid/gwHSOfHrOtw9EhAY2AHvdKZ/k/MggcYELFCJz/Sn2pL8b8JMw==
 
+monocle-ts@^2.3.3:
+  version "2.3.3"
+  resolved "https://registry.yarnpkg.com/monocle-ts/-/monocle-ts-2.3.3.tgz#1e6d83dcf42bcb96b74fdda07813c2a47ec6cfa4"
+  integrity sha512-pcQyauWO2vapxyZgbhTd73Dv8TmTELx1rL81bvrtPO2sUYTi1MIHmw3j/iMyeNaJwTmnGNAjqJpYV8Gq1Eu68g==
+
 move-concurrently@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/move-concurrently/-/move-concurrently-1.0.1.tgz#be2c005fda32e0b29af1f05d7c4b33214c701f92"
@@ -14401,13 +14411,6 @@ puppeteer-core@~1.12.0:
     proxy-from-env "^1.0.0"
     rimraf "^2.6.1"
     ws "^6.1.0"
-
-purify-ts@^0.16.0-beta.5:
-  version "0.16.0-beta.5"
-  resolved "https://registry.yarnpkg.com/purify-ts/-/purify-ts-0.16.0-beta.5.tgz#1e8cf708d616ba5a64686f604bdda7a15e2a83e6"
-  integrity sha512-DBZPgTJmsYQ6ODB31N0bc6Lx4ep6IwhFxFNi9i2WSwwyelV9b30QvZl68KR+66o9PqTdFP5D1KxwGDwFiTzuAQ==
-  dependencies:
-    "@types/json-schema" "^7.0.4"
 
 q@^1.1.2, q@^1.5.1:
   version "1.5.1"

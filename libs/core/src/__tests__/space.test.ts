@@ -1,15 +1,17 @@
-import { addSpace } from '../space'
-import { specification } from '../fixtures'
+import { initSpace } from '../space'
+import { getSpace } from '../main'
+import { spek } from '../fixtures'
+import { Space } from '../types'
 // import { Theme } from '../types'
 
-let theme: any
+let spekSpace: Space
 
 beforeEach(() => {
-  theme = addSpace(specification)
+  spekSpace = getSpace(spek)
 })
 
-describe('addSpace', () => {
+describe('initSpace', () => {
   it('to create space values', () => {
-    expect(theme.space.values).toBe([0])
+    expect(initSpace(spekSpace)).toStrictEqual({})
   })
 })

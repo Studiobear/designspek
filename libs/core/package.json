@@ -54,6 +54,7 @@
     "csstype": "^3.0.2",
     "cypress": "^4.11.0",
     "esm": "^3.2.25",
+    "fp-ts": "^2.8.1",
     "goober": "^1.8.0",
     "husky": "^4.2.5",
     "jest": "^26.2.1",
@@ -61,8 +62,8 @@
     "micro-memoize": "^4.0.9",
     "microbundle": "0.12.0",
     "modularscale": "^2.0.1",
+    "monocle-ts": "^2.3.3",
     "prettier": "^2.0.5",
-    "purify-ts": "^0.16.0-beta.5",
     "styled-system": "^5.1.5",
     "ts-jest": "^26.1.4",
     "typography-theme-st-annes": "^0.16.19"

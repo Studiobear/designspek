@@ -7,6 +7,11 @@ const r = 'right'
 const b = 'bottom'
 const l = 'left'
 
+/**
+ * Shorthand CSS Attributes
+ * @return {Map}
+ */
+
 export const shortHandAttr = new Map([
   ['m', [m]],
   ['mt', [`${m}${cap(t)}`]],

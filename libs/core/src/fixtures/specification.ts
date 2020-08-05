@@ -5,7 +5,8 @@ const heading = {
   fontWeight: 'heading',
 }
 
-export const specification: Spek = {
+// Test Spek uses default values
+export const spek: Spek = {
   space: {
     units: 'em',
     scale: [0, 0.125, 0.25, 0.5, 1, 1.5, 2, 4, 8],
@@ -30,7 +31,7 @@ export const specification: Spek = {
       weight: '600',
     },
   },
-  colors: {
+  color: {
     text: '#666',
     background: '#fff',
     primary: '#07c',
@@ -114,4 +115,4 @@ export const specification: Spek = {
   },
 }
 
-export default specification
+export default spek

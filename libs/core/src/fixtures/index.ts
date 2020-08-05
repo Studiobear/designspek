@@ -1,6 +1,5 @@
-import specification from './specification'
+import spek from './specification'
 import basic from './theme'
 import { styleSpace } from './styles'
 
-export { specification, basic, styleSpace }
-export default specification
+export { spek, basic, styleSpace }

@@ -1,5 +1,7 @@
 import { Spek, Space } from './types'
 
-export const addSpace = (spec: Spek): Space => {
+const getUnits = () => {}
+
+export const initSpace = (s: Space): Space => {
   return {}
 }
