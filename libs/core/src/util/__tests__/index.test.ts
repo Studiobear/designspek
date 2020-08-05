@@ -1,6 +1,6 @@
 import { version } from '../../../dist/main'
 import pkg from '../../../package.json'
-import { cap } from '../index'
+import { cap, toHash } from '../index'
 
 describe('version', () => {
   it('returns package version', () => {
@@ -9,8 +9,15 @@ describe('version', () => {
 })
 
 describe('cap', () => {
-  it('uppercased first letter of string', () => {
+  it('uppercase first letter of string', () => {
     const t = 'top'
     expect(cap(t)).toEqual('Top')
+  })
+})
+
+describe('toHash', () => {
+  it('converts string to hash', () => {
+    const s = '{m:"s",px:"m",py:"s"}'
+    expect(toHash(s)).toEqual('3778021282')
   })
 })
