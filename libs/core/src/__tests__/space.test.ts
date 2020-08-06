@@ -6,7 +6,7 @@ import { Space } from '../types'
 
 let spekSpace: Space
 
-beforeEach(() => {
+beforeAll(() => {
   spekSpace = getSpace(spek)
 })
 

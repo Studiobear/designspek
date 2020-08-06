@@ -11,8 +11,9 @@ export type Spek = {
   space: Space
   typography: Typography
   color: Color
+  global?: object
   elements?: {
-    [key: string]: CSS.Properties
+    [key: string]: {} // CSS.Properties
   }
 }
 

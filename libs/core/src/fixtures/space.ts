@@ -1,7 +1,6 @@
-import { Lens } from 'monocle-ts'
-import { Spek, Space } from '../types'
+import { Space } from '../types'
 
-export const fixSpecSpacePre: Lens<Spek, Space | undefined> = {
+export const spekSpace: Space = {
   units: 'em',
   scale: [0, 0.125, 0.25, 0.5, 1, 1.5, 2, 4, 8],
   // values: [0, 2, 4, 8, 16, 24, 32, 64, 128],

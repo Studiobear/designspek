@@ -38,7 +38,7 @@ export const spek: Spek = {
     secondary: '#30c',
     muted: '#f6f6f6',
   },
-  styles: {
+  elements: {
     root: {
       fontFamily: 'body',
       lineHeight: 'body',
