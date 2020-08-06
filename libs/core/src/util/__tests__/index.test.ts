@@ -1,6 +1,6 @@
 import { version } from '../../../dist/main'
 import pkg from '../../../package.json'
-import { cap, toHash } from '../index'
+import { cap, toHash, isObject, isEmpty } from '../index'
 
 describe('version', () => {
   it('returns package version', () => {
@@ -20,4 +20,17 @@ describe('toHash', () => {
     const s = '{m:"s",px:"m",py:"s"}'
     expect(toHash(s)).toEqual('3778021282')
   })
+})
+
+describe('isObject', () => {
+  it('is not an object', () => expect(isObject([])).toEqual(false))
+  it('is an object', () => expect(isObject({ some: 'value' })).toEqual(true))
+  it('is an object even if empty', () => expect(isObject({})).toEqual(true))
+})
+
+describe('isEmpty', () => {
+  it('is not an object', () => expect(isEmpty([])).toEqual(false))
+  it('is not an empty object', () =>
+    expect(isEmpty({ not: 'empty' })).toEqual(false))
+  it('is an empty object', () => expect(isEmpty({})).toEqual(true))
 })

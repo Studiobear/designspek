@@ -38,15 +38,16 @@ export const spek: Spek = {
     secondary: '#30c',
     muted: '#f6f6f6',
   },
+  global: {
+    antialias: true,
+  },
   elements: {
     root: {
       fontFamily: 'body',
       lineHeight: 'body',
       fontWeight: 'body',
     },
-    body: {
-      antialias: true,
-    },
+    body: {},
     h1: {
       ...heading,
       fontSize: 5,

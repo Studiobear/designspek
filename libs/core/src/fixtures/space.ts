@@ -6,3 +6,15 @@ export const spekSpace: Space = {
   // values: [0, 2, 4, 8, 16, 24, 32, 64, 128],
   alias: ['none', 'xxs', 'xs', 's', 'm', 'l', 'xl', 'xxl', 'xxxl'],
 }
+
+export const spekSpaceEmpty: Space = {}
+
+export const spekSpaceValues: Space = {
+  units: 'em',
+  values: [0, 2, 4, 8, 16, 24, 32, 64, 128],
+  alias: ['none', 'xxs', 'xs', 's', 'm', 'l', 'xl', 'xxl', 'xxxl'],
+}
+
+export const spekSpaceValuesNoUnits: Space = {
+  values: [0, 2, 4, 8, 16, 24, 32, 64, 128],
+}

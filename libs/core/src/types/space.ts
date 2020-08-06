@@ -5,4 +5,5 @@ export type Space = {
   scale?: number[]
   values?: number[]
   alias?: string[]
+  error?: string
 }
