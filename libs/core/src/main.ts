@@ -15,7 +15,7 @@ export const version = PKG_VERSION
 const spekToSpace: Lens<Spek, Space> = Lens.fromProp<Spek>()('space')
 export const getSpace: (s: Spek) => Space = (s: Spek) => spekToSpace.get(s)
 
-export const createTheme = (spek: Spek): Theme => {
+export const initSpek = (spek: Spek): Theme => {
   const theme: Theme = Object.create({
     space: initSpace(getSpace(spek)),
   })

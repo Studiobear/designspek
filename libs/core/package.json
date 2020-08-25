@@ -66,6 +66,8 @@
     "prettier": "^2.0.5",
     "styled-system": "^5.1.5",
     "ts-jest": "^26.1.4",
-    "typography-theme-st-annes": "^0.16.19"
+    "typescript": "^3.9.7",
+    "typography-theme-st-annes": "^0.16.19",
+    "zod": "^1.10.2"
   }
 }
