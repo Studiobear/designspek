@@ -5,7 +5,11 @@
  * @param {String} paren
  * @param {String} wrapper
  */
-export const gParse = (obj, paren, wrapper) => {
+export const gParse = (
+  obj: { [x: string]: any },
+  paren: string,
+  wrapper: string,
+) => {
   let outer = ''
   let blocks = ''
   let current = ''

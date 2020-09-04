@@ -18483,7 +18483,7 @@ yauzl@2.4.1:
   dependencies:
     fd-slicer "~1.0.1"
 
-zod@^1.10.2:
-  version "1.10.2"
-  resolved "https://registry.yarnpkg.com/zod/-/zod-1.10.2.tgz#fd2585bfcabc6a1dee267815ce0a036f184a5473"
-  integrity sha512-/T7CBnpJNf2hOlFburyOSP56nedBqrhwTgrwTKp3xPcZzfdRgRXORVHgDLMOIUQUVJyZbDrQqbS2RHuU/2XmHg==
+zod@^1.11.0:
+  version "1.11.4"
+  resolved "https://registry.yarnpkg.com/zod/-/zod-1.11.4.tgz#0de8f2e62f6bbf16a4f1a28ca2708b2ff8465fd1"
+  integrity sha512-KArP+E2Nl/46qkC1yFd0mUMg/6ZDZKyjpaKRA1Vm2+MZH7wmLFYBCDZKTU666LmZHcGsm5EZTDIMsQB+o99iWg==

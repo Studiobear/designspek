@@ -1,9 +1,11 @@
-import { SpekUnits } from './index'
+import * as z from 'zod'
 
-export type Space = {
-  units?: string
-  scale?: number[]
-  values?: number[]
-  alias?: string[]
-  error?: string
-}
+export const SpaceSchema = z.object({
+  units: z.string(),
+  scale: z.number().array(),
+  values: z.number().array(),
+  alias: z.string().array(),
+  error: z.string(),
+})
+
+export type Space = z.TypeOf<typeof SpaceSchema>

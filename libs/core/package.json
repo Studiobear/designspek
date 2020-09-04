@@ -68,6 +68,6 @@
     "ts-jest": "^26.1.4",
     "typescript": "^3.9.7",
     "typography-theme-st-annes": "^0.16.19",
-    "zod": "^1.10.2"
+    "zod": "^1.11.0"
   }
 }
