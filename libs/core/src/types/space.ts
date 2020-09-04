@@ -1,11 +1,14 @@
 import * as z from 'zod'
+import { LengthEnum } from './index'
 
-export const SpaceSchema = z.object({
-  units: z.string(),
+const SpaceSchema = z.object({
+  units: LengthEnum,
   scale: z.number().array(),
   values: z.number().array(),
   alias: z.string().array(),
   error: z.string(),
 })
 
-export type Space = z.TypeOf<typeof SpaceSchema>
+export const Space = SpaceSchema.partial()
+
+export type Space = z.TypeOf<typeof Space>
