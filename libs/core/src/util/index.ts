@@ -32,3 +32,11 @@ export const isObject = (o: object): boolean => o.constructor === Object
 
 export const isEmpty = (o: object): boolean =>
   isObject(o) && Object.entries(o).length === 0
+
+/**
+ * Checks if object is invalid by not being a valid object or is empty
+ * @param {object} o
+ * @return {boolean} true if object is empty
+ */
+
+export const isInvalid = (o: object) => !isObject(o) || isEmpty(o)
