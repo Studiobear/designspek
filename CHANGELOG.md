@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.4.3](https://github.com/Studiobear/designspek/compare/v0.4.2...v0.4.3) (2020-09-11)
+
+
+### Features
+
+* **components:** icon ([4c436a6](https://github.com/Studiobear/designspek/commit/4c436a634b4b257609d9e05685d2d88120c2261a))
+* **core:** listStyle, listStyleType ([c103581](https://github.com/Studiobear/designspek/commit/c1035814eae0d48f4e661ba1199bc58fd1d8846f))
+
 ### [0.4.2](https://github.com/Studiobear/designspek/compare/v0.4.0...v0.4.2) (2020-05-24)
 
 
