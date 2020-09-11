@@ -4,29 +4,46 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### [0.4.3](https://github.com/Studiobear/designspek/compare/v0.4.2...v0.4.3) (2020-09-11)
 
-
 ### Features
 
-* **components:** icon ([4c436a6](https://github.com/Studiobear/designspek/commit/4c436a634b4b257609d9e05685d2d88120c2261a))
-* **core:** listStyle, listStyleType ([c103581](https://github.com/Studiobear/designspek/commit/c1035814eae0d48f4e661ba1199bc58fd1d8846f))
+- **designspek:**
+  - listStyle, listStyleType ([c103581](https://github.com/Studiobear/designspek/commit/c1035814eae0d48f4e661ba1199bc58fd1d8846f))
+- **designspek-components:**
+
+  - **New! Icon component** Create an SVG sprite using the SVG component then use Icon component to `use` SVG symbols ([4c436a6](https://github.com/Studiobear/designspek/commit/4c436a634b4b257609d9e05685d2d88120c2261a))
+
+  Example:
+
+  ```javascript
+  // Icons.svelte
+    <SVG {fill} {style}>
+      <symbol id="icon1"><path>...</path></symbol>
+    </SVG>
+
+  // Page.svelte - Usually load SVG in top layout
+
+  <Icons />
+   // ...then anywhere
+
+   <Icon name="icon1" fill="#000" style={{w: '1rem', h: '1rem'}}>
+
+  ```
 
 ### [0.4.2](https://github.com/Studiobear/designspek/compare/v0.4.0...v0.4.2) (2020-05-24)
 
-
 ### Features
 
-* **designspek:**
-    * transform, perspective, transition ([a0186a4](https://github.com/Studiobear/designspek/commit/a0186a41dea2d6e8a0c86305f672a1ba979f44d8)) | ([c859e70](https://github.com/Studiobear/designspek/commit/c859e70f02beabae3421980959b98d5d4c5b17da))
-* **designspek-components:**
-    * **New! Form component** Automatically create forms by providing a fields object or manually insert `<Field />` component. Event delegation is used to pull field state and values into a convenient Form-level object.
-        * Related: ([73ad705](https://github.com/Studiobear/designspek/commit/73ad705e30d5f60abee361528ad5180fb0e89dca)), ([0c58b97](https://github.com/Studiobear/designspek/commit/0c58b97c9fc5a00c8d2e75c8b0a0f8ed1dbf3d08)), ([18b7ff0](https://github.com/Studiobear/designspek/commit/18b7ff06aac386602ebe322c4e890de1a443bf25)), ([9a9f375](https://github.com/Studiobear/designspek/commit/9a9f3758db6d7a7e47269f8705531bb9afc23d84)), ([3ed4885](https://github.com/Studiobear/designspek/commit/3ed4885045cf12e32962462be9be5b0aef6b42da)), ([054a286](https://github.com/Studiobear/designspek/commit/054a286f217868d3d1280a9a82b7fe4bd9e97714)), ([93f306c](https://github.com/Studiobear/designspek/commit/93f306c07994cd00731dc2f6f344caa31b63348f)), ([14c526d](https://github.com/Studiobear/designspek/commit/14c526d1cf6516fdefa6371f050eed2dcfa785fd))
-
+- **designspek:**
+  - transform, perspective, transition ([a0186a4](https://github.com/Studiobear/designspek/commit/a0186a41dea2d6e8a0c86305f672a1ba979f44d8)) | ([c859e70](https://github.com/Studiobear/designspek/commit/c859e70f02beabae3421980959b98d5d4c5b17da))
+- **designspek-components:**
+  - **New! Form component** Automatically create forms by providing a fields object or manually insert `<Field />` component. Event delegation is used to pull field state and values into a convenient Form-level object.
+    - Related: ([73ad705](https://github.com/Studiobear/designspek/commit/73ad705e30d5f60abee361528ad5180fb0e89dca)), ([0c58b97](https://github.com/Studiobear/designspek/commit/0c58b97c9fc5a00c8d2e75c8b0a0f8ed1dbf3d08)), ([18b7ff0](https://github.com/Studiobear/designspek/commit/18b7ff06aac386602ebe322c4e890de1a443bf25)), ([9a9f375](https://github.com/Studiobear/designspek/commit/9a9f3758db6d7a7e47269f8705531bb9afc23d84)), ([3ed4885](https://github.com/Studiobear/designspek/commit/3ed4885045cf12e32962462be9be5b0aef6b42da)), ([054a286](https://github.com/Studiobear/designspek/commit/054a286f217868d3d1280a9a82b7fe4bd9e97714)), ([93f306c](https://github.com/Studiobear/designspek/commit/93f306c07994cd00731dc2f6f344caa31b63348f)), ([14c526d](https://github.com/Studiobear/designspek/commit/14c526d1cf6516fdefa6371f050eed2dcfa785fd))
 
 ### Bug Fixes
 
-* **designspek-components:**
-    * checkbox and radio values ([fa467cd](https://github.com/Studiobear/designspek/commit/fa467cd62aa60eb0a5c5a5f93baa1b7b6774e760)) | ([9c8c09e](https://github.com/Studiobear/designspek/commit/9c8c09e8c096c0339fecd75d16ff29d5f3be596b))
-    * click listener type & dispatch accordingly ([37c2801](https://github.com/Studiobear/designspek/commit/37c28017b07a7c4eb994a1c6cc8aee6aeb6eb424))
+- **designspek-components:**
+  - checkbox and radio values ([fa467cd](https://github.com/Studiobear/designspek/commit/fa467cd62aa60eb0a5c5a5f93baa1b7b6774e760)) | ([9c8c09e](https://github.com/Studiobear/designspek/commit/9c8c09e8c096c0339fecd75d16ff29d5f3be596b))
+  - click listener type & dispatch accordingly ([37c2801](https://github.com/Studiobear/designspek/commit/37c28017b07a7c4eb994a1c6cc8aee6aeb6eb424))
 
 ## [0.4.0](https://github.com/Studiobear/designspek/compare/v0.3.8...v0.4.0) (2020-04-06)
 
