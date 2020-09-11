@@ -178,6 +178,8 @@ const forwardStyleDefault = [
   'bck',
   'listStyle',
   'listStyleType',
+  'alignItems',
+  'justifyItems',
 ]
 
 let styleLib = {}

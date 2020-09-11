@@ -9,6 +9,7 @@
   export let style
   $$props.theme = theme
   $: bodyStyle = {
+    p: '1.5rem',
     backgroundColor: $theme.colors.secondary,
   }
   $: hoverStyle = {
@@ -55,7 +56,7 @@
         provide visual feedback whilst building CSS systems and frameworks.
       </Text>
     </Section>
-    <Section as="nav" style={{ p: 4, bg: $theme.colors.background }}>
+    <Section as="nav" style={{ p: '1.5rem', bg: $theme.colors.background }}>
       <ul>
         <li>
           <a href="#text">Text</a>

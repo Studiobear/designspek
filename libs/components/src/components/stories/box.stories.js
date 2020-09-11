@@ -60,7 +60,7 @@ export const withPaddingLarge = () => ({
   Component: BoxView,
   props: {
     style: {
-      p: 4,
+      p: '4rem',
       bg: 'primary',
       color: 'background',
     },
@@ -73,7 +73,7 @@ export const withBorder = () => ({
   Component: BoxView,
   props: {
     style: {
-      p: 4,
+      p: '4rem',
       brd: `1px solid`,
       brdCol: 'primary',
     },
@@ -100,10 +100,10 @@ export const withDisplayBlock = () => ({
   Component: BoxViewChildren,
   props: {
     theme: theme,
-    style: { p: 4, brd: '1px solid', brdCol: 'primary' },
-    style1: { p: 4, brd: '1px solid', brdCol: 'primary' },
-    style2: { p: 4, brd: '1px solid', brdCol: 'primary' },
-    style3: { p: 4, brd: '1px solid', brdCol: 'primary' },
+    style: { p: '4rem', brd: '1px solid', brdCol: 'primary' },
+    style1: { p: '4rem', brd: '1px solid', brdCol: 'primary' },
+    style2: { p: '4rem', brd: '1px solid', brdCol: 'primary' },
+    style3: { p: '4rem', brd: '1px solid', brdCol: 'primary' },
     boxText1: 'Just nested',
     boxText2: 'but not using flex;',
     boxText3: 'default displays as "block"',
@@ -115,24 +115,24 @@ export const withDisplayInline = () => ({
   props: {
     theme: theme,
     style: {
-      p: 4,
+      p: '4rem',
       brd: '1px solid',
       brdCol: 'primary',
     },
     style1: {
-      p: 4,
+      p: '4rem',
       brd: '1px solid',
       brdCol: 'secondary',
       display: 'inline',
     },
     style2: {
-      p: 4,
+      p: '4rem',
       brd: '1px solid',
       brdCol: 'secondary',
       display: 'inline',
     },
     style3: {
-      p: 4,
+      p: '4rem',
       brd: '1px solid',
       brdCol: 'secondary',
       display: 'inline',
