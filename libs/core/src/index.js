@@ -176,6 +176,8 @@ const forwardStyleDefault = [
   'per',
   'peror',
   'bck',
+  'listStyle',
+  'listStyleType',
 ]
 
 let styleLib = {}
