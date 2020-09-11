@@ -1,6 +1,6 @@
 {
   "name": "@studiobear/designspek",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "description": "A Reactive Design System: Svelte meets System UI",
   "source": "src/index.js",
   "main": "dist/index.js",
@@ -59,7 +59,7 @@
     "husky": "^4.2.1",
     "lint-staged": "^9.5.0",
     "micro-memoize": "^4.0.9",
-    "microbundle": "0.12.0-next.8",
+    "microbundle": "0.12.3",
     "modularscale": "^2.0.1",
     "prettier": "^1.19.1",
     "prettier-plugin-svelte": "^0.7.0",
