@@ -1,9 +1,8 @@
-const test = require('ava')
 import stAnnesTheme from 'typography-theme-st-annes'
 
-import { processCss, styled, system, typography } from '../src/index'
-import { shortHandAttributes } from '../src/constants'
-import { basic } from './basic'
+import { processCss, styled, system, typography } from '../index'
+import { shortHandAttributes } from '../constants'
+import { basic } from './fixtures/basic'
 
 const theme = typography(basic, stAnnesTheme)
 
@@ -21,14 +20,14 @@ class HTMLNode {
   }
 }
 
-test('processCss: should resolve pseudo selectors via _', t => {
-  t.deepEqual(processCss({ _hover: { color: 'red' } }, theme), {
+test('processCss: should resolve pseudo selectors via _', () => {
+  expect(processCss({ _hover: { color: 'red' } }, theme)).toEqual({
     '&:hover': { color: 'red' },
   })
-  t.deepEqual(processCss({ _after: { color: 'red' } }, theme), {
+  expect(processCss({ _after: { color: 'red' } }, theme)).toEqual({
     '&:after': { color: 'red' },
   })
-  t.deepEqual(processCss({ _before: { color: 'red' } }, theme), {
+  expect(processCss({ _before: { color: 'red' } }, theme)).toEqual({
     '&:before': { color: 'red' },
   })
 })

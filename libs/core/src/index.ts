@@ -15,6 +15,8 @@ import glob, { removeSSR } from './glob'
 import typography, { fontLink } from './typography'
 import memoize from 'micro-memoize'
 
+import { CSSPropertiesObject } from './types'
+
 export const system = compose(
   color,
   space,
@@ -31,7 +33,8 @@ const defaultUnits = {
   layout: '%',
   grid: 'rem',
 }
-const addUnits = (styles, units = defaultUnits) => {
+
+const addUnits = (styles: any, units = defaultUnits) => {
   let withUnits = {}
   let mUnits = ''
   for (let [name, value] of Object.entries(styles)) {
@@ -42,7 +45,7 @@ const addUnits = (styles, units = defaultUnits) => {
           (nameO.startsWith('margin') || nameO.startsWith('padding')) &&
           typeof valueO === 'number'
         ) {
-          mUnits = value0 === 0 ? '' : units.space
+          mUnits = valueO === 0 ? '' : units.space
           Object.assign(withUnitsO, { [nameO]: `${valueO}${mUnits}` })
           continue
         }
@@ -72,21 +75,32 @@ const addUnits = (styles, units = defaultUnits) => {
   return withUnits
 }
 
-const createCssMisc = (attributes, theme, pseudoElementSelector) => {
+export type StyledProcess = (
+  attributes: CSSPropertiesObject | Array<CSSPropertiesObject | Array<any>>,
+  theme: any,
+) => any
+
+interface StyledProcessObject {
+  name: string | string[]
+  value: any
+}
+
+const createCssMisc: StyledProcess = (attributes, theme) => {
   let cssMisc = {}
   for (let [name, value] of Object.entries(attributes)) {
-    name = shortHandAttributes.get(name) || [name]
-    for (let cssProp of name) {
+    let hasShortName = shortHandAttributes.get(name)
+    let processName = hasShortName ? hasShortName : [name]
+    for (let cssProp of processName) {
       let cssPropValue
       let cssPropTmp
 
       if (cssProp.startsWith('_')) {
         if (cssProp.startsWith('_keyframes')) {
           cssProp = cssProp.replace('_', '@')
-          cssPropValue = createCssMisc(value, theme, cssProp)
+          cssPropValue = createCssMisc(value, theme)
         } else {
           cssProp = cssProp.replace('_', '&:')
-          cssPropValue = createCssMisc(value, theme, cssProp)
+          cssPropValue = createCssMisc(value, theme)
           cssMisc = Object.assign(cssMisc, { [cssProp]: cssPropValue })
         }
       }
@@ -108,13 +122,14 @@ const createCssMisc = (attributes, theme, pseudoElementSelector) => {
   return cssMisc
 }
 
-export const processCss = (attributes, theme, pseudoElementSelector) => {
-  let cssText = {}
+export const processCss: StyledProcess = (attributes, theme) => {
+  let cssText = { theme }
   let cssMisc = {}
   const forwarding = theme.forwardStyle
   for (let [name, value] of Object.entries(attributes)) {
-    name = shortHandAttributes.get(name) || [name]
-    for (let cssProp of name) {
+    let hasShortName = shortHandAttributes.get(name)
+    let processName = hasShortName ? hasShortName : [name]
+    for (let cssProp of processName) {
       let cssPropValue
 
       if (cssProp.startsWith('_')) {
@@ -122,16 +137,16 @@ export const processCss = (attributes, theme, pseudoElementSelector) => {
           cssProp = cssProp.replace('_', '@')
           cssProp = cssProp.replace(/([A-Z])/g, ' $1')
           cssProp = cssProp.toLowerCase()
-          cssPropValue = createCssMisc(value, theme, cssProp)
+          cssPropValue = createCssMisc(value, theme)
           cssMisc = Object.assign(cssMisc, { [cssProp]: cssPropValue })
         } else {
           cssProp = cssProp.replace('_', '&:')
-          cssPropValue = createCssMisc(value, theme, cssProp)
+          cssPropValue = createCssMisc(value, theme)
           cssMisc = Object.assign(cssMisc, { [cssProp]: cssPropValue })
         }
         continue
       }
-      if (forwarding.includes(cssProp)) {
+      if (typeof forwarding === 'object' && forwarding.includes(cssProp)) {
         cssMisc = Object.assign(cssMisc, { [cssProp]: value })
       }
       cssText = Object.assign(cssText, { [cssProp]: value })
@@ -182,10 +197,21 @@ const forwardStyleDefault = [
   'justifyItems',
 ]
 
-let styleLib = {}
+interface StyleLib {
+  value?: any
+  media?: any
+}
 
-const styledProcess = (attributes, theme, stringed = false) => {
-  let previousCssText = ''
+let styleLib: StyleLib
+
+export type Styled = (
+  attributes: CSSPropertiesObject | Array<CSSPropertiesObject | Array<any>>,
+  theme: any,
+  stringed?: boolean,
+) => any
+
+const styledProcess: Styled = (attributes, theme, stringed = false) => {
+  let previousCssText = {}
   let cn, toLib
 
   const cssText = processCss(attributes, theme)
@@ -200,20 +226,24 @@ const styledProcess = (attributes, theme, stringed = false) => {
 
   if (stringed) {
     return toLib
-  } else {
+  }
+
+  if (typeof toLib === 'object') {
     styleLib = { ...toLib, ...styleLib }
     return cn
   }
+
+  return ''
 }
 
-const styled = (attributes, theme, stringed = false) => {
+const styled: Styled = (attributes, theme, stringed = false) => {
   let combStyles = ''
   if (theme) {
     if (theme.forwardStyle === undefined) {
       theme.forwardStyle = forwardStyleDefault
     }
 
-    if (attributes.length > 0) {
+    if (Array.isArray(attributes)) {
       // console.log('styled array: ', attributes, attributes.length)
       attributes.map(attrib => {
         let tmpStyle = memoStyledProcess(attrib, theme, stringed)
@@ -227,7 +257,7 @@ const styled = (attributes, theme, stringed = false) => {
     }
   }
 
-  return
+  return ''
 }
 
 const memoStyledProcess = memoize(styledProcess, {
@@ -237,10 +267,10 @@ const memoStyledProcess = memoize(styledProcess, {
   },
 })
 
-const parse = (cn, cs, opts = { ssr: false }) => {
+const parse = (cn: string, cs: any, opts = { ssr: false }) => {
   let cStr = ''
   let pStr = ''
-  let mQu = {}
+  let mQu: any
   let ssr = opts.ssr
   let parsed
 
@@ -250,21 +280,27 @@ const parse = (cn, cs, opts = { ssr: false }) => {
       n = n.replace(/[A-Z]/g, match => `-${match.toLowerCase()}`)
       if (Object.prototype.toString.call(v) === '[object Object]') {
         let childStr = '{'
-        for (let [nc, vc] of Object.entries(v)) {
-          if (Object.prototype.toString.call(vc) === '[object Object]') {
-            childStr += `${nc}: {`
-            for (let [ncc, vcc] of Object.entries(vc)) {
-              childStr += `${ncc}: ${vcc};`
+        if (typeof v === 'object' && v != null) {
+          for (let [nc, vc] of Object.entries(v)) {
+            if (Object.prototype.toString.call(vc) === '[object Object]') {
+              childStr += `${nc}: {`
+              for (let [ncc, vcc] of Object.entries(vc)) {
+                childStr += `${ncc}: ${vcc};`
+              }
+              childStr += `}`
+            } else {
+              childStr += `${nc}: ${vc};`
             }
-            childStr += `}`
-          } else {
-            childStr += `${nc}: ${vc};`
           }
         }
         childStr += '}'
 
         if (n.startsWith('@media')) {
-          if (mQu.hasOwnProperty(n)) {
+          if (
+            typeof mQu === 'object' &&
+            typeof n === 'string' &&
+            mQu.hasOwnProperty(n)
+          ) {
             mQu[n] = { [cn]: v, ...mQu[n] }
           } else {
             mQu[n] = { [cn]: v }
@@ -308,10 +344,10 @@ const memoParse = memoize(parse, {
 let storeSSR = ''
 let storedGlobal = false
 
-const extractCss = (theme, active = false, opts = {}) => {
+const extractCss = (theme: any, active = false, opts = {}) => {
   let compStyles = ''
   let global = ''
-  let mediaStyles = {}
+  let mediaStyles: any
   if (!storedGlobal) {
     global = addGlobal(theme, true, true)
     storeSSR += global
@@ -323,8 +359,10 @@ const extractCss = (theme, active = false, opts = {}) => {
     if (typeof cv.media === 'object' && Object.entries(cv.media).length > 0) {
       for (let [mn, mv] of Object.entries(cv.media)) {
         let mTmp
-        for (let [mchn, mchv] of Object.entries(mv)) {
-          mTmp = parse(mchn, mchv, { ssr: true })
+        if (typeof mv === 'object' && mv != null) {
+          for (let [mchn, mchv] of Object.entries(mv)) {
+            mTmp = parse(mchn, mchv, { ssr: true })
+          }
         }
         if (!mediaStyles.hasOwnProperty(mn)) mediaStyles[mn] = ''
         mediaStyles[mn] += mTmp
@@ -348,7 +386,15 @@ const defaultParseGlobalOpts = {
   units: defaultUnits,
 }
 
-const parseGlobal = (globStyles, opts = defaultParseGlobalOpts) => {
+interface ObjectWithGlobal {
+  styles?: any
+  forwardStyle?: string[]
+}
+
+const parseGlobal = (
+  globStyles: ObjectWithGlobal,
+  opts = defaultParseGlobalOpts,
+) => {
   let globCss = ''
   let theme = globStyles
   theme.forwardStyle = forwardStyleDefault
@@ -380,8 +426,8 @@ const parseGlobal = (globStyles, opts = defaultParseGlobalOpts) => {
     }
 
     let block = {}
-    let parsedV = value
-    if (name !== 'html') {
+    let parsedV: any = value
+    if (typeof value === 'object' && value != null && name !== 'html') {
       parsedV = processCss(value, theme)
       parsedV.theme = theme
       parsedV = system(parsedV)
@@ -399,7 +445,11 @@ const parseGlobal = (globStyles, opts = defaultParseGlobalOpts) => {
       nameV = nameV.replace(/[A-Z]/g, match => `-${match.toLowerCase()}`)
       valueV = valueV === 'text' ? '"text"' : valueV
       valueV =
-        nameV === 'font-size' && !/%/g.test(valueV) ? `${valueV}px` : valueV
+        typeof valueV === 'string' &&
+        nameV === 'font-size' &&
+        !/%/g.test(valueV)
+          ? `${valueV}px`
+          : valueV
       valueV = nameV === 'line-height' ? `${valueV}rem` : valueV
 
       valueV =
@@ -422,8 +472,8 @@ const parseGlobalMemo = memoize(parseGlobal, {
   },
 })
 
-const addGlobal = (theme, parse = true, ssr = false) => {
-  let globalStyle
+const addGlobal = (theme: any, parse = true, ssr = false) => {
+  let globalStyle = ''
   if (theme) {
     if (parse) {
       globalStyle = parseGlobalMemo(theme)
