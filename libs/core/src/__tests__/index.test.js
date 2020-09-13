@@ -57,43 +57,42 @@ test('processCss: should resolve shorthand properties to regular css properties'
   }
 })
 
-/*
-test('processCss: should resolve theme aliases to hex color', t => {
-  let expectedOutput = { color: '#07c', background: '#f6f6f6' }
-  t.deepEqual(
-    processCss({ color: 'primary', bg: 'muted' }, theme),
-    expectedOutput,
-  )
-})
+test('processCss: should resolve shorthand to class attributes', () => {
+  let expectedOutput = {
+    '@media screen and (min-width: 40em)': {
+      padding: '2rem',
+    },
+    '@media screen and (min-width: 52em)': {
+      padding: '3rem',
+    },
+    backgroundColor: '#f6f6f6',
+    color: '#07c',
+    fontFamily: "'Source Serif Pro', sans-serif",
+    padding: '1rem',
+  }
 
-test('processCss: should resolve shorthand to class attributes', t => {
-  let expectedOutput = { color: '#07c' }
-  t.deepEqual(
+  expect(
     processCss(
       {
         color: 'primary',
         bg: 'muted',
-        p: ['xl', 'xs', 'm'],
+        p: ['1rem', '2rem', '3rem'],
         fontFamily: 'heading',
       },
       theme,
     ),
+  ).toEqual(expectedOutput)
+})
+
+test('processCss: should resolve theme aliases to hex color', () => {
+  let expectedOutput = { color: '#07c', backgroundColor: '#f6f6f6' }
+  expect(processCss({ color: 'primary', bg: 'muted' }, theme)).toEqual(
     expectedOutput,
   )
 })
 
-
-test('styled: should create classNames and update the node with it', t => {
+test('styled: should return classname', () => {
   const props = { color: 'color.primary' }
-  const node = new HTMLNode()
-  const result = styled(node, [props, theme])
-  t.is(node.class.includes('go'), true)
-
-  let previousClassName = node.class
-  // update with different props leads to new classname
-  result.update([{ color: 'color.secondary' }, theme])
-  t.is(node.class.includes('go'), true)
-  t.is(node.class.includes(previousClassName), false)
+  const result = styled(props, theme)
+  expect(result).toBe('go2571287789')
 })
-
-*/
