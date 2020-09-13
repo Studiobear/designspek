@@ -157,7 +157,7 @@ export const processCss: StyledProcess = (attributes, theme) => {
   return addUnits(Object.assign(newCss, cssMisc))
 }
 
-const forwardStyleDefault = [
+export const forwardStyleDefault = [
   'txtdeco',
   'textDecoration',
   'txtTran',
@@ -295,7 +295,7 @@ const parse = (cn: string, cs: any, opts = { ssr: false }) => {
           }
         }
         childStr += '}'
-
+        mQu = {}
         if (n.startsWith('@media')) {
           if (
             typeof mQu === 'object' &&
@@ -403,10 +403,13 @@ const parseGlobal = (
   let units = opts.units
 
   for (let [name, value] of Object.entries(parseTheme)) {
+    let processName
     if (name !== 'p' && name !== 'a' && name !== 'b') {
-      name = shortHandAttributes.get(name) || name
+      processName = shortHandAttributes.get(name)
+    } else {
+      processName = [name]
     }
-    globCss += `${name}{`
+    globCss += `${processName}{`
     if (name === 'body' && theme.styles.body) {
       if (
         typeof theme.styles.body.antialias === 'boolean' &&

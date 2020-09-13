@@ -96,3 +96,23 @@ test('styled: should return classname', () => {
   const result = styled(props, theme)
   expect(result).toBe('go2571287789')
 })
+
+test('styled: should process media queries and return classname', () => {
+  const props = {
+    tempcols: [
+      '[first] 10em [line2] auto [end]',
+      '[first] auto [line2] 20em [end]',
+      '[first] 1fr [line2] 1fr [end]]',
+    ],
+    temprows: [
+      '[row1-start] 5em [row1-end] auto [row-end]',
+      '[row1-start] auto [row1-end] 10em [row-end]',
+      '[row1-start] 1fr [row1-end] 1fr [row-end]',
+    ],
+    p: ['2rem', '4rem', '6rem'],
+    brd: '1px solid',
+    brdCol: 'primary',
+  }
+  const result = styled(props, theme)
+  expect(result).toBe('go2393740439')
+})
