@@ -220,7 +220,8 @@ const styledProcess: Styled = (attributes, theme, stringed = false) => {
   previousCssText = cssText
   cn = css(cssText)
   // console.log('styledMemeo: ', cssText, cn, stringed)
-  if (styleLib.hasOwnProperty(cn) && !stringed) return cn
+  if (typeof styleLib === 'object' && styleLib.hasOwnProperty(cn) && !stringed)
+    return cn
 
   toLib = memoParse(cn, cssText, { ssr: stringed })
 

@@ -66,7 +66,7 @@
     "eslint-plugin-import": "^2.20.1",
     "eslint-plugin-prettier": "^3.1.2",
     "eslint-plugin-svelte3": "^2.7.3",
-    "husky": "^4.2.1",
+    "husky": "^4.2.5",
     "lerna": "^3.20.2",
     "prettier": "^1.19.1",
     "prettier-plugin-svelte": "^0.7.0",

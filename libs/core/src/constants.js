@@ -157,7 +157,7 @@ export const shortHandAttributes = new Map([
   [`just${c}`, [`${just}Content`]],
   ['slf', [`${align}Self`]],
   ['wrap', ['wrap']],
-  ['strt', 'Start'],
+  ['strt', ['Start']],
   [`${slf}${strt}`, [`${slf}${strt}`]],
   ['end', ['end']],
   [`${slf}${end}`, [`${slf}${end}`]],

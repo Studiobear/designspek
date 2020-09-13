@@ -32,20 +32,32 @@ test('processCss: should resolve pseudo selectors via _', () => {
   })
 })
 
-/*
-test('processCss: should resolve shorthand properties to regular css properties', t => {
-  for (const [key, value] of shortHandAttributes.entries()) {
+test('processCss: should resolve shorthand properties to regular css properties', () => {
+  for (let [key, value] of shortHandAttributes.entries()) {
+    let currentKey = key
     let expectedOutput = {}
-    expectedOutput = Object.assign(
-      expectedOutput,
-      system({ [value[0]]: 'value' }),
+    if (value.length > 1) {
+      let newExpected = value.map(val => {
+        let expected = system({ [val]: 'value' })
+        expectedOutput = Object.assign(expectedOutput, expected)
+        return
+      })
+    } else {
+      expectedOutput = Object.assign(
+        expectedOutput,
+        system({ [value[0]]: 'value' }),
+      )
+    }
+    if (
+      Object.keys(currentKey).length === 0 &&
+      currentKey.constructor === Object
     )
-    console.log(processCss({ [key]: 'value' }, {}), expectedOutput)
-    t.deepEqual(processCss({ [key]: 'value' }, {}), expectedOutput)
+      currentKey = value[0]
+    expect(processCss({ [currentKey]: 'value' }, {})).toEqual(expectedOutput)
   }
 })
 
-
+/*
 test('processCss: should resolve theme aliases to hex color', t => {
   let expectedOutput = { color: '#07c', background: '#f6f6f6' }
   t.deepEqual(
