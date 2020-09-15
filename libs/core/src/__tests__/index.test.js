@@ -94,7 +94,7 @@ test('processCss: should resolve theme aliases to hex color', () => {
 test('styled: should return classname', () => {
   const props = { color: 'color.primary' }
   const result = styled(props, theme)
-  expect(result).toBe('go2571287789')
+  expect(result).toBe('go1519668507')
 })
 
 test('styled: should process media queries and return classname', () => {
@@ -114,5 +114,5 @@ test('styled: should process media queries and return classname', () => {
     brdCol: 'primary',
   }
   const result = styled(props, theme)
-  expect(result).toBe('go2393740439')
+  expect(result).toBe('go3614168889')
 })
