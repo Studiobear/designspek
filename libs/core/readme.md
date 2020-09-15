@@ -4,7 +4,7 @@
 
 ---
 
-![designspec brotli](https://img.badgesize.io/https://unpkg.com/@studiobear/designspek@0.1.2/dist/index.js?compression=brotli) ![GitHub package.json version](https://img.shields.io/github/package-json/v/Studiobear/designspek) ![GitHub](https://img.shields.io/github/license/Studiobear/designspek?color=blue)
+![designspec brotli](https://img.badgesize.io/https://unpkg.com/@studiobear/designspek@0.4.5/dist/index.js?compression=brotli) ![GitHub package.json version](https://img.shields.io/github/package-json/v/Studiobear/designspek) ![GitHub](https://img.shields.io/github/license/Studiobear/designspek?color=blue)
 
 > **_Notice: Unstable API and under heavy development_**
 
