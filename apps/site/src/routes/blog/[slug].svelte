@@ -1,8 +1,8 @@
 <script context="module">
-  export const preload = async function({ params }) {
+  export const preload = async function ({ params }) {
     const fetchBlog = await this.fetch(`/blog/${params.slug}.json`)
-      .then(response => response.json())
-      .then(data => {
+      .then((response) => response.json())
+      .then((data) => {
         return { post: data }
       })
       .catch(console.error)

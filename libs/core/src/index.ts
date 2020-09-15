@@ -246,7 +246,7 @@ const styled: Styled = (attributes, theme, stringed = false) => {
 
     if (Array.isArray(attributes)) {
       // console.log('styled array: ', attributes, attributes.length)
-      attributes.map(attrib => {
+      attributes.map((attrib) => {
         let tmpStyle = memoStyledProcess(attrib, theme, stringed)
         // console.log('styled tmpStyle: ', tmpStyle)
         combStyles += `${tmpStyle} `
@@ -278,7 +278,7 @@ const parse = (cn: string, cs: any, opts = { ssr: false }) => {
   cStr += ssr ? '' : `.${cn}{`
   if (typeof cs === 'object' && Object.entries(cs).length > 0) {
     for (let [n, v] of Object.entries(cs)) {
-      n = n.replace(/[A-Z]/g, match => `-${match.toLowerCase()}`)
+      n = n.replace(/[A-Z]/g, (match) => `-${match.toLowerCase()}`)
       if (Object.prototype.toString.call(v) === '[object Object]') {
         let childStr = '{'
         if (typeof v === 'object' && v != null) {
@@ -446,7 +446,7 @@ const parseGlobal = (
       }
     }
     for (let [nameV, valueV] of Object.entries(parsedV)) {
-      nameV = nameV.replace(/[A-Z]/g, match => `-${match.toLowerCase()}`)
+      nameV = nameV.replace(/[A-Z]/g, (match) => `-${match.toLowerCase()}`)
       valueV = valueV === 'text' ? '"text"' : valueV
       valueV =
         typeof valueV === 'string' &&

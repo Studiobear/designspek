@@ -12,7 +12,6 @@
 </script>
 
 {#if !as || as === 'th'}
-
   <th on:click {...styleProps}>
     <slot />
   </th>

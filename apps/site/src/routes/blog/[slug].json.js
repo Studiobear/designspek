@@ -2,8 +2,8 @@ import processPosts from './_posts.js'
 
 const lookup = new Map()
 
-const setLookup = postsAll =>
-  postsAll.map(post => {
+const setLookup = (postsAll) =>
+  postsAll.map((post) => {
     lookup.set(post.slug, JSON.stringify(post))
   })
 

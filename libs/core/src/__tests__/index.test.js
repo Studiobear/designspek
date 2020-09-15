@@ -10,10 +10,10 @@ class HTMLNode {
   constructor() {
     this.class = ''
     this.classList = {
-      add: cn => {
+      add: (cn) => {
         this.class += `${cn}`
       },
-      remove: cn => {
+      remove: (cn) => {
         this.class = this.class.replace(cn, '')
       },
     }
@@ -37,7 +37,7 @@ test('processCss: should resolve shorthand properties to regular css properties'
     let currentKey = key
     let expectedOutput = {}
     if (value.length > 1) {
-      let newExpected = value.map(val => {
+      let newExpected = value.map((val) => {
         let expected = system({ [val]: 'value' })
         expectedOutput = Object.assign(expectedOutput, expected)
         return

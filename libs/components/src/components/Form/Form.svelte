@@ -22,12 +22,12 @@
 
 <form
   class={compStyles}
-  on:update={e => {
+  on:update={(e) => {
     console.log('Form onUpdate:', e, values)
     values = e.detail
     return values
   }}
-  on:submit={e => {
+  on:submit={(e) => {
     console.log('Form submitted:', e, values)
     values = e.detail
     return values
@@ -41,5 +41,4 @@
       <Field key={i} {theme} {style} {...fieldItem} bind:values />
     {/each}
   {/if}
-
 </form>

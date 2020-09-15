@@ -15,8 +15,8 @@ function createTheme() {
 
   return {
     subscribe,
-    dark: () => update(t => dark),
-    light: () => update(t => basic),
+    dark: () => update((t) => dark),
+    light: () => update((t) => basic),
     reset: set(basic),
   }
 }

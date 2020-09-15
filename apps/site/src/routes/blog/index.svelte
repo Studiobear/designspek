@@ -1,9 +1,9 @@
 <script context="module">
   const blogUrl = `blog.json`
-  export const preload = async function() {
+  export const preload = async function () {
     return await this.fetch(blogUrl)
-      .then(response => response.json())
-      .then(data => {
+      .then((response) => response.json())
+      .then((data) => {
         return { posts: data }
       })
       .catch(console.error)
@@ -27,9 +27,7 @@
 				the user hovers over the link or taps it, instead of
 				waiting for the 'click' event -->
     <li>
-      <h2>
-        <a rel="prefetch" href="/blog/{post.slug}">{post.title}</a>
-      </h2>
+      <h2><a rel="prefetch" href="/blog/{post.slug}">{post.title}</a></h2>
       {@html post.excerpt}
       <div>
         <div>Date: {post.date}</div>

@@ -156,7 +156,7 @@ const blockElements = [
   'hr',
 ]
 
-blockElements.forEach(tag => {
+blockElements.forEach((tag) => {
   Object.assign(styles, {
     [tag]: Object.assign(
       {
@@ -196,14 +196,14 @@ export const defaults = {
   blockMarginBottom: 1,
 }
 
-export const toUnitless = val => parseFloat(val)
+export const toUnitless = (val) => parseFloat(val)
 
-export const getScale = opts => value =>
+export const getScale = (opts) => (value) =>
   ms(value, opts.scaleRatio) * opts.baseFontSize
 
 export const getSpace = (result, opts) => {
   const n = toUnitless(result.rhythm(opts.blockMarginBottom))
-  return [0, 1 / 4, 1 / 2, 1, 2, 4, 8].map(v => v * n)
+  return [0, 1 / 4, 1 / 2, 1, 2, 4, 8].map((v) => v * n)
 }
 
 // genericFontFamilies, wrapFontFamily adapted from typography.js
@@ -221,10 +221,10 @@ const genericFontFamilies = [
   'system-ui',
 ]
 
-const wrapFontFamily = fontFamily =>
+const wrapFontFamily = (fontFamily) =>
   genericFontFamilies.includes(fontFamily) ? fontFamily : `'${fontFamily}'`
 
-const stackFonts = fonts => fonts.map(wrapFontFamily).join(', ')
+const stackFonts = (fonts) => fonts.map(wrapFontFamily).join(', ')
 
 export const getFonts = (result, opts) => {
   const body = stackFonts(opts.bodyFontFamily)
@@ -295,11 +295,11 @@ export const typography = (theme = {}, _opts = {}) => {
   }
 }
 
-export const fontLink = typography => {
+export const fontLink = (typography) => {
   // console.log('fontLink: ', typography)
   let fontsStr = ''
   if (typography.googleFonts) {
-    const fonts = typography.googleFonts.map(font => {
+    const fonts = typography.googleFonts.map((font) => {
       let str = ''
       str += font.name.split(' ').join('+')
       str += ':'

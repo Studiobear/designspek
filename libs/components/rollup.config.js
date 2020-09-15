@@ -10,18 +10,17 @@ const name = pkg.name
 
 export default {
   input: 'src/index.js',
+  external: ['@studiobear/designspek'],
   output: [
     {
       file: pkg.module,
       format: 'es',
-      external: ['@studiobear/designspek'],
       globals: { '@studiobear/designspek': 'svelteSystemUi' },
     },
     {
       file: pkg.main,
       format: 'umd',
       name,
-      external: ['@studiobear/designspek'],
       globals: { '@studiobear/designspek': 'svelteSystemUi' },
     },
   ],
