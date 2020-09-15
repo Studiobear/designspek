@@ -1,24 +1,24 @@
-<script>
+<script lang="ts">
   import { onMount } from 'svelte'
   import { addGlobal } from '@studiobear/designspek'
   import { theme, googleFonts } from '../../index'
   import { Section, Box, Heading, Text } from '../../../components'
 
-  let canvas
+  let canvas: any
   let mode = 'light'
 
   function changeMode() {
     if (mode === 'light') {
       mode = 'dark'
-      theme.setDark()
+      theme.dark()
     } else {
       mode = 'light'
-      theme.setLight()
+      theme.light()
     }
     // console.log('changeMode: ', mode, $theme)
   }
 
-  export let style
+  export let style: any
 
   addGlobal($theme)
 
@@ -37,7 +37,10 @@
 </script>
 
 <svelte:head>
-  <link href={googleFonts} rel="stylesheet" type="text/css" />
+  <link
+    href={googleFonts !== null ? googleFonts : ''}
+    rel="stylesheet"
+    type="text/css" />
 </svelte:head>
 
 <Box {...$$props} {style} theme={$theme}>
@@ -361,20 +364,18 @@
         </header>
         <div>
           <Heading as="h4">No <code>&lt;figure&gt;</code> element</Heading>
-          <p>
-            <img src="http://placekitten.com/480/480" alt="Image alt text" />
-          </p>
+          <p><img src="http://placekitten.com/480/480" alt="alt text" /></p>
           <Heading as="h3">
             Wrapped in a <code>&lt;figure&gt;</code> element, no <code>&lt;figcaption&gt;</code>
           </Heading>
           <figure>
-            <img src="http://placekitten.com/420/420" alt="Image alt text" />
+            <img src="http://placekitten.com/420/420" alt="alt text" />
           </figure>
           <Heading as="h3">
             Wrapped in a <code>&lt;figure&gt;</code> element, with a <code>&lt;figcaption&gt;</code>
           </Heading>
           <figure>
-            <img src="http://placekitten.com/420/420" alt="Image alt text" />
+            <img src="http://placekitten.com/420/420" alt="alt text" />
             <figcaption>Here is a caption for this image.</figcaption>
           </figure>
         </div>
@@ -386,7 +387,9 @@
         <header>
           <Heading as="h2">Audio</Heading>
         </header>
-        <div><audio controls="">audio</audio></div>
+        <div>
+          <audio controls><track kind="captions" />audio</audio>
+        </div>
         <footer>
           <p><a href="#top">[Top]</a></p>
         </footer>
@@ -395,7 +398,9 @@
         <header>
           <Heading as="h2">Video</Heading>
         </header>
-        <div><video controls="">video</video></div>
+        <div>
+          <video controls><track kind="captions" />video</video>
+        </div>
         <footer>
           <p><a href="#top">[Top]</a></p>
         </footer>
@@ -537,11 +542,8 @@
           <ul class="list list--bare">
             <li>
               <label for="checkbox1">
-                <input
-                  id="checkbox1"
-                  name="checkbox"
-                  type="checkbox"
-                  checked="checked" /> Choice A
+                <input id="checkbox1" name="checkbox" type="checkbox" checked />
+                Choice A
               </label>
             </li>
             <li>
@@ -567,7 +569,7 @@
                   name="radio"
                   type="radio"
                   class="radio"
-                  checked="checked" /> Option 1
+                  checked /> Option 1
               </label>
             </li>
             <li>

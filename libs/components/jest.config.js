@@ -1,7 +1,12 @@
 module.exports = {
   transform: {
-    '^.+\\.svelte$': 'svelte-jester',
-    '^.+\\.js$': 'babel-jest',
+    '^.+\\.svelte$': [
+      'svelte-jester',
+      {
+        "preprocess": true
+      }
+    ],
+    "^.+\\.ts$": "ts-jest"
   },
   testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.([tj]sx?)$',
   moduleFileExtensions: ['js', 'svelte'],
