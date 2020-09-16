@@ -1,6 +1,5 @@
-import { render, fireEvent } from '@testing-library/svelte'
-import Box from '../Box.svelte'
 import BoxView from '../stories/views/boxView.svelte'
+import { render, fireEvent } from '@testing-library/svelte'
 import { theme, basic } from '../../theme'
 import { axe, toHaveNoViolations } from 'jest-axe'
 

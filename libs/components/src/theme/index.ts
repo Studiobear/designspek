@@ -4,7 +4,7 @@ import stAnnesTheme from 'typography-theme-st-annes'
 
 import basicTheme from './basic'
 
-const basic = typography(basicTheme, stAnnesTheme)
+const basic: any = typography(basicTheme, stAnnesTheme)
 let dark = Object.assign({}, basic)
 dark.colors = basicTheme.colors.modes.dark
 dark.mode = 'dark'
