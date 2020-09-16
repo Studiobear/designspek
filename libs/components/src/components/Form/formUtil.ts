@@ -1,9 +1,9 @@
-export const isEmpty = (obj) => {
+export const isEmpty = (obj: any) => {
   return !obj || Object.keys(obj).length === 0
 }
 
-export const selectTextOnFocus = (el) => {
-  const handleFocus = (event) => {
+export const selectTextOnFocus = (el: any) => {
+  const handleFocus = () => {
     el && typeof el.select === 'function' && el.select()
   }
 
@@ -23,14 +23,18 @@ const typeDate = /(date|datetime-local|month|week|)/i
 const typeEvnt = /(submit|reset|button)/i
 const typeFile = /(file)/i
 
-const serialize = (form, submitted = false) => {
+interface FormElements extends HTMLInputElement{
+  elements?: any
+}
+
+const serialize = (form: FormElements, submitted = false) => {
   let i = 0,
     j,
     key,
     tmp,
     tmpV,
     tmpValidate,
-    out = {}
+    out: any = {}
 
   if (!submitted) {
     while ((tmp = form.elements[i++])) {
@@ -91,7 +95,7 @@ const serialize = (form, submitted = false) => {
   return out
 }
 
-const deserialize = (form, vals) => {
+const deserialize = (form: FormElements, vals: any) => {
   let i = 0,
     tmp,
     key
@@ -109,7 +113,8 @@ const deserialize = (form, vals) => {
       if (!vals[key]) continue
       console.log('deserialize bool', key, tmp.type, vals[key], tmp.value)
       if (tmp.type === 'radio' && vals[key].hasOwnProperty('value')) {
-        if (vals[key][value] === tmp.value) {
+        let valsVal = vals[key]
+        if (valsVal.value === tmp.value) {
           tmp.checked = true
         } else {
           tmp.checked = false
@@ -125,25 +130,19 @@ const deserialize = (form, vals) => {
   }
 }
 
-const debounce = (v, d = 200) => {
-  clearTimeout(timer)
-  timer = setTimeout(() => {
-    val = v
-  }, d)
-}
-
 // Use event delegation to manage input updates
-export const getValues = (el) => {
+export const getValues = (el: FormElements) => {
   let updated = 0
 
-  const inputs = [].slice.call(el.querySelectorAll('input'))
+  const inputs = [].slice.call(el.querySelectorAll<HTMLElement>('input'))
 
-  inputs.forEach((node) => {
+  inputs.forEach((node: HTMLElement) => {
     node.oninput = el.onchange
   })
 
-  const procUpdate = (e) => {
-    if (e && e.target && typeEvnt.test(e.target.type)) {
+  const procUpdate = (e: any) => {
+    if (e === void 0) {}
+    if (typeEvnt.test(e.target.type)) {
       return el.dispatchEvent(
         new CustomEvent('submit', {
           detail: { ...serialize(el, true) },
@@ -160,13 +159,14 @@ export const getValues = (el) => {
   el.addEventListener('input', procUpdate)
   el.addEventListener('click', procUpdate)
 
-  procUpdate()
+  procUpdate(null)
 
   return {
-    submit: (vals) => {
+    submit: (vals: any) => {
       console.log('form submitted')
+      return vals
     },
-    update: (vals) => {
+    update: (vals: any) => {
       console.log('getValues update: ', vals)
       return updated === 2 ? deserialize(el, vals) : (updated += 1)
     },

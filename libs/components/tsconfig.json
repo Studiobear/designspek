@@ -1,6 +1,6 @@
 {
   "extends": "../../tsconfig.base.json",
-  "exclude": ["node_modules", "dist", ".storybook", "src/components/stories"],
+  "exclude": ["node_modules", "dist", ".storybook", "src/theme/stories", "src/components/__tests__", "src/components/stories"],
   "include": ["src/**/*"],
   "compilerOptions": {
     "module": "ESNext",
