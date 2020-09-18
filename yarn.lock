@@ -15901,21 +15901,6 @@ supports-hyperlinks@^2.0.0:
     has-flag "^4.0.0"
     supports-color "^7.0.0"
 
-svelte-check@^1.0.42:
-  version "1.0.42"
-  resolved "https://registry.yarnpkg.com/svelte-check/-/svelte-check-1.0.42.tgz#2703481350afb8d4f2020c70e81de3fc95cde919"
-  integrity sha512-AFa6+Vm5dTtEavknjuOxk2GyUA1MEA/XBTQMNBE2v5FGd44PRRrHRglxX+RfBo5ADMGSpuzLfYrrKa26tiMR7w==
-  dependencies:
-    chalk "^4.0.0"
-    chokidar "^3.4.1"
-    glob "^7.1.6"
-    minimist "^1.2.5"
-    svelte-language-server "*"
-    vscode-languageserver "6.1.1"
-    vscode-languageserver-protocol "3.15.3"
-    vscode-languageserver-types "3.15.1"
-    vscode-uri "2.1.2"
-
 svelte-check@^1.0.44:
   version "1.0.44"
   resolved "https://registry.yarnpkg.com/svelte-check/-/svelte-check-1.0.44.tgz#a0f181928d053358bc2088b235162423d87c3965"
