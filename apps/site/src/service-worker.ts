@@ -13,7 +13,7 @@ self.addEventListener('install', (event) => {
       .open(ASSETS)
       .then((cache) => cache.addAll(to_cache))
       .then(() => {
-        self.skipWaiting()
+        ;(window as Window & typeof globalThis).self.skipWaiting()
       }),
   )
 })

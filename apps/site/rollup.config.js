@@ -3,20 +3,27 @@ import replace from '@rollup/plugin-replace'
 import commonjs from '@rollup/plugin-commonjs'
 import json from '@rollup/plugin-json'
 import svelte from 'rollup-plugin-svelte'
+import typescript from '@rollup/plugin-typescript'
 import babel from 'rollup-plugin-babel'
 import { terser } from 'rollup-plugin-terser'
-import config from 'sapper/config/rollup.js'
+import config from 'sapper/config/rollup'
 import remark from 'remark'
 import html from 'remark-html'
 import svg from 'rollup-plugin-svg'
 
 import pkg from './package.json'
 
+const { createPreprocessors } = require('./svelte.config.js')
+
 const mode = process.env.NODE_ENV
 const dev = mode === 'development'
 const legacy = !!process.env.SAPPER_LEGACY_BUILD
+const sourcemap = dev ? 'inline' : false
+
+const preprocess = createPreprocessors({ sourceMap: !!sourcemap })
 
 const onwarn = (warning, onwarn) =>
+  (warning.code === 'MISSING_EXPORT' && /'preload'/.test(warning.message)) ||
   (warning.code === 'CIRCULAR_DEPENDENCY' &&
     /[/\\]@sapper[/\\]/.test(warning.message)) ||
   onwarn(warning)
@@ -35,8 +42,8 @@ const markdown = () => ({
 
 export default {
   client: {
-    input: config.client.input(),
-    output: config.client.output(),
+    input: config.client.input().replace(/\.js$/, '.ts'),
+    output: { ...config.client.output(), sourcemap },
     plugins: [
       replace({
         'process.browser': true,
@@ -47,12 +54,17 @@ export default {
         dev,
         hydratable: true,
         emitCss: false,
+        preprocess,
       }),
       resolve({
         browser: true,
         dedupe: ['svelte'],
       }),
       commonjs(),
+      typescript({
+        noEmitOnError: !dev,
+        sourceMap: !!sourcemap,
+      }),
       json({
         compact: true,
       }),
@@ -86,12 +98,13 @@ export default {
         }),
     ],
     // context: "window",
+    preserveEntrySignatures: false,
     onwarn,
   },
 
   server: {
-    input: config.server.input(),
-    output: config.server.output(),
+    input: { server: config.server.input().server.replace(/\.js$/, '.ts') },
+    output: { ...config.server.output(), sourcemap },
     plugins: [
       replace({
         'process.browser': false,
@@ -106,11 +119,16 @@ export default {
         generate: 'ssr',
         dev,
         hydratable: true,
+        preprocess,
       }),
       resolve({
         dedupe: ['svelte'],
       }),
       commonjs(),
+      typescript({
+        noEmitOnError: !dev,
+        sourceMap: !!sourcemap,
+      }),
       markdown(),
       json(),
     ],
@@ -118,12 +136,13 @@ export default {
       require('module').builtinModules ||
         Object.keys(process.binding('natives')),
     ),
+    preserveEntrySignatures: false,
     onwarn,
   },
 
   serviceworker: {
-    input: config.serviceworker.input(),
-    output: config.serviceworker.output(),
+    input: config.serviceworker.input().replace(/\.js$/, '.ts'),
+    output: { ...config.serviceworker.output(), sourcemap },
     plugins: [
       resolve(),
       replace({
@@ -134,9 +153,16 @@ export default {
             ? `'${process.env.SITE_URL}'`
             : `'${process.env.PROD_URL}'`,
       }),
-      commonjs(),
+      commonjs({
+        sourceMap: !!sourcemap,
+      }),
+      typescript({
+        noEmitOnError: !dev,
+        sourceMap: !!sourcemap,
+      }),
       !dev && terser(),
     ],
+    preserveEntrySignatures: false,
     onwarn,
   },
 }

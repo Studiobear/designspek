@@ -1,15 +1,3 @@
-<script context="module">
-  const blogUrl = `blog.json`
-  export const preload = async function () {
-    return await this.fetch(blogUrl)
-      .then((response) => response.json())
-      .then((data) => {
-        return { posts: data }
-      })
-      .catch(console.error)
-  }
-</script>
-
 <script>
   export let posts
 </script>

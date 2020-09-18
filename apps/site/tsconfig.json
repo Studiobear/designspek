@@ -1,0 +1,9 @@
+{
+  "extends": "@tsconfig/svelte/tsconfig.json",
+  "exclude": ["node_modules", "static/*", "__sapper__/*"],
+  "include": ["src/**/*", "src/node_modules/**/*"],
+  "compilerOptions": {
+    "lib": ["DOM", "ES2017", "WebWorker"],
+    "types": ["node", "svelte", "jest", "@testing-library/jest-dom", "unist"]
+  }
+}

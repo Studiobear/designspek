@@ -4,7 +4,7 @@
   "description": "System UI components for Svelte",
   "author": "Barry Low <barry@studiobear.co>",
   "license": "MIT",
-  "svelte": "dist/index.ts",
+  "svelte": "src/index.ts",
   "module": "dist/index.m.js",
   "main": "dist/index.js",
   "scripts": {
