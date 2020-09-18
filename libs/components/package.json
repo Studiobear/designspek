@@ -4,13 +4,12 @@
   "description": "System UI components for Svelte",
   "author": "Barry Low <barry@studiobear.co>",
   "license": "MIT",
-  "svelte": "src/index.js",
+  "svelte": "dist/index.ts",
   "module": "dist/index.m.js",
   "main": "dist/index.js",
   "scripts": {
     "build": "yarn test && NODE_ENV=production rollup -c",
     "clean": "rm -rf dist",
-    "prepublishOnly": "yarn build",
     "eslint-disabled": "eslint src",
     "eslint:fix-disabled": "eslint --fix src",
     "lint": "prettier --check 'src/**/*.{html,js,svelte}'",
@@ -19,7 +18,8 @@
     "test": "jest src",
     "test:watch": "yarn test -- --watch",
     "storybook": "start-storybook -p 6006 -s ../../static",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "prepublishOnly": "yarn typecheck && yarn build"
   },
   "devDependencies": {
     "@babel/core": "^7.11.6",
@@ -53,6 +53,7 @@
     "regenerator-runtime": "^0.13.3",
     "rollup": "^2.26.11",
     "rollup-plugin-svelte": "^6.0.1",
+    "rollup-plugin-terser": "^7.0.2",
     "svelte": "^3.25.0",
     "svelte-check": "^1.0.42",
     "svelte-jester": "^1.1.5",
