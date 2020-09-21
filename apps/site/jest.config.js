@@ -2,9 +2,10 @@ module.exports = {
   transform: {
     '^.+\\.svelte$': 'svelte-jester',
     '^.+\\.js$': 'babel-jest',
+    '^.+\\.ts$': 'babel-jest',
   },
   roots: ['<rootDir>', './src'],
-  moduleFileExtensions: ['js', 'svelte', 'json'],
+  moduleFileExtensions: ['ts', 'js', 'svelte', 'json'],
   testPathIgnorePatterns: ['node_modules'],
   bail: false,
   verbose: true,

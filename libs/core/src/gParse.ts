@@ -8,7 +8,7 @@
 
 export let gParse: any
 gParse.p = null
-gParse = (obj: any, paren: string, wrapper: string, ): any => {
+gParse = (obj: any, paren: string, wrapper: string): any => {
   let outer = ''
   let blocks = ''
   let current = ''

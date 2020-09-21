@@ -6,7 +6,6 @@ import { basic } from './fixtures/basic'
 
 const theme = typography(basic, stAnnesTheme)
 
-
 test('processCss: should resolve pseudo selectors via _', () => {
   expect(processCss({ _hover: { color: 'red' } }, theme)).toEqual({
     '&:hover': { color: 'red' },

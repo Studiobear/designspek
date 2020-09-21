@@ -13,7 +13,7 @@ let heading = {
   fontWeight: 'heading',
 }
 
-export const styles: any = (attr: {[key: string]: number | string | any}) => {
+export const styles: any = (attr: { [key: string]: number | string | any }) => {
   const { fontSizes } = attr
   return {
     root: Object.assign(
@@ -172,10 +172,11 @@ export const defaults = {
   includeNormalize: true,
   blockMarginBottom: 1,
   rhythmUnit: 'rem',
-  roundToNearestHalfLine: true
+  roundToNearestHalfLine: true,
 }
 
-export const toUnitless = (val: string | number ) => typeof val === 'number'? val : parseFloat(val)
+export const toUnitless = (val: string | number) =>
+  typeof val === 'number' ? val : parseFloat(val)
 
 export const getScale = (opts: any) => (value: any) =>
   ms(value, opts.scaleRatio) * opts.baseFontSize
@@ -242,7 +243,10 @@ export const getFontWeights = (result: any, opts: any) => {
 export const typography = (theme: any, _opts = {}) => {
   const opts = { ...defaults, ..._opts }
   // enforce unitless values
-  opts.baseFontSize = typeof opts.baseFontSize === 'string' ? toUnitless(opts.baseFontSize) : opts.baseFontSize
+  opts.baseFontSize =
+    typeof opts.baseFontSize === 'string'
+      ? toUnitless(opts.baseFontSize)
+      : opts.baseFontSize
 
   const typo = verticalRhythm(opts)
   typo.options = opts

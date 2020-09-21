@@ -1,12 +1,12 @@
-const DSSTYLE_ID: any= '_dsstyle'
+const DSSTYLE_ID: any = '_dsstyle'
 const ssr = { data: '' }
 
 const getSheet = (target: any, DSID = DSSTYLE_ID, remove = false) => {
   try {
     let sheet = target ? target.querySelector('#' + DSID) : window.self[DSID]
     let remEl = document.getElementById(DSID)
-    if (remove && remEl !== null ) {
-      return  remEl.remove()
+    if (remove && remEl !== null) {
+      return remEl.remove()
     }
     if (!sheet) {
       sheet = (target || document.head).appendChild(
