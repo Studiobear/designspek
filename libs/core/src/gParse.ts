@@ -5,10 +5,14 @@
  * @param {String} paren
  * @param {String} wrapper
  */
-export const gParse = (obj, paren, wrapper) => {
+
+export let gParse: any
+gParse.p = null
+gParse = (obj: any, paren: string, wrapper: string, ): any => {
   let outer = ''
   let blocks = ''
   let current = ''
+  gParse.p = null
 
   for (let key in obj) {
     const val = obj[key]

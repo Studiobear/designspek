@@ -1,11 +1,12 @@
-const DSSTYLE_ID = '_dsstyle'
+const DSSTYLE_ID: any= '_dsstyle'
 const ssr = { data: '' }
 
-const getSheet = (target, DSID = DSSTYLE_ID, remove = false) => {
+const getSheet = (target: any, DSID = DSSTYLE_ID, remove = false) => {
   try {
-    let sheet = target ? target.querySelector('#' + DSID) : self[DSID]
-    if (remove) {
-      return document.getElementById(DSID).remove()
+    let sheet = target ? target.querySelector('#' + DSID) : window.self[DSID]
+    let remEl = document.getElementById(DSID)
+    if (remove && remEl !== null ) {
+      return  remEl.remove()
     }
     if (!sheet) {
       sheet = (target || document.head).appendChild(
@@ -23,15 +24,15 @@ const getSheet = (target, DSID = DSSTYLE_ID, remove = false) => {
   return ssr
 }
 
-const getText = (obj) => {
+const getText = (obj: any) => {
   return obj.textContent ? obj.textContent : obj.innerText
 }
 
-const update = (css, sheet, append) =>
+const update = (css: any, sheet: any, append?: any) =>
   sheet.data.indexOf(css) < 0 &&
   (sheet.data = append ? css + sheet.data : sheet.data + css)
 
-function glob(val) {
+function glob(this: any, val: any) {
   const ctx = this || {}
 
   return update(val, getSheet(ctx.target))

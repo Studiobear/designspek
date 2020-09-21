@@ -13,161 +13,138 @@ let heading = {
   fontWeight: 'heading',
 }
 
-export const styles = ({ body, heading, fontSizes }) => ({
-  root: Object.assign(
-    {
-      fontSize: fontSizes[2],
-    },
-    body,
-  ),
-  img: {
-    maxWidth: '100%',
-  },
-  h1: Object.assign(
-    {
-      fontSize: fontSizes[5],
-    },
-    heading,
-  ),
-  h2: Object.assign(
-    {
-      fontSize: fontSizes[4],
-    },
-    heading,
-  ),
-  h3: Object.assign(
-    {
-      fontSize: fontSizes[3],
-    },
-    heading,
-  ),
-  h4: Object.assign(
-    {
-      fontSize: fontSizes[2],
-    },
-    heading,
-  ),
-  h5: Object.assign(
-    {
-      fontSize: fontSizes[1],
-    },
-    heading,
-  ),
-  h6: Object.assign(
-    {
-      fontSize: fontSizes[0],
-    },
-    heading,
-  ),
-  ul: {
-    listStylePosition: 'outside',
-    listStyleImage: 'none',
-    ml: 3,
-  },
-  ol: {
-    listStylePosition: 'outside',
-    listStyleImage: 'none',
-    ml: 3,
-  },
-  li: {
-    mb: 2,
-    pl: 0,
-    ol: {
-      my: 2,
-      ml: 3,
-    },
-    ul: {
-      my: 2,
-      ml: 3,
-    },
-    p: {
-      mb: 2,
-    },
-  },
-  p: Object.assign(
-    {
-      fontSize: fontSizes[0],
-    },
-    body,
-  ),
-  table: {
-    borderCollapse: 'collapse',
-    width: '100%',
-  },
-  th: {
-    textAlign: 'left',
-    borderBottom: '1px solid',
-    px: 2,
-    py: 1,
-    ':first-child': {
-      pl: 0,
-    },
-    ':last-child': {
-      pr: 0,
-    },
-  },
-  td: {
-    textAlign: 'left',
-    borderBottom: '1px solid',
-    px: 2,
-    py: 1,
-    mt: '-1px',
-    ':first-child': {
-      pl: 0,
-    },
-    ':last-child': {
-      pr: 0,
-    },
-  },
-  blockquote: {
-    mx: 3,
-  },
-  hr: {
-    border: 0,
-    borderBottom: '1px solid',
-    mt: '-1px',
-    mb: 3,
-  },
-  b: {
-    fontWeight: 'bold',
-  },
-  strong: {
-    fontWeight: 'bold',
-  },
-  code: {
-    fontSize: '85%',
-  },
-  pre: {
-    fontSize: '85%',
-    padding: 3,
-  },
-})
-
-const headings = ['h6', 'h5', 'h4', 'h3', 'h2', 'h1']
-const blockElements = [
-  ...headings,
-  'ul',
-  'ol',
-  'p',
-  'pre',
-  'table',
-  'blockquote',
-  'img',
-  'hr',
-]
-
-blockElements.forEach((tag) => {
-  Object.assign(styles, {
-    [tag]: Object.assign(
+export const styles: any = (attr: {[key: string]: number | string | any}) => {
+  const { fontSizes } = attr
+  return {
+    root: Object.assign(
       {
-        padding: 0,
-        margin: 0,
-        marginBottom: 3,
+        fontSize: fontSizes[2],
       },
-      styles[tag],
+      body,
     ),
-  })
-})
+    img: {
+      maxWidth: '100%',
+    },
+    h1: Object.assign(
+      {
+        fontSize: fontSizes[5],
+      },
+      heading,
+    ),
+    h2: Object.assign(
+      {
+        fontSize: fontSizes[4],
+      },
+      heading,
+    ),
+    h3: Object.assign(
+      {
+        fontSize: fontSizes[3],
+      },
+      heading,
+    ),
+    h4: Object.assign(
+      {
+        fontSize: fontSizes[2],
+      },
+      heading,
+    ),
+    h5: Object.assign(
+      {
+        fontSize: fontSizes[1],
+      },
+      heading,
+    ),
+    h6: Object.assign(
+      {
+        fontSize: fontSizes[0],
+      },
+      heading,
+    ),
+    ul: {
+      listStylePosition: 'outside',
+      listStyleImage: 'none',
+      ml: 3,
+    },
+    ol: {
+      listStylePosition: 'outside',
+      listStyleImage: 'none',
+      ml: 3,
+    },
+    li: {
+      mb: 2,
+      pl: 0,
+      ol: {
+        my: 2,
+        ml: 3,
+      },
+      ul: {
+        my: 2,
+        ml: 3,
+      },
+      p: {
+        mb: 2,
+      },
+    },
+    p: Object.assign(
+      {
+        fontSize: fontSizes[0],
+      },
+      body,
+    ),
+    table: {
+      borderCollapse: 'collapse',
+      width: '100%',
+    },
+    th: {
+      textAlign: 'left',
+      borderBottom: '1px solid',
+      px: 2,
+      py: 1,
+      ':first-child': {
+        pl: 0,
+      },
+      ':last-child': {
+        pr: 0,
+      },
+    },
+    td: {
+      textAlign: 'left',
+      borderBottom: '1px solid',
+      px: 2,
+      py: 1,
+      mt: '-1px',
+      ':first-child': {
+        pl: 0,
+      },
+      ':last-child': {
+        pr: 0,
+      },
+    },
+    blockquote: {
+      mx: 3,
+    },
+    hr: {
+      border: 0,
+      borderBottom: '1px solid',
+      mt: '-1px',
+      mb: 3,
+    },
+    b: {
+      fontWeight: 'bold',
+    },
+    strong: {
+      fontWeight: 'bold',
+    },
+    code: {
+      fontSize: '85%',
+    },
+    pre: {
+      fontSize: '85%',
+      padding: 3,
+    },
+  }
+}
 
 export const defaults = {
   baseFontSize: 16,
@@ -194,14 +171,16 @@ export const defaults = {
   boldWeight: 'bold',
   includeNormalize: true,
   blockMarginBottom: 1,
+  rhythmUnit: 'rem',
+  roundToNearestHalfLine: true
 }
 
-export const toUnitless = (val) => parseFloat(val)
+export const toUnitless = (val: string | number ) => typeof val === 'number'? val : parseFloat(val)
 
-export const getScale = (opts) => (value) =>
+export const getScale = (opts: any) => (value: any) =>
   ms(value, opts.scaleRatio) * opts.baseFontSize
 
-export const getSpace = (result, opts) => {
+export const getSpace = (result: any, opts: any) => {
   const n = toUnitless(result.rhythm(opts.blockMarginBottom))
   return [0, 1 / 4, 1 / 2, 1, 2, 4, 8].map((v) => v * n)
 }
@@ -221,12 +200,12 @@ const genericFontFamilies = [
   'system-ui',
 ]
 
-const wrapFontFamily = (fontFamily) =>
+const wrapFontFamily = (fontFamily: string) =>
   genericFontFamilies.includes(fontFamily) ? fontFamily : `'${fontFamily}'`
 
-const stackFonts = (fonts) => fonts.map(wrapFontFamily).join(', ')
+const stackFonts = (fonts: any[]) => fonts.map(wrapFontFamily).join(', ')
 
-export const getFonts = (result, opts) => {
+export const getFonts = (result: any, opts: any) => {
   const body = stackFonts(opts.bodyFontFamily)
   const heading = stackFonts(opts.headerFontFamily)
   return {
@@ -235,12 +214,12 @@ export const getFonts = (result, opts) => {
   }
 }
 
-export const getFontSizes = (result, opts) => {
+export const getFontSizes = (result: any, opts: any) => {
   const scale = getScale(opts)
   return [-1.5 / 5, -1 / 5, 0, 2 / 5, 3 / 5, 1].map(scale)
 }
 
-export const getLineHeights = (result, opts) => {
+export const getLineHeights = (result: any, opts: any) => {
   const body = opts.baseLineHeight
   const heading = opts.headerLineHeight
   return {
@@ -249,7 +228,7 @@ export const getLineHeights = (result, opts) => {
   }
 }
 
-export const getFontWeights = (result, opts) => {
+export const getFontWeights = (result: any, opts: any) => {
   const body = opts.bodyWeight
   const bold = opts.boldWeight
   const heading = opts.headerWeight
@@ -260,12 +239,10 @@ export const getFontWeights = (result, opts) => {
   }
 }
 
-export const typography = (theme = {}, _opts = {}) => {
+export const typography = (theme: any, _opts = {}) => {
   const opts = { ...defaults, ..._opts }
   // enforce unitless values
-  opts.baseFontSize = toUnitless(opts.baseFontSize)
-  opts.rhythmUnit = 'rem'
-  opts.roundToNearestHalfLine = true
+  opts.baseFontSize = typeof opts.baseFontSize === 'string' ? toUnitless(opts.baseFontSize) : opts.baseFontSize
 
   const typo = verticalRhythm(opts)
   typo.options = opts
@@ -295,11 +272,11 @@ export const typography = (theme = {}, _opts = {}) => {
   }
 }
 
-export const fontLink = (typography) => {
+export const fontLink = (typography: any) => {
   // console.log('fontLink: ', typography)
   let fontsStr = ''
   if (typography.googleFonts) {
-    const fonts = typography.googleFonts.map((font) => {
+    const fonts = typography.googleFonts.map((font: any) => {
       let str = ''
       str += font.name.split(' ').join('+')
       str += ':'
@@ -316,6 +293,7 @@ export const fontLink = (typography) => {
     }
     return null
   }
+  return
 }
 
 export default typography

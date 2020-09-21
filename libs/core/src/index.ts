@@ -76,7 +76,7 @@ const addUnits = (styles: any, units = defaultUnits) => {
 }
 
 export type StyledProcess = (
-  attributes: CSSPropertiesObject | Array<CSSPropertiesObject | Array<any>>,
+  attributes: CSSPropertiesObject | any,
   theme: any,
 ) => any
 

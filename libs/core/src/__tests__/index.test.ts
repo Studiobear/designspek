@@ -6,19 +6,6 @@ import { basic } from './fixtures/basic'
 
 const theme = typography(basic, stAnnesTheme)
 
-class HTMLNode {
-  constructor() {
-    this.class = ''
-    this.classList = {
-      add: (cn) => {
-        this.class += `${cn}`
-      },
-      remove: (cn) => {
-        this.class = this.class.replace(cn, '')
-      },
-    }
-  }
-}
 
 test('processCss: should resolve pseudo selectors via _', () => {
   expect(processCss({ _hover: { color: 'red' } }, theme)).toEqual({
@@ -33,7 +20,7 @@ test('processCss: should resolve pseudo selectors via _', () => {
 })
 
 test('processCss: should resolve shorthand properties to regular css properties', () => {
-  for (let [key, value] of shortHandAttributes.entries()) {
+  for (let [key, value] of Array.from(shortHandAttributes.entries())) {
     let currentKey = key
     let expectedOutput = {}
     if (value.length > 1) {
