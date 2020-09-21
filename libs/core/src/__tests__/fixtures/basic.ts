@@ -5,7 +5,7 @@ const heading = {
 }
 // space: [0, 4, 8, 16, 32, 64, 128, 256, 512],
 // space: ['0', '4px', '8px', '16px', '32px', '64px', '128px', '256px', '512px'],
-const basic = {
+export const basic = {
   scale: [0.25, 0.5, 0.75, 1, 1.5, 2, 4, 8],
   space: [0, 4, 8, 16, 32, 64, 128, 256, 512],
   spaces: ['none', 'xxs', 'xs', 's', 'm', 'l', 'xl', 'xxl', 'xxxl'],
@@ -93,4 +93,4 @@ const basic = {
   },
 }
 
-module.exports = { basic }
+export default basic

@@ -205,7 +205,7 @@ interface StyleLib {
 let styleLib: StyleLib
 
 export type Styled = (
-  attributes: CSSPropertiesObject | Array<CSSPropertiesObject | Array<any>>,
+  attributes: CSSPropertiesObject | any,
   theme: any,
   stringed?: boolean,
 ) => any
