@@ -1,7 +1,7 @@
-<script lang="ts">
+<script>
   import { styled } from '@studiobear/designspek'
 
-  let div: any
+  let div
   export let style = $$props.style ?? {}
   export let theme = style.theme ?? {}
   export let critical = style.critical ?? false
@@ -11,8 +11,7 @@
     minWidth: 0,
     ...style,
   }
-  let compStyle: any
-  let styleProps: any
+
   $: compStyles = styled(defaultStyle, theme, critical)
   $: styleProps = critical ? { style: compStyles } : { class: compStyles }
   // $: console.log('Box', style, theme, compStyles, styleProps)

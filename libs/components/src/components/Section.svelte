@@ -1,9 +1,9 @@
 <script>
   import { styled } from '@studiobear/designspek'
 
-  export let style = $$props.style || {}
-  export let theme = $$props.theme || style.theme || {}
-  export let ssr = $$props.ssr || style.ssr || false
+  export let style = $$props.style ?? {}
+  export let theme = style.theme ?? {}
+  export let critical = style.critical ?? false
   let role = $$props.role || null
   let as = $$props.as || null
   let setRole = ''
@@ -33,8 +33,8 @@
       }
     }
   }
-  $: compStyles = styled(style, theme, ssr)
-  $: styleProps = ssr ? { style: compStyles } : { class: compStyles }
+  $: compStyles = styled(style, theme, critical)
+  $: styleProps = critical ? { style: compStyles } : { class: compStyles }
 </script>
 
 {#if !as || as === 'header'}

@@ -1,4 +1,4 @@
-<script lang="ts">
+<script>
   import Box from '../../Box.svelte'
 
   export let style = {}

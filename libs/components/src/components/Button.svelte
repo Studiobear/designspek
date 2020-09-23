@@ -1,4 +1,4 @@
-<script lang="ts">
+<script>
   import { styled } from '@studiobear/designspek'
   import { createEventDispatcher } from 'svelte'
 
@@ -6,9 +6,9 @@
   export let style = $$props.style ?? {}
   export let theme = style.theme ?? {}
   export let critical = style.critical ?? false
-  const dispatch: any = createEventDispatcher()
+  const dispatch = createEventDispatcher()
 
-  function onClick(event: Event) {
+  function onClick(event) {
     dispatch('click', event)
   }
 

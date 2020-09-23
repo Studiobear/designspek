@@ -1,10 +1,15 @@
 module.exports = {
   transform: {
-    '^.+\\.svelte$': ['svelte-jester', { 'preprocess': true }],
-    '^.+\\.ts$': 'ts-jest'
+    '^.+\\.svelte$': ['svelte-jester', { preprocess: true, rootMode: 'upward' }],
+    '^.+\\.ts$': 'ts-jest',
   },
-  testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.([tj]s)$',
-  moduleFileExtensions: ['js', 'ts', 'svelte'],
+  globals: {
+    'ts-jest': {
+      tsConfig: '<rootDir>/tsconfig.json',
+    }
+  },
+  testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.ts$',
+  moduleFileExtensions: ['js','ts', 'svelte'],
   testPathIgnorePatterns: ['node_modules'],
   verbose: true,
   transformIgnorePatterns: [

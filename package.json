@@ -73,7 +73,7 @@
     "prettier": "^2.1.1",
     "prettier-plugin-svelte": "^1.2.1",
     "standard-version": "^9.0.0",
-    "svelte": "^3.25.0"
+    "svelte": "^3.26.0"
   },
   "config": {
     "commitizen": {

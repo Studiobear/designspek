@@ -20,30 +20,24 @@ export default {
     {
       file: pkg.module,
       format: 'es',
-      globals: { '@studiobear/designspek': 'svelteSystemUi' },
+      globals: { '@studiobear/designspek': 'designspek' },
       sourcemap: production,
     },
     {
       file: pkg.main,
       format: 'umd',
       name,
-      globals: { '@studiobear/designspek': 'svelteSystemUi' },
+      globals: { '@studiobear/designspek': 'designspek' },
       sourcemap: production,
     },
   ],
   plugins: [
-    commonjs(),
-    typescript({ sourceMap: !production }),
+    typescript({ sourceMap: true }),
     svelte({
       dev: !production,
       preprocess: autoPreprocess(),
     }),
-    resolve({
-      dedupe: [
-        'svelte',
-      ],
-    }),
-    production && terser(),
+    resolve()
   ],
   watch: {
     clearScreen: false,
