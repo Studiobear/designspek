@@ -4,6 +4,7 @@
   "include": ["src/**/*"],
   "compilerOptions": {
     "target": "ES2019",
+    "sourceMap": true,
     "types": ["svelte", "jest", "@testing-library/jest-dom"],
   }
 }

@@ -1,17 +1,23 @@
 module.exports = {
   transform: {
-    '^.+\\.svelte$': 'svelte-jester',
-    '^.+\\.js$': 'babel-jest',
-    '^.+\\.ts$': 'babel-jest',
+    '^.+\\.svelte$': [
+      'svelte-jester',
+      { preprocess: true, rootMode: 'upward' },
+    ],
+    '^.+\\.ts$': 'ts-jest',
   },
-  roots: ['<rootDir>', './src'],
+  globals: {
+    'ts-jest': {
+      tsConfig: '<rootDir>/tsconfig.json',
+    },
+  },
   moduleFileExtensions: ['ts', 'js', 'svelte', 'json'],
   testPathIgnorePatterns: ['node_modules'],
-  bail: false,
   verbose: true,
   transformIgnorePatterns: [
     '<rootDir>/node_modules',
     '<rootDir>/../../node_modules',
   ],
-  setupFilesAfterEnv: ['@testing-library/jest-dom/extend-expect'],
+  setupFilesAfterEnv: ['<rootDir>/setupTests.ts'],
+  rootDir: '.',
 }

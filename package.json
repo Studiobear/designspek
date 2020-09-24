@@ -26,6 +26,8 @@
   "scripts": {
     "components": "yarn workspace @studiobear/designspek-components",
     "core": "yarn workspace @studiobear/designspek",
+    "site": "yarn workspace site",
+    "site2": "yarn workspace site2",
     "build": "lerna run build",
     "watch": "lerna run dev",
     "clean": "lerna run clean",
@@ -70,7 +72,7 @@
     "eslint-plugin-svelte3": "^2.7.3",
     "husky": "^4.2.5",
     "lerna": "^3.20.2",
-    "prettier": "^2.1.1",
+    "prettier": "^2.1.2",
     "prettier-plugin-svelte": "^1.2.1",
     "standard-version": "^9.0.0",
     "svelte": "^3.26.0"

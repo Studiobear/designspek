@@ -60,11 +60,11 @@
     "micro-memoize": "^4.0.9",
     "microbundle": "0.12.3",
     "modularscale": "^2.0.1",
-    "prettier": "^2.1.1",
+    "prettier": "^2.1.2",
     "prettier-plugin-svelte": "^1.2.1",
     "styled-system": "^5.1.5",
     "ts-jest": "^26.4.0",
-    "typescript": "^4.0.2",
+    "typescript": "^4.0.3",
     "typography-theme-st-annes": "^0.16.19"
   },
   "dependencies": {

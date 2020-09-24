@@ -2,7 +2,7 @@ import vfile from 'vfile'
 import { processor } from '../md-processor'
 
 const filePath = './src/utils/example.md'
-const postWrap = processor(filePath)
+const postWrap = processor()
 
 describe('MD Processor', () => {
   test('should return post title, slug, html and excerpt', async () => {
