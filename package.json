@@ -28,6 +28,7 @@
     "core": "yarn workspace @studiobear/designspek",
     "site": "yarn workspace site",
     "site2": "yarn workspace site2",
+    "site3": "yarn workspace site3",
     "build": "lerna run build",
     "watch": "lerna run dev",
     "clean": "lerna run clean",
@@ -74,6 +75,7 @@
     "lerna": "^3.20.2",
     "prettier": "^2.1.2",
     "prettier-plugin-svelte": "^1.2.1",
+    "snowpack": "^2.11.1",
     "standard-version": "^9.0.0",
     "svelte": "^3.26.0"
   },
