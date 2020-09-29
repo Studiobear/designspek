@@ -4,7 +4,14 @@
     "public": "/",
     "src": "/_dist_"
   },
+  "install": ["@studiobear/designspek-components"],
   "plugins": [
+    [
+      "snowpack-plugin-mdsvex",
+      {
+        "include": "src/blog/posts/**/*.svx"
+      }
+    ],
     [
       "@snowpack/plugin-run-script",
       {
@@ -12,9 +19,17 @@
         "watch": "$1 --watch"
       }
     ],
-    ["@snowpack/plugin-run-script", {"cmd": "svelte-check --output human", "watch": "$1 --watch", "output": "stream"}]
+    [
+      "@snowpack/plugin-run-script",
+      {
+        "cmd": "svelte-check --output human",
+        "watch": "$1 --watch",
+        "output": "stream"
+      }
+    ]
   ],
   "installOptions": {
-    "installTypes": true
+    "installTypes": true,
+    "polyfillNode": true
   }
 }

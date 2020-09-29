@@ -3649,7 +3649,7 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-12.12.57.tgz#fa7bab1f5e5adc99df92d824ef75c3bbca929a22"
   integrity sha512-Dg4fab0IP6ZtdJOkwTaMaOJA3PWw7bR6cUYh+nxkYe4+ZogiLBKhaEr9sHqVkCtREVLw92g3Fl1bt8++dHKavw==
 
-"@types/node@^14.11.1":
+"@types/node@^14.11.1", "@types/node@^14.11.2":
   version "14.11.2"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-14.11.2.tgz#2de1ed6670439387da1c9f549a2ade2b0a799256"
   integrity sha512-jiE3QIxJ8JLNcb1Ps6rDbysDhN4xa8DJJvuC9prr6w+1tIh+QAbYyNF3tyiZNLDBIuBCf4KEcV2UvQm/V60xfA==
@@ -16355,6 +16355,11 @@ snapdragon@^0.8.1:
     source-map "^0.5.6"
     source-map-resolve "^0.5.0"
     use "^3.1.0"
+
+snowpack-plugin-mdsvex@^0.1.2:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/snowpack-plugin-mdsvex/-/snowpack-plugin-mdsvex-0.1.2.tgz#27ddf12b7d465a8bb31e27e38c837decf18a81ec"
+  integrity sha512-w0BcTzuafW9l2jd+S4m3vpBHYh8EqxQDPumbUv6CprUjk8LuX1/WfE9i4+4mTd7GLqdswJgRmfED7+7tdsCv8A==
 
 snowpack@^2.11.1:
   version "2.11.1"
