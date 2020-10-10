@@ -75,7 +75,7 @@
     "lerna": "^3.20.2",
     "prettier": "^2.1.2",
     "prettier-plugin-svelte": "^1.2.1",
-    "snowpack": "^2.11.1",
+    "snowpack": "^2.12.1",
     "standard-version": "^9.0.0",
     "svelte": "^3.26.0"
   },

@@ -16,9 +16,9 @@
     "@tsconfig/svelte": "^1.0.10",
     "prettier": "^2.1.2",
     "prettier-plugin-svelte": "^1.2.1",
-    "svelte-check": "^1.0.47",
+    "svelte-check": "^1.0.54",
     "svelte-inline-svg": "^1.0.0",
-    "svelte-preprocess": "^4.3.0",
+    "svelte-preprocess": "^4.3.2",
     "svite": "^0.6.1",
     "tslib": "^2.0.1",
     "typescript": "^4.0.3"

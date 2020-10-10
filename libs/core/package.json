@@ -48,7 +48,7 @@
   "devDependencies": {
     "@babel/core": "^7.11.6",
     "@babel/preset-env": "^7.11.5",
-    "@types/jest": "^26.0.13",
+    "@types/jest": "^26.0.14",
     "@types/styled-system": "^5.1.10",
     "babel-jest": "^26.3.0",
     "bundlesize": "^0.18.0",
@@ -63,7 +63,7 @@
     "prettier": "^2.1.2",
     "prettier-plugin-svelte": "^1.2.1",
     "styled-system": "^5.1.5",
-    "ts-jest": "^26.4.0",
+    "ts-jest": "^26.4.1",
     "typescript": "^4.0.3",
     "typography-theme-st-annes": "^0.16.19"
   },

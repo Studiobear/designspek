@@ -1,4 +1,4 @@
-export {}
+export default {}
 /*
 import { readdir } from 'fs'
 import { join } from 'path'

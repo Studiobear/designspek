@@ -2745,16 +2745,16 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@snowpack/app-scripts-svelte@^1.8.4":
-  version "1.8.4"
-  resolved "https://registry.yarnpkg.com/@snowpack/app-scripts-svelte/-/app-scripts-svelte-1.8.4.tgz#63a84a65e1df5962bea97fc9ec1cb82fcc3b8ae0"
-  integrity sha512-x5FEElgSLXv3t6WLXtjA3OnDqchP5nVDCcnMc2IDGy2AaP1ac8PHimj6wdFQugctU5KS/K7R7Yx1NDVjF/J8kQ==
+"@snowpack/app-scripts-svelte@^1.8.5":
+  version "1.8.5"
+  resolved "https://registry.yarnpkg.com/@snowpack/app-scripts-svelte/-/app-scripts-svelte-1.8.5.tgz#15b6ce47f6bcf614a50a7e1cbd75e1b1fda7f9bc"
+  integrity sha512-7Z+8Rz7xfT4o32IIyxmuTEOZkT5dO5Ia5jzkBuplATQSTAhcJA2FCFWzDTs9qcu40ritOYQKBVyPNV+ucdRXIw==
   dependencies:
     "@babel/core" "^7.10.5"
     "@babel/preset-env" "^7.10.4"
     "@babel/preset-typescript" "^7.10.4"
-    "@snowpack/plugin-dotenv" "^2.0.1"
-    "@snowpack/plugin-svelte" "^2.0.4"
+    "@snowpack/plugin-dotenv" "^2.0.2"
+    "@snowpack/plugin-svelte" "^2.1.0"
     babel-jest "^26.2.2"
     jest-transform-svelte "^2.1.1"
 
@@ -2766,26 +2766,26 @@
     execa "^4.0.3"
     npm-run-path "^4.0.1"
 
-"@snowpack/plugin-dotenv@^2.0.1":
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/@snowpack/plugin-dotenv/-/plugin-dotenv-2.0.1.tgz#151bb4136f76f46d19473c535b4a415923e07511"
-  integrity sha512-oeHVdfv6Pg9fMR49fD8ankIlN0NxGVP3WHCVrAZzuWIDeWAQ2iIOopTuIn5H5C3nb3Bce6MBYKq5/UeL8oWQcg==
+"@snowpack/plugin-dotenv@^2.0.2":
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/@snowpack/plugin-dotenv/-/plugin-dotenv-2.0.2.tgz#c42d9b768dc302e2b4a2306bbedd38faa3da6e26"
+  integrity sha512-nQuXYi18DZtDGh7mBfVOgXbmJy9MFyx4Xc7kJ3iw9IzW3cEA3RXjFedWn0GiPkYZESGVnEnfVMjyF8JOlinKaQ==
   dependencies:
     dotenv "^8.2.0"
     dotenv-expand "^5.1.0"
 
-"@snowpack/plugin-run-script@^2.1.2":
-  version "2.1.2"
-  resolved "https://registry.yarnpkg.com/@snowpack/plugin-run-script/-/plugin-run-script-2.1.2.tgz#51a620f99cc8ba4a23d3fc5c748f3c16aada7ad4"
-  integrity sha512-120uF0GKpEY/jHRuOZnxH8siLPXDSKB44Fy9d+zMWybsVvkIvV7pqcT9T9ojnth6QRB+f39tPaiqt+Ej/ByBjg==
+"@snowpack/plugin-run-script@^2.1.3":
+  version "2.1.3"
+  resolved "https://registry.yarnpkg.com/@snowpack/plugin-run-script/-/plugin-run-script-2.1.3.tgz#fb689b76955c63c16934b4eb52af9f478416313a"
+  integrity sha512-DhV7KBHnUULtP7eQGHTAGdYsjI1q+vMuX07X8h/v2JnFVaZqowOBjnjQDfbY9oGtw/PZqiY4KEegAh3qxFqODQ==
   dependencies:
     execa "^4.0.3"
     npm-run-path "^4.0.1"
 
-"@snowpack/plugin-svelte@^2.0.4":
-  version "2.0.4"
-  resolved "https://registry.yarnpkg.com/@snowpack/plugin-svelte/-/plugin-svelte-2.0.4.tgz#fd9055f114236b9ccbbc48497bb2592ab4e7a1c0"
-  integrity sha512-UCwy+75Nsnt0V+lU8E+nioa6TnZzef7ke2fLi29whInYs3nik3Op6LgmQUsxD2MSul0SnZO3psIaVagC/4eUyg==
+"@snowpack/plugin-svelte@^2.1.0":
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/@snowpack/plugin-svelte/-/plugin-svelte-2.1.0.tgz#d6e7a9279bcfc50a9b70fc0cacb2505bf65838ae"
+  integrity sha512-0uOZisvCmb8tFKTcPyQQ/UYAl58KsJpD6U0RKaATnT4Ryvfo80AMTAp4fPwztB0zgZr+o4Ty1JJyqXQvjV4s4w==
   dependencies:
     rollup-plugin-svelte "^5.2.3"
 
@@ -3539,10 +3539,18 @@
     "@types/jest" "*"
     axe-core "^3.5.5"
 
-"@types/jest@*", "@types/jest@26.x", "@types/jest@^26.0.13":
+"@types/jest@*", "@types/jest@26.x":
   version "26.0.13"
   resolved "https://registry.yarnpkg.com/@types/jest/-/jest-26.0.13.tgz#5a7b9d5312f5dd521a38329c38ee9d3802a0b85e"
   integrity sha512-sCzjKow4z9LILc6DhBvn5AkIfmQzDZkgtVVKmGwVrs5tuid38ws281D4l+7x1kP487+FlKDh5kfMZ8WSPAdmdA==
+  dependencies:
+    jest-diff "^25.2.1"
+    pretty-format "^25.2.1"
+
+"@types/jest@^26.0.14":
+  version "26.0.14"
+  resolved "https://registry.yarnpkg.com/@types/jest/-/jest-26.0.14.tgz#078695f8f65cb55c5a98450d65083b2b73e5a3f3"
+  integrity sha512-Hz5q8Vu0D288x3iWXePSn53W7hAjP0H7EQ6QvDO9c7t46mR0lNOLlfuwQ+JkVxuhygHzlzPX+0jKdA3ZgSh+Vg==
   dependencies:
     jest-diff "^25.2.1"
     pretty-format "^25.2.1"
@@ -3649,7 +3657,7 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-12.12.57.tgz#fa7bab1f5e5adc99df92d824ef75c3bbca929a22"
   integrity sha512-Dg4fab0IP6ZtdJOkwTaMaOJA3PWw7bR6cUYh+nxkYe4+ZogiLBKhaEr9sHqVkCtREVLw92g3Fl1bt8++dHKavw==
 
-"@types/node@^14.11.1", "@types/node@^14.11.2":
+"@types/node@^14.11.2":
   version "14.11.2"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-14.11.2.tgz#2de1ed6670439387da1c9f549a2ade2b0a799256"
   integrity sha512-jiE3QIxJ8JLNcb1Ps6rDbysDhN4xa8DJJvuC9prr6w+1tIh+QAbYyNF3tyiZNLDBIuBCf4KEcV2UvQm/V60xfA==
@@ -7920,6 +7928,26 @@ escodegen@^1.14.1:
     optionator "^0.8.1"
   optionalDependencies:
     source-map "~0.6.1"
+
+esinstall@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/esinstall/-/esinstall-0.2.0.tgz#8f4f2f20cb93f5d74aa3d6b2164786dc514765a2"
+  integrity sha512-jLmMiMlKNpZr4Yr0T+3eNvYP2F2FpkfwPKVBmEFzlvKXoWhpvARUTuqv4TRkG3ZbgrhoPcwD0V2sh92ii8T0AA==
+  dependencies:
+    "@rollup/plugin-alias" "^3.0.1"
+    "@rollup/plugin-commonjs" "^15.0.0"
+    "@rollup/plugin-inject" "^4.0.2"
+    "@rollup/plugin-json" "^4.0.0"
+    "@rollup/plugin-node-resolve" "^9.0.0"
+    "@rollup/plugin-replace" "^2.3.3"
+    es-module-lexer "^0.3.24"
+    is-builtin-module "^3.0.0"
+    kleur "^4.1.1"
+    mkdirp "^1.0.3"
+    rimraf "^3.0.0"
+    rollup "^2.23.0"
+    rollup-plugin-node-polyfills "^0.2.1"
+    validate-npm-package-name "^3.0.0"
 
 eslint-config-prettier@^6.10.0:
   version "6.11.0"
@@ -16356,25 +16384,19 @@ snapdragon@^0.8.1:
     source-map-resolve "^0.5.0"
     use "^3.1.0"
 
-snowpack-plugin-mdsvex@^0.1.2:
-  version "0.1.2"
-  resolved "https://registry.yarnpkg.com/snowpack-plugin-mdsvex/-/snowpack-plugin-mdsvex-0.1.2.tgz#27ddf12b7d465a8bb31e27e38c837decf18a81ec"
-  integrity sha512-w0BcTzuafW9l2jd+S4m3vpBHYh8EqxQDPumbUv6CprUjk8LuX1/WfE9i4+4mTd7GLqdswJgRmfED7+7tdsCv8A==
+snowpack-plugin-mdsvex@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/snowpack-plugin-mdsvex/-/snowpack-plugin-mdsvex-0.2.0.tgz#280b910573d67557d7a2bd290bd43e8fe07e3ae1"
+  integrity sha512-STdElCWFm5kNtj/n55Qqnf+W77byRp5xSm2IJ2PqThNssYo3zmpFUd1vfnpUlB9yClbI1a1+ZokkuynQyyIhzQ==
 
-snowpack@^2.11.1:
-  version "2.11.1"
-  resolved "https://registry.yarnpkg.com/snowpack/-/snowpack-2.11.1.tgz#8565bed98806162bc1b001d3796c8863b18a2084"
-  integrity sha512-trEBfCRUaPLaoMZdyDyLdzQfQGy2tOrr0gGeSV8AVjos3m412s2mWsfhYEGCT1AE/t0mrGMhj7ccVz5fh5yOnQ==
+snowpack@^2.12.1:
+  version "2.12.1"
+  resolved "https://registry.yarnpkg.com/snowpack/-/snowpack-2.12.1.tgz#fd065896473ff0bda6d46fde3bab5e39fa917919"
+  integrity sha512-zMg7pOn96maiuMbKMXjMSbwTgq/hnZiWkBVIQL3TDXNCICT3uxSEW0vvPFyPNOg0JNvc0sb08Wvz5TyP5F8AjA==
   dependencies:
     "@babel/plugin-syntax-import-meta" "^7.10.4"
-    "@rollup/plugin-alias" "^3.0.1"
-    "@rollup/plugin-commonjs" "^15.0.0"
-    "@rollup/plugin-inject" "^4.0.2"
-    "@rollup/plugin-json" "^4.0.0"
-    "@rollup/plugin-node-resolve" "^9.0.0"
-    "@rollup/plugin-replace" "^2.3.3"
     "@snowpack/plugin-build-script" "^2.0.7"
-    "@snowpack/plugin-run-script" "^2.1.2"
+    "@snowpack/plugin-run-script" "^2.1.3"
     cacache "^15.0.0"
     cachedir "^2.3.0"
     chokidar "^3.4.0"
@@ -16385,6 +16407,7 @@ snowpack@^2.11.1:
     detect-port "^1.3.0"
     es-module-lexer "^0.3.24"
     esbuild "^0.6.28"
+    esinstall "^0.2.0"
     etag "^1.8.1"
     execa "^4.0.3"
     find-cache-dir "^3.3.1"
@@ -16392,7 +16415,6 @@ snowpack@^2.11.1:
     glob "^7.1.4"
     got "^11.1.4"
     http-proxy "^1.18.1"
-    is-builtin-module "^3.0.0"
     isbinaryfile "^4.0.6"
     jsonschema "^1.2.5"
     kleur "^4.1.1"
@@ -16403,9 +16425,8 @@ snowpack@^2.11.1:
     p-queue "^6.6.1"
     resolve-from "^5.0.0"
     rimraf "^3.0.0"
-    rollup "^2.23.0"
-    rollup-plugin-node-polyfills "^0.2.1"
     signal-exit "^3.0.3"
+    strip-ansi "^6.0.0"
     strip-comments "^2.0.1"
     tar "^6.0.1"
     validate-npm-package-name "^3.0.0"
@@ -17007,10 +17028,10 @@ supports-hyperlinks@^2.0.0:
     has-flag "^4.0.0"
     supports-color "^7.0.0"
 
-svelte-check@^1.0.47:
-  version "1.0.48"
-  resolved "https://registry.yarnpkg.com/svelte-check/-/svelte-check-1.0.48.tgz#632e21e188ef8a7277b360e052a5ce9315b7da71"
-  integrity sha512-2dnyJUv/5UWT5rkIWvyYpJdwV8aXJtOBSbUpltL2da+STt/wT8WHOWIwTdc2l3JdCKsp0ycOcSE4EdcLOhwtfw==
+svelte-check@^1.0.54:
+  version "1.0.54"
+  resolved "https://registry.yarnpkg.com/svelte-check/-/svelte-check-1.0.54.tgz#6c1f1661b53e5b25323f0ea02753b435fcee7d55"
+  integrity sha512-bkijpO8FXn+SCRBtTIvLQnVaxAJPxlPRnZdaqheN0Y9IXrzUt+8+XrcQjGCoX7HuQNgcyO8zJZzIcNNqjCTqVw==
   dependencies:
     chalk "^4.0.0"
     chokidar "^3.4.1"
@@ -17072,10 +17093,10 @@ svelte-preprocess@4.2.1, svelte-preprocess@~4.2.0:
     detect-indent "^6.0.0"
     strip-indent "^3.0.0"
 
-svelte-preprocess@^4.3.0:
-  version "4.3.0"
-  resolved "https://registry.yarnpkg.com/svelte-preprocess/-/svelte-preprocess-4.3.0.tgz#7db318e9da4ac3fe22ec9671095533806ad76219"
-  integrity sha512-7FGpPrnRWMqNuQ/FnP0T52yHw1qgFYXisTM3JnQCzXkSdPMNDU2Wts0O3x1ovM+mPzWiAQ0PWHFeFhP5+fnRJQ==
+svelte-preprocess@^4.3.2:
+  version "4.3.2"
+  resolved "https://registry.yarnpkg.com/svelte-preprocess/-/svelte-preprocess-4.3.2.tgz#a05a98e59c64044e835b1401346be41665f19971"
+  integrity sha512-CmIsCr62y34qGS10/SC1l1VkmX0kZR6wncbGgRJ1qJftLDMEaazC3bWqoqAlrqyQFvpO0+xb44GQm4RKi/9sLQ==
   dependencies:
     "@types/pug" "^2.0.4"
     "@types/sass" "^1.16.0"
@@ -17596,10 +17617,10 @@ ts-essentials@^2.0.3:
   resolved "https://registry.yarnpkg.com/ts-essentials/-/ts-essentials-2.0.12.tgz#c9303f3d74f75fa7528c3d49b80e089ab09d8745"
   integrity sha512-3IVX4nI6B5cc31/GFFE+i8ey/N2eA0CZDbo6n0yrz0zDX8ZJ8djmU1p+XRz7G3is0F3bB3pu2pAroFdAWQKU3w==
 
-ts-jest@^26.4.0:
-  version "26.4.0"
-  resolved "https://registry.yarnpkg.com/ts-jest/-/ts-jest-26.4.0.tgz#903c7827f3d3bc33efc2f91be294b164400c32e3"
-  integrity sha512-ofBzoCqf6Nv/PoWb/ByV3VNKy2KJSikamOBxvR3E6eVdIw10GwAXoyvMWXXjZJK2s6S27ZE8fI+JBTnGaovl6Q==
+ts-jest@^26.4.1:
+  version "26.4.1"
+  resolved "https://registry.yarnpkg.com/ts-jest/-/ts-jest-26.4.1.tgz#08ec0d3fc2c3a39e4a46eae5610b69fafa6babd0"
+  integrity sha512-F4aFq01aS6mnAAa0DljNmKr/Kk9y4HVZ1m6/rtJ0ED56cuxINGq3Q9eVAh+z5vcYKe5qnTMvv90vE8vUMFxomg==
   dependencies:
     "@types/jest" "26.x"
     bs-logger "0.x"
