@@ -293,18 +293,26 @@
           <p><strong>Strong is used to indicate strong importance.</strong></p>
           <p><em>This text has added emphasis.</em></p>
           <p>
-            The <b>b element</b> is stylistically different text from normal text,
-            without any special importance.
+            The
+            <b>b element</b>
+            is stylistically different text from normal text, without any
+            special importance.
           </p>
           <p>
-            The <i>i element</i> is text that is offset from the normal text.
+            The
+            <i>i element</i>
+            is text that is offset from the normal text.
           </p>
           <p>
-            The <u>u element</u> is text with an unarticulated, though explicitly
-            rendered, non-textual annotation.
+            The
+            <u>u element</u>
+            is text with an unarticulated, though explicitly rendered,
+            non-textual annotation.
           </p>
           <p>
-            <del>This text is deleted</del> and <ins>This text is inserted</ins>
+            <del>This text is deleted</del>
+            and
+            <ins>This text is inserted</ins>
             .
           </p>
           <p><s>This text has a strikethrough</s> .</p>
@@ -314,7 +322,8 @@
             <small>This small text is small for for fine print, etc.</small>
           </p>
           <p>
-            Abbreviation: <abbr title="HyperText Markup Language">HTML</abbr>
+            Abbreviation:
+            <abbr title="HyperText Markup Language">HTML</abbr>
           </p>
           <p>
             <q cite="https://developer.mozilla.org/en-US/docs/HTML/Element/q">
@@ -325,12 +334,17 @@
           <p>The <dfn>dfn element</dfn> indicates a definition.</p>
           <p>The <mark>mark element</mark> indicates a highlight.</p>
           <p>
-            The <var>variable element</var> , such as <var>x</var> = <var>y</var>
+            The
+            <var>variable element</var>
+            , such as
+            <var>x</var>
+            =
+            <var>y</var>
             .
           </p>
           <p>
-            The time element: <time datetime="2013-04-06T12:32+00:00">2 weeks
-              ago</time>
+            The time element:
+            <time datetime="2013-04-06T12:32+00:00">2 weeks ago</time>
           </p>
         </div>
         <footer>
@@ -366,13 +380,19 @@
           <Heading as="h4">No <code>&lt;figure&gt;</code> element</Heading>
           <p><img src="http://placekitten.com/480/480" alt="alt text" /></p>
           <Heading as="h3">
-            Wrapped in a <code>&lt;figure&gt;</code> element, no <code>&lt;figcaption&gt;</code>
+            Wrapped in a
+            <code>&lt;figure&gt;</code>
+            element, no
+            <code>&lt;figcaption&gt;</code>
           </Heading>
           <figure>
             <img src="http://placekitten.com/420/420" alt="alt text" />
           </figure>
           <Heading as="h3">
-            Wrapped in a <code>&lt;figure&gt;</code> element, with a <code>&lt;figcaption&gt;</code>
+            Wrapped in a
+            <code>&lt;figure&gt;</code>
+            element, with a
+            <code>&lt;figcaption&gt;</code>
           </Heading>
           <figure>
             <img src="http://placekitten.com/420/420" alt="alt text" />
@@ -548,12 +568,14 @@
             </li>
             <li>
               <label for="checkbox2">
-                <input id="checkbox2" name="checkbox" type="checkbox" /> Choice B
+                <input id="checkbox2" name="checkbox" type="checkbox" />
+                Choice B
               </label>
             </li>
             <li>
               <label for="checkbox3">
-                <input id="checkbox3" name="checkbox" type="checkbox" /> Choice C
+                <input id="checkbox3" name="checkbox" type="checkbox" />
+                Choice C
               </label>
             </li>
           </ul>
@@ -569,19 +591,20 @@
                   name="radio"
                   type="radio"
                   class="radio"
-                  checked /> Option 1
+                  checked />
+                Option 1
               </label>
             </li>
             <li>
               <label for="radio2">
-                <input id="radio2" name="radio" type="radio" class="radio" /> Option
-                2
+                <input id="radio2" name="radio" type="radio" class="radio" />
+                Option 2
               </label>
             </li>
             <li>
               <label for="radio3">
-                <input id="radio3" name="radio" type="radio" class="radio" /> Option
-                3
+                <input id="radio3" name="radio" type="radio" class="radio" />
+                Option 3
               </label>
             </li>
           </ul>

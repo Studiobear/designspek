@@ -8,7 +8,7 @@
     "validate": "svelte-check"
   },
   "dependencies": {
-    "svelte": "^3.26.0"
+    "svelte": "^3.29.0"
   },
   "devDependencies": {
     "@rollup/plugin-typescript": "^6.0.0",
@@ -26,7 +26,7 @@
     "mdsvex": "^0.8.8",
     "navaid": "^1.1.2",
     "rollup-plugin-node-polyfills": "^0.2.1",
-    "snowpack": "^2.12.1",
+    "snowpack": "^2.14.1",
     "snowpack-plugin-mdsvex": "^0.2.0",
     "svelte-check": "^1.0.54",
     "svelte-preprocess": "^4.3.2",

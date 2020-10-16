@@ -26,6 +26,7 @@
   "scripts": {
     "components": "yarn workspace @studiobear/designspek-components",
     "core": "yarn workspace @studiobear/designspek",
+    "spd": "yarn workspace snowpack-plugin-designspek",
     "site": "yarn workspace site",
     "site2": "yarn workspace site2",
     "site3": "yarn workspace site3",
@@ -63,21 +64,21 @@
     "@manypkg/cli": "^0.16.1",
     "@typescript-eslint/eslint-plugin": "^4.1.1",
     "@typescript-eslint/parser": "^4.1.1",
-    "commitizen": "^4.0.3",
+    "commitizen": "^4.2.1",
     "cypress": "^5.1.0",
-    "cz-conventional-changelog": "^3.1.0",
+    "cz-conventional-changelog": "^3.3.0",
     "eslint": "^7.9.0",
     "eslint-config-prettier": "^6.10.0",
     "eslint-plugin-import": "^2.20.1",
     "eslint-plugin-prettier": "^3.1.2",
     "eslint-plugin-svelte3": "^2.7.3",
-    "husky": "^4.2.5",
+    "husky": "^4.3.0",
     "lerna": "^3.20.2",
     "prettier": "^2.1.2",
-    "prettier-plugin-svelte": "^1.2.1",
-    "snowpack": "^2.12.1",
+    "prettier-plugin-svelte": "^1.4.0",
+    "snowpack": "^2.14.1",
     "standard-version": "^9.0.0",
-    "svelte": "^3.26.0"
+    "svelte": "^3.29.0"
   },
   "config": {
     "commitizen": {

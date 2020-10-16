@@ -2,24 +2,27 @@ const svelteRollupPlugin = require('rollup-plugin-svelte')
 const fs = require('fs/promises')
 const utils = require('@rollup/pluginutils')
 const svelte = require('svelte/compiler')
-const { mdsvex } = require('mdsvex')
+const evaluate = require('static-eval')
+const parse = require('esprima').parse
 
-const ext = /(\.md$|\.svx$)/
-const extensionsDefault = ['.md', '.svx']
+const ext = /\.svelte$/
+const extensionsDefault = ['.svelte']
 
 module.exports = function plugin(
   snowpackConfig: any,
-  pluginOptions: SnowpackPluginMdsvexOptions,
+  pluginOptions: SnowpackPluginDesignspekOptions,
 ) {
   const isDev = process.env.NODE_ENV !== 'production'
-  const emitCss = pluginOptions.css ? pluginOptions.css : false
 
   let filter: any
   let extensions: string[]
   let extRegexp: RegExp
 
-  if (pluginOptions.mdsvexOptions && pluginOptions.mdsvexOptions.extensions) {
-    extensions = pluginOptions.mdsvexOptions.extensions
+  if (
+    pluginOptions.designspekOptions &&
+    pluginOptions.designspekOptions.extensions
+  ) {
+    extensions = pluginOptions.designspekOptions.extensions
     let genExtRegExp: string = ''
     let extL = 0
     extensions.map((e) => {
@@ -45,14 +48,12 @@ module.exports = function plugin(
     snowpackConfig.installOptions.rollup.plugins.push(
       svelteRollupPlugin({
         extensions: ['.svelte', ...extensions],
-        emitCss,
-        preprocess: mdsvex({ ...pluginOptions.mdsvexOptions, dev: isDev }),
       }),
     )
   }
 
   return {
-    name: 'snowpack-plugin-mdsvex',
+    name: 'snowpack-plugin-designspek',
     resolve: {
       input: extensions,
       output: ['.js', '.css'],
@@ -68,20 +69,18 @@ module.exports = function plugin(
 
       const contents = await fs.readFile(filePath, 'utf-8')
 
-      const svxPreprocess = await svelte.preprocess(
-        contents,
-        mdsvex({
-          ...pluginOptions.mdsvexOptions,
-        }),
-        { filename: filePath },
-      )
+      const svxPreprocess = await svelte.preprocess(contents, {
+        filename: filePath,
+      })
+      console.log('svxPreprocess: ', svxPreprocess)
       const { js, css } = await svelte.compile(svxPreprocess.toString())
+      // console.log('js: ', js.code)
       const output: any = {
         '.js': {
           code: js.code,
         },
       }
-      if (emitCss && css && css.code) {
+      if (css && css.code) {
         output['.css'] = {
           code: css.code,
         }
@@ -92,7 +91,7 @@ module.exports = function plugin(
   }
 }
 
-export interface SnowpackPluginMdsvexOptions {
+export interface SnowpackPluginDesignspekOptions {
   /**
    * Includes only the specified paths
    */
@@ -102,11 +101,7 @@ export interface SnowpackPluginMdsvexOptions {
    */
   exclude?: string[]
   /**
-   * Include CSS. Default: false
-   */
-  css?: boolean
-  /**
    * These options are passed directly to the MDSVEX compiler.
    */
-  mdsvexOptions?: Record<string, any>
+  designspekOptions?: Record<string, any>
 }

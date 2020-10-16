@@ -1,17 +1,15 @@
 <script>
-  import { createEventDispatcher } from 'svelte'
-  export let value = 0
-  export let step = 1
+  import { styled } from '@studiobear/designspek'
 
-  const dispatch = createEventDispatcher()
-
-  const onClick = (value) => {
-    dispatch('counter', value)
-  }
+  const container = styled(
+    {
+      bg: '#000',
+      color: '#fff',
+    },
+    {},
+  )
 </script>
 
-<div>
-  <h3>{value}</h3>
-  <button on:click={() => onClick((value += step))}>+</button>
-  <button on:click={() => onClick((value -= step))}>-</button>
+<div class={container}>
+  <h3>Designspek</h3>
 </div>
