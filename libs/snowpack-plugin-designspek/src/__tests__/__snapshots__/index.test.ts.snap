@@ -11,98 +11,45 @@ import {
 	element,
 	init,
 	insert,
-	listen,
 	noop,
-	run_all,
-	safe_not_equal,
-	set_data,
-	space,
-	text
+	safe_not_equal
 } from \\"svelte/internal\\";
 
-import { createEventDispatcher } from \\"svelte\\";
 import { styled } from \\"@studiobear/designspek\\";
 
 function create_fragment(ctx) {
 	let div;
 	let h3;
-	let t0;
-	let t1;
-	let button0;
-	let t3;
-	let button1;
-	let mounted;
-	let dispose;
 
 	return {
 		c() {
 			div = element(\\"div\\");
 			h3 = element(\\"h3\\");
-			t0 = text(/*value*/ ctx[0]);
-			t1 = space();
-			button0 = element(\\"button\\");
-			button0.textContent = \\"+\\";
-			t3 = space();
-			button1 = element(\\"button\\");
-			button1.textContent = \\"-\\";
-			attr(div, \\"class\\", /*container*/ ctx[3]);
+			h3.textContent = \\"Designspek\\";
+			attr(div, \\"class\\", /*container*/ ctx[0]);
 		},
 		m(target, anchor) {
 			insert(target, div, anchor);
 			append(div, h3);
-			append(h3, t0);
-			append(div, t1);
-			append(div, button0);
-			append(div, t3);
-			append(div, button1);
-
-			if (!mounted) {
-				dispose = [
-					listen(button0, \\"click\\", /*click_handler*/ ctx[4]),
-					listen(button1, \\"click\\", /*click_handler_1*/ ctx[5])
-				];
-
-				mounted = true;
-			}
 		},
-		p(ctx, [dirty]) {
-			if (dirty & /*value*/ 1) set_data(t0, /*value*/ ctx[0]);
-		},
+		p: noop,
 		i: noop,
 		o: noop,
 		d(detaching) {
 			if (detaching) detach(div);
-			mounted = false;
-			run_all(dispose);
 		}
 	};
 }
 
-function instance($$self, $$props, $$invalidate) {
-	let { value = 0 } = $$props;
-	let { step = 1 } = $$props;
-	const dispatch = createEventDispatcher();
-
-	const onClick = value => {
-		dispatch(\\"counter\\", value);
-	};
-
+function instance($$self) {
 	const container = styled({ bg: \\"#000\\", color: \\"#fff\\" }, {});
-	const click_handler = () => onClick($$invalidate(0, value += step));
-	const click_handler_1 = () => onClick($$invalidate(0, value -= step));
-
-	$$self.$$set = $$props => {
-		if (\\"value\\" in $$props) $$invalidate(0, value = $$props.value);
-		if (\\"step\\" in $$props) $$invalidate(1, step = $$props.step);
-	};
-
-	return [value, step, onClick, container, click_handler, click_handler_1];
+	return [container];
 }
 
 class Component extends SvelteComponent {
 	constructor(options) {
 		super();
-		init(this, options, instance, create_fragment, safe_not_equal, { value: 0, step: 1 });
+		init(this, options, instance, create_fragment, safe_not_equal, {});
 	}
 }
 

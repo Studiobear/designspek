@@ -72,7 +72,7 @@ module.exports = function plugin(
       const svxPreprocess = await svelte.preprocess(contents, {
         filename: filePath,
       })
-      console.log('svxPreprocess: ', svxPreprocess)
+      console.log('svxPreprocess: ', svxPreprocess, typeof svxPreprocess.code)
       const { js, css } = await svelte.compile(svxPreprocess.toString())
       // console.log('js: ', js.code)
       const output: any = {

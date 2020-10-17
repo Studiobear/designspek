@@ -1,0 +1,117 @@
+/* inspired from: https://github.com/pngwn/MDsveX/blob/master/packages/mdsvex/src/parsers/html_block.ts */
+//import {parseScript} from 'esprima'
+//import type {Program} from 'esprima'
+// import evaluate from 'static-eval'
+
+const tab = '\t'
+const space = ' '
+const lineFeed = '\n'
+const lessThan = '<'
+
+const rawOpenScript = /^<(script)(?=(\s|>|$))/i
+const rawCloseScript = /<\/(script)>/i
+const openStyled = /(styled)(\s*)(\()/i
+const openParen = /(\()/i
+const closeParent = /(\))/i
+const closeStyled = closeParent
+
+export const extractStyled = (code: string): string => {
+  const length = code.length
+  let index = 0
+  let styledIndex = 0
+  let next
+  let prev = 0
+  let line
+  let offset
+  let character
+  let sequence
+  let styled = false
+  let subParen = -1
+  const sequences: Array<[RegExp, RegExp, boolean]> = [
+    [rawOpenScript, rawCloseScript, false],
+  ]
+
+  // skip opening white space
+  while (index < length) {
+    character = code.charAt(index)
+
+    if (character !== tab && character !== space) {
+      break
+    }
+
+    index++
+  }
+
+  if (code.charAt(index) !== lessThan) {
+    return ''
+  }
+
+  next = code.indexOf(lineFeed, index + 1)
+  next = next === -1 ? length : next
+  line = code.slice(index, next)
+  offset = -1
+  const count = sequences.length
+
+  while (++offset < count) {
+    if (sequences[offset][0].test(line)) {
+      sequence = sequences[offset]
+      break
+    }
+  }
+
+  if (!sequence) {
+    return ''
+  }
+
+  // stop when </script> found
+  if (!sequence[1].test(line)) {
+    while (index < length) {
+      next = code.indexOf(lineFeed, index + 1)
+      next = next === -1 ? length : next
+      line = code.slice(index + 1, next)
+
+      if (styled && !subParen) {
+        if (line) {
+          if (closeParent.test(line)) {
+            index = next
+          } else if (openParen.test(line)) {
+            subParen++
+            index = next
+          }
+        }
+        break
+      }
+
+      if (styled && subParen) {
+        if (line) {
+          if (closeParent.test(line)) {
+            index = next
+            subParen--
+          } else if (openParen.test(line)) {
+            subParen++
+            index = next
+          }
+        }
+      }
+
+      if (styled && closeStyled.test(line)) {
+        break
+      }
+      // start index when styled function found
+      if (openStyled.test(line)) {
+        if (line) {
+          prev++ // remove white space before styled function
+          styledIndex = prev // need prev index which is start of styled function
+          index = next
+          styled = true
+        }
+      }
+      index = next
+      prev = next
+    }
+  }
+
+  const subCode = code.slice(styledIndex, index)
+
+  return subCode
+}
