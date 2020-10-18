@@ -120,3 +120,7 @@ export const extractStyled = (code: string): string[] => {
 
   return subCode
 }
+
+export const splitExprEqual = (expr: string): string[] => expr.split('=')
+
+export const splitExprSpace = (expr: string): string[] => expr.split(' ')
