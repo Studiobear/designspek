@@ -124,3 +124,7 @@ export const extractStyled = (code: string): string[] => {
 export const splitExprEqual = (expr: string): string[] => expr.split('=')
 
 export const splitExprSpace = (expr: string): string[] => expr.split(' ')
+
+export const rmArrayEmpty = (arr: string[]): string[] => arr.filter((x) => x)
+
+export const trimArray = (arr: string[]): string[] => arr.map((x) => x.trim())

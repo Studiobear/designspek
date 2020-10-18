@@ -1,4 +1,10 @@
-import { extractStyled, splitExprEqual, splitExprSpace } from '../parse'
+import {
+  extractStyled,
+  splitExprEqual,
+  splitExprSpace,
+  rmArrayEmpty,
+  trimArray,
+} from '../parse'
 import { string, stringMulti } from './__fixtures__/parse'
 
 describe('util: parse - extractStyled', () => {
@@ -48,5 +54,28 @@ describe('util: parse - splitExprSpace', () => {
 
     expect(result.length).toEqual(3)
     expect(result).toEqual(['const', 'container', ''])
+  })
+})
+
+describe('util: parse - rmArrayEmpty', () => {
+  it('should remove empty values from array', async () => {
+    const arr = ['const', 'container', '']
+    const result = await rmArrayEmpty(arr)
+
+    expect(result.length).toEqual(2)
+    expect(result).toEqual(['const', 'container'])
+  })
+})
+
+describe('util: parse - trimArray', () => {
+  it('should remove empty values from array', async () => {
+    const arr = ['const container ', " styled({ bg:'#000', color:'#fff' }, {})"]
+    const result = await trimArray(arr)
+
+    expect(result.length).toEqual(2)
+    expect(result).toEqual([
+      'const container',
+      "styled({ bg:'#000', color:'#fff' }, {})",
+    ])
   })
 })
