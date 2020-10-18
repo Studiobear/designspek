@@ -15,10 +15,12 @@ const openParen = /(\()/i
 const closeParent = /(\))/i
 const closeStyled = closeParent
 
-export const extractStyled = (code: string): string => {
+export const extractStyled = (code: string): string[] => {
   const length = code.length
   let index = 0
   let styledIndex = 0
+  let indexGroup = []
+  let allIndexes = []
   let next
   let prev = 0
   let line
@@ -43,7 +45,7 @@ export const extractStyled = (code: string): string => {
   }
 
   if (code.charAt(index) !== lessThan) {
-    return ''
+    return []
   }
 
   next = code.indexOf(lineFeed, index + 1)
@@ -60,7 +62,7 @@ export const extractStyled = (code: string): string => {
   }
 
   if (!sequence) {
-    return ''
+    return []
   }
 
   // stop when </script> found
@@ -79,13 +81,15 @@ export const extractStyled = (code: string): string => {
             index = next
           }
         }
-        break
       }
 
       if (styled && subParen) {
         if (line) {
           if (closeParent.test(line)) {
             index = next
+            indexGroup.push(index)
+            allIndexes.push(indexGroup)
+            indexGroup = []
             subParen--
           } else if (openParen.test(line)) {
             subParen++
@@ -95,13 +99,14 @@ export const extractStyled = (code: string): string => {
       }
 
       if (styled && closeStyled.test(line)) {
-        break
+        styled = false
       }
       // start index when styled function found
-      if (openStyled.test(line)) {
+      if (!styled && openStyled.test(line)) {
         if (line) {
           prev++ // remove white space before styled function
           styledIndex = prev // need prev index which is start of styled function
+          indexGroup.push(prev)
           index = next
           styled = true
         }
@@ -111,7 +116,7 @@ export const extractStyled = (code: string): string => {
     }
   }
 
-  const subCode = code.slice(styledIndex, index)
+  const subCode = allIndexes.map((ind) => code.slice(ind[0], ind[1]))
 
   return subCode
 }

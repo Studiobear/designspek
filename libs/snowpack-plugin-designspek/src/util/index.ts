@@ -1,4 +1,4 @@
-import {extractStyled} from './parse'
+import { extractStyled } from './parse'
 
-export {extractStyled}
+export { extractStyled }
 export default extractStyled
