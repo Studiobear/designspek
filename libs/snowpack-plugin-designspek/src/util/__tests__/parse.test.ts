@@ -3,6 +3,11 @@ import {
   splitExprEqual,
   splitExprSpace,
   trimArray,
+  trimBreaks,
+  trimMultiSpaces,
+  separateExpressions,
+  linkExpressions,
+  parseStyled,
 } from '../parse'
 import { string, stringMulti } from './__fixtures__/parse'
 
@@ -65,6 +70,95 @@ describe('util: parse - trimArray', () => {
     expect(result).toEqual([
       'const container',
       "styled({ bg:'#000', color:'#fff' }, {})",
+    ])
+  })
+})
+
+describe('util: parse - trimBreaks', () => {
+  it('should remove newlines, returns, etc.', async () => {
+    const string =
+      'const container = styled(\n' +
+      '    {\n' +
+      "      bg: '#000',\n" +
+      "      color: '#fff',\n" +
+      '    },\n' +
+      '    {},\n' +
+      '  )'
+    const result = await trimBreaks(string)
+
+    expect(result).toEqual(
+      "const container = styled(    {      bg: '#000',      color: '#fff',    },    {},  )",
+    )
+  })
+})
+
+describe('util: parse - trimMultiSpaces', () => {
+  it('should remove newlines, returns, etc.', async () => {
+    const string =
+      "const container = styled(    {      bg: '#000',      color: '#fff',    },    {},  )"
+    const result = await trimMultiSpaces(string)
+
+    expect(result).toEqual(
+      "const container = styled( { bg: '#000', color: '#fff', }, {}, )",
+    )
+  })
+})
+
+describe('util: parse - separateExpressions', () => {
+  it('should separate expressions', async () => {
+    const expr = "const container = styled({ bg:'#000', color:'#fff' }, {})"
+    const result = await separateExpressions(expr)
+
+    expect(result.length).toEqual(2)
+    expect(result).toEqual([
+      'const container',
+      "styled({ bg:'#000', color:'#fff' }, {})",
+    ])
+  })
+})
+
+describe('util: parse - linkExpressions', () => {
+  it('should relink styled expression with variable assignment', async () => {
+    const expr = ['const container', "styled({ bg:'#000', color:'#fff' }, {})"]
+    const result = await linkExpressions(expr)
+
+    expect(result.length).toEqual(3)
+    expect(result).toEqual([
+      'const',
+      'container',
+      "styled({ bg:'#000', color:'#fff' }, {})",
+    ])
+  })
+})
+
+describe('util: parse - parseStyled', () => {
+  it('should parse extracted styled functions', async () => {
+    const extracted = [
+      '  const container = styled(\n' +
+        '    {\n' +
+        "      bg: '#000',\n" +
+        "      color: '#fff',\n" +
+        '    },\n' +
+        '    {},\n' +
+        '  )',
+      '  const header = styled(\n' +
+        '    {\n' +
+        "      fontSize: '1.5em',\n" +
+        "      color: '#235134',\n" +
+        '    },\n' +
+        '    {},\n' +
+        '  )',
+    ]
+    const result = await parseStyled(extracted)
+
+    expect(result.length).toEqual(2)
+    expect(result).toEqual([
+      ['const', 'container', "styled( { bg: '#000', color: '#fff', }, {}, )"],
+      [
+        'const',
+        'header',
+        "styled( { fontSize: '1.5em', color: '#235134', }, {}, )",
+      ],
     ])
   })
 })

@@ -128,14 +128,22 @@ export const splitExprSpace = (expr: string): string[] => expr.split(' ')
 
 export const trimArray = (arr: string[]): string[] => arr.map((x) => x.trim())
 
+const REMOVE_BREAKS = /[\f\n\r\t\v]/g
+export const trimBreaks = (s: string): string => s.replace(REMOVE_BREAKS, '')
+
+const MULTISPACE_To_SINGLE = /\s+/g
+export const trimMultiSpaces = (s: string): string =>
+  s.replace(MULTISPACE_To_SINGLE, ' ')
+
 export const separateExpressions = (code: string): string[] =>
   pipe(code, splitExprEqual, trimArray)
 
 export const linkExpressions = (codeArr: string[]): string[] => {
   const exprVar = codeArr.shift()
   const splitExprVar = exprVar !== undefined ? splitExprSpace(exprVar) : []
-  return [...splitExprVar, ...codeArr]
+  const trimStyled = pipe(codeArr[0], trimBreaks, trimMultiSpaces)
+  return [...splitExprVar, trimStyled]
 }
 
-export const parseStyled = (code: string): string[] =>
-  pipe(code, separateExpressions, linkExpressions)
+export const parseStyled = (linked: string[]): string[][] =>
+  linked.map((exp) => pipe(exp, separateExpressions, linkExpressions))
