@@ -1,10 +1,3 @@
-import {
-  extractStyled,
-  splitExprEqual,
-  splitExprSpace,
-  rmArrayEmpty,
-  trimArray,
-} from './parse'
+import { extractStyled, parseStyled } from './parse'
 
-export { extractStyled, splitExprEqual, trimArray }
-export default extractStyled
+export { extractStyled, parseStyled }

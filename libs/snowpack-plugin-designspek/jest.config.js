@@ -5,7 +5,7 @@ module.exports = {
     '^.+\\.ts$': 'ts-jest',
     '^.+\\.js?$': 'babel-jest',
   },
-  testRegex: '(/__tests__/.*\\.test)\\.([tj]s)$',
+  testRegex: '(/__tests__/.*\\.(test|spec))\\.([tj]s)$',
   testPathIgnorePatterns: ['node_modules', '__fixtures__'],
   setupFilesAfterEnv: ['./test/setup.js'],
   collectCoverageFrom: ['./src/index.ts'],

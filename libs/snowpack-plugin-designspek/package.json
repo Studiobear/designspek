@@ -80,6 +80,7 @@
     "bundlesize": "^0.18.0",
     "commitizen": "^4.2.1",
     "cz-conventional-changelog": "^3.3.0",
+    "fp-ts": "^2.8.4",
     "husky": "^4.3.0",
     "jest": "^26.4.2",
     "lint-staged": "^10.4.0",

@@ -2,6 +2,7 @@
 //import {parseScript} from 'esprima'
 //import type {Program} from 'esprima'
 // import evaluate from 'static-eval'
+import { pipe } from 'fp-ts/lib/function'
 
 const tab = '\t'
 const space = ' '
@@ -125,6 +126,16 @@ export const splitExprEqual = (expr: string): string[] => expr.split('=')
 
 export const splitExprSpace = (expr: string): string[] => expr.split(' ')
 
-export const rmArrayEmpty = (arr: string[]): string[] => arr.filter((x) => x)
-
 export const trimArray = (arr: string[]): string[] => arr.map((x) => x.trim())
+
+export const separateExpressions = (code: string): string[] =>
+  pipe(code, splitExprEqual, trimArray)
+
+export const linkExpressions = (codeArr: string[]): string[] => {
+  const exprVar = codeArr.shift()
+  const splitExprVar = exprVar !== undefined ? splitExprSpace(exprVar) : []
+  return [...splitExprVar, ...codeArr]
+}
+
+export const parseStyled = (code: string): string[] =>
+  pipe(code, separateExpressions, linkExpressions)

@@ -2,7 +2,6 @@ import {
   extractStyled,
   splitExprEqual,
   splitExprSpace,
-  rmArrayEmpty,
   trimArray,
 } from '../parse'
 import { string, stringMulti } from './__fixtures__/parse'
@@ -54,16 +53,6 @@ describe('util: parse - splitExprSpace', () => {
 
     expect(result.length).toEqual(3)
     expect(result).toEqual(['const', 'container', ''])
-  })
-})
-
-describe('util: parse - rmArrayEmpty', () => {
-  it('should remove empty values from array', async () => {
-    const arr = ['const', 'container', '']
-    const result = await rmArrayEmpty(arr)
-
-    expect(result.length).toEqual(2)
-    expect(result).toEqual(['const', 'container'])
   })
 })
 
