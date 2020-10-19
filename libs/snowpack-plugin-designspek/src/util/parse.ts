@@ -16,6 +16,7 @@ const openParen = /(\()/i
 const closeParent = /(\))/i
 const closeStyled = closeParent
 
+// extract styled function from `<script>` tags
 export const extractStyled = (code: string): string[] => {
   const length = code.length
   let index = 0
@@ -122,6 +123,7 @@ export const extractStyled = (code: string): string[] => {
   return subCode
 }
 
+// utility functions
 export const splitExprEqual = (expr: string): string[] => expr.split('=')
 
 export const splitExprSpace = (expr: string): string[] => expr.split(' ')
@@ -135,9 +137,12 @@ const MULTISPACE_To_SINGLE = /\s+/g
 export const trimMultiSpaces = (s: string): string =>
   s.replace(MULTISPACE_To_SINGLE, ' ')
 
+// higher-order functions
+// assuming `const a = styled({},{})` separate to [['const a'],['styled(\n'+'{   },{}\n'+')']]
 export const separateExpressions = (code: string): string[] =>
   pipe(code, splitExprEqual, trimArray)
 
+// trim and relink to [['const'],['a'],['styled({ },{})']]
 export const linkExpressions = (codeArr: string[]): string[] => {
   const exprVar = codeArr.shift()
   const splitExprVar = exprVar !== undefined ? splitExprSpace(exprVar) : []
@@ -147,3 +152,8 @@ export const linkExpressions = (codeArr: string[]): string[] => {
 
 export const parseStyled = (linked: string[]): string[][] =>
   linked.map((exp) => pipe(exp, separateExpressions, linkExpressions))
+
+export const parse = (code: string): string[][] =>
+  pipe(code, extractStyled, parseStyled)
+
+export default parse

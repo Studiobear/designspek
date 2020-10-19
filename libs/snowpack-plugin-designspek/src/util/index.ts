@@ -1,3 +1,3 @@
-import { extractStyled, parseStyled } from './parse'
+import parse from './parse'
 
-export { extractStyled, parseStyled }
+export { parse }
