@@ -1,7 +1,4 @@
 /* inspired from: https://github.com/pngwn/MDsveX/blob/master/packages/mdsvex/src/parsers/html_block.ts */
-//import {parseScript} from 'esprima'
-//import type {Program} from 'esprima'
-// import evaluate from 'static-eval'
 import { pipe } from 'fp-ts/lib/function'
 
 const tab = '\t'
