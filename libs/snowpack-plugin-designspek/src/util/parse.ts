@@ -13,6 +13,36 @@ const openParen = /(\()/i
 const closeParent = /(\))/i
 const closeStyled = closeParent
 
+// utility functions
+export const splitExprEqual = (expr: string): string[] => expr.split('=')
+
+export const splitExprSpace = (expr: string): string[] => expr.split(' ')
+
+export const trimArray = (arr: string[]): string[] => arr.map((x) => x.trim())
+
+const REMOVE_BREAKS = /[\f\n\r\t\v]/g
+export const trimBreaks = (s: string): string => s.replace(REMOVE_BREAKS, '')
+
+const MULTISPACE_To_SINGLE = /\s+/g
+export const trimMultiSpaces = (s: string): string =>
+  s.replace(MULTISPACE_To_SINGLE, ' ')
+
+// higher-order functions
+// assuming `const a = styled({},{})` separate to [['const a'],['styled(\n'+'{   },{}\n'+')']]
+export const separateExpressions = (code: string): string[] =>
+  pipe(code, splitExprEqual, trimArray)
+
+// trim and relink to [['const'],['a'],['styled({ },{})']]
+export const linkExpressions = (codeArr: string[]): string[] => {
+  const exprVar = codeArr.shift()
+  const splitExprVar = exprVar !== undefined ? splitExprSpace(exprVar) : []
+  const trimStyled = pipe(codeArr[0], trimBreaks, trimMultiSpaces)
+  return [...splitExprVar, trimStyled]
+}
+
+/**
+ * MAIN FUNCTIONS
+ * */
 // extract styled function from `<script>` tags
 export const extractStyled = (code: string): string[] => {
   const length = code.length
@@ -118,33 +148,6 @@ export const extractStyled = (code: string): string[] => {
   const subCode = allIndexes.map((ind) => code.slice(ind[0], ind[1]))
 
   return subCode
-}
-
-// utility functions
-export const splitExprEqual = (expr: string): string[] => expr.split('=')
-
-export const splitExprSpace = (expr: string): string[] => expr.split(' ')
-
-export const trimArray = (arr: string[]): string[] => arr.map((x) => x.trim())
-
-const REMOVE_BREAKS = /[\f\n\r\t\v]/g
-export const trimBreaks = (s: string): string => s.replace(REMOVE_BREAKS, '')
-
-const MULTISPACE_To_SINGLE = /\s+/g
-export const trimMultiSpaces = (s: string): string =>
-  s.replace(MULTISPACE_To_SINGLE, ' ')
-
-// higher-order functions
-// assuming `const a = styled({},{})` separate to [['const a'],['styled(\n'+'{   },{}\n'+')']]
-export const separateExpressions = (code: string): string[] =>
-  pipe(code, splitExprEqual, trimArray)
-
-// trim and relink to [['const'],['a'],['styled({ },{})']]
-export const linkExpressions = (codeArr: string[]): string[] => {
-  const exprVar = codeArr.shift()
-  const splitExprVar = exprVar !== undefined ? splitExprSpace(exprVar) : []
-  const trimStyled = pipe(codeArr[0], trimBreaks, trimMultiSpaces)
-  return [...splitExprVar, trimStyled]
 }
 
 export const parseStyled = (linked: string[]): string[][] =>

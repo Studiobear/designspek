@@ -83,3 +83,54 @@ export const ASTExpression = {
   },
   type: 'AssignmentExpression',
 }
+
+export const ASTCallExpression = {
+  arguments: [
+    {
+      properties: [
+        {
+          computed: false,
+          key: {
+            name: 'bg',
+            type: 'Identifier',
+          },
+          kind: 'init',
+          method: false,
+          shorthand: false,
+          type: 'Property',
+          value: {
+            raw: "'#000'",
+            type: 'Literal',
+            value: '#000',
+          },
+        },
+        {
+          computed: false,
+          key: {
+            name: 'color',
+            type: 'Identifier',
+          },
+          kind: 'init',
+          method: false,
+          shorthand: false,
+          type: 'Property',
+          value: {
+            raw: "'#fff'",
+            type: 'Literal',
+            value: '#fff',
+          },
+        },
+      ],
+      type: 'ObjectExpression',
+    },
+    {
+      properties: [],
+      type: 'ObjectExpression',
+    },
+  ],
+  callee: {
+    name: 'styled',
+    type: 'Identifier',
+  },
+  type: 'CallExpression',
+}
