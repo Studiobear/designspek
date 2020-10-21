@@ -48,8 +48,7 @@ export const buildExec = (arr: string[]) =>
     getASTCallExpression,
   )
 
-export const execStyled = (extracted: string[][]): string[][] =>
-  extracted.map((exp) => {
-    const className = pipe(exp, buildExec, execExpression)
-    return replaceExpression(exp, className)
-  })
+export const execStyled = (extracted: string[]): string[] => {
+  const className = pipe(extracted, buildExec, execExpression)
+  return replaceExpression(extracted, className)
+}

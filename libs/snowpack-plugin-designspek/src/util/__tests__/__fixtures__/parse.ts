@@ -1,3 +1,12 @@
+export const extracted =
+  '  const container = styled(\n' +
+  '    {\n' +
+  "      bg: '#000',\n" +
+  "      color: '#fff',\n" +
+  '    },\n' +
+  '    {},\n' +
+  '  )\n'
+
 export const string =
   '<script>\n' +
   "  import { styled } from '@studiobear/designspek'\n" +

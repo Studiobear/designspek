@@ -8,6 +8,7 @@ import {
   separateExpressions,
   linkExpressions,
   parseStyled,
+  execToString,
 } from '../parse'
 import { string, stringMulti } from './__fixtures__/parse'
 
@@ -15,26 +16,20 @@ describe('util: parse - extractStyled', () => {
   it('should extract `styled` expression from string', async () => {
     const result = await extractStyled(string)
     const exp = /[\f\n\r\t\v\s,;]/g
-    const resultRegExp = result[0].replace(exp, '')
-    expect(result.length).toEqual(1)
-    expect(resultRegExp).toEqual(
-      "constcontainer=styled({bg:'#000'color:'#fff'}{})",
-    )
+    const resultRegExp = result[1].replace(exp, '')
+    expect(result.length).toEqual(3)
+    expect(resultRegExp).toEqual("constcontainer='go2225017453'")
   })
   it('should extract multiple `styled` expressions', async () => {
     const result = await extractStyled(stringMulti)
     const exp = /[\f\n\r\t\v\s,;]/g
 
-    const resultRegExp1 = result[0].replace(exp, '')
-    const resultRegExp2 = result[1].replace(exp, '')
+    const resultRegExp1 = result[1].replace(exp, '')
+    const resultRegExp2 = result[3].replace(exp, '')
 
-    expect(result.length).toEqual(2)
-    expect(resultRegExp1).toEqual(
-      "constcontainer=styled({bg:'#000'color:'#fff'}{})",
-    )
-    expect(resultRegExp2).toEqual(
-      "constheader=styled({fontSize:'1.5em'color:'#235134'}{})",
-    )
+    expect(result.length).toEqual(5)
+    expect(resultRegExp1).toEqual("constcontainer='go2225017453'")
+    expect(resultRegExp2).toEqual("constheader='go474296207'")
   })
 })
 
@@ -133,32 +128,29 @@ describe('util: parse - linkExpressions', () => {
 
 describe('util: parse - parseStyled', () => {
   it('should parse extracted styled functions', async () => {
-    const extracted = [
+    const extracted =
       '  const container = styled(\n' +
-        '    {\n' +
-        "      bg: '#000',\n" +
-        "      color: '#fff',\n" +
-        '    },\n' +
-        '    {},\n' +
-        '  )',
-      '  const header = styled(\n' +
-        '    {\n' +
-        "      fontSize: '1.5em',\n" +
-        "      color: '#235134',\n" +
-        '    },\n' +
-        '    {},\n' +
-        '  )',
-    ]
+      '    {\n' +
+      "      bg: '#000',\n" +
+      "      color: '#fff',\n" +
+      '    },\n' +
+      '    {},\n' +
+      '  )'
     const result = await parseStyled(extracted)
-
-    expect(result.length).toEqual(2)
+    expect(result.length).toEqual(3)
     expect(result).toEqual([
-      ['const', 'container', "styled( { bg: '#000', color: '#fff', }, {}, )"],
-      [
-        'const',
-        'header',
-        "styled( { fontSize: '1.5em', color: '#235134', }, {}, )",
-      ],
+      'const',
+      'container',
+      "styled( { bg: '#000', color: '#fff', }, {}, )",
     ])
+  })
+})
+
+describe('util: parse - execToString', () => {
+  it('should should makes string from executed styled array', async () => {
+    const arr = ['const', 'header', 'go474296207']
+    const result = await execToString(arr)
+
+    expect(result).toEqual("const header = 'go474296207'" + '\n')
   })
 })

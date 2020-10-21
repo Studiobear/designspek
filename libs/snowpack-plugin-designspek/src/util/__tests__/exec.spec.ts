@@ -10,10 +10,7 @@ describe('util: exec - buildExec', () => {
 
 describe('util: exec - execStyled', () => {
   it('should replace styled functions with classnames', async () => {
-    const result = await execStyled(parsed)
-    expect(result).toEqual([
-      ['const', 'container', 'go2225017453'],
-      ['const', 'header', 'go474296207'],
-    ])
+    const result = await execStyled(parsed[0])
+    expect(result).toEqual(['const', 'container', 'go2225017453'])
   })
 })
