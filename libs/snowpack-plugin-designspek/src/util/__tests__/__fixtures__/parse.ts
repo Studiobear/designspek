@@ -46,5 +46,5 @@ export const stringMulti =
   '</script>\n' +
   '\n' +
   '<div class={container}>\n' +
-  '  <h3>Designspek</h3>\n' +
+  '  <h3 class={header}>Designspek</h3>\n' +
   '</div>\n'
