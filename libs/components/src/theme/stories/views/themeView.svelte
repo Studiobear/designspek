@@ -9,6 +9,7 @@
   export let style
   $$props.theme = theme
   $: bodyStyle = {
+    p: '1.5rem',
     backgroundColor: $theme.colors.secondary,
   }
   $: hoverStyle = {
@@ -55,38 +56,20 @@
         provide visual feedback whilst building CSS systems and frameworks.
       </Text>
     </Section>
-    <Section as="nav" style={{ p: 4, bg: $theme.colors.background }}>
+    <Section as="nav" style={{ p: '1.5rem', bg: $theme.colors.background }}>
       <ul>
         <li>
           <a href="#text">Text</a>
           <ul>
-            <li>
-              <a href="#text__headings">Headings</a>
-            </li>
-            <li>
-              <a href="#text__paragraphs">Paragraphs</a>
-            </li>
-            <li>
-              <a href="#text__blockquotes">Blockquotes</a>
-            </li>
-            <li>
-              <a href="#text__lists">Lists</a>
-            </li>
-            <li>
-              <a href="#text__hr">Horizontal rules</a>
-            </li>
-            <li>
-              <a href="#text__tables">Tabular data</a>
-            </li>
-            <li>
-              <a href="#text__code">Code</a>
-            </li>
-            <li>
-              <a href="#text__inline">Inline elements</a>
-            </li>
-            <li>
-              <a href="#text__comments">HTML Comments</a>
-            </li>
+            <li><a href="#text__headings">Headings</a></li>
+            <li><a href="#text__paragraphs">Paragraphs</a></li>
+            <li><a href="#text__blockquotes">Blockquotes</a></li>
+            <li><a href="#text__lists">Lists</a></li>
+            <li><a href="#text__hr">Horizontal rules</a></li>
+            <li><a href="#text__tables">Tabular data</a></li>
+            <li><a href="#text__code">Code</a></li>
+            <li><a href="#text__inline">Inline elements</a></li>
+            <li><a href="#text__comments">HTML Comments</a></li>
           </ul>
         </li>
       </ul>

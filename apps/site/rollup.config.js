@@ -1,15 +1,12 @@
 import resolve from '@rollup/plugin-node-resolve'
 import replace from '@rollup/plugin-replace'
 import commonjs from '@rollup/plugin-commonjs'
-import json from '@rollup/plugin-json'
 import svelte from 'rollup-plugin-svelte'
-import babel from 'rollup-plugin-babel'
+import babel from '@rollup/plugin-babel'
 import { terser } from 'rollup-plugin-terser'
+import sveltePreprocess from 'svelte-preprocess'
+import typescript from '@rollup/plugin-typescript'
 import config from 'sapper/config/rollup.js'
-import remark from 'remark'
-import html from 'remark-html'
-import svg from 'rollup-plugin-svg'
-
 import pkg from './package.json'
 
 const mode = process.env.NODE_ENV
@@ -17,49 +14,38 @@ const dev = mode === 'development'
 const legacy = !!process.env.SAPPER_LEGACY_BUILD
 
 const onwarn = (warning, onwarn) =>
+  (warning.code === 'MISSING_EXPORT' && /'preload'/.test(warning.message)) ||
   (warning.code === 'CIRCULAR_DEPENDENCY' &&
     /[/\\]@sapper[/\\]/.test(warning.message)) ||
+  warning.code === 'THIS_IS_UNDEFINED' ||
   onwarn(warning)
-
-const markdown = () => ({
-  transform(md, id) {
-    if (!/\.md$/.test(id)) return null
-    const data = remark()
-      .use(html)
-      .process(md, (err, file) => String(file))
-    return {
-      code: `export default ${JSON.stringify(data)};`,
-    }
-  },
-})
 
 export default {
   client: {
-    input: config.client.input(),
+    input: config.client.input().replace(/.js$/, '.ts'),
     output: config.client.output(),
     plugins: [
       replace({
         'process.browser': true,
         'process.env.NODE_ENV': JSON.stringify(mode),
       }),
-      svg(),
       svelte({
         dev,
         hydratable: true,
-        emitCss: false,
+        preprocess: sveltePreprocess(),
+        emitCss: true,
       }),
       resolve({
         browser: true,
         dedupe: ['svelte'],
       }),
       commonjs(),
-      json({
-        compact: true,
-      }),
+      typescript({ sourceMap: dev }),
+
       legacy &&
         babel({
           extensions: ['.js', '.mjs', '.html', '.svelte'],
-          runtimeHelpers: true,
+          babelHelpers: 'runtime',
           exclude: ['node_modules/@babel/**'],
           presets: [
             [
@@ -85,58 +71,56 @@ export default {
           module: true,
         }),
     ],
-    // context: "window",
+
+    preserveEntrySignatures: false,
     onwarn,
   },
 
   server: {
-    input: config.server.input(),
+    input: { server: config.server.input().server.replace(/.js$/, '.ts') },
     output: config.server.output(),
     plugins: [
       replace({
         'process.browser': false,
         'process.env.NODE_ENV': JSON.stringify(mode),
-        'process.env.SITE_URL':
-          process.env.NODE_ENV === 'development'
-            ? `'${process.env.SITE_URL}'`
-            : `'${process.env.PROD_URL}'`,
       }),
-      svg(),
       svelte({
         generate: 'ssr',
-        dev,
         hydratable: true,
+        preprocess: sveltePreprocess(),
+        dev,
       }),
       resolve({
         dedupe: ['svelte'],
       }),
       commonjs(),
-      markdown(),
-      json(),
+      typescript({ sourceMap: dev }),
     ],
     external: Object.keys(pkg.dependencies).concat(
-      require('module').builtinModules ||
-        Object.keys(process.binding('natives')),
+      require('module').builtinModules,
     ),
+
+    preserveEntrySignatures: 'strict',
     onwarn,
   },
 
+  /*
   serviceworker: {
-    input: config.serviceworker.input(),
+    input: config.serviceworker.input().replace(/.js$/, '.ts'),
     output: config.serviceworker.output(),
     plugins: [
       resolve(),
       replace({
         'process.browser': true,
         'process.env.NODE_ENV': JSON.stringify(mode),
-        'process.env.SITE_URL':
-          process.env.NODE_ENV === 'development'
-            ? `'${process.env.SITE_URL}'`
-            : `'${process.env.PROD_URL}'`,
       }),
       commonjs(),
+      typescript({ sourceMap: dev }),
       !dev && terser(),
     ],
+
+    preserveEntrySignatures: false,
     onwarn,
   },
+  */
 }

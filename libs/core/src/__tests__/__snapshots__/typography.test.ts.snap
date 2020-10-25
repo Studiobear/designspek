@@ -1,0 +1,200 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`typography: should correctly calculate and merge typography into theme 1`] = `
+Object {
+  "colors": Object {
+    "background": "#fff",
+    "muted": "#f6f6f6",
+    "primary": "#07c",
+    "secondary": "#30c",
+    "text": "#666",
+  },
+  "fontSizes": Array [
+    12.99603834169977,
+    13.928809012737986,
+    16,
+    21.112126572366307,
+    24.251465064166368,
+    32,
+  ],
+  "fontWeights": Object {
+    "body": 400,
+    "bold": 700,
+    "heading": 600,
+  },
+  "fonts": Object {
+    "body": "'Source Sans Pro', sans-serif",
+    "heading": "'Source Serif Pro', sans-serif",
+  },
+  "lineHeights": Object {
+    "body": 1.5625,
+    "heading": 1.8,
+  },
+  "scale": Array [
+    0.25,
+    0.5,
+    0.75,
+    1,
+    1.5,
+    2,
+    4,
+    8,
+  ],
+  "space": Array [
+    0,
+    4,
+    8,
+    16,
+    32,
+    64,
+    128,
+    256,
+    512,
+  ],
+  "spaces": Array [
+    "none",
+    "xxs",
+    "xs",
+    "s",
+    "m",
+    "l",
+    "xl",
+    "xxl",
+    "xxxl",
+  ],
+  "styles": Object {
+    "a": Object {
+      "color": "primary",
+    },
+    "body": Object {
+      "antialias": true,
+    },
+    "code": Object {
+      "fontFamily": "monospace",
+      "fontSize": "inherit",
+    },
+    "h1": Object {
+      "color": "primary",
+      "fontFamily": "heading",
+      "fontSize": 5,
+      "fontWeight": "heading",
+      "lineHeight": "heading",
+    },
+    "h2": Object {
+      "color": "secondary",
+      "fontFamily": "heading",
+      "fontSize": 4,
+      "fontWeight": "heading",
+      "lineHeight": "heading",
+    },
+    "h3": Object {
+      "color": "text",
+      "fontFamily": "heading",
+      "fontSize": 3,
+      "fontWeight": "heading",
+      "lineHeight": "heading",
+    },
+    "h4": Object {
+      "color": "#ddd",
+      "fontFamily": "heading",
+      "fontSize": 2,
+      "fontWeight": "heading",
+      "lineHeight": "heading",
+    },
+    "h5": Object {
+      "color": "text",
+      "fontFamily": "heading",
+      "fontSize": 1,
+      "fontWeight": "heading",
+      "lineHeight": "heading",
+    },
+    "h6": Object {
+      "fontFamily": "heading",
+      "fontSize": 0,
+      "fontWeight": "heading",
+      "lineHeight": "heading",
+    },
+    "img": Object {
+      "maxWidth": "100%",
+    },
+    "p": Object {
+      "color": "text",
+      "fontFamily": "body",
+      "fontWeight": "body",
+      "lineHeight": "body",
+    },
+    "pre": Object {
+      "code": Object {
+        "color": "inherit",
+      },
+      "fontFamily": "monospace",
+      "overflowX": "auto",
+    },
+    "root": Object {
+      "fontFamily": "body",
+      "fontWeight": "body",
+      "lineHeight": "body",
+    },
+    "table": Object {
+      "borderCollapse": "separate",
+      "borderSpacing": 0,
+      "width": "100%",
+    },
+    "td": Object {
+      "borderBottomStyle": "solid",
+      "textAlign": "left",
+    },
+    "th": Object {
+      "borderBottomStyle": "solid",
+      "textAlign": "left",
+    },
+  },
+  "typography": Object {
+    "adjustFontSizeTo": [Function],
+    "establishBaseline": [Function],
+    "linesForFontSize": [Function],
+    "options": Object {
+      "baseFontSize": 16,
+      "baseLineHeight": 1.5625,
+      "blockMarginBottom": 1,
+      "bodyColor": "hsla(0,0%,0%,0.8)",
+      "bodyFontFamily": Array [
+        "Source Sans Pro",
+        "sans-serif",
+      ],
+      "bodyWeight": 400,
+      "boldWeight": 700,
+      "googleFonts": Array [
+        Object {
+          "name": "Source Serif Pro",
+          "styles": Array [
+            "600",
+          ],
+        },
+        Object {
+          "name": "Source Sans Pro",
+          "styles": Array [
+            "400",
+            "400i",
+            "700",
+          ],
+        },
+      ],
+      "headerColor": "hsla(0,0%,0%,1)",
+      "headerFontFamily": Array [
+        "Source Serif Pro",
+        "sans-serif",
+      ],
+      "headerLineHeight": 1.8,
+      "headerWeight": 600,
+      "includeNormalize": true,
+      "overrideStyles": [Function],
+      "rhythmUnit": "rem",
+      "roundToNearestHalfLine": true,
+      "scaleRatio": 2,
+      "title": "St. Annes",
+    },
+    "rhythm": [Function],
+  },
+}
+`;

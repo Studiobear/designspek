@@ -9,7 +9,7 @@
 
   const dispatch = createEventDispatcher()
 
-  const onClick = value => {
+  const onClick = (value) => {
     dispatch('counter', value)
   }
 </script>

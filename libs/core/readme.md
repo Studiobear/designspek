@@ -4,7 +4,7 @@
 
 ---
 
-![designspec brotli](https://img.badgesize.io/https://unpkg.com/@studiobear/designspek@0.1.2/dist/index.js?compression=brotli) ![GitHub package.json version](https://img.shields.io/github/package-json/v/Studiobear/designspek) ![GitHub](https://img.shields.io/github/license/Studiobear/designspek?color=blue)
+![designspec brotli](https://img.badgesize.io/https://unpkg.com/@studiobear/designspek@0.4.5/dist/index.js?compression=brotli) ![GitHub package.json version](https://img.shields.io/github/package-json/v/Studiobear/designspek) ![GitHub](https://img.shields.io/github/license/Studiobear/designspek?color=blue)
 
 > **_Notice: Unstable API and under heavy development_**
 
@@ -342,4 +342,4 @@ In top Svelte component:
 
 ## Acknowledgements
 
-This library was initially inspired by [svelte-styled-system(@manuschillerdev)](https://github.com/manuschillerdev/svelte-styled-system). At time of discovery, svelte-styled-system was annotated as a proof-of-concept for bringing in the concepts of [styled-system](https://styled-system.com/) and doing it in as small of a package as possible. _Designspek_ vears away from this by choosing to make design specificiations first class citizens at the cost of size efficiency.
+This library was initially inspired by [svelte-styled-system(@manuschillerdev)](https://github.com/manuschillerdev/svelte-styled-system). At time of discovery, svelte-styled-system was annotated as a proof-of-concept for bringing in the concepts of [styled-system](https://styled-system.com/) and doing it in as small of a package as possible. _Designspek_ veers away by concentrating on maintaining the DX afforded by CSS-in-JS along with the optimized output of pre-processing of LESS/SASS.

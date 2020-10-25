@@ -3,24 +3,23 @@
   import { createEventDispatcher } from 'svelte'
 
   export let text = ''
-  export let style = $$props.style || {}
-  export let theme = $$props.theme || style.theme || {}
-  export let ssr = $$props.ssr || style.ssr || false
+  export let style = $$props.style ?? {}
+  export let theme = style.theme ?? {}
+  export let critical = style.critical ?? false
   const dispatch = createEventDispatcher()
 
   function onClick(event) {
     dispatch('click', event)
   }
 
-  const defaultStyle = [
-    {
-      brd: '1px solid',
-      brdCol: '#ccc',
-      borderRadius: '3px',
-    },
-  ]
-  $: compStyles = styled(defaultStyle.concat(style), theme, ssr)
-  $: styleProps = ssr ? { style: compStyles } : { class: compStyles }
+  const defaultStyle = {
+    brd: '1px solid',
+    brdCol: '#ccc',
+    borderRadius: '3px',
+    ...style,
+  }
+  $: compStyles = styled(defaultStyle, theme, critical)
+  $: styleProps = critical ? { style: compStyles } : { class: compStyles }
 </script>
 
 <button on:click={onClick} {...styleProps}>

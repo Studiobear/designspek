@@ -6,6 +6,4 @@
   export let href = '#'
 </script>
 
-<Link {href} {...$$props} {style}>
-  <img src={linkText} alt="logo" />
-</Link>
+<Link {href} {...$$props} {style}><img src={linkText} alt="logo" /></Link>

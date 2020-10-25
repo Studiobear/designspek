@@ -1,24 +1,24 @@
-<script>
+<script lang="ts">
   import { onMount } from 'svelte'
   import { addGlobal } from '@studiobear/designspek'
   import { theme, googleFonts } from '../../index'
   import { Section, Box, Heading, Text } from '../../../components'
 
-  let canvas
+  let canvas: any
   let mode = 'light'
 
   function changeMode() {
     if (mode === 'light') {
       mode = 'dark'
-      theme.setDark()
+      theme.dark()
     } else {
       mode = 'light'
-      theme.setLight()
+      theme.light()
     }
     // console.log('changeMode: ', mode, $theme)
   }
 
-  export let style
+  export let style: any
 
   addGlobal($theme)
 
@@ -37,7 +37,10 @@
 </script>
 
 <svelte:head>
-  <link href={googleFonts} rel="stylesheet" type="text/css" />
+  <link
+    href={googleFonts !== null ? googleFonts : ''}
+    rel="stylesheet"
+    type="text/css" />
 </svelte:head>
 
 <Box {...$$props} {style} theme={$theme}>
@@ -59,88 +62,40 @@
         <li>
           <a href="#text">Text</a>
           <ul>
-            <li>
-              <a href="#text__headings">Headings</a>
-            </li>
-            <li>
-              <a href="#text__paragraphs">Paragraphs</a>
-            </li>
-            <li>
-              <a href="#text__blockquotes">Blockquotes</a>
-            </li>
-            <li>
-              <a href="#text__lists">Lists</a>
-            </li>
-            <li>
-              <a href="#text__hr">Horizontal rules</a>
-            </li>
-            <li>
-              <a href="#text__tables">Tabular data</a>
-            </li>
-            <li>
-              <a href="#text__code">Code</a>
-            </li>
-            <li>
-              <a href="#text__inline">Inline elements</a>
-            </li>
-            <li>
-              <a href="#text__comments">HTML Comments</a>
-            </li>
+            <li><a href="#text__headings">Headings</a></li>
+            <li><a href="#text__paragraphs">Paragraphs</a></li>
+            <li><a href="#text__blockquotes">Blockquotes</a></li>
+            <li><a href="#text__lists">Lists</a></li>
+            <li><a href="#text__hr">Horizontal rules</a></li>
+            <li><a href="#text__tables">Tabular data</a></li>
+            <li><a href="#text__code">Code</a></li>
+            <li><a href="#text__inline">Inline elements</a></li>
+            <li><a href="#text__comments">HTML Comments</a></li>
           </ul>
         </li>
         <li>
           <a href="#embedded">Embedded content</a>
           <ul>
-            <li>
-              <a href="#embedded__images">Images</a>
-            </li>
-            <li>
-              <a href="#embedded__audio">Audio</a>
-            </li>
-            <li>
-              <a href="#embedded__video">Video</a>
-            </li>
-            <li>
-              <a href="#embedded__canvas">Canvas</a>
-            </li>
-            <li>
-              <a href="#embedded__meter">Meter</a>
-            </li>
-            <li>
-              <a href="#embedded__progress">Progress</a>
-            </li>
-            <li>
-              <a href="#embedded__svg">Inline SVG</a>
-            </li>
-            <li>
-              <a href="#embedded__iframe">IFrames</a>
-            </li>
+            <li><a href="#embedded__images">Images</a></li>
+            <li><a href="#embedded__audio">Audio</a></li>
+            <li><a href="#embedded__video">Video</a></li>
+            <li><a href="#embedded__canvas">Canvas</a></li>
+            <li><a href="#embedded__meter">Meter</a></li>
+            <li><a href="#embedded__progress">Progress</a></li>
+            <li><a href="#embedded__svg">Inline SVG</a></li>
+            <li><a href="#embedded__iframe">IFrames</a></li>
           </ul>
         </li>
         <li>
           <a href="#forms">Form elements</a>
           <ul>
-            <li>
-              <a href="#forms__input">Input fields</a>
-            </li>
-            <li>
-              <a href="#forms__select">Select menus</a>
-            </li>
-            <li>
-              <a href="#forms__checkbox">Checkboxes</a>
-            </li>
-            <li>
-              <a href="#forms__radio">Radio buttons</a>
-            </li>
-            <li>
-              <a href="#forms__textareas">Textareas</a>
-            </li>
-            <li>
-              <a href="#forms__html5">HTML5 inputs</a>
-            </li>
-            <li>
-              <a href="#forms__action">Action buttons</a>
-            </li>
+            <li><a href="#forms__input">Input fields</a></li>
+            <li><a href="#forms__select">Select menus</a></li>
+            <li><a href="#forms__checkbox">Checkboxes</a></li>
+            <li><a href="#forms__radio">Radio buttons</a></li>
+            <li><a href="#forms__textareas">Textareas</a></li>
+            <li><a href="#forms__html5">HTML5 inputs</a></li>
+            <li><a href="#forms__action">Action buttons</a></li>
           </ul>
         </li>
       </ul>
@@ -160,9 +115,7 @@
           <Heading as="h6">Heading 6</Heading>
         </div>
         <footer>
-          <p>
-            <a href="#top">[Top]</a>
-          </p>
+          <p><a href="#top">[Top]</a></p>
         </footer>
       </article>
       <article id="text__paragraphs">
@@ -180,9 +133,7 @@
           </p>
         </div>
         <footer>
-          <p>
-            <a href="#top">[Top]</a>
-          </p>
+          <p><a href="#top">[Top]</a></p>
         </footer>
       </article>
       <article id="text__blockquotes">
@@ -201,15 +152,11 @@
               different typeface or smaller size quotation. It may or may not
               include a citation, usually placed at the bottom.
             </p>
-            <cite>
-              <a href="#!">Said no one, ever.</a>
-            </cite>
+            <cite> <a href="#!">Said no one, ever.</a> </cite>
           </blockquote>
         </div>
         <footer>
-          <p>
-            <a href="#top">[Top]</a>
-          </p>
+          <p><a href="#top">[Top]</a></p>
         </footer>
       </article>
       <article id="text__lists">
@@ -236,9 +183,7 @@
           </ul>
         </div>
         <footer>
-          <p>
-            <a href="#top">[Top]</a>
-          </p>
+          <p><a href="#top">[Top]</a></p>
         </footer>
       </article>
       <article id="text__hr">
@@ -249,9 +194,7 @@
           <hr />
         </div>
         <footer>
-          <p>
-            <a href="#top">[Top]</a>
-          </p>
+          <p><a href="#top">[Top]</a></p>
         </footer>
       </article>
       <article id="text__tables">
@@ -310,9 +253,7 @@
           </tbody>
         </table>
         <footer>
-          <p>
-            <a href="#top">[Top]</a>
-          </p>
+          <p><a href="#top">[Top]</a></p>
         </footer>
       </article>
       <article id="text__code">
@@ -320,10 +261,7 @@
           <Heading as="h1" color="color.primary">Code</Heading>
         </header>
         <div>
-          <p>
-            <strong>Keyboard input:</strong>
-            <kbd>Cmd</kbd>
-          </p>
+          <p><strong>Keyboard input:</strong> <kbd>Cmd</kbd></p>
           <p>
             <strong>Inline code:</strong>
             <code>&lt;div&gt;code&lt;/div&gt;</code>
@@ -333,17 +271,17 @@
             <samp>This is sample output from a computer program.</samp>
           </p>
           <Heading as="h2">Pre-formatted text</Heading>
+          <!--
           <pre>
-            P R E F O R M A T T E D T E X T ! " # $ % &amp; ' ( ) * + , - . / 0
-            1 2 3 4 5 6 7 8 9 : ; &lt; = &gt; ? @ A B C D E F G H I J K L M N O
+            P R E F O R M A T T E D T E X T ! " # $ % & ' ( ) * + , - . / 0
+            1 2 3 4 5 6 7 8 9 : ; < = > ? @ A B C D E F G H I J K L M N O
             P Q R S T U V W X Y Z [ \ ] ^ _ ` a b c d e f g h i j k l m n o p q
-            r s t u v w x y z &#x7b; &#124; &#x7d; ~
+            r s t u v w x y z { | } ~
           </pre>
+          -->
         </div>
         <footer>
-          <p>
-            <a href="#top">[Top]</a>
-          </p>
+          <p><a href="#top">[Top]</a></p>
         </footer>
       </article>
       <article id="text__inline">
@@ -351,16 +289,9 @@
           <Heading as="h2" color="color.primary">Inline elements</Heading>
         </header>
         <div>
-          <p>
-            <a href="#!">This is a text link</a>
-            .
-          </p>
-          <p>
-            <strong>Strong is used to indicate strong importance.</strong>
-          </p>
-          <p>
-            <em>This text has added emphasis.</em>
-          </p>
+          <p><a href="#!">This is a text link</a> .</p>
+          <p><strong>Strong is used to indicate strong importance.</strong></p>
+          <p><em>This text has added emphasis.</em></p>
           <p>
             The
             <b>b element</b>
@@ -384,20 +315,9 @@
             <ins>This text is inserted</ins>
             .
           </p>
-          <p>
-            <s>This text has a strikethrough</s>
-            .
-          </p>
-          <p>
-            Superscript
-            <sup>®</sup>
-            .
-          </p>
-          <p>
-            Subscript for things like H
-            <sub>2</sub>
-            O.
-          </p>
+          <p><s>This text has a strikethrough</s> .</p>
+          <p>Superscript <sup>®</sup> .</p>
+          <p>Subscript for things like H <sub>2</sub> O.</p>
           <p>
             <small>This small text is small for for fine print, etc.</small>
           </p>
@@ -410,19 +330,9 @@
               This text is a short inline quotation.
             </q>
           </p>
-          <p>
-            <cite>This is a citation.</cite>
-          </p>
-          <p>
-            The
-            <dfn>dfn element</dfn>
-            indicates a definition.
-          </p>
-          <p>
-            The
-            <mark>mark element</mark>
-            indicates a highlight.
-          </p>
+          <p><cite>This is a citation.</cite></p>
+          <p>The <dfn>dfn element</dfn> indicates a definition.</p>
+          <p>The <mark>mark element</mark> indicates a highlight.</p>
           <p>
             The
             <var>variable element</var>
@@ -438,9 +348,7 @@
           </p>
         </div>
         <footer>
-          <p>
-            <a href="#top">[Top]</a>
-          </p>
+          <p><a href="#top">[Top]</a></p>
         </footer>
       </article>
       <article id="text__comments">
@@ -458,9 +366,7 @@
             <p><em>This text has added emphasis. But, it should not be displayed in a comment</em></p>-->
         </div>
         <footer>
-          <p>
-            <a href="#top">[Top]</a>
-          </p>
+          <p><a href="#top">[Top]</a></p>
         </footer>
       </article>
       <header>
@@ -471,14 +377,8 @@
           <Heading as="h3">Images</Heading>
         </header>
         <div>
-          <Heading as="h4">
-            No
-            <code>&lt;figure&gt;</code>
-            element
-          </Heading>
-          <p>
-            <img src="http://placekitten.com/480/480" alt="Image alt text" />
-          </p>
+          <Heading as="h4">No <code>&lt;figure&gt;</code> element</Heading>
+          <p><img src="http://placekitten.com/480/480" alt="alt text" /></p>
           <Heading as="h3">
             Wrapped in a
             <code>&lt;figure&gt;</code>
@@ -486,7 +386,7 @@
             <code>&lt;figcaption&gt;</code>
           </Heading>
           <figure>
-            <img src="http://placekitten.com/420/420" alt="Image alt text" />
+            <img src="http://placekitten.com/420/420" alt="alt text" />
           </figure>
           <Heading as="h3">
             Wrapped in a
@@ -495,14 +395,12 @@
             <code>&lt;figcaption&gt;</code>
           </Heading>
           <figure>
-            <img src="http://placekitten.com/420/420" alt="Image alt text" />
+            <img src="http://placekitten.com/420/420" alt="alt text" />
             <figcaption>Here is a caption for this image.</figcaption>
           </figure>
         </div>
         <footer>
-          <p>
-            <a href="#top">[Top]</a>
-          </p>
+          <p><a href="#top">[Top]</a></p>
         </footer>
       </article>
       <article id="embedded__audio">
@@ -510,12 +408,10 @@
           <Heading as="h2">Audio</Heading>
         </header>
         <div>
-          <audio controls="">audio</audio>
+          <audio controls><track kind="captions" />audio</audio>
         </div>
         <footer>
-          <p>
-            <a href="#top">[Top]</a>
-          </p>
+          <p><a href="#top">[Top]</a></p>
         </footer>
       </article>
       <article id="embedded__video">
@@ -523,51 +419,37 @@
           <Heading as="h2">Video</Heading>
         </header>
         <div>
-          <video controls="">video</video>
+          <video controls><track kind="captions" />video</video>
         </div>
         <footer>
-          <p>
-            <a href="#top">[Top]</a>
-          </p>
+          <p><a href="#top">[Top]</a></p>
         </footer>
       </article>
       <article id="embedded__canvas">
         <header>
           <Heading as="h2">Canvas</Heading>
         </header>
-        <div>
-          <canvas bind:this={canvas} width={128} height={128} />
-        </div>
+        <div><canvas bind:this={canvas} width={128} height={128} /></div>
         <footer>
-          <p>
-            <a href="#top">[Top]</a>
-          </p>
+          <p><a href="#top">[Top]</a></p>
         </footer>
       </article>
       <article id="embedded__meter">
         <header>
           <Heading as="h2">Meter</Heading>
         </header>
-        <div>
-          <meter value="2" min="0" max="10">2 out of 10</meter>
-        </div>
+        <div><meter value="2" min="0" max="10">2 out of 10</meter></div>
         <footer>
-          <p>
-            <a href="#top">[Top]</a>
-          </p>
+          <p><a href="#top">[Top]</a></p>
         </footer>
       </article>
       <article id="embedded__progress">
         <header>
           <Heading as="h2">Progress</Heading>
         </header>
-        <div>
-          <progress>progress</progress>
-        </div>
+        <div><progress>progress</progress></div>
         <footer>
-          <p>
-            <a href="#top">[Top]</a>
-          </p>
+          <p><a href="#top">[Top]</a></p>
         </footer>
       </article>
       <article id="embedded__svg">
@@ -580,22 +462,16 @@
           </svg>
         </div>
         <footer>
-          <p>
-            <a href="#top">[Top]</a>
-          </p>
+          <p><a href="#top">[Top]</a></p>
         </footer>
       </article>
       <article id="embedded__iframe">
         <header>
           <Heading as="h2">IFrame</Heading>
         </header>
-        <div>
-          <iframe src="index.html" height="300" title="some page" />
-        </div>
+        <div><iframe src="index.html" height="300" title="some page" /></div>
         <footer>
-          <p>
-            <a href="#top">[Top]</a>
-          </p>
+          <p><a href="#top">[Top]</a></p>
         </footer>
       </article>
     </Section>
@@ -666,9 +542,7 @@
               placeholder="Text Input" />
           </p>
         </fieldset>
-        <p>
-          <a href="#top">[Top]</a>
-        </p>
+        <p><a href="#top">[Top]</a></p>
         <fieldset id="forms__select">
           <legend>Select menus</legend>
           <p>
@@ -682,19 +556,13 @@
             </select>
           </p>
         </fieldset>
-        <p>
-          <a href="#top">[Top]</a>
-        </p>
+        <p><a href="#top">[Top]</a></p>
         <fieldset id="forms__checkbox">
           <legend>Checkboxes</legend>
           <ul class="list list--bare">
             <li>
               <label for="checkbox1">
-                <input
-                  id="checkbox1"
-                  name="checkbox"
-                  type="checkbox"
-                  checked="checked" />
+                <input id="checkbox1" name="checkbox" type="checkbox" checked />
                 Choice A
               </label>
             </li>
@@ -712,9 +580,7 @@
             </li>
           </ul>
         </fieldset>
-        <p>
-          <a href="#top">[Top]</a>
-        </p>
+        <p><a href="#top">[Top]</a></p>
         <fieldset id="forms__radio">
           <legend>Radio buttons</legend>
           <ul class="list list--bare">
@@ -725,7 +591,7 @@
                   name="radio"
                   type="radio"
                   class="radio"
-                  checked="checked" />
+                  checked />
                 Option 1
               </label>
             </li>
@@ -743,9 +609,7 @@
             </li>
           </ul>
         </fieldset>
-        <p>
-          <a href="#top">[Top]</a>
-        </p>
+        <p><a href="#top">[Top]</a></p>
         <fieldset id="forms__textareas">
           <legend>Textareas</legend>
           <p>
@@ -757,9 +621,7 @@
               placeholder="Enter your message here" />
           </p>
         </fieldset>
-        <p>
-          <a href="#top">[Top]</a>
-        </p>
+        <p><a href="#top">[Top]</a></p>
         <fieldset id="forms__html5">
           <legend>HTML5 inputs</legend>
           <p>
@@ -795,9 +657,7 @@
             <input type="datetime-local" id="idtl" value="1970-01-01T00:00" />
           </p>
         </fieldset>
-        <p>
-          <a href="#top">[Top]</a>
-        </p>
+        <p><a href="#top">[Top]</a></p>
         <fieldset id="forms__action">
           <legend>Action buttons</legend>
           <p>
@@ -813,9 +673,7 @@
             <button type="button" disabled>&lt;button disabled&gt;</button>
           </p>
         </fieldset>
-        <p>
-          <a href="#top">[Top]</a>
-        </p>
+        <p><a href="#top">[Top]</a></p>
       </form>
     </Section>
   </Box>
