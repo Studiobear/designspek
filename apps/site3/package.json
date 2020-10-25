@@ -4,7 +4,7 @@
   "scripts": {
     "start": "snowpack dev",
     "build": "snowpack build",
-    "test": "jest",
+    "test:bkp": "jest",
     "validate": "svelte-check"
   },
   "dependencies": {

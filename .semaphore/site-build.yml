@@ -12,7 +12,7 @@ blocks:
       jobs:
         - name: Build Svelte-System-UI
           commands:
-            - nvm use 10
+            - nvm use 14
             - checkout
             - cache restore monorepo-ci-$SEMAPHORE_GIT_BRANCH-$(checksum package.json)
             - yarn workspace site export

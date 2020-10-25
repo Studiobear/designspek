@@ -18,7 +18,7 @@ blocks:
         - name: Install & Bootstrap
           commands:
             - cache clear
-            - nvm use 12
+            - nvm use 14
             - checkout
             - yarn global add lerna
             - lerna bootstrap
