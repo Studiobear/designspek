@@ -9,6 +9,7 @@ import {
   linkExpressions,
   parseStyled,
   execToString,
+  objToString,
 } from '../parse'
 import { string, stringMulti } from './__fixtures__/parse'
 
@@ -152,5 +153,14 @@ describe('util: parse - execToString', () => {
     const result = await execToString(arr)
 
     expect(result).toEqual("const header = 'go474296207'" + '\n')
+  })
+})
+
+describe('util: parse - objToString', () => {
+  it('should should makes string from parse array', async () => {
+    const arr = ['const', 'header', 'go474296207']
+    const result = await objToString(arr)
+
+    expect(result).toEqual('const header go474296207')
   })
 })
