@@ -1,7 +1,7 @@
 /* inspired from: https://github.com/pngwn/MDsveX/blob/master/packages/mdsvex/src/parsers/html_block.ts */
-import { pipe } from 'fp-ts/lib/function'
+const { pipe } = require('fp-ts/lib/function')
 
-import { execStyled } from './exec'
+const { execStyled } = require('./exec')
 
 const tab = '\t'
 const space = ' '
@@ -31,6 +31,9 @@ export const trimMultiSpaces = (s: string): string =>
 
 export const execToString = (arr: string[]): string =>
   `${arr[0]} ${arr[1]} = '${arr[2]}'\n`
+
+export const objToString = (obj: string[]): string =>
+  obj.reduce((str, concat) => `${str} ${concat}`)
 
 // higher-order functions
 // assuming `const a = styled({},{})` separate to [['const a'],['styled(\n'+'{   },{}\n'+')']]
@@ -177,6 +180,5 @@ export const extractStyled = (code: string): string[] => {
 export const parseStyled = (code: string): string[] =>
   pipe(code, separateExpressions, linkExpressions)
 
-export const parse = (code: string): string[] => pipe(code, extractStyled)
-
-export default parse
+export const parse = (code: string): string =>
+  pipe(code, extractStyled, objToString)

@@ -26,7 +26,7 @@ function create_fragment(ctx) {
 			div = element(\\"div\\");
 			h3 = element(\\"h3\\");
 			h3.textContent = \\"Designspek\\";
-			attr(div, \\"class\\", /*container*/ ctx[0]);
+			attr(div, \\"class\\", container);
 		},
 		m(target, anchor) {
 			insert(target, div, anchor);
@@ -41,15 +41,12 @@ function create_fragment(ctx) {
 	};
 }
 
-function instance($$self) {
-	const container = styled({ bg: \\"#000\\", color: \\"#fff\\" }, {});
-	return [container];
-}
+const container = \\"go2225017453\\";
 
 class Component extends SvelteComponent {
 	constructor(options) {
 		super();
-		init(this, options, instance, create_fragment, safe_not_equal, {});
+		init(this, options, null, create_fragment, safe_not_equal, {});
 	}
 }
 
