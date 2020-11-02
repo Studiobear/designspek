@@ -1,7 +1,7 @@
 /* inspired from: https://github.com/pngwn/MDsveX/blob/master/packages/mdsvex/src/parsers/html_block.ts */
-import { pipe } from 'fp-ts/lib/function'
+const { pipe } = require('fp-ts/lib/function')
 
-import { execStyled } from './exec'
+const { execStyled } = require('./exec')
 
 const tab = '\t'
 const space = ' '
@@ -182,5 +182,3 @@ export const parseStyled = (code: string): string[] =>
 
 export const parse = (code: string): string =>
   pipe(code, extractStyled, objToString)
-
-export default parse

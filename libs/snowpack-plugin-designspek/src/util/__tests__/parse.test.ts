@@ -11,18 +11,18 @@ import {
   execToString,
   objToString,
 } from '../parse'
-import { string, stringMulti } from './__fixtures__/parse'
+import { stringParse, stringMultiParse } from './__fixtures__/parse'
 
 describe('util: parse - extractStyled', () => {
   it('should extract `styled` expression from string', async () => {
-    const result = await extractStyled(string)
+    const result = await extractStyled(stringParse)
     const exp = /[\f\n\r\t\v\s,;]/g
     const resultRegExp = result[1].replace(exp, '')
     expect(result.length).toEqual(3)
     expect(resultRegExp).toEqual("constcontainer='go2225017453'")
   })
   it('should extract multiple `styled` expressions', async () => {
-    const result = await extractStyled(stringMulti)
+    const result = await extractStyled(stringMultiParse)
     const exp = /[\f\n\r\t\v\s,;]/g
 
     const resultRegExp1 = result[1].replace(exp, '')

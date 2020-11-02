@@ -1,6 +1,7 @@
-export const string =
+export const stringExec =
   "container = styled( { bg: '#000', color: '#fff', }, {}, )"
-export const parsed = [
+
+export const parsedExec = [
   ['const', 'container', "styled( { bg: '#000', color: '#fff', }, {}, )"],
   [
     'const',

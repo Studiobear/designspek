@@ -4,7 +4,7 @@
   "compilerOptions": {
     "module": "CommonJS",
     "moduleResolution": "node",
-    "target": "ES2020",
+    "target": "ES6",
     "resolveJsonModule": true,
     "lib": ["esnext", "dom"],
     "types": ["node", "svelte", "jest"],
@@ -13,6 +13,7 @@
       "*": ["../*"]
     },
     "outDir": "./dist",
+    "declaration": true,
     "sourceMap": true,
     "noImplicitAny": true,
     "strict": true,

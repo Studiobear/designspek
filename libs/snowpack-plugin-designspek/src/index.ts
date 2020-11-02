@@ -2,7 +2,7 @@ const svelteRollupPlugin = require('rollup-plugin-svelte')
 const fs = require('fs/promises')
 const utils = require('@rollup/pluginutils')
 const svelte = require('svelte/compiler')
-const { parse } = require('./util')
+const { parse } = require('./util/parse')
 
 module.exports = function plugin(
   snowpackConfig: any,
