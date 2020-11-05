@@ -79,8 +79,8 @@
     "svelte": "^3.29.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.3",
-    "@babel/preset-env": "^7.12.3",
+    "@babel/core": "^7.12.1",
+    "@babel/preset-env": "^7.12.1",
     "@commitlint/cli": "^11.0.0",
     "@commitlint/config-conventional": "^11.0.0",
     "@rollup/plugin-node-resolve": "^10.0.0",
