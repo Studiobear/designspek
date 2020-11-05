@@ -24,7 +24,7 @@
     "lint:fix": "prettier --write 'src/**/*.{html,js,svelte}'",
     "typecheck": "svelte-check",
     "dts": "tsc -d --emitDeclarationOnly --declarationDir dist/ts",
-    "test": "jest src",
+    "test": "jest src --detectOpenHandles --force-exit",
     "test:watch": "yarn test -- --watch",
     "storybook": "start-storybook -p 6006 -s ../../static",
     "build-storybook": "build-storybook",

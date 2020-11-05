@@ -9,4 +9,5 @@ module.exports = {
     '<rootDir>/node_modules',
     '<rootDir>/../../node_modules',
   ],
+  clearMocks: true,
 }
