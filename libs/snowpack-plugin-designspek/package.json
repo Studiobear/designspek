@@ -38,7 +38,7 @@
     "bundlesize": "bundlesize",
     "lint": "prettier --check 'src/**/*.{ts,js}'",
     "lint:fix": "prettier --write 'src/**/*.{ts,js}'",
-    "test": "jest src",
+    "test": "jest src --runInBand",
     "test:watch": "yarn test --watch",
     "validate": "tsc --noEmit",
     "commit": "git add . && git cz",
