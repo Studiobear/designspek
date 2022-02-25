@@ -41,7 +41,7 @@
     "test:bkp": "jest src --detectOpenHandles --force-exit",
     "test:watch": "yarn test --watch",
     "validate:bkp": "tsc --noEmit",
-    "commit": "git add . && git cz",
+    "commit": "git cz",
     "release": "standard-version",
     "release:min": "yarn release --release-as minor"
   },

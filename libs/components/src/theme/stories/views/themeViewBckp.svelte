@@ -40,7 +40,8 @@
   <link
     href={googleFonts !== null ? googleFonts : ''}
     rel="stylesheet"
-    type="text/css" />
+    type="text/css"
+  />
 </svelte:head>
 
 <Box {...$$props} {style} theme={$theme}>
@@ -57,7 +58,8 @@
       as="nav"
       role="navigation"
       style={{ p: 4, bg: 'background' }}
-      theme={$theme}>
+      theme={$theme}
+    >
       <ul>
         <li>
           <a href="#text">Text</a>
@@ -295,8 +297,8 @@
           <p>
             The
             <b>b element</b>
-            is stylistically different text from normal text, without any
-            special importance.
+            is stylistically different text from normal text, without any special
+            importance.
           </p>
           <p>
             The
@@ -306,8 +308,8 @@
           <p>
             The
             <u>u element</u>
-            is text with an unarticulated, though explicitly rendered,
-            non-textual annotation.
+            is text with an unarticulated, though explicitly rendered, non-textual
+            annotation.
           </p>
           <p>
             <del>This text is deleted</del>
@@ -491,21 +493,24 @@
             <input
               id="input__password"
               type="password"
-              placeholder="Type your Password" />
+              placeholder="Type your Password"
+            />
           </p>
           <p>
             <label for="input__webaddress">Web Address</label>
             <input
               id="input__webaddress"
               type="url"
-              placeholder="http://yoursite.com" />
+              placeholder="http://yoursite.com"
+            />
           </p>
           <p>
             <label for="input__emailaddress">Email Address</label>
             <input
               id="input__emailaddress"
               type="email"
-              placeholder="name@email.com" />
+              placeholder="name@email.com"
+            />
           </p>
           <p>
             <label for="input__phone">Phone Number</label>
@@ -516,14 +521,16 @@
             <input
               id="input__search"
               type="search"
-              placeholder="Enter Search Term" />
+              placeholder="Enter Search Term"
+            />
           </p>
           <p>
             <label for="input__text2">Number Input</label>
             <input
               id="input__text2"
               type="number"
-              placeholder="Enter a Number" />
+              placeholder="Enter a Number"
+            />
           </p>
           <p>
             <label for="input__text3" class="error">Error</label>
@@ -531,7 +538,8 @@
               id="input__text3"
               class="is-error"
               type="text"
-              placeholder="Text Input" />
+              placeholder="Text Input"
+            />
           </p>
           <p>
             <label for="input__text4" class="valid">Valid</label>
@@ -539,7 +547,8 @@
               id="input__text4"
               class="is-valid"
               type="text"
-              placeholder="Text Input" />
+              placeholder="Text Input"
+            />
           </p>
         </fieldset>
         <p><a href="#top">[Top]</a></p>
@@ -591,7 +600,8 @@
                   name="radio"
                   type="radio"
                   class="radio"
-                  checked />
+                  checked
+                />
                 Option 1
               </label>
             </li>
@@ -618,7 +628,8 @@
               id="textarea"
               rows="8"
               cols="48"
-              placeholder="Enter your message here" />
+              placeholder="Enter your message here"
+            />
           </p>
         </fieldset>
         <p><a href="#top">[Top]</a></p>

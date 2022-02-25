@@ -51,6 +51,7 @@
     ]
   },
   "dependencies": {
+    "@babel/core": "^7.17.5",
     "@commitlint/cli": "^16.2.1",
     "@commitlint/config-conventional": "^16.2.1",
     "@manypkg/cli": "^0.16.2",
@@ -64,6 +65,7 @@
     "eslint-plugin-import": "^2.25.4",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-svelte3": "^3.4.1",
+    "husky": "^7.0.4",
     "lerna": "^4.0.0",
     "prettier": "^2.5.1",
     "prettier-plugin-svelte": "^2.6.0",
@@ -76,9 +78,5 @@
       "path": "./node_modules/cz-conventional-changelog"
     }
   },
-  "packageManager": "yarn@3.2.0",
-  "devDependencies": {
-    "@babel/core": "^7.17.5",
-    "husky": "^7.0.0"
-  }
+  "packageManager": "yarn@3.2.0"
 }

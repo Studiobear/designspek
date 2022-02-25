@@ -1,3 +1,5 @@
+<svelte:options immutable={true} />
+
 <script>
   import { onMount } from 'svelte'
   import { styled, removeSSR } from '@studiobear/designspek'
@@ -82,7 +84,6 @@
   })
 </script>
 
-<svelte:options immutable={true} />
 <svelte:head>
   <title>Design</title>
 </svelte:head>

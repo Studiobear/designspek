@@ -43,7 +43,8 @@
 
 <Box {...$$props} {style}>
   <button
-    on:click={() => ($theme.mode === 'light' ? theme.dark() : theme.light())}>
+    on:click={() => ($theme.mode === 'light' ? theme.dark() : theme.light())}
+  >
     {$theme.mode === 'light' ? 'to dark mode' : 'to light mode'}
   </button>
   <Box style={bodyStyle}>

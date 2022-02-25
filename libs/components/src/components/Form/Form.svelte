@@ -32,7 +32,8 @@
     values = e.detail
     return values
   }}
-  use:getValues={values}>
+  use:getValues={values}
+>
   <slot />
   {#if !formFields}
     <Text>No form fields</Text>

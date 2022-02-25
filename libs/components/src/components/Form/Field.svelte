@@ -62,7 +62,8 @@
         {checked}
         {minValue}
         {maxValue}
-        {stepValue} />
+        {stepValue}
+      />
     {/if}
     {afterLabel ? '' : label}
   </label>
@@ -75,7 +76,8 @@
     {placeholder}
     {value}
     {disabled}
-    on:click|preventDefault={(e) => handle(e)} />
+    on:click|preventDefault={(e) => handle(e)}
+  />
 {/if}
 
 {#if !inLabel}
@@ -91,5 +93,6 @@
     {checked}
     {minValue}
     {maxValue}
-    {stepValue} />
+    {stepValue}
+  />
 {/if}

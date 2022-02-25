@@ -1,3 +1,5 @@
+<svelte:options immutable={true} />
+
 <script>
   import { onMount } from 'svelte'
   import { addGlobal, styled } from '@studiobear/designspek'
@@ -29,6 +31,24 @@
   })
 </script>
 
+<svelte:head>
+  <link href={googleFonts} rel="stylesheet" type="text/css" />
+</svelte:head>
+
+<Box style={bodyStyle}>
+  <Nav {segment} theme={$theme} />
+  <Section as="main" theme={$theme} style={mainStyle} {ssr}>
+    <Link
+      on:click={() => ($theme.mode === 'light' ? theme.dark() : theme.light())}
+    >
+      {$theme.mode === 'light' ? 'to dark mode' : 'to light mode'}
+    </Link>
+    <slot />
+  </Section>
+</Box>
+<Icons />
+<SSR theme={$theme} active={ssr} />
+
 <style>
   :global(html) {
     line-height: 1.15;
@@ -44,21 +64,3 @@
     margin: 0;
   }
 </style>
-
-<svelte:options immutable={true} />
-<svelte:head>
-  <link href={googleFonts} rel="stylesheet" type="text/css" />
-</svelte:head>
-
-<Box style={bodyStyle}>
-  <Nav {segment} theme={$theme} />
-  <Section as="main" theme={$theme} style={mainStyle} {ssr}>
-    <Link
-      on:click={() => ($theme.mode === 'light' ? theme.dark() : theme.light())}>
-      {$theme.mode === 'light' ? 'to dark mode' : 'to light mode'}
-    </Link>
-    <slot />
-  </Section>
-</Box>
-<Icons />
-<SSR theme={$theme} active={ssr} />
