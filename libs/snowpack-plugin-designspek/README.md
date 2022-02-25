@@ -18,6 +18,8 @@
 </div>
 <hr />
 
+> **ARCHVIED** This was an experimental package for pre-processing CSS-in-JS with an original implementation in Svelte. As Svelte has moved to Vite, so to will DesignSpek.
+
 This plugin is originally created to be used within a Svelte project, but has future plans to be JS library/framework agnostic.
 
 ```bash
