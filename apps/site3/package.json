@@ -8,30 +8,30 @@
     "validate": "svelte-check"
   },
   "dependencies": {
-    "svelte": "^3.29.4"
+    "svelte": "^3.46.4"
   },
   "devDependencies": {
-    "@rollup/plugin-typescript": "^6.0.0",
-    "@snowpack/app-scripts-svelte": "^1.8.5",
-    "@snowpack/plugin-run-script": "^2.1.3",
+    "@rollup/plugin-typescript": "^8.3.1",
+    "@snowpack/app-scripts-svelte": "^2.0.1",
+    "@snowpack/plugin-run-script": "^2.3.0",
     "@studiobear/designspek": "^0.5.0",
     "@studiobear/designspek-components": "^0.5.0",
-    "@testing-library/jest-dom": "^5.5.0",
-    "@testing-library/svelte": "^3.0.0",
-    "@tsconfig/svelte": "^1.0.10",
-    "@types/jest": "^26.0.14",
-    "@types/node": "^14.11.2",
-    "@types/snowpack-env": "^2.3.0",
-    "jest": "^26.4.2",
-    "mdsvex": "^0.8.8",
-    "navaid": "^1.1.2",
+    "@testing-library/jest-dom": "^5.16.2",
+    "@testing-library/svelte": "^3.0.3",
+    "@tsconfig/svelte": "^3.0.0",
+    "@types/jest": "^27.4.1",
+    "@types/node": "^17.0.21",
+    "@types/snowpack-env": "^2.3.4",
+    "jest": "^27.5.1",
+    "mdsvex": "^0.10.5",
+    "navaid": "^1.2.0",
     "rollup-plugin-node-polyfills": "^0.2.1",
-    "snowpack": "^2.16.1",
-    "snowpack-plugin-mdsvex": "^0.2.0",
-    "svelte-check": "^1.0.54",
-    "svelte-preprocess": "^4.3.2",
-    "ts-jest": "^26.4.3",
-    "tslib": "^2.0.1",
-    "typescript": "^4.0.5"
+    "snowpack": "^3.8.8",
+    "snowpack-plugin-mdsvex": "^0.2.2",
+    "svelte-check": "^2.4.5",
+    "svelte-preprocess": "^4.10.4",
+    "ts-jest": "^27.1.3",
+    "tslib": "^2.3.1",
+    "typescript": "^4.5.5"
   }
 }

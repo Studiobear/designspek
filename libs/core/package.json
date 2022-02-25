@@ -46,28 +46,29 @@
     ]
   },
   "devDependencies": {
-    "@babel/core": "^7.12.1",
-    "@babel/preset-env": "^7.12.1",
-    "@types/jest": "^26.0.14",
-    "@types/styled-system": "^5.1.10",
-    "babel-jest": "^26.3.0",
-    "bundlesize": "^0.18.0",
+    "@babel/core": "^7.17.5",
+    "@babel/preset-env": "^7.16.11",
+    "@types/jest": "^27.4.1",
+    "@types/styled-system": "^5.1.15",
+    "babel-jest": "^27.5.1",
+    "bundlesize": "^0.18.1",
     "compass-vertical-rhythm": "^1.4.5",
-    "csstype": "^3.0.3",
-    "goober": "^2.0.5",
-    "husky": "^4.3.0",
-    "lint-staged": "^10.4.0",
+    "csstype": "^3.0.10",
+    "goober": "^2.1.8",
+    "husky": "^7.0.4",
+    "jest": "^27.5.1",
+    "lint-staged": "^12.3.4",
     "micro-memoize": "^4.0.9",
-    "microbundle": "^0.12.3",
+    "microbundle": "^0.14.2",
     "modularscale": "^2.0.1",
-    "prettier": "^2.1.2",
-    "prettier-plugin-svelte": "^1.4.0",
+    "prettier": "^2.5.1",
+    "prettier-plugin-svelte": "^2.6.0",
     "styled-system": "^5.1.5",
-    "ts-jest": "^26.4.3",
-    "typescript": "^4.0.5",
+    "ts-jest": "^27.1.3",
+    "typescript": "^4.5.5",
     "typography-theme-st-annes": "^0.16.19"
   },
   "dependencies": {
-    "svelte": "^3.29.4"
+    "svelte": "^3.46.4"
   }
 }
