@@ -6232,15 +6232,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/esprima@npm:^4.0.3":
-  version: 4.0.3
-  resolution: "@types/esprima@npm:4.0.3"
-  dependencies:
-    "@types/estree": "*"
-  checksum: 266d1f87a9469688af0f143dec47caae25e6f689194da0d57d03d796cf8bdbfb99593717885e98d9538f1beff967a642f126d693e0e4b5fa4f4605fb55866919
-  languageName: node
-  linkType: hard
-
 "@types/estree@npm:*":
   version: 0.0.45
   resolution: "@types/estree@npm:0.0.45"
@@ -12432,25 +12423,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"escodegen@npm:^1.11.1":
-  version: 1.14.3
-  resolution: "escodegen@npm:1.14.3"
-  dependencies:
-    esprima: ^4.0.1
-    estraverse: ^4.2.0
-    esutils: ^2.0.2
-    optionator: ^0.8.1
-    source-map: ~0.6.1
-  dependenciesMeta:
-    source-map:
-      optional: true
-  bin:
-    escodegen: bin/escodegen.js
-    esgenerate: bin/esgenerate.js
-  checksum: 381cdc4767ecdb221206bbbab021b467bbc2a6f5c9a99c9e6353040080bdd3dfe73d7604ad89a47aca6ea7d58bc635f6bd3fbc8da9a1998e9ddfa8372362ccd0
-  languageName: node
-  linkType: hard
-
 "escodegen@npm:^2.0.0":
   version: 2.0.0
   resolution: "escodegen@npm:2.0.0"
@@ -12795,7 +12767,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"estraverse@npm:^4.1.1, estraverse@npm:^4.2.0":
+"estraverse@npm:^4.1.1":
   version: 4.3.0
   resolution: "estraverse@npm:4.3.0"
   checksum: a6299491f9940bb246124a8d44b7b7a413a8336f5436f9837aaa9330209bd9ee8af7e91a654a3545aee9c54b3308e78ee360cef1d777d37cfef77d2fa33b5827
@@ -13651,13 +13623,6 @@ __metadata:
   version: 0.2.0
   resolution: "forwarded@npm:0.2.0"
   checksum: fd27e2394d8887ebd16a66ffc889dc983fbbd797d5d3f01087c020283c0f019a7d05ee85669383d8e0d216b116d720fc0cef2f6e9b7eb9f4c90c6e0bc7fd28e6
-  languageName: node
-  linkType: hard
-
-"fp-ts@npm:^2.11.8":
-  version: 2.11.8
-  resolution: "fp-ts@npm:2.11.8"
-  checksum: 481b824797ba59f3f5549810e8f6688b27554790d11a470ccdf4fc086a1cb4993ffb9060131b054abccca703f2776993e12f649865143e178e9b7c9e5b295ea7
   languageName: node
   linkType: hard
 
@@ -24240,48 +24205,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"snowpack-plugin-designspek@workspace:libs/snowpack-plugin-designspek":
-  version: 0.0.0-use.local
-  resolution: "snowpack-plugin-designspek@workspace:libs/snowpack-plugin-designspek"
-  dependencies:
-    "@babel/core": ^7.17.5
-    "@babel/preset-env": ^7.16.11
-    "@commitlint/cli": ^16.2.1
-    "@commitlint/config-conventional": ^16.2.1
-    "@rollup/plugin-node-resolve": ^13.1.3
-    "@snowpack/app-scripts-svelte": ^2.0.1
-    "@studiobear/designspek": ^0.5.0
-    "@types/esprima": ^4.0.3
-    "@types/estree": ^0.0.51
-    "@types/jest": ^27.4.1
-    babel-jest: ^27.5.1
-    bundlesize: ^0.18.1
-    commitizen: ^4.2.4
-    cz-conventional-changelog: ^3.3.0
-    esprima: ^4.0.1
-    fp-ts: ^2.11.8
-    husky: ^7.0.4
-    jest: ^27.5.1
-    lint-staged: ^12.3.4
-    microbundle: ^0.14.2
-    prettier: ^2.5.1
-    prettier-plugin-svelte: ^2.6.0
-    require-relative: ^0.8.7
-    rollup: ^2.68.0
-    rollup-plugin-svelte: ^7.1.0
-    snowpack: ^3.8.8
-    standard-version: ^9.3.2
-    static-eval: ^2.1.0
-    svelte: ^3.46.4
-    ts-jest: ^27.1.3
-    typescript: ^4.5.5
-  peerDependencies:
-    "@studiobear/designspek": "*"
-    snowpack: ^2.14.1
-    svelte: ^3.29.0
-  languageName: unknown
-  linkType: soft
-
 "snowpack-plugin-mdsvex@npm:^0.2.2":
   version: 0.2.2
   resolution: "snowpack-plugin-mdsvex@npm:0.2.2"
@@ -24730,15 +24653,6 @@ __metadata:
   version: 1.0.3
   resolution: "state-toggle@npm:1.0.3"
   checksum: 17398af928413e8d8b866cf0c81fd1b1348bb7d65d8983126ff6ff2317a80d6ee023484fba0c54d8169f5aa544f125434a650ae3a71eddc935cae307d4692b4f
-  languageName: node
-  linkType: hard
-
-"static-eval@npm:^2.1.0":
-  version: 2.1.0
-  resolution: "static-eval@npm:2.1.0"
-  dependencies:
-    escodegen: ^1.11.1
-  checksum: 21297ee9af37cd23ef92b3a4b1fd535073539b870d2bb83a4b92f6b668183f7fb552d3c791bbdcd460c62583a2c33d46e5d56e86a7f5851b65b29e19e5d28b41
   languageName: node
   linkType: hard
 
