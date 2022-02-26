@@ -11,6 +11,7 @@ module.exports = {
       tsconfig: '<rootDir>/tsconfig.json',
     },
   },
+  testEnvironment: 'jsdom',
   testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.ts$',
   moduleFileExtensions: ['js', 'ts', 'svelte'],
   testPathIgnorePatterns: ['node_modules'],
