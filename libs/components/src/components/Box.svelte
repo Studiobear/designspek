@@ -1,7 +1,7 @@
 <script>
   import { styled } from '@studiobear/designspek'
 
-  let div
+  export let div
   export let style = $$props.style ?? {}
   export let theme = style.theme ?? {}
   export let critical = style.critical ?? false
