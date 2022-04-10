@@ -1,0 +1,10 @@
+{
+  "extends": "@tsconfig/svelte/tsconfig.json",
+  "exclude": ["node_modules", "dist", ".storybook", "src/theme/stories"],
+  "include": ["src/**/*"],
+  "compilerOptions": {
+    "target": "ES2019",
+    "sourceMap": true,
+    "types": ["svelte", "jest", "@testing-library/jest-dom"],
+  }
+}
