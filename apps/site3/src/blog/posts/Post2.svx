@@ -1,9 +1,0 @@
-<script>import {Counter} from '@studiobear/designspek-components'</script>
-
-# Post1
-
-This is my first post!
-
-It has a nifty counter...
-
-<Counter />

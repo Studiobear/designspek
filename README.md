@@ -8,7 +8,7 @@ _Specifications for intelligent design_
 
 #### **Designspek** is a multi-disciplinary approach to managing the complexity of design in interactive environments. Embracing the domains of _brand cultivation_ to _graphic and user experience design_ to _frontend engineering_. Elevating the common purpose of creators regardless of team size, skill sets and choice of implementation.
 
-> e.g. GraphQL is an API query language implemented through the definition of a schema that acts as a "contract" between frontend and backend systems. In the same way, design specifications or "themes" may act as _contracts_ between abstracted design requirements and the interfaces implementing those requirements. 
+> e.g. GraphQL is an API query language implemented through the definition of a schema that acts as a "contract" between frontend and backend systems. In the same way, design specifications or "themes" may act as _contracts_ between abstracted design requirements and the interfaces implementing those requirements.
 
 ---
 
@@ -23,7 +23,13 @@ _Specifications for intelligent design_
 
 ## A Living Experiment
 
-#### _Current iteration:_ Svelte meets System-UI
+#### _Current iteration (2022 - present):_ All we needed was some Vanilla-Extract
+
+For the past year this project has been dormant, yet in the blink of that passing time, tools have evolved or emerged opneing new opportunities for this system to "try again." A critical underlying pattern to Designspek is the reconciliation of those illusory seperation-of-concerns between HTML, CSS and JS. In the front-end world, main stream adoption of component architecture and markup, such as JSX, marry HTML and JS. However, CSS and pre-processors still have a distinct separation. Alternatives such as utility CSS frameworks or CSS-in-JS bring a tighter DX, but their integration still feels like second-class citizen.
+
+Designspek's custom impelementation of pre-calculated atomic CSS is no longer needed as we now have [vanilla-extract](https://vanilla-extract.style/). Designspek shall hence forth move forward on its journey as an opinionated design system. 
+
+#### _Past iteration 1 (2019 - 2020):_ Svelte meets System-UI
 
 - [Svelte](https://svelte.dev/) is a UI development framework for creating boilerplate-free components that compile down to fast, virtual-DOM-free vanilla JS that is truly reactive.
 

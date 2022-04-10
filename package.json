@@ -1,7 +1,7 @@
 {
   "name": "designspek",
-  "version": "0.4.3",
-  "description": "FFor using consistent, interoperable design systems with Svelte",
+  "version": "0.5.0",
+  "description": "An opinionated reactive design system",
   "author": "Barry Low <barry@studiobear.co>",
   "license": "MIT",
   "private": true,
@@ -9,76 +9,53 @@
     "svelte",
     "designspek",
     "css-in-js",
-    "system-ui",
-    "monorepo"
+    "turborepo"
   ],
-  "workspaces": {
-    "packages": [
-      "libs/*",
-      "apps/*"
-    ],
-    "nohoist": [
-      "**/rollup-plugin-svelte",
-      "**/rollup-plugin-svelte/**",
-      "**/svelte-system-ui/**"
-    ]
-  },
   "scripts": {
-    "components": "yarn workspace @studiobear/designspek-components",
-    "core": "yarn workspace @studiobear/designspek",
-    "spd": "yarn workspace snowpack-plugin-designspek",
-    "site": "yarn workspace site",
-    "site2": "yarn workspace site2",
-    "site3": "yarn workspace site3",
-    "build": "lerna run build",
-    "watch": "lerna run dev",
-    "clean": "lerna run clean",
-    "lint": "lerna run lint",
-    "lint:fix": "lerna run lint:fix",
-    "eslint": "lerna run eslint",
-    "eslint:fix": "lerna run eslint:fix",
-    "test": "lerna run test",
-    "monocheck": "manypkg check",
-    "monofix": "manypkg fix",
-    "check-packages": "yarn monocheck && yarn lint && yarn eslint",
-    "fix-packages": "yarn monofix && yarn lint:fix && yarn eslint:fix",
+    "components": "pnpm --filter designspek-components",
+    "build": "turbo run build",
+    "watch": "turbo run dev",
+    "clean": "turbo run clean",
+    "lint": "turbo run lint",
+    "lint:fix": "turbo run lint:fix",
+    "eslint": "turbo run eslint",
+    "eslint:fix": "turbo run eslint:fix",
+    "test": "turbo run test",
     "commit": "git add . && git cz",
     "release": "standard-version",
-    "release:min": "yarn release --release-as minor"
+    "release:min": "yarn release --release-as minor",
+    "prepare": "husky install"
   },
   "commitlint": {
     "extends": [
       "@commitlint/config-conventional"
     ]
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "yarn fix-packages",
-      "pre-push": "yarn fix-packages && yarn test",
-      "commit-msg": "commitlint -e --verbose $HUSKY_GIT_PARAMS"
-    }
-  },
   "dependencies": {
-    "@commitlint/cli": "^11.0.0",
-    "@commitlint/config-conventional": "^11.0.0",
-    "@manypkg/cli": "^0.16.1",
-    "@typescript-eslint/eslint-plugin": "^4.1.1",
-    "@typescript-eslint/parser": "^4.1.1",
-    "commitizen": "^4.2.1",
-    "cypress": "^5.1.0",
+    "@babel/core": "^7.17.5",
+    "@changesets/cli": "^2.22.0",
+    "@commitlint/cli": "^16.2.1",
+    "@commitlint/config-conventional": "^16.2.1",
+    "@typescript-eslint/eslint-plugin": "^5.12.1",
+    "@typescript-eslint/parser": "^5.12.1",
+    "commitizen": "^4.2.4",
     "cz-conventional-changelog": "^3.3.0",
-    "eslint": "^7.9.0",
-    "eslint-config-prettier": "^6.10.0",
-    "eslint-plugin-import": "^2.20.1",
-    "eslint-plugin-prettier": "^3.1.2",
-    "eslint-plugin-svelte3": "^2.7.3",
-    "husky": "^4.3.0",
-    "lerna": "^3.20.2",
-    "prettier": "^2.1.2",
-    "prettier-plugin-svelte": "^1.4.0",
-    "snowpack": "^2.14.1",
-    "standard-version": "^9.0.0",
-    "svelte": "^3.29.0"
+    "eslint": "^8.10.0",
+    "eslint-config-prettier": "^8.4.0",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-svelte3": "^3.4.1",
+    "husky": "^7.0.4",
+    "jest": "^27.5.1",
+    "lerna": "^4.0.0",
+    "prettier": "^2.5.1",
+    "prettier-plugin-svelte": "^2.6.0",
+    "standard-version": "^9.3.2",
+    "svelte": "^3.46.4",
+    "ts-jest": "^27.1.3",
+    "tslib": "^2.3.1",
+    "turbo": "^1.2.1",
+    "typescript": "^4.6.3"
   },
   "config": {
     "commitizen": {

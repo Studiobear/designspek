@@ -1,0 +1,74 @@
+{
+  "name": "@studiobear/designspek",
+  "version": "0.5.0",
+  "description": "A Reactive Design System: Svelte meets System UI",
+  "source": "src/index.ts",
+  "main": "dist/index.js",
+  "module": "dist/index.modern.js",
+  "umd:main": "dist/index.umd.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "docs/assets/ds-horiz-fat.svg",
+    "dist/**.js*",
+    "dist/**/*.ts",
+    "README.md"
+  ],
+  "author": "Barry Low <barry@studiobear.co>",
+  "license": "MIT",
+  "sideEffects": false,
+  "scripts": {
+    "build": "NODE_ENV=production yarn test && yarn clean && yarn microbundle --compress && yarn bundlesize",
+    "dev": "NODE_ENV=development yarn microbundle watch",
+    "clean": "rm -rf dist",
+    "prepublishOnly": "yarn build",
+    "bundlesize": "bundlesize",
+    "lint": "prettier --check 'src/**/*.{ts,js}'",
+    "lint:fix": "prettier --write 'src/**/*.{ts,js}'",
+    "test": "jest src --detectOpenHandles --force-exit",
+    "test:watch": "yarn test --watch"
+  },
+  "bundlesize": [
+    {
+      "path": "./dist/index.js",
+      "maxSize": "10 Kb",
+      "compression": "brotli"
+    }
+  ],
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "**/*.{js,ts,json,md}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "devDependencies": {
+    "@babel/core": "^7.17.5",
+    "@babel/preset-env": "^7.16.11",
+    "@types/jest": "^27.4.1",
+    "@types/styled-system": "^5.1.15",
+    "babel-jest": "^27.5.1",
+    "bundlesize": "^0.18.1",
+    "compass-vertical-rhythm": "^1.4.5",
+    "csstype": "^3.0.10",
+    "goober": "^2.1.8",
+    "husky": "^7.0.4",
+    "jest": "^27.5.1",
+    "lint-staged": "^12.3.4",
+    "micro-memoize": "^4.0.9",
+    "microbundle": "^0.14.2",
+    "modularscale": "^2.0.1",
+    "prettier": "^2.5.1",
+    "prettier-plugin-svelte": "^2.6.0",
+    "styled-system": "^5.1.5",
+    "ts-jest": "^27.1.3",
+    "typescript": "^4.5.5",
+    "typography-theme-st-annes": "^0.16.19"
+  },
+  "dependencies": {
+    "svelte": "^3.46.4"
+  }
+}
